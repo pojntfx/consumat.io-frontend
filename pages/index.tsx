@@ -1,3 +1,12 @@
-const Index = () => <h1>Hello, world!</h1>;
+import MetaData from '../components/MetaData';
 
-export default Index;
+const Home = () => {
+  return (
+    <div className='px-8'>
+      <MetaData title='consumat.io | Home' />
+      <h2>Hello, Home!</h2>
+    </div>
+  );
+};
+
+export default Home;
