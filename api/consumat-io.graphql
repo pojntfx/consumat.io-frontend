@@ -1,0 +1,68 @@
+type Query {
+  movie(code: Int, country: String): Movie!
+  tv(code: Int, country: String): TV!
+  season(code: Int, seasonNumber: Int): Season!
+  episode(code: Int, seasonNumber: Int, episodeNumber: Int): Episode!
+}
+
+type Movie {
+  code: Int
+  title: String
+  genres: [String]
+  overview: String
+  popularity: Float
+  voteAverage: Float
+  releaseDate: String
+  runtime: Int
+  status: String
+  backdrops: String
+  posters: String
+  providers: [String]
+  watchStatus: String
+  rating: Float
+  favorite: Boolean
+}
+
+type TV {
+  code: Int
+  name: String
+  genres: [String]
+  overview: String
+  popularity: Float
+  voteAverage: Float
+  firstAirDate: String
+  lastAirDate: String
+  status: String
+  backdrops: String
+  posters: String
+  providers: [String]
+  watchStatus: String
+  rating: Float
+  favorite: Boolean
+}
+
+type Season {
+  code: Int
+  tvCode: Int
+  seasonNumber: Int
+  name: String
+  overview: String
+  posters: String
+  watchStatus: String
+  rating: Float
+  favorite: Boolean
+}
+
+type Episode {
+  code: Int
+  name: String
+  episodeNumber: Int
+  seasonNumber: Int
+  overview: String
+  airDate: String
+  voteAverage: Float
+  stills: String
+  watchStatus: String
+  rating: Float
+  favorite: Boolean
+}
