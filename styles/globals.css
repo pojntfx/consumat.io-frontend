@@ -17,11 +17,11 @@ body {
 }
 
 .details-banner {
-  @apply h-4/5 2xl:h-3/5 w-screen md:object-cover object-fill;
+  @apply h-4/5 2xl:h-3/5 w-screen object-cover;
 }
 
 .details-poster {
-  @apply rounded-lg shadow-lg w-48  lg:w-64 antialiased absolute top-96 left-20 lg:left-12;
+  @apply rounded-lg shadow-lg w-48  lg:w-64 antialiased;
 }
 
 .half-screen {

@@ -1,19 +1,29 @@
 import MetaData from "../../components/MetaData";
 
 const Details = () => {
+  const title = "Gintama";
+  const description =
+    "Gintama is the best Anime of all time 11/10, best comedy, best animation, best fights, great characters! Gintama is the best Anime of all time 11/10, best comedy, best animation, best fights, great characters! Gintama is the best Anime of all time 11/10, best comedy, best animation, best fights, great characters! Gintama is the best Anime of all time 11/10, best comedy, best animation, best fights, great characters! Gintama is the best Anime of all time 11/10, best comedy, best animation, best fights, great characters!";
+  const bannerImage =
+    "https://ninotaku.de/wp-content/uploads/2020/12/gintama-1.jpg";
+  const posterImage =
+    "https://i.pinimg.com/236x/5c/e7/97/5ce7972ccf38c44ff01b79d5227d462a.jpg";
+
   return (
     <div>
       <MetaData title="consumat.io | Home" />
-      <div className="w-screen h-screen flex flex-row flex-wrap">
-        <div className="w-screen w-2/3 relative">
-          <img
-            className="details-banner"
-            src="https://ninotaku.de/wp-content/uploads/2020/12/gintama-1.jpg"
-          />
-          <img
-            className="details-poster"
-            src="https://i.pinimg.com/236x/5c/e7/97/5ce7972ccf38c44ff01b79d5227d462a.jpg"
-          />
+      <div className="w-screen h-screen flex-wrap">
+        <div className="w-screen w-2/3 half-screen relative">
+          <img className="details-banner" src={bannerImage} />
+          <div className="w-auto h-auto flex flex-col sm:flex-row items-center absolute left:0 bottom:12 xl:-bottom-20 xl:left-12 2xl:bottom-48 2xl:left-12">
+            <img className="details-poster" src={posterImage} />
+            <div className="flex flex-col">
+              <h1 className="sm:ml-10 mb-10 text-black ph-10 sm:px-0 sm:text-white text-8xl">
+                {title}
+              </h1>
+              <p className="sm:ml-10 text-black text-2xl">{description}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
