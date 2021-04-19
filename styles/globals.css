@@ -3,15 +3,6 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-50 text-gray-800;
-}
-
-/* Navigation */
-
-.navigation-item {
-  @apply mx-4 cursor-pointer border-b-4 border-transparent hover:border-gray-800 hover:font-black;
-}
-
-.navigation-item-mobile {
-  @apply mx-4 cursor-pointer border-b-4 border-transparent hover:border-gray-50 hover:font-black my-4;
+  @apply bg-gray-50;
+  @apply text-gray-800;
 }
