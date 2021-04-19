@@ -1,16 +1,14 @@
-import MetaData from './MetaData';
-import Navbar from './Navbar';
+import MetaData from "./MetaData";
+import Navbar from "./Navbar";
 
 const Layout = ({ children }) => {
   return (
     <>
       <MetaData />
       <Navbar />
-      <div>
-        {children}
-      </div>
+      <div>{children}</div>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
