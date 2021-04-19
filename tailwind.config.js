@@ -6,7 +6,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      fontWeight: ['hover', 'focus']
+      fontWeight: ["hover", "focus"],
     },
   },
   plugins: [],
