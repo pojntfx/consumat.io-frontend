@@ -1,28 +1,27 @@
-.navigationItem {
+.navigationLink {
   @apply text-center;
   @apply text-gray-400;
   @apply font-bold;
-  @apply mx-4;
   @apply cursor-pointer;
   @apply border-b-4;
   @apply border-transparent;
 }
 
+.navigationItem {
+  @apply mx-4;
+}
+
+.navigationItem.active,
 .navigationItem:hover {
   @apply border-gray-800;
   @apply text-gray-800;
 }
 
 .navigationItemMobile {
-  @apply text-center;
-  @apply text-gray-400;
-  @apply font-bold;
-  @apply cursor-pointer;
-  @apply border-b-4;
-  @apply border-transparent;
   @apply my-4;
 }
 
+.navigationItemMobile.active,
 .navigationItemMobile:hover {
   @apply border-gray-50;
   @apply text-gray-50;
