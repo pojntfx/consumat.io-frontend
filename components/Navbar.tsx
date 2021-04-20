@@ -1,14 +1,28 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import styles from "../styles/Navbar.module.css";
 
+enum NavigationLink {
+  Home,
+  Discover,
+  Library,
+  Search,
+}
+
 const Navbar = () => {
+  const router = useRouter();
   const [windowWidth, setWindowWidth] = useState<number>(null);
   const [isMobile, setMobile] = useState(true);
   const [isMobileNavbarActive, setMobileNavbarActive] = useState(false);
+  const [
+    activeNavigationLink,
+    setActiveNavigationLink,
+  ] = useState<NavigationLink>(NavigationLink.Home);
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
+    setActiveNavigationLink(getNavigationLinkForUrl(router.pathname));
 
     function handleResize() {
       setWindowWidth(window.innerWidth);
@@ -22,11 +36,29 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    router.events.on("routeChangeComplete", (url: string) => {
+      setActiveNavigationLink(getNavigationLinkForUrl(url));
+    });
+  }, []);
+
+  useEffect(() => {
     if (windowWidth === null) return;
     windowWidth < 768 ? setMobile(true) : setMobile(false);
-    console.log(`Current width: ${windowWidth}`);
-    console.log(`Is mobile? ${isMobile}`);
   }, [windowWidth]);
+
+  const getNavigationLinkForUrl = (url: string): NavigationLink | null => {
+    if (url === "/") {
+      return NavigationLink.Home;
+    } else if (url.includes("/discover")) {
+      return NavigationLink.Discover;
+    } else if (url.includes("/library")) {
+      return NavigationLink.Library;
+    } else if (url.includes("/search")) {
+      return NavigationLink.Search;
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div>
@@ -44,17 +76,44 @@ const Navbar = () => {
 
           {!isMobile && (
             <ul className="flex text-xl">
-              <li className={styles.navigationItem}>
-                <Link href="/">Home</Link>
+              <li
+                className={`${styles.navigationLink} ${styles.navigationItem} ${
+                  activeNavigationLink === NavigationLink.Home && styles.active
+                }`}
+              >
+                <Link href="/">
+                  <a>Home</a>
+                </Link>
               </li>
-              <li className={styles.navigationItem}>
-                <Link href="/discover">Discover</Link>
+              <li
+                className={`${styles.navigationLink} ${styles.navigationItem} ${
+                  activeNavigationLink === NavigationLink.Discover &&
+                  styles.active
+                }`}
+              >
+                <Link href="/discover">
+                  <a>Discover</a>
+                </Link>
               </li>
-              <li className={styles.navigationItem}>
-                <Link href="/library">Library</Link>
+              <li
+                className={`${styles.navigationLink} ${styles.navigationItem} ${
+                  activeNavigationLink === NavigationLink.Library &&
+                  styles.active
+                }`}
+              >
+                <Link href="/library">
+                  <a>Library</a>
+                </Link>
               </li>
-              <li className={styles.navigationItem}>
-                <Link href="/search">Search</Link>
+              <li
+                className={`${styles.navigationLink} ${styles.navigationItem} ${
+                  activeNavigationLink === NavigationLink.Search &&
+                  styles.active
+                }`}
+              >
+                <Link href="/search">
+                  <a>Search</a>
+                </Link>
               </li>
             </ul>
           )}
@@ -87,17 +146,50 @@ const Navbar = () => {
               isMobileNavbarActive ? "flex" : "hidden"
             } flex-col text-xl items-center mb-4`}
           >
-            <li className={styles.navigationItemMobile}>
-              <Link href="/">Home</Link>
+            <li
+              className={`${styles.navigationLink} ${
+                styles.navigationItemMobile
+              } ${
+                activeNavigationLink === NavigationLink.Home && styles.active
+              }`}
+            >
+              <Link href="/">
+                <a onClick={() => setMobileNavbarActive(false)}>Home</a>
+              </Link>
             </li>
-            <li className={styles.navigationItemMobile}>
-              <Link href="/discover">Discover</Link>
+            <li
+              className={`${styles.navigationLink} ${
+                styles.navigationItemMobile
+              } ${
+                activeNavigationLink === NavigationLink.Discover &&
+                styles.active
+              }`}
+            >
+              <Link href="/discover">
+                <a onClick={() => setMobileNavbarActive(false)}>Discover</a>
+              </Link>
             </li>
-            <li className={styles.navigationItemMobile}>
-              <Link href="/library">Library</Link>
+            <li
+              className={`${styles.navigationLink} ${
+                styles.navigationItemMobile
+              } ${
+                activeNavigationLink === NavigationLink.Library && styles.active
+              }`}
+            >
+              <Link href="/library">
+                <a onClick={() => setMobileNavbarActive(false)}>Library</a>
+              </Link>
             </li>
-            <li className={styles.navigationItemMobile}>
-              <Link href="/search">Search</Link>
+            <li
+              className={`${styles.navigationLink} ${
+                styles.navigationItemMobile
+              } ${
+                activeNavigationLink === NavigationLink.Search && styles.active
+              }`}
+            >
+              <Link href="/search">
+                <a onClick={() => setMobileNavbarActive(false)}>Search</a>
+              </Link>
             </li>
           </ul>
         )}
