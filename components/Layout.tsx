@@ -1,7 +1,12 @@
+import { ReactNode } from "react";
 import MetaData from "./MetaData";
 import Navbar from "./Navbar";
 
-const Layout = ({ children }) => {
+type LayoutProps = {
+  children: ReactNode;
+};
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <MetaData />
