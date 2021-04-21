@@ -1,11 +1,11 @@
 import {
   ApolloClient,
   ApolloProvider,
-  gql,
   InMemoryCache,
   useQuery,
 } from "@apollo/client";
 import { ReactNode } from "react";
+import getMovie from "../api/queries/getMovie.graphql";
 
 const client = new ApolloClient({
   uri: "https://consumat-io-backend.herokuapp.com/",
@@ -13,7 +13,7 @@ const client = new ApolloClient({
 });
 
 type DataProviderProps = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const DataProvider = ({ children }: DataProviderProps) => {
@@ -25,14 +25,7 @@ export default DataProvider;
 // Queries
 
 export function useMovie(id: number) {
-  const GET_MOVIE = gql`
-    query getMovie($id: Int!) {
-      movie(code: $id, country: "DE") {
-        title
-      }
-    }
-  `;
-  return useQuery<any>(GET_MOVIE, {
+  return useQuery<any>(getMovie, {
     variables: { id },
   });
 }
