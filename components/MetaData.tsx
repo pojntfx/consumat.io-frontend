@@ -1,9 +1,9 @@
 import Head from "next/head";
 
 type MetaDataProps = {
-  title: string;
-  keywords: string;
-  description: string;
+  title?: string;
+  keywords?: string;
+  description?: string;
 };
 
 const MetaData = ({
