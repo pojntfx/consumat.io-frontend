@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import styles from "../styles/Navbar.module.css";
+import NavList from "./NavList";
 
-enum NavigationLink {
+export enum NavigationLink {
   Home,
   Discover,
   Library,
@@ -75,47 +75,11 @@ const Navbar = () => {
           </h1>
 
           {!isMobile && (
-            <ul className="flex text-xl">
-              <li
-                className={`${styles.navigationLink} ${styles.navigationItem} ${
-                  activeNavigationLink === NavigationLink.Home && styles.active
-                }`}
-              >
-                <Link href="/">
-                  <a>Home</a>
-                </Link>
-              </li>
-              <li
-                className={`${styles.navigationLink} ${styles.navigationItem} ${
-                  activeNavigationLink === NavigationLink.Discover &&
-                  styles.active
-                }`}
-              >
-                <Link href="/discover">
-                  <a>Discover</a>
-                </Link>
-              </li>
-              <li
-                className={`${styles.navigationLink} ${styles.navigationItem} ${
-                  activeNavigationLink === NavigationLink.Library &&
-                  styles.active
-                }`}
-              >
-                <Link href="/library">
-                  <a>Library</a>
-                </Link>
-              </li>
-              <li
-                className={`${styles.navigationLink} ${styles.navigationItem} ${
-                  activeNavigationLink === NavigationLink.Search &&
-                  styles.active
-                }`}
-              >
-                <Link href="/search">
-                  <a>Search</a>
-                </Link>
-              </li>
-            </ul>
+            <NavList
+              activeNavigationLink={activeNavigationLink}
+              isMobile={isMobile}
+              isMobileNavVisible={isMobileNavbarActive}
+            />
           )}
 
           <button
@@ -141,57 +105,12 @@ const Navbar = () => {
         </div>
 
         {isMobile && (
-          <ul
-            className={`${
-              isMobileNavbarActive ? "flex" : "hidden"
-            } flex-col text-xl items-center mb-4`}
-          >
-            <li
-              className={`${styles.navigationLink} ${
-                styles.navigationItemMobile
-              } ${
-                activeNavigationLink === NavigationLink.Home && styles.active
-              }`}
-            >
-              <Link href="/">
-                <a onClick={() => setMobileNavbarActive(false)}>Home</a>
-              </Link>
-            </li>
-            <li
-              className={`${styles.navigationLink} ${
-                styles.navigationItemMobile
-              } ${
-                activeNavigationLink === NavigationLink.Discover &&
-                styles.active
-              }`}
-            >
-              <Link href="/discover">
-                <a onClick={() => setMobileNavbarActive(false)}>Discover</a>
-              </Link>
-            </li>
-            <li
-              className={`${styles.navigationLink} ${
-                styles.navigationItemMobile
-              } ${
-                activeNavigationLink === NavigationLink.Library && styles.active
-              }`}
-            >
-              <Link href="/library">
-                <a onClick={() => setMobileNavbarActive(false)}>Library</a>
-              </Link>
-            </li>
-            <li
-              className={`${styles.navigationLink} ${
-                styles.navigationItemMobile
-              } ${
-                activeNavigationLink === NavigationLink.Search && styles.active
-              }`}
-            >
-              <Link href="/search">
-                <a onClick={() => setMobileNavbarActive(false)}>Search</a>
-              </Link>
-            </li>
-          </ul>
+          <NavList
+            activeNavigationLink={activeNavigationLink}
+            isMobile={isMobile}
+            isMobileNavVisible={isMobileNavbarActive}
+            setMobileNavbarVisibility={setMobileNavbarActive}
+          />
         )}
       </nav>
     </div>

@@ -1,3 +1,15 @@
+.navigationList {
+  @apply flex;
+  @apply text-xl;
+}
+
+.navigationListMobile {
+  @apply text-xl;
+  @apply flex-col;
+  @apply items-center;
+  @apply mb-4;
+}
+
 .navigationLink {
   @apply text-center;
   @apply text-gray-400;
