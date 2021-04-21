@@ -15,7 +15,8 @@ To build and start a development version locally, run the following:
 ```shell
 $ git clone https://github.com/alphahorizonio/consumat.io-frontend.git
 $ yarn
-$ yarn dev
+$ yarn build
+$ API_URL="https://consumat-io-backend.herokuapp.com/" yarn dev
 ```
 
 The frontend should now be available on [http://localhost:3000/](http://localhost:3000/). Whenever you change a source file, the frontend will automatically be re-compiled.
