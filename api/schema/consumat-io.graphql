@@ -8,34 +8,62 @@ type Query {
 type Movie {
   code: Int
   title: String
-  genres: [String]
+  genres: [Genre]
   overview: String
   popularity: Float
   voteAverage: Float
   releaseDate: String
   runtime: Int
   status: String
-  backdrops: String
-  posters: String
-  providers: [String]
+  backdrop: String
+  poster: String
+  providers: [Provider]
+  cast: [Cast]
+  directors: [Director]
+  tmdb: String
   watchStatus: String
   rating: Float
   favorite: Boolean
 }
 
+type Provider {
+  name: String
+}
+
+type Genre {
+  name: String
+}
+
+type Director {
+  name: String
+  image: String
+}
+
+type Cast {
+  name: String
+  role: String
+  image: String
+  job: String
+}
+
 type TV {
   code: Int
   name: String
-  genres: [String]
+  genres: [Genre]
   overview: String
   popularity: Float
   voteAverage: Float
   firstAirDate: String
   lastAirDate: String
   status: String
-  backdrops: String
-  posters: String
-  providers: [String]
+  backdrop: String
+  poster: String
+  providers: [Provider]
+  creators: [Director]
+  cast: [Cast]
+  numberOfEpisodes: Int
+  numberOfSeasons: Int
+  tmdb: String
   watchStatus: String
   rating: Float
   favorite: Boolean
@@ -47,7 +75,7 @@ type Season {
   seasonNumber: Int
   name: String
   overview: String
-  posters: String
+  poster: String
   watchStatus: String
   rating: Float
   favorite: Boolean
@@ -61,7 +89,7 @@ type Episode {
   overview: String
   airDate: String
   voteAverage: Float
-  stills: String
+  still: String
   watchStatus: String
   rating: Float
   favorite: Boolean
