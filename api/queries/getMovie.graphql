@@ -1,6 +1,0 @@
-query getMovie($id: Int!) {
-  movie(code: $id, country: "DE") {
-    code
-    title
-  }
-}
