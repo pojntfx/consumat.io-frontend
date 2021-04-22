@@ -1,6 +1,11 @@
 overwrite: true
 schema: "./api/schema/consumat-io.graphql"
-documents: "./api/operations/*.graphql"
+documents:
+  [
+    "./api/queries/*.graphql",
+    "./api/mutations/*.graphql",
+    "./api/fragments/*.graphql",
+  ]
 generates:
   lib/api/consumat-io.ts:
     plugins:

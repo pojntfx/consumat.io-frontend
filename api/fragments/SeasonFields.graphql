@@ -1,0 +1,11 @@
+fragment SeasonFields on Season {
+  code
+  tvCode
+  seasonNumber
+  name
+  overview
+  poster
+  watchStatus
+  rating
+  favorite
+}

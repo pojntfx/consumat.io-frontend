@@ -1,0 +1,3 @@
+fragment ProviderFields on Provider {
+  name
+}
