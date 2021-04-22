@@ -1,0 +1,35 @@
+#import "./GenreFields.graphql"
+#import "./ProviderFields.graphql"
+#import "./CastFields.graphql"
+#import "./DirectorFields.graphql"
+
+fragment TvFields on TV {
+  code
+  name
+  genres {
+    ...GenreFields
+  }
+  overview
+  popularity
+  voteAverage
+  firstAirDate
+  lastAirDate
+  status
+  backdrop
+  poster
+  providers {
+    ...ProviderFields
+  }
+  creators {
+    ...DirectorFields
+  }
+  cast {
+    ...CastFields
+  }
+  numberOfEpisodes
+  numberOfSeasons
+  tmdb
+  watchStatus
+  rating
+  favorite
+}

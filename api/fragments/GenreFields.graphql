@@ -1,0 +1,3 @@
+fragment GenreFields on Genre {
+  name
+}

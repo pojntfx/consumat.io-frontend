@@ -4,7 +4,7 @@ import { useGetMovieQuery } from "../lib/api/consumat-io";
 const Search = () => {
   const { data, loading, error } = useGetMovieQuery({
     variables: {
-      code: 399566,
+      code: 188927,
       country: "US",
     },
   });
@@ -15,7 +15,7 @@ const Search = () => {
   return (
     <div className="px-8">
       <MetaData title="consumat.io | Search" />
-      <h2>{JSON.stringify(data)}</h2>
+      <h2>{JSON.stringify(data.movie.title)}</h2>
     </div>
   );
 };
