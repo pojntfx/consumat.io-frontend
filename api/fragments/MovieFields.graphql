@@ -1,0 +1,33 @@
+#import "./GenreFields.graphql"
+#import "./ProviderFields.graphql"
+#import "./CastFields.graphql"
+#import "./DirectorFields.graphql"
+
+fragment MovieFields on Movie {
+  code
+  title
+  genres {
+    ...GenreFields
+  }
+  overview
+  popularity
+  voteAverage
+  releaseDate
+  runtime
+  status
+  backdrop
+  poster
+  providers {
+    ...ProviderFields
+  }
+  cast {
+    ...CastFields
+  }
+  directors {
+    ...DirectorFields
+  }
+  tmdb
+  watchStatus
+  rating
+  favorite
+}

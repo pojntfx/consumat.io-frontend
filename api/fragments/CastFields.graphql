@@ -1,0 +1,6 @@
+fragment CastFields on Cast {
+  name
+  role
+  image
+  job
+}

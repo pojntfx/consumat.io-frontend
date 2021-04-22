@@ -1,0 +1,4 @@
+fragment DirectorFields on Director {
+  name
+  image
+}
