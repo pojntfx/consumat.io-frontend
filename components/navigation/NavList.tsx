@@ -1,6 +1,6 @@
 import NavListItem from "./NavListItem";
 import { NavigationLink } from "./Navbar";
-import styles from "../styles/Navbar.module.css";
+import styles from "../../styles/Navbar.module.css";
 
 type NavListProps = {
   activeNavigationLink: NavigationLink;
