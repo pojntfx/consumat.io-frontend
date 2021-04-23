@@ -17,13 +17,12 @@ const NavListItem = ({
   setMobileNavbarVisibility = null,
 }: NavListItemProps) => {
   return (
-    <li
-      className={`${styles.navigationLink} ${
-        isMobile ? styles.navigationItemMobile : styles.navigationItem
-      } ${isActive && styles.active}`}
-    >
+    <li>
       <Link href={href}>
         <a
+          className={`${styles.link} ${
+            isMobile ? styles.navigationLinkMobile : styles.navigationLink
+          } ${isActive && styles.active}`}
           onClick={
             setMobileNavbarVisibility &&
             (() => setMobileNavbarVisibility(false))

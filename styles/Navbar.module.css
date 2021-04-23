@@ -3,6 +3,10 @@
   @apply text-xl;
 }
 
+.navigationList > li {
+  @apply mx-4;
+}
+
 .navigationListMobile {
   @apply text-xl;
   @apply flex-col;
@@ -10,7 +14,11 @@
   @apply mb-4;
 }
 
-.navigationLink {
+.navigationListMobile > li {
+  @apply my-4;
+}
+
+.link {
   @apply text-center;
   @apply text-gray-400;
   @apply font-bold;
@@ -19,22 +27,18 @@
   @apply border-transparent;
 }
 
-.navigationItem {
-  @apply mx-4;
-}
-
-.navigationItem.active,
-.navigationItem:hover {
+.navigationLink.active,
+.navigationLink:hover {
   @apply border-gray-800;
   @apply text-gray-800;
 }
 
-.navigationItemMobile {
+.navigationLinkMobile {
   @apply my-4;
 }
 
-.navigationItemMobile.active,
-.navigationItemMobile:hover {
+.navigationLinkMobile.active,
+.navigationLinkMobile:hover {
   @apply border-gray-50;
   @apply text-gray-50;
 }
