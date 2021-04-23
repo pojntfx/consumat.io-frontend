@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import MetaData from "./MetaData";
-import Navbar from "./Navbar";
+import Navbar from "./navigation/Navbar";
 
 type LayoutProps = {
   children: ReactNode;
