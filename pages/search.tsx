@@ -1,13 +1,8 @@
 import MetaData from "../components/MetaData";
-import { useGetMovieQuery } from "../lib/api/consumat-io";
+import { useMovie } from "../hooks/DataHooks";
 
 const Search = () => {
-  const { data, loading, error } = useGetMovieQuery({
-    variables: {
-      code: 188927,
-      country: "US",
-    },
-  });
+  const { data, loading, error } = useMovie(188927);
 
   if (error) return <h2>Error</h2>;
   if (loading) return <h2>Loading ...</h2>;
