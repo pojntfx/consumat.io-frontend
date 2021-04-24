@@ -1,0 +1,7 @@
+#import "../fragments/MovieFields.graphql"
+
+query GetMovie($code: Int!, $country: String!) {
+  movie(code: $code, country: $country) {
+    ...MovieFields
+  }
+}
