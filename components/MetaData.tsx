@@ -1,6 +1,16 @@
 import Head from "next/head";
 
-const MetaData = ({ title, keywords, description }) => {
+type MetaDataProps = {
+  title?: string;
+  keywords?: string;
+  description?: string;
+};
+
+const MetaData = ({
+  title = "consumat.io",
+  keywords = "series tracker, movie tracker, media tracker, media consumption tracker",
+  description = "Track, plan and enjoy content.",
+}: MetaDataProps) => {
   return (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,13 +21,6 @@ const MetaData = ({ title, keywords, description }) => {
       <title>{title}</title>
     </Head>
   );
-};
-
-MetaData.defaultProps = {
-  title: "consumat.io",
-  keywords:
-    "series tracker, movie tracker, media tracker, media consumption tracker",
-  description: "Track, plan and enjoy content.",
 };
 
 export default MetaData;

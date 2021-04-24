@@ -1,0 +1,13 @@
+fragment EpisodeFields on Episode {
+  code
+  name
+  episodeNumber
+  seasonNumber
+  overview
+  airDate
+  voteAverage
+  still
+  watchStatus
+  rating
+  favorite
+}
