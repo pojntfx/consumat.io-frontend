@@ -14,7 +14,3 @@ body {
 .details-poster {
   @apply rounded-lg shadow-lg w-48  lg:w-64 antialiased;
 }
-
-.half-screen {
-  height: 50vw;
-}
