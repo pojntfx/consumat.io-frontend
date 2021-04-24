@@ -30,6 +30,12 @@ const Details = () => {
             <img src={bannerImage} className="h-full w-full object-cover" />
           </div>
         </div>
+        <div className="z-40 flex flex-col absolute md:left-72 md:top-96">
+          <h1 className="text-center sm:text-left sm:ml-10 mb-10 text-black sm:px-0 sm:text-white text-8xl 2xl:bottom-0 mt-24 md:mt-10">
+            {title}
+          </h1>
+          <p className="sm:ml-10 text-black text-2xl">{description}</p>
+        </div>
       </div>
     </>
   );
