@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import NavList from "./NavList";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 export enum NavigationLink {
   Home,
@@ -86,21 +87,11 @@ const Navbar = () => {
             className="md:hidden cursor-pointer focus:outline-none"
             onClick={() => setMobileNavbarActive(!isMobileNavbarActive)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
+            {isMobileNavbarActive ? (
+              <XIcon className="h-8 w-8 text-gray-50" />
+            ) : (
+              <MenuIcon className="h-8 w-8 text-gray-800" />
+            )}
           </button>
         </div>
 
