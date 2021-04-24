@@ -34,7 +34,12 @@ const Details = () => {
           <h1 className="text-center sm:text-left sm:ml-10 mb-10 text-black sm:px-0 sm:text-white text-8xl 2xl:bottom-0 mt-24 md:mt-10">
             {title}
           </h1>
-          <p className="sm:ml-10 text-black text-2xl">{description}</p>
+          <p className="sm:ml-10 text-black text-xs md:text-2xl">
+            {description}
+          </p>
+        </div>
+        <div className="w-screen absolute h-96 mt-96 md:mt-56 md:ml-16">
+          <div className="flex flex-row"></div>
         </div>
       </div>
     </>
