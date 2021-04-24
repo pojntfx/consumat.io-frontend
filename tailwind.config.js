@@ -6,8 +6,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      fontWeight: ['hover', 'focus']
+      fontWeight: ["hover", "focus"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
