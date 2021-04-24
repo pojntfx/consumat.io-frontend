@@ -38,8 +38,40 @@ const Details = () => {
             {description}
           </p>
         </div>
-        <div className="w-screen absolute h-96 mt-96 md:mt-56 md:ml-16">
-          <div className="flex flex-row"></div>
+        <div className=" h-96 mt-96 md:mt-56 md:ml-16">
+          <div className="flex flex-col sm:flex-row">
+            <div className="flex flex-col items-center md:items-start">
+              <p>release_date</p>
+              <p>runtime</p>
+              <p>vote_average</p>
+              <p>popularity</p>
+              <p>tmdb_link</p>
+            </div>
+            <div className="flex flex-col items-center md:items-start">
+              <div className="flex flex-col items-center md:items-start">
+                <p className="md:ml-44">genres</p>
+                <div className="md:ml-44 flex flex-row">
+                  <p>anime</p>
+                  <p className="ml-2">comedy</p>
+                  <p className="ml-2">action</p>
+                </div>
+              </div>
+              <div className="flex flex-col items-center md:items-start">
+                <p className="md:ml-44">cast</p>
+                <div className="md:ml-44 flex flex-row">
+                  <p>gintoki</p>
+                  <p className="ml-2">shinpachi</p>
+                  <p className="ml-2">kagura</p>
+                </div>
+              </div>
+              <div className="flex flex-col items-center md:items-start">
+                <p className="md:ml-44">director</p>
+                <div className="md:ml-44 flex flex-row">
+                  <p>Hideaki Sorachi</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
