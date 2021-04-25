@@ -1,0 +1,21 @@
+.detailsBanner {
+  @apply h-4/5 2xl:h-3/5 w-screen object-cover;
+}
+
+.detailsPoster {
+  @apply rounded;
+  @apply shadow-lg;
+  @apply w-48;
+  @apply lg:w-64;
+  @apply antialiased;
+  @apply top-48;
+  @apply ml-16;
+  @apply xl:ml-10;
+  @apply absolute;
+}
+
+.detailsBackdrop {
+  @apply h-full;
+  @apply w-full;
+  @apply object-cover;
+}

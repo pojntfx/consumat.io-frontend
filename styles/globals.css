@@ -6,11 +6,3 @@ body {
   @apply bg-gray-50;
   @apply text-gray-800;
 }
-
-.details-banner {
-  @apply h-4/5 2xl:h-3/5 w-screen object-cover;
-}
-
-.details-poster {
-  @apply rounded shadow-lg w-48  lg:w-64 antialiased;
-}
