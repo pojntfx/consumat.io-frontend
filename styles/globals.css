@@ -12,5 +12,5 @@ body {
 }
 
 .details-poster {
-  @apply rounded-lg shadow-lg w-48  lg:w-64 antialiased;
+  @apply rounded shadow-lg w-48  lg:w-64 antialiased;
 }
