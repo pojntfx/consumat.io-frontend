@@ -5,8 +5,9 @@ import { useMovie } from "../../hooks/DataHooks";
 const Details = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { data, loading, error } = useMovie(188927);
-  console.log(data);
+  const { data, loading, error } = useMovie(parseInt("" + id));
+
+  if (loading) return <p>loading...</p>;
 
   return (
     <>
@@ -16,12 +17,12 @@ const Details = () => {
           <div className="z-20 relative h-96 ">
             <img
               className="details-poster top-48 ml-16 xl:ml-10 absolute"
-              src={"https://image.tmdb.org/t/p/original" + data.movie.backdrop}
+              src={"https://image.tmdb.org/t/p/original" + data.movie.poster}
             />
           </div>
           <div className="absolute inset-0 h-auto z-10">
             <img
-              src={"https://image.tmdb.org/t/p/original" + data.movie.poster}
+              src={"https://image.tmdb.org/t/p/original" + data.movie.backdrop}
               className="h-full w-full object-cover"
             />
           </div>
@@ -37,27 +38,43 @@ const Details = () => {
         <div className=" h-96 mt-96 md:mt-56 md:ml-16">
           <div className="flex flex-col sm:flex-row">
             <div className="flex flex-col items-center md:items-start">
-              <p>release_date</p>
-              <p>runtime</p>
-              <p>vote_average</p>
-              <p>popularity</p>
-              <p>tmdb_link</p>
+              <p>{data.movie.releaseDate}</p>
+              <p>{data.movie.runtime}</p>
+              <p>{data.movie.voteAverage}</p>
+              <p>{data.movie.popularity}</p>
+              <a href={data.movie.tmdb} className="underline">
+                More Details
+              </a>
             </div>
             <div className="flex flex-col items-center md:items-start">
               <div className="flex flex-col items-center md:items-start">
-                <p className="md:ml-44">genres</p>
+                <p className="md:ml-44">Genres</p>
                 <div className="md:ml-44 flex flex-row">
-                  <p>anime</p>
-                  <p className="ml-2">comedy</p>
-                  <p className="ml-2">action</p>
+                  {data.movie.genres.map(({ name }, key) => {
+                    return (
+                      <p key={key} className={key == 0 ? "ml-0" : "ml-2"}>
+                        {name}
+                      </p>
+                    );
+                  })}
                 </div>
               </div>
               <div className="flex flex-col items-center md:items-start">
-                <p className="md:ml-44">cast</p>
+                <p className="md:ml-44">Cast</p>
                 <div className="md:ml-44 flex flex-row">
-                  <p>gintoki</p>
-                  <p className="ml-2">shinpachi</p>
-                  <p className="ml-2">kagura</p>
+                  {data.movie.cast.map(({ name }, key) => {
+                    return (
+                      <>
+                        {key < 5 ? (
+                          <p key={key} className={key == 0 ? "ml-0" : "ml-2"}>
+                            {name}
+                          </p>
+                        ) : (
+                          <> </>
+                        )}
+                      </>
+                    );
+                  })}
                 </div>
               </div>
               <div className="flex flex-col items-center md:items-start">
