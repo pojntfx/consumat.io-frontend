@@ -1,6 +1,7 @@
 import MetaData from "../../components/MetaData";
 import { useRouter } from "next/router";
 import { useMovie } from "../../hooks/DataHooks";
+import styles from "../../styles/Details.module.css";
 
 const Details = () => {
   const router = useRouter();
@@ -16,14 +17,14 @@ const Details = () => {
         <div className="relative py-8 px-4">
           <div className="z-20 relative h-96 ">
             <img
-              className="details-poster top-48 ml-16 xl:ml-10 absolute"
+              className={styles.detailsPoster}
               src={"https://image.tmdb.org/t/p/original" + data.movie.poster}
             />
           </div>
           <div className="absolute inset-0 h-auto z-10">
             <img
               src={"https://image.tmdb.org/t/p/original" + data.movie.backdrop}
-              className="h-full w-full object-cover"
+              className={styles.detailsBackdrop}
             />
           </div>
         </div>
@@ -38,35 +39,61 @@ const Details = () => {
         <div className=" h-96 mt-96 md:mt-56 md:ml-16">
           <div className="flex flex-col sm:flex-row">
             <div className="flex flex-col items-center md:items-start">
-              <p>{data.movie.releaseDate}</p>
-              <p>{data.movie.runtime}</p>
-              <p>{data.movie.voteAverage}</p>
-              <p>{data.movie.popularity}</p>
+              <p className="bg-white  text-gray-800 font-semibold py-2 mb-2 px-4 border border-gray-400 rounded shadow">
+                {data.movie.releaseDate}
+              </p>
+              <p className="bg-white  text-gray-800 font-semibold py-2 mb-2 px-4 border border-gray-400 rounded shadow">
+                {data.movie.runtime}
+              </p>
+              <p className="bg-white  text-gray-800 font-semibold py-2 mb-2 px-4 border border-gray-400 rounded shadow">
+                {data.movie.voteAverage}
+              </p>
+              <p className="bg-white  text-gray-800 font-semibold py-2 mb-2 px-4 border border-gray-400 rounded shadow">
+                {data.movie.popularity}
+              </p>
               <a href={data.movie.tmdb} className="underline">
                 More Details
               </a>
             </div>
             <div className="flex flex-col items-center md:items-start">
               <div className="flex flex-col items-center md:items-start">
-                <p className="md:ml-44">Genres</p>
-                <div className="md:ml-44 flex flex-row">
+                <p className="md:ml-40 bg-white  text-gray-800 font-semibold py-2 mb-2 px-4 border border-gray-400 rounded shadow">
+                  Genres
+                </p>
+                <div className="md:ml-40 flex flex-row">
                   {data.movie.genres.map(({ name }, key) => {
                     return (
-                      <p key={key} className={key == 0 ? "ml-0" : "ml-2"}>
+                      <p
+                        key={key}
+                        className={
+                          key == 0
+                            ? "ml-0 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                            : "ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                        }
+                      >
                         {name}
                       </p>
                     );
                   })}
                 </div>
               </div>
-              <div className="flex flex-col items-center md:items-start">
-                <p className="md:ml-44">Cast</p>
-                <div className="md:ml-44 flex flex-row">
+              <div className="flex flex-col items-center mt-2 md:items-start">
+                <p className="md:ml-40 bg-white  text-gray-800 font-semibold py-2 mb-2 px-4 border border-gray-400 rounded shadow">
+                  Cast
+                </p>
+                <div className="md:ml-40 flex flex-row">
                   {data.movie.cast.map(({ name }, key) => {
                     return (
                       <>
                         {key < 5 ? (
-                          <p key={key} className={key == 0 ? "ml-0" : "ml-2"}>
+                          <p
+                            key={key}
+                            className={
+                              key == 0
+                                ? "ml-0 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                                : "ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                            }
+                          >
                             {name}
                           </p>
                         ) : (
@@ -77,10 +104,25 @@ const Details = () => {
                   })}
                 </div>
               </div>
-              <div className="flex flex-col items-center md:items-start">
-                <p className="md:ml-44">director</p>
-                <div className="md:ml-44 flex flex-row">
-                  <p>Hideaki Sorachi</p>
+              <div className="flex flex-col items-center mt-2 md:items-start">
+                <p className="md:ml-40 bg-white  text-gray-800 font-semibold py-2 mb-2 px-4 border border-gray-400 rounded shadow">
+                  Director
+                </p>
+                <div className="md:ml-40 flex flex-row">
+                  {data.movie.directors.map(({ name }, key) => {
+                    return (
+                      <p
+                        key={key}
+                        className={
+                          key == 0
+                            ? "ml-0 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                            : "ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                        }
+                      >
+                        {name}
+                      </p>
+                    );
+                  })}
                 </div>
               </div>
             </div>
