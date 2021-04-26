@@ -1,4 +1,5 @@
 import MetaData from "../components/MetaData";
+import SearchResultItem from "../components/search/SearchResultItem";
 import { useMovie } from "../hooks/DataHooks";
 
 const Search = () => {
@@ -8,9 +9,13 @@ const Search = () => {
   if (loading) return <h2>Loading ...</h2>;
 
   return (
-    <div className="px-8">
+    <div className="px-4">
       <MetaData title="consumat.io | Search" />
-      <h2>{JSON.stringify(data.movie.title)}</h2>
+      <SearchResultItem searchResult={data.movie} />
+      <SearchResultItem searchResult={data.movie} />
+      <SearchResultItem searchResult={data.movie} />
+      <SearchResultItem searchResult={data.movie} />
+      <SearchResultItem searchResult={data.movie} />
     </div>
   );
 };
