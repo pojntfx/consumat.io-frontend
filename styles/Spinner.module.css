@@ -1,0 +1,21 @@
+.spinner {
+  display: flex;
+  justify-content: center;
+}
+
+.spinner::after {
+  content: "";
+  width: 35px;
+  height: 35px;
+  border: 5px solid;
+  @apply border-gray-300;
+  border-top-color: rgb(31, 41, 55);
+  border-radius: 50%;
+  animation: loading 0.5s linear infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(1turn);
+  }
+}
