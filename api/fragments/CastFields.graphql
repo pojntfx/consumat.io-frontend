@@ -1,6 +1,6 @@
 fragment CastFields on Cast {
   name
   role
-  image
+  imagePath
   job
 }
