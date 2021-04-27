@@ -1,17 +1,42 @@
 import MetaData from "../components/MetaData";
-import { useMovie } from "../hooks/DataHooks";
+import { useSearch } from "../hooks/DataHooks";
 import Spinner from "../components/helper/Spinner";
+import SearchResultList from "../components/search/SearchResultList";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Search = () => {
-  const { data, loading, error } = useMovie(188927);
-
-  if (error) return <h2>Error</h2>;
-  if (loading) return <Spinner />;
+  const router = useRouter();
+  const { q } = router.query;
+  const [query, setQuery] = useState<string>("");
+  const { data, loading, error } = useSearch(q);
 
   return (
-    <div className="px-8">
+    <div className="px-4">
       <MetaData title="consumat.io | Search" />
-      <h2>{JSON.stringify(data.movie.title)}</h2>
+
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          router.push({ query: { q: query } });
+        }}
+      >
+        <input
+          type="search"
+          name="q"
+          placeholder="Search..."
+          aria-label="Search"
+          required
+          onChange={(event) => setQuery(event.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {loading ? (
+        <Spinner />
+      ) : data != null ? (
+        <SearchResultList searchResults={data.search} />
+      ) : null}
     </div>
   );
 };

@@ -11,12 +11,12 @@ fragment MovieFields on Movie {
   }
   overview
   popularity
-  voteAverage
+  ratingAverage
   releaseDate
   runtime
   status
-  backdrop
-  poster
+  backdropPath
+  posterPath
   providers {
     ...ProviderFields
   }
@@ -26,8 +26,8 @@ fragment MovieFields on Movie {
   directors {
     ...DirectorFields
   }
-  tmdb
+  tmdbUrl
   watchStatus
-  rating
+  ratingUser
   favorite
 }
