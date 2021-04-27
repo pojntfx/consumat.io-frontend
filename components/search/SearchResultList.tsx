@@ -7,15 +7,13 @@ type SearchResultListProps = {
 
 const SearchResultList = ({ searchResults }: SearchResultListProps) => {
   return (
-    <div>
+    <div className="overscroll-none">
       <ul>
         {searchResults.map((searchResult) => (
-          <li>
-            <SearchResultItem
-              key={searchResult.code}
-              searchResult={searchResult}
-            />
-          </li>
+          <SearchResultItem
+            key={searchResult.mediaType + searchResult.code}
+            searchResult={searchResult}
+          />
         ))}
       </ul>
     </div>

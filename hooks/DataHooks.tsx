@@ -9,10 +9,11 @@ export function useMovie(code: number, country: string = "US") {
   });
 }
 
-export function useSearch(str: string) {
+export function useSearch(str: string | string[]) {
   return useGetSearchQuery({
+    skip: str == null,
     variables: {
-      str: str,
+      str: "" + str,
     },
   });
 }
