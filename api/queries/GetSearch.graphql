@@ -1,0 +1,7 @@
+#import "../fragments/ResultFields.graphql"
+
+query GetSearch($str: String!) {
+  search(str: $str) {
+    ...ResultFields
+  }
+}
