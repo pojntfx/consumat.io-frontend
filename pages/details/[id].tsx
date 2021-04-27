@@ -18,12 +18,16 @@ const Details = () => {
           <div className="z-20 relative h-96 ">
             <img
               className={styles.detailsPoster}
-              src={"https://image.tmdb.org/t/p/original" + data.movie.poster}
+              src={
+                "https://image.tmdb.org/t/p/original" + data.movie.posterPath
+              }
             />
           </div>
           <div className="absolute inset-0 h-auto z-10">
             <img
-              src={"https://image.tmdb.org/t/p/original" + data.movie.backdrop}
+              src={
+                "https://image.tmdb.org/t/p/original" + data.movie.backdropPath
+              }
               className={styles.detailsBackdrop}
             />
           </div>
@@ -37,9 +41,9 @@ const Details = () => {
             <div className={styles.detailsRowContainer}>
               <p className={styles.detailsStat}>{data.movie.releaseDate}</p>
               <p className={styles.detailsStat}>{data.movie.runtime}</p>
-              <p className={styles.detailsStat}>{data.movie.voteAverage}</p>
+              <p className={styles.detailsStat}>{data.movie.ratingAverage}</p>
               <p className={styles.detailsStat}>{data.movie.popularity}</p>
-              <a href={data.movie.tmdb} className="underline">
+              <a href={data.movie.tmdbUrl} className="underline">
                 More Details
               </a>
             </div>

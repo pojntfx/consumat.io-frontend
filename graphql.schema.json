@@ -36,7 +36,7 @@
             "deprecationReason": null
           },
           {
-            "name": "image",
+            "name": "imagePath",
             "description": null,
             "args": [],
             "type": {
@@ -93,7 +93,7 @@
             "deprecationReason": null
           },
           {
-            "name": "image",
+            "name": "imagePath",
             "description": null,
             "args": [],
             "type": {
@@ -128,7 +128,7 @@
             "deprecationReason": null
           },
           {
-            "name": "name",
+            "name": "title",
             "description": null,
             "args": [],
             "type": {
@@ -188,7 +188,7 @@
             "deprecationReason": null
           },
           {
-            "name": "voteAverage",
+            "name": "ratingAverage",
             "description": null,
             "args": [],
             "type": {
@@ -200,7 +200,7 @@
             "deprecationReason": null
           },
           {
-            "name": "still",
+            "name": "stillPath",
             "description": null,
             "args": [],
             "type": {
@@ -224,7 +224,7 @@
             "deprecationReason": null
           },
           {
-            "name": "rating",
+            "name": "ratingUser",
             "description": null,
             "args": [],
             "type": {
@@ -376,7 +376,7 @@
             "deprecationReason": null
           },
           {
-            "name": "voteAverage",
+            "name": "ratingAverage",
             "description": null,
             "args": [],
             "type": {
@@ -424,7 +424,7 @@
             "deprecationReason": null
           },
           {
-            "name": "backdrop",
+            "name": "backdropPath",
             "description": null,
             "args": [],
             "type": {
@@ -436,7 +436,7 @@
             "deprecationReason": null
           },
           {
-            "name": "poster",
+            "name": "posterPath",
             "description": null,
             "args": [],
             "type": {
@@ -496,7 +496,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tmdb",
+            "name": "tmdbUrl",
             "description": null,
             "args": [],
             "type": {
@@ -520,7 +520,7 @@
             "deprecationReason": null
           },
           {
-            "name": "rating",
+            "name": "ratingUser",
             "description": null,
             "args": [],
             "type": {
@@ -752,6 +752,161 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "search",
+            "description": null,
+            "args": [
+              {
+                "name": "str",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Result",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Result",
+        "description": null,
+        "fields": [
+          {
+            "name": "code",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "mediaType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "overview",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "releaseDate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "posterPath",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "watchStatus",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Search",
+        "description": null,
+        "fields": [
+          {
+            "name": "results",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Result",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -801,7 +956,7 @@
             "deprecationReason": null
           },
           {
-            "name": "name",
+            "name": "title",
             "description": null,
             "args": [],
             "type": {
@@ -825,7 +980,7 @@
             "deprecationReason": null
           },
           {
-            "name": "poster",
+            "name": "posterPath",
             "description": null,
             "args": [],
             "type": {
@@ -849,7 +1004,7 @@
             "deprecationReason": null
           },
           {
-            "name": "rating",
+            "name": "ratingUser",
             "description": null,
             "args": [],
             "type": {
@@ -896,7 +1051,7 @@
             "deprecationReason": null
           },
           {
-            "name": "name",
+            "name": "title",
             "description": null,
             "args": [],
             "type": {
@@ -948,7 +1103,7 @@
             "deprecationReason": null
           },
           {
-            "name": "voteAverage",
+            "name": "ratingAverage",
             "description": null,
             "args": [],
             "type": {
@@ -996,7 +1151,7 @@
             "deprecationReason": null
           },
           {
-            "name": "backdrop",
+            "name": "backdropPath",
             "description": null,
             "args": [],
             "type": {
@@ -1008,7 +1163,7 @@
             "deprecationReason": null
           },
           {
-            "name": "poster",
+            "name": "posterPath",
             "description": null,
             "args": [],
             "type": {
@@ -1092,7 +1247,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tmdb",
+            "name": "tmdbUrl",
             "description": null,
             "args": [],
             "type": {
@@ -1116,7 +1271,7 @@
             "deprecationReason": null
           },
           {
-            "name": "rating",
+            "name": "ratingUser",
             "description": null,
             "args": [],
             "type": {
