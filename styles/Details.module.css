@@ -1,0 +1,110 @@
+.detailsBanner {
+  @apply h-4/5 2xl:h-3/5 w-screen object-cover;
+}
+
+.detailsPoster {
+  @apply rounded;
+  @apply shadow-lg;
+  @apply w-48;
+  @apply lg:w-64;
+  @apply antialiased;
+  @apply top-48;
+  @apply ml-16;
+  @apply xl:ml-10;
+  @apply absolute;
+}
+
+.detailsBackdrop {
+  @apply h-full;
+  @apply w-full;
+  @apply object-cover;
+}
+
+.detailsTitle {
+  @apply text-center;
+  @apply sm:text-left;
+  @apply sm:ml-10;
+  @apply mb-10;
+  @apply text-black;
+  @apply sm:px-0;
+  @apply sm:text-white;
+  @apply text-8xl;
+  @apply 2xl:bottom-0;
+  @apply mt-24;
+  @apply md:mt-10;
+}
+
+.detailsOverview {
+  @apply sm:ml-10;
+  @apply text-black;
+  @apply text-xs;
+  @apply md:text-2xl;
+}
+
+.detailsStat {
+  @apply bg-white;
+  @apply text-gray-800;
+  @apply font-semibold;
+  @apply py-2;
+  @apply mb-2;
+  @apply px-4;
+  @apply border;
+  @apply border-gray-400;
+  @apply rounded;
+  @apply shadow;
+}
+
+.detailsStatItem {
+  @apply ml-0;
+  @apply bg-gray-300;
+  @apply text-gray-800;
+  @apply font-bold;
+  @apply py-2;
+  @apply px-4;
+  @apply rounded;
+}
+
+.detailsStatItemRowHeader {
+  @apply md:ml-40;
+  @apply bg-white;
+  @apply text-gray-800;
+  @apply font-semibold;
+  @apply py-2;
+  @apply mb-2;
+  @apply px-4;
+  @apply border;
+  @apply border-gray-400;
+  @apply rounded;
+  @apply shadow;
+}
+
+.detailsStatItemML {
+  @apply ml-2;
+  @apply bg-gray-300;
+  @apply text-gray-800;
+  @apply font-bold;
+  @apply py-2;
+  @apply px-4;
+  @apply rounded;
+}
+
+.detailsStatItem:hover {
+  @apply bg-gray-400;
+}
+
+.detailsRowContainer {
+  @apply flex;
+  @apply flex-col;
+  @apply items-center;
+  @apply mt-2;
+  @apply md:items-start;
+}
+
+.detailsTextContainer {
+  @apply z-40;
+  @apply flex;
+  @apply flex-col;
+  @apply absolute;
+  @apply md:left-72;
+  @apply md:top-96;
+}

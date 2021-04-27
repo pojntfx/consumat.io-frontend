@@ -1,13 +1,13 @@
 fragment EpisodeFields on Episode {
   code
-  name
+  title
   episodeNumber
   seasonNumber
   overview
   airDate
-  voteAverage
-  still
+  ratingAverage
+  stillPath
   watchStatus
-  rating
+  ratingUser
   favorite
 }

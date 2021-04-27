@@ -5,18 +5,18 @@
 
 fragment TvFields on TV {
   code
-  name
+  title
   genres {
     ...GenreFields
   }
   overview
   popularity
-  voteAverage
+  ratingAverage
   firstAirDate
   lastAirDate
   status
-  backdrop
-  poster
+  backdropPath
+  posterPath
   providers {
     ...ProviderFields
   }
@@ -28,8 +28,8 @@ fragment TvFields on TV {
   }
   numberOfEpisodes
   numberOfSeasons
-  tmdb
+  tmdbUrl
   watchStatus
-  rating
+  ratingUser
   favorite
 }

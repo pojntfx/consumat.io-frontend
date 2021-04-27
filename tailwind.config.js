@@ -6,6 +6,11 @@ module.exports = {
       gridTemplateColumns: {
         "media-list": "repeat(auto-fill, 9rem)",
       },
+      height: {
+        29: "7.25rem",
+        "line-base-3": "4.5rem",
+        "line-sm-3": "3.75rem",
+      },
     },
   },
   variants: {
@@ -13,5 +18,5 @@ module.exports = {
       fontWeight: ["hover", "focus"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

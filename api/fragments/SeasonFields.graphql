@@ -2,10 +2,10 @@ fragment SeasonFields on Season {
   code
   tvCode
   seasonNumber
-  name
+  title
   overview
-  poster
+  posterPath
   watchStatus
-  rating
+  ratingUser
   favorite
 }
