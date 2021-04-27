@@ -13,10 +13,6 @@ const Search = () => {
     <div className="px-4">
       <MetaData title="consumat.io | Search" />
       <SearchResultItem searchResult={data.movie} />
-      <SearchResultItem searchResult={data.movie} />
-      <SearchResultItem searchResult={data.movie} />
-      <SearchResultItem searchResult={data.movie} />
-      <SearchResultItem searchResult={data.movie} />
     </div>
   );
 };
