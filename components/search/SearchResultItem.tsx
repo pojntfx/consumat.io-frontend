@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { imgSizes, useImage } from "../../hooks/ImageHook";
-import { Movie } from "../../lib/api/consumat-io";
+import { Result } from "../../lib/api/consumat-io";
 
 type SearchResultItemProps = {
-  searchResult: Movie;
+  searchResult: Result;
 };
 
 const SearchResultItem = ({ searchResult }: SearchResultItemProps) => {
