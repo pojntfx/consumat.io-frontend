@@ -26,7 +26,7 @@ const Home = () => {
       const movieItem = {
         code: popularMovieData.movie.code,
         title: popularMovieData.movie.title,
-        poster: popularMovieData.movie.poster,
+        poster: popularMovieData.movie.posterPath,
         type: MediumType.Movie,
       };
 
@@ -49,8 +49,8 @@ const Home = () => {
     if (!popularTvLoading && popularTvData) {
       const tvItem = {
         code: popularTvData.tv.code,
-        title: popularTvData.tv.name,
-        poster: popularTvData.tv.poster,
+        title: popularTvData.tv.title,
+        poster: popularTvData.tv.posterPath,
         type: MediumType.TV,
       };
 
