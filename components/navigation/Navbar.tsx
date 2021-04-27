@@ -71,7 +71,7 @@ const Navbar = () => {
         } md:bg-gray-50 md:text-gray-800`}
       >
         <div className="flex justify-between items-center p-4">
-          <h1 className="text-4xl font-black">
+          <h1>
             <Link href="/">CONSUMAT.IO</Link>
           </h1>
 
