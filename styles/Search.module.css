@@ -1,0 +1,25 @@
+.input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.search_poster {
+  --height: 7.25rem;
+  @apply object-cover;
+  height: var(--height);
+  width: calc(var(--height) * (2 / 3));
+}
+
+@screen md {
+  .search_poster {
+    --height: 9rem;
+    @apply object-cover;
+    height: var(--height);
+    width: calc(var(--height) * (2 / 3));
+  }
+}
