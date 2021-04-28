@@ -4,6 +4,7 @@ import Spinner from "../components/helper/Spinner";
 import SearchResultList from "../components/search/SearchResultList";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import styles from "../styles/Search.module.css";
 
 const Search = () => {
   const router = useRouter();
@@ -34,7 +35,10 @@ const Search = () => {
             className="bg-white p-2 rounded-l w-full shadow hover:shadow-md focus:shadow-none duration-75"
           />
           <button
-            className="bg-white px-4 py-2 rounded-r border-solid border-l-2 border-gray-200 shadow hover:shadow-md focus:shadow-none duration-75"
+            className={
+              styles.button +
+              "bg-white px-4 py-2 rounded-r border-solid border-l-2 border-gray-200 duration-75"
+            }
             type="submit"
           >
             Search
