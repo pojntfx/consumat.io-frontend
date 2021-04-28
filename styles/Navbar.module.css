@@ -11,7 +11,7 @@
   @apply text-xl;
   @apply flex-col;
   @apply items-center;
-  @apply mb-4;
+  @apply shadow;
 }
 
 .navigationListMobile > li {
