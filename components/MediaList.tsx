@@ -39,14 +39,14 @@ const MediaList = ({ title, items, loading, error }: MediaListProps) => {
   if (error) return <h2>{error.message}</h2>;
 
   return (
-    <div className="mb-4">
+    <div className="mb-6 p-4 bg-white rounded shadow-md">
       <h2 className="mb-3">{title}</h2>
       {loading ? (
         <div>
           <Spinner />
         </div>
       ) : (
-        <div className="grid gap-2 grid-cols-media-list justify-evenly">
+        <div className="grid gap-3 grid-cols-media-list justify-evenly">
           {items.map((item) => {
             return (
               <MediumCard
