@@ -7,6 +7,8 @@ body {
   @apply text-gray-800;
 }
 
+/* Headings */
+
 h1 {
   @apply text-4xl;
   @apply font-black;
@@ -20,4 +22,26 @@ h2 {
 h3 {
   @apply text-xl;
   @apply font-black;
+}
+
+/* Inputs, Select, Buttons */
+
+input,
+select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+}
+
+select option:first-child {
+  @apply text-gray-500;
+}
+
+button:focus {
+  outline: none;
 }
