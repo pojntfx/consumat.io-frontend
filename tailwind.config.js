@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        "media-list": "repeat(auto-fill, 9rem)",
+        "media-list": "repeat(auto-fill, 8rem)",
       },
       height: {
         29: "7.25rem",
