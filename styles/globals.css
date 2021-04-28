@@ -26,8 +26,7 @@ h3 {
 
 /* Inputs, Select, Buttons */
 
-input,
-select {
+input {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
