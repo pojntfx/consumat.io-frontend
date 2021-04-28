@@ -41,6 +41,18 @@ select option:first-child {
   @apply text-gray-500;
 }
 
+button {
+  @apply shadow;
+}
+
 button:focus {
   outline: none;
+}
+
+button:hover {
+  @apply shadow-md;
+}
+
+button:active {
+  @apply shadow-none;
 }
