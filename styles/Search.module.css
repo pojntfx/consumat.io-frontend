@@ -1,9 +1,0 @@
-.input {
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-}
-
-.input:focus {
-  outline: none;
-}
