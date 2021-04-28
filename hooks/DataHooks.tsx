@@ -22,11 +22,11 @@ export function useTv(code: number, country: string = "US") {
   });
 }
 
-export function useSearch(str: string | string[]) {
+export function useSearch(keyword: string | string[]) {
   return useGetSearchQuery({
-    skip: str == null,
+    skip: keyword == null,
     variables: {
-      str: "" + str,
+      keyword: "" + keyword,
     },
   });
 }
