@@ -47,7 +47,7 @@ const Search = () => {
         <select
           name="genre"
           id="genre"
-          className="bg-white p-2 h-11 border-2 rounded border-transparent shadow hover:shadow-md duration-75 cursor-pointer mb-2 lg:mx-2"
+          className="bg-white p-2 h-10 border-2 rounded border-transparent shadow hover:shadow-md duration-75 cursor-pointer mb-2 lg:mx-2"
         >
           <option value="">Genre</option>
           <option value="Science Fiction">Science Fiction</option>
