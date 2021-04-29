@@ -84,7 +84,7 @@ const Navbar = () => {
           )}
 
           <button
-            className="md:hidden cursor-pointer focus:outline-none"
+            className="md:hidden cursor-pointer focus:outline-none shadow-none hover:shadow-none"
             onClick={() => setMobileNavbarActive(!isMobileNavbarActive)}
           >
             {isMobileNavbarActive ? (
