@@ -35,7 +35,7 @@ enum still {
   original = "original",
 }
 
-export const imgSizes = {
+export const imageSizes = {
   backdrop: backdrop,
   logo: logo,
   poster: poster,
@@ -46,8 +46,8 @@ export const imgSizes = {
 const baseUrl = "https://image.tmdb.org/t/p/";
 
 export function useImage(
-  imgSize: backdrop | logo | poster | profile | still,
-  imgPath: string
+  imageSize: backdrop | logo | poster | profile | still,
+  imagePath: string
 ): string {
-  return baseUrl + imgSize + imgPath;
+  return baseUrl + imageSize + imagePath;
 }

@@ -1,24 +1,24 @@
 import Link from "next/link";
-import { imgSizes, useImage } from "../../hooks/ImageHook";
+import { useState } from "react";
+import { imageSizes, useImage } from "../../hooks/ImageHook";
 import { Result } from "../../lib/api/consumat-io";
+import styles from "../../styles/Search.module.css";
+import MediaImage from "../helper/MediaImage";
 
 type SearchResultItemProps = {
   searchResult: Result;
 };
 
 const SearchResultItem = ({ searchResult }: SearchResultItemProps) => {
-  const image = useImage(imgSizes.poster.w154, searchResult.posterPath);
+  const image = useImage(imageSizes.poster.w154, searchResult.posterPath);
 
   return (
     <li>
       <Link href={"/details/" + searchResult.code}>
         <a>
-          <div className="bg-white cursor-pointer my-3 h-29 md:h-36 rounded shadow flex flex-row overflow-hidden hover:shadow-md">
-            <img
-              className="object-cover w-20 h-29 md:w-24 md:h-36 bg-gray-300"
-              src={image}
-            />
-            <div className="mx-2 my-1 md:mx-2.5 md:my-1.5 flex flex-col min-w-0 flex-shrink justify-between">
+          <div className="card flex flex-row overflow-hidden mb-3 cursor-pointer rounded">
+            <MediaImage className={styles.poster} imageSrc={image} />
+            <div className="flex flex-col justify-between flex-shrink mx-2 my-1 md:mx-2.5 md:my-1.5 min-w-0 ">
               <div>
                 <h3 className="md:text-xl text-lg md:leading-7 leading-6 font-bold truncate">
                   {searchResult.title}
