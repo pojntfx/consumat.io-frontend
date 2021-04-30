@@ -32,6 +32,7 @@ input {
   -webkit-appearance: none;
 }
 
+button:focus,
 input:focus,
 select:focus {
   outline: none;
@@ -41,18 +42,32 @@ select option:first-child {
   @apply text-gray-500;
 }
 
-button {
+button,
+input,
+select {
   @apply shadow;
+  @apply bg-white;
 }
 
-button:focus {
-  outline: none;
-}
-
-button:hover {
+button:hover,
+input:hover,
+select:hover {
   @apply shadow-md;
 }
 
-button:active {
-  @apply shadow-none;
+button:active,
+input:active,
+select:active {
+  @apply shadow;
+}
+
+.card {
+  @apply shadow;
+  @apply bg-white;
+}
+.card:hover {
+  @apply shadow-md;
+}
+.card:active {
+  @apply shadow;
 }
