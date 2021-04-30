@@ -63,6 +63,7 @@ select:active {
 
 .card {
   @apply shadow;
+  @apply bg-white;
 }
 .card:hover {
   @apply shadow-md;

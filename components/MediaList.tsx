@@ -1,7 +1,7 @@
 import { ApolloError } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { useMovie } from "../hooks/DataHooks";
-import { imgSizes, useImage } from "../hooks/ImageHook";
+import { imageSizes, useImage } from "../hooks/ImageHook";
 import { Episode, Movie, Season, Tv } from "../lib/api/consumat-io";
 import Spinner from "./helper/Spinner";
 import MediumCard from "./MediumCard";
@@ -52,7 +52,7 @@ const MediaList = ({ title, items, loading, error }: MediaListProps) => {
               <MediumCard
                 key={item.code}
                 title={item.title}
-                imgSrc={useImage(imgSizes.poster.w185, item.poster)}
+                imgSrc={useImage(imageSizes.poster.w185, item.poster)}
               />
             );
           })}

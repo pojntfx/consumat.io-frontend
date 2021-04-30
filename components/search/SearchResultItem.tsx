@@ -16,7 +16,7 @@ const SearchResultItem = ({ searchResult }: SearchResultItemProps) => {
     <li>
       <Link href={"/details/" + searchResult.code}>
         <a>
-          <div className="card flex flex-row overflow-hidden mb-3 bg-white cursor-pointer rounded">
+          <div className="card flex flex-row overflow-hidden mb-3 cursor-pointer rounded">
             <MediaImage className={styles.poster} imageSrc={image} />
             <div className="flex flex-col justify-between flex-shrink mx-2 my-1 md:mx-2.5 md:my-1.5 min-w-0 ">
               <div>
