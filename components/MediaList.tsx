@@ -1,6 +1,6 @@
 import { ApolloError } from "@apollo/client";
-import { imgSizes, useImage } from "../hooks/ImageHook";
 import { GetSearchQuery } from "../lib/api/consumat-io";
+import { imageSizes, useImage } from "../hooks/ImageHook";
 import Spinner from "./helper/Spinner";
 import MediumCard from "./MediumCard";
 
@@ -53,7 +53,7 @@ const MediaList = ({ title, items, loading, error }: MediaListProps) => {
                 key={item.code}
                 code={item.code}
                 title={item.title}
-                imgSrc={useImage(imgSizes.poster.w185, item.posterPath)}
+                imgSrc={useImage(imageSizes.poster.w185, item.posterPath)}
               />
             );
           })}

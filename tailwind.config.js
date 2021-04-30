@@ -16,6 +16,7 @@ module.exports = {
   variants: {
     extend: {
       fontWeight: ["hover", "focus"],
+      boxShadow: ["active"],
     },
   },
   plugins: [require("@tailwindcss/line-clamp")],
