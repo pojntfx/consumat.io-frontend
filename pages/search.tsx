@@ -4,7 +4,6 @@ import Spinner from "../components/helper/Spinner";
 import SearchResultList from "../components/search/SearchResultList";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import styles from "../styles/Search.module.css";
 
 const Search = () => {
   const router = useRouter();
@@ -22,7 +21,7 @@ const Search = () => {
           router.push({ query: { q: query } });
         }}
         autoComplete="off"
-        className="flex flex-col lg:flex-row"
+        className="flex flex-col lg:flex-row mb-2"
       >
         <div className="flex mb-2 w-full lg:w-1/2 lg:mr-2">
           <input
@@ -32,13 +31,10 @@ const Search = () => {
             aria-label="Search"
             required
             onChange={(event) => setQuery(event.target.value)}
-            className="bg-white p-2 rounded-l w-full shadow hover:shadow-md focus:shadow-none duration-75"
+            className="p-2 rounded-l w-full duration-75"
           />
           <button
-            className={
-              styles.button +
-              "bg-white px-4 py-2 rounded-r border-solid border-l-2 border-gray-200 duration-75"
-            }
+            className="px-4 py-2 rounded-r border-solid border-l-2 border-gray-200 duration-75"
             type="submit"
           >
             Search
@@ -47,7 +43,7 @@ const Search = () => {
         <select
           name="genre"
           id="genre"
-          className="bg-white p-2 h-10 border-2 rounded border-transparent shadow hover:shadow-md duration-75 cursor-pointer mb-2 lg:mx-2"
+          className="p-2 h-10 border-2 rounded border-transparent duration-75 cursor-pointer mb-2 lg:mx-2"
         >
           <option value="">Genre</option>
           <option value="Science Fiction">Science Fiction</option>

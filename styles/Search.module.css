@@ -1,14 +1,14 @@
-.search_poster {
-  --height: 7.25rem;
+.poster {
   @apply object-cover;
+  --height: 7.25rem;
   height: var(--height);
   width: calc(var(--height) * (2 / 3));
 }
 
 @screen md {
-  .search_poster {
-    --height: 9rem;
+  .poster {
     @apply object-cover;
+    --height: 9rem;
     height: var(--height);
     width: calc(var(--height) * (2 / 3));
   }
