@@ -6,12 +6,9 @@ import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useMovie, useTv } from "../hooks/DataHooks";
 
-const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context);
-  return {
-    props: { session },
-  };
-};
+export const getServerSideProps: GetServerSideProps = async (context) => ({
+  props: { session: await getSession(context) },
+});
 
 const Home = () => {
   const [session] = useAuthorization();
@@ -100,5 +97,4 @@ const Home = () => {
   );
 };
 
-export { getServerSideProps };
 export default Home;

@@ -1,12 +1,23 @@
-import MetaData from "../../components/MetaData";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
+import MetaData from "../../components/MetaData";
+import { useAuthorization } from "../../hooks/AuthnHooks";
 import { useMovie } from "../../hooks/DataHooks";
 import styles from "../../styles/Details.module.css";
 
+export const getServerSideProps: GetServerSideProps = async (context) => ({
+  props: { session: await getSession(context) },
+});
+
 const Details = () => {
+  const [session] = useAuthorization();
+
+  if (!session) return null;
+
   const router = useRouter();
   const { id } = router.query;
-  const { data, loading, error } = useMovie(parseInt("" + id));
+  const { data, loading } = useMovie(parseInt("" + id));
 
   if (loading) return <p>loading...</p>;
 
