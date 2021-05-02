@@ -17,6 +17,7 @@ $ git clone https://github.com/alphahorizonio/consumat.io-frontend.git
 $ yarn
 $ yarn build
 $ export BACKEND_API_URL="https://consumat-io-backend.herokuapp.com/"
+$ export BACKEND_SECRET="mysecret"
 $ export PROXIED_API_URL="/api/graphql"
 $ export AUTH0_CLIENT_ID="your-client-id"
 $ export AUTH0_CLIENT_SECRET="your-client-secret"
