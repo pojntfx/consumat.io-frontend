@@ -1,10 +1,23 @@
-import MetaData from "../components/MetaData";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/client";
+import { useEffect, useState } from "react";
 import MediaList, { Medium, MediumType } from "../components/MediaList";
-import { Episode, Movie, Season, Tv } from "../lib/api/consumat-io";
+import MetaData from "../components/MetaData";
+import { useAuthorization } from "../hooks/AuthnHooks";
 import { useMovie, useTv } from "../hooks/DataHooks";
-import { useState, useEffect } from "react";
+
+const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  return {
+    props: { session },
+  };
+};
 
 const Home = () => {
+  const [session] = useAuthorization();
+
+  if (!session) return null;
+
   const {
     data: popularMovieData,
     loading: popularMovieLoading,
@@ -87,4 +100,5 @@ const Home = () => {
   );
 };
 
+export { getServerSideProps };
 export default Home;
