@@ -53,7 +53,7 @@ const MediaList = ({ title, items, loading, error }: MediaListProps) => {
                 key={item.code}
                 code={item.code}
                 title={item.title}
-                imgSrc={useImage(imageSizes.poster.w185, item.posterPath)}
+                imageSrc={useImage(imageSizes.poster.w185, item.posterPath)}
               />
             );
           })}

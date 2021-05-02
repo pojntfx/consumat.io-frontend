@@ -13,7 +13,7 @@ const Home = () => {
     data: popularTvData,
     loading: popularTvLoading,
     error: popularTvError,
-  } = useSearch("Detective Conan");
+  } = useSearch("Popular");
 
   return (
     <div className="md:px-4">
