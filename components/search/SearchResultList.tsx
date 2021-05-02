@@ -9,11 +9,8 @@ const SearchResultList = ({ searchResults }: SearchResultListProps) => {
   return (
     <div className="overscroll-none">
       <ul>
-        {searchResults.map((searchResult) => (
-          <SearchResultItem
-            key={searchResult.mediaType + searchResult.code}
-            searchResult={searchResult}
-          />
+        {searchResults.map((searchResult, i) => (
+          <SearchResultItem key={i} searchResult={searchResult} />
         ))}
       </ul>
     </div>

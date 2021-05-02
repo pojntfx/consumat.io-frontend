@@ -3,17 +3,15 @@ import styles from "../styles/MediaList.module.css";
 import MediaImage from "./helper/MediaImage";
 
 type MediumCardProps = {
-  key: number;
   code: number;
   title: string;
   imageSrc: string;
 };
 
-const MediumCard = ({ key, code, title, imageSrc }: MediumCardProps) => {
+const MediumCard = ({ code, title, imageSrc }: MediumCardProps) => {
   return (
     <Link href={`/details/${code}`}>
       <div
-        key={key}
         className={
           styles.container +
           " place-self-center w-32 flex flex-col items-center justify-center rounded cursor-pointer group"

@@ -1,8 +1,19 @@
-import MetaData from "../components/MetaData";
-import MediaList from "../components/MediaList";
 import { useSearch } from "../hooks/DataHooks";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/client";
+import MediaList from "../components/MediaList";
+import MetaData from "../components/MetaData";
+import { useAuthorization } from "../hooks/AuthnHooks";
+
+export const getServerSideProps: GetServerSideProps = async (context) => ({
+  props: { session: await getSession(context) },
+});
 
 const Home = () => {
+  const [session] = useAuthorization();
+
+  if (!session) return null;
+
   const {
     data: popularMovieData,
     loading: popularMovieLoading,

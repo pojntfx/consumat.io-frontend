@@ -1,14 +1,30 @@
-import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import Cookies from "js-cookie";
 import { useMemo } from "react";
+import { SESSION_TOKEN_COOKIE_NAME } from "../constants/authn";
 
 let apolloClient: ApolloClient<any> | undefined;
 
 function createApolloClient(uri: string) {
+  const httpLink = createHttpLink({
+    uri,
+  });
+
+  const authLink = setContext((_, { headers }) => {
+    const token = Cookies.get(SESSION_TOKEN_COOKIE_NAME);
+
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : "",
+      },
+    };
+  });
+
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
-    link: new HttpLink({
-      uri,
-    }),
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
 }
