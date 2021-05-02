@@ -4,12 +4,9 @@ type MediumCardProps = {
   imgSrc: string;
 };
 
-const MediumCard = ({ key, title, imgSrc }: MediumCardProps) => {
+const MediumCard = ({ title, imgSrc }: MediumCardProps) => {
   return (
-    <div
-      key={key}
-      className="place-self-center w-32 flex flex-col items-center justify-center rounded bg-white shadow cursor-pointer hover:shadow-md duration-75"
-    >
+    <div className="place-self-center w-32 flex flex-col items-center justify-center rounded bg-white shadow cursor-pointer hover:shadow-md duration-75">
       <img
         src={imgSrc}
         alt={`${title} poster`}

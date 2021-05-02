@@ -47,10 +47,10 @@ const MediaList = ({ title, items, loading, error }: MediaListProps) => {
         </div>
       ) : (
         <div className="grid gap-3 grid-cols-media-list justify-evenly">
-          {items.map((item) => {
+          {items.map((item, i) => {
             return (
               <MediumCard
-                key={item.code}
+                key={i}
                 title={item.title}
                 imgSrc={useImage(imageSizes.poster.w185, item.poster)}
               />
