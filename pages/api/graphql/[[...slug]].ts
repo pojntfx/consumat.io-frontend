@@ -8,6 +8,7 @@ import {
 
 const proxy = createProxyMiddleware({
   target: process.env.BACKEND_API_URL,
+  changeOrigin: true,
   pathRewrite: { [`^${process.env.PROXIED_API_URL}`]: "" },
 });
 
