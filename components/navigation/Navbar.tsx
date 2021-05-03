@@ -68,7 +68,7 @@ const Navbar = () => {
           isMobileNavbarActive
             ? "bg-gray-800 text-gray-50"
             : "bg-gray-50 text-gray-800"
-        } md:bg-white md:text-gray-800 shadow mb-4`}
+        } md:bg-gray-50 md:text-gray-800 shadow mb-4`}
       >
         <div className="flex justify-between items-center p-4">
           <h1>
@@ -88,9 +88,9 @@ const Navbar = () => {
             onClick={() => setMobileNavbarActive(!isMobileNavbarActive)}
           >
             {isMobileNavbarActive ? (
-              <XIcon className="h-8 w-8 text-gray-50" />
+              <XIcon className="h-8 w-8 bg-gray-800 text-gray-50" />
             ) : (
-              <MenuIcon className="h-8 w-8 text-gray-800" />
+              <MenuIcon className="h-8 w-8 bg-gray-50 text-gray-800" />
             )}
           </button>
         </div>
