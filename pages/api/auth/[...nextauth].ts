@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
-import { SESSION_TOKEN_COOKIE_NAME } from "../../../constants/authn";
 
 export default NextAuth({
   providers: [
@@ -10,15 +9,4 @@ export default NextAuth({
       domain: process.env.AUTH0_DOMAIN,
     }),
   ],
-  cookies: {
-    sessionToken: {
-      name: SESSION_TOKEN_COOKIE_NAME,
-      options: {
-        httpOnly: false,
-        sameSite: "lax",
-        path: "/",
-        secure: true,
-      },
-    },
-  },
 });
