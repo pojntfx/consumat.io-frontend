@@ -1,11 +1,22 @@
-import MetaData from "../components/MetaData";
-import { useSearch } from "../hooks/DataHooks";
-import Spinner from "../components/helper/Spinner";
-import SearchResultList from "../components/search/SearchResultList";
-import { useState } from "react";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import Spinner from "../components/helper/Spinner";
+import MetaData from "../components/MetaData";
+import SearchResultList from "../components/search/SearchResultList";
+import { useAuthorization } from "../hooks/AuthnHooks";
+import { useSearch } from "../hooks/DataHooks";
+
+export const getServerSideProps: GetServerSideProps = async (context) => ({
+  props: { session: await getSession(context) },
+});
 
 const Search = () => {
+  const [session] = useAuthorization();
+
+  if (!session) return null;
+
   const router = useRouter();
   const { q } = router.query;
   const [query, setQuery] = useState<string>("");
