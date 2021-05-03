@@ -18,24 +18,24 @@ const SearchResultItem = ({ searchResult }: SearchResultItemProps) => {
     <li>
       <Link href={"/details/" + searchResult.code}>
         <a>
-          <div className="card flex flex-row overflow-hidden mb-3 cursor-pointer rounded">
-            <MediaImage className={styles.poster} imageSrc={image} />
-            <div className="flex flex-col justify-between flex-shrink min-w-0 w-full mx-1.5 my-1.5 md:mx-2 md:my-1.5">
-              <div className="flex flex-row">
-                <div
-                  className={`rounded text-sm md:text-base h-5 md:h-6 mr-1 -ml-3 pl-3 pr-1
+          <div className="relative card flex flex-row overflow-hidden mb-3 cursor-pointer rounded">
+            <div
+              className={`absolute shadow bottom-2 md:bottom-3 rounded-r text-xs md:text-sm px-1 py-0.5 md:px-1.5
                 ${
                   searchResult.mediaType == "movie"
                     ? "text-white bg-red-700"
                     : "text-white bg-blue-700"
                 }`}
-                >
-                  {searchResult.mediaType == "movie" ? "Movie" : "TV Series"}
-                </div>
-                <h3 className="md:text-xl text-lg md:leading-6 leading-5 font-bold truncate">
-                  {searchResult.title}
-                </h3>
-              </div>
+            >
+              {searchResult.mediaType == "movie" ? "Movie" : "TV Series"}
+            </div>
+
+            <MediaImage className={styles.poster} imageSrc={image} />
+            <div className="flex flex-col justify-between flex-shrink min-w-0 w-full mx-1.5 my-1.5 md:mx-2 md:my-1.5">
+              <h3 className="md:text-xl text-lg md:leading-6 leading-5 font-bold truncate">
+                {searchResult.title}
+              </h3>
+
               <div className="md:text-base text-sm text-gray-500 truncate">
                 {searchResult.releaseDate}
               </div>
