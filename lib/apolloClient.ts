@@ -1,4 +1,4 @@
-import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { useMemo } from "react";
 
 let apolloClient: ApolloClient<any> | undefined;
@@ -6,7 +6,7 @@ let apolloClient: ApolloClient<any> | undefined;
 function createApolloClient(uri: string) {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
-    link: new HttpLink({
+    link: createHttpLink({
       uri,
     }),
     cache: new InMemoryCache(),
