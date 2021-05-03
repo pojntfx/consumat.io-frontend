@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    API_URL: process.env.API_URL,
+    PROXIED_API_URL: process.env.PROXIED_API_URL,
   },
   target: "serverless",
 };
