@@ -42,11 +42,11 @@ const Search = () => {
             aria-label="Search"
             required
             onChange={(event) => setQuery(event.target.value)}
-            className="p-2 rounded-l w-full duration-75"
+            className="p-2 rounded-l w-full duration-75 mr-0.5"
           />
           <button
-            className="px-4 py-2 rounded-r border-solid border-l-2 border-gray-200 duration-75"
             type="submit"
+            className="px-4 py-2 rounded-r border-gray-200 duration-75"
           >
             Search
           </button>
