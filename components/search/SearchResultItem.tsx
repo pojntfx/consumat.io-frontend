@@ -16,7 +16,7 @@ const SearchResultItem = ({ searchResult }: SearchResultItemProps) => {
 
   return (
     <li>
-      <Link href={"/details/" + searchResult.code}>
+      <Link href={"/" + searchResult.mediaType + "/" + searchResult.code}>
         <a>
           <div className="relative card flex flex-row overflow-hidden mb-3 cursor-pointer rounded">
             <div
