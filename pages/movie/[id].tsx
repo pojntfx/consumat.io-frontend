@@ -62,12 +62,12 @@ const Details = () => {
               <div className={styles.detailsRowContainer}>
                 <p className={styles.detailsStatItemRowHeader}>Genres</p>
                 <div className="md:ml-40 flex flex-row">
-                  {data.movie.genres.map(({ name }, key) => {
+                  {data.movie.genres.map(({ name }, i) => {
                     return (
                       <p
-                        key={key}
+                        key={i}
                         className={
-                          key == 0
+                          i == 0
                             ? styles.detailsStatItem
                             : styles.detailsStatItemML
                         }
@@ -81,22 +81,20 @@ const Details = () => {
               <div className={styles.detailsRowContainer}>
                 <p className={styles.detailsStatItemRowHeader}>Cast</p>
                 <div className="md:ml-40 flex flex-row">
-                  {data.movie.cast.map(({ name }, key) => {
+                  {data.movie.cast.map(({ name }, i) => {
                     return (
                       <>
-                        {key < 5 ? (
+                        {i < 5 && (
                           <p
-                            key={key}
+                            key={i}
                             className={
-                              key == 0
+                              i == 0
                                 ? styles.detailsStatItem
                                 : styles.detailsStatItemML
                             }
                           >
                             {name}
                           </p>
-                        ) : (
-                          <> </>
                         )}
                       </>
                     );
@@ -106,12 +104,12 @@ const Details = () => {
               <div className={styles.detailsRowContainer}>
                 <p className={styles.detailsStatItemRowHeader}>Director</p>
                 <div className="md:ml-40 flex flex-row">
-                  {data.movie.directors.map(({ name }, key) => {
+                  {data.movie.directors.map(({ name }, i) => {
                     return (
                       <p
-                        key={key}
+                        key={i}
                         className={
-                          key == 0
+                          i == 0
                             ? styles.detailsStatItem
                             : styles.detailsStatItemML
                         }
