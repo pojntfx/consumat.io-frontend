@@ -889,33 +889,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Search",
-        "description": null,
-        "fields": [
-          {
-            "name": "results",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Result",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "Season",
         "description": null,
         "fields": [
