@@ -43,7 +43,7 @@ const Search = () => {
             onChange={(event) => setQuery(event.target.value)}
             className="p-2 rounded-l w-full mr-0.5"
           />
-          <button type="submit" className="px-4 py-2 rounded-r border-gray-200">
+          <button type="submit" className="px-4 py-2 rounded-r">
             Search
           </button>
         </div>
