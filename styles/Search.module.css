@@ -1,6 +1,6 @@
 .poster {
   @apply object-cover;
-  --height: 7.25rem;
+  --height: 7.5rem;
   height: var(--height);
   width: calc(var(--height) * (2 / 3));
 }

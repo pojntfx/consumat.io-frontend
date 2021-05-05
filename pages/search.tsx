@@ -14,7 +14,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => ({
 
 const Search = () => {
   const [session] = useAuthorization();
-
   if (!session) return null;
 
   const router = useRouter();
@@ -42,19 +41,16 @@ const Search = () => {
             aria-label="Search"
             required
             onChange={(event) => setQuery(event.target.value)}
-            className="p-2 rounded-l w-full"
+            className="p-2 rounded-l w-full mr-0.5"
           />
-          <button
-            className="px-4 py-2 rounded-r border-solid border-l-2 border-gray-200"
-            type="submit"
-          >
+          <button type="submit" className="px-4 py-2 rounded-r border-gray-200">
             Search
           </button>
         </div>
         <select
           name="genre"
           id="genre"
-          className="p-2 h-10 border-2 rounded border-transparent cursor-pointer mb-2 lg:mx-2"
+          className="px-1 h-10 border-2 rounded border-transparent cursor-pointer mb-2 lg:mx-2"
         >
           <option value="">Genre</option>
           <option value="Science Fiction">Science Fiction</option>
@@ -67,7 +63,7 @@ const Search = () => {
       {loading ? (
         <Spinner />
       ) : (
-        data != null && <SearchResultList searchResults={data.search} />
+        data != null && <SearchResultList mediaList={data.search} />
       )}
     </div>
   );
