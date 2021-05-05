@@ -1,7 +1,13 @@
-#import "../fragments/ResultFields.graphql"
+#import "../fragments/MovieFields.graphql"
+#import "../fragments/TvFields.graphql"
 
 query GetSearch($keyword: String!) {
   search(keyword: $keyword) {
-    ...ResultFields
+    ... on Movie {
+      ...MovieFields
+    }
+    ... on TV {
+      ...TvFields
+    }
   }
 }

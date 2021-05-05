@@ -1,16 +1,16 @@
-import { Result } from "../../lib/api/consumat-io";
+import { Media } from "../../lib/api/consumat-io";
 import SearchResultItem from "./SearchResultItem";
 
 type SearchResultListProps = {
-  searchResults: Result[];
+  mediaList: Media[];
 };
 
-const SearchResultList = ({ searchResults }: SearchResultListProps) => {
+const SearchResultList = ({ mediaList }: SearchResultListProps) => {
   return (
     <div className="overscroll-none">
       <ul>
-        {searchResults.map((searchResult, i) => (
-          <SearchResultItem key={i} searchResult={searchResult} />
+        {mediaList.map((media, i) => (
+          <SearchResultItem key={i} media={media} />
         ))}
       </ul>
     </div>
