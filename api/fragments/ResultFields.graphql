@@ -1,9 +1,0 @@
-fragment ResultFields on Result {
-  code
-  mediaType
-  title
-  overview
-  releaseDate
-  posterPath
-  watchStatus
-}
