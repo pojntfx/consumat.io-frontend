@@ -31,14 +31,14 @@ const Home = () => {
       <MetaData title="consumat.io | Home" />
       <MediaList
         title="MOST POPULAR MOVIES"
-        items={popularMovieData.popular}
+        items={popularMovieData?.popular}
         loading={popularMovieLoading}
         error={popularMovieError}
       />
 
       <MediaList
         title="MOST POPULAR TV SHOWS"
-        items={popularTvData.popular}
+        items={popularTvData?.popular}
         loading={popularTvLoading}
         error={popularTvError}
       />
