@@ -12,7 +12,7 @@ fragment MovieFields on Movie {
   overview
   popularity
   ratingAverage
-  releaseDate
+  releaseInitial
   runtime
   status
   backdropPath

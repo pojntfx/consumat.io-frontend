@@ -12,15 +12,15 @@ fragment TvFields on TV {
   overview
   popularity
   ratingAverage
-  firstAirDate
-  lastAirDate
+  releaseInitial
+  releaseFinal
   status
   backdropPath
   posterPath
   providers {
     ...ProviderFields
   }
-  creators {
+  directors {
     ...DirectorFields
   }
   cast {

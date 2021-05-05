@@ -8,4 +8,6 @@ fragment SeasonFields on Season {
   watchStatus
   ratingUser
   favorite
+  numberOfEpisodes
+  airDate
 }

@@ -46,7 +46,7 @@ const Details = () => {
         <div className=" h-96 mt-96 md:mt-56 md:ml-16">
           <div className="flex flex-col sm:flex-row">
             <div className={styles.detailsRowContainer}>
-              <p className={styles.detailsStat}>{data.tv.firstAirDate}</p>
+              <p className={styles.detailsStat}>{data.tv.releaseInitial}</p>
               <p className={styles.detailsStat}>{data.tv.ratingAverage}</p>
               <p className={styles.detailsStat}>{data.tv.popularity}</p>
               <a href={data.tv.tmdbUrl} className="underline">
@@ -101,7 +101,7 @@ const Details = () => {
               <div className={styles.detailsRowContainer}>
                 <p className={styles.detailsStatItemRowHeader}>Director</p>
                 <div className="md:ml-40 flex flex-row">
-                  {data.tv.creators.map(({ name }, key) => {
+                  {data.tv.directors.map(({ name }, key) => {
                     return (
                       <p
                         key={key}
