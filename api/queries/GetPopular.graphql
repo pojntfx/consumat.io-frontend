@@ -1,0 +1,13 @@
+#import "../fragments/MovieFields.graphql"
+#import "../fragments/TvFields.graphql"
+
+query GetPopular($type: String, $country: String) {
+  popular(type: $type, country: $country) {
+    ... on Movie {
+      ...MovieFields
+    }
+    ... on TV {
+      ...TvFields
+    }
+  }
+}

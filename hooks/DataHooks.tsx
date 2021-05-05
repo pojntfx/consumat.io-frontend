@@ -2,6 +2,7 @@ import {
   useGetMovieQuery,
   useGetTvQuery,
   useGetSearchQuery,
+  useGetPopularQuery,
 } from "../lib/api/consumat-io";
 
 export function useMovie(code: number, country: string = "US") {
@@ -27,6 +28,15 @@ export function useSearch(keyword: string | string[]) {
     skip: keyword == null,
     variables: {
       keyword: "" + keyword,
+    },
+  });
+}
+
+export function usePopular(type: "movie" | "tv", country: string = "US") {
+  return useGetPopularQuery({
+    variables: {
+      type: type,
+      country: country,
     },
   });
 }
