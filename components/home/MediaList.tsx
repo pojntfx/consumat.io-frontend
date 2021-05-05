@@ -1,6 +1,5 @@
 import { ApolloError } from "@apollo/client";
-import { GetSearchQuery } from "../../lib/api/consumat-io";
-import { imageSizes, useImage } from "../../hooks/ImageHook";
+import { Media } from "../../lib/api/consumat-io";
 import Spinner from "../helper/Spinner";
 import MediaCard from "./MediaCard";
 
@@ -8,7 +7,7 @@ type MediaListProps = {
   title: string;
   loading: boolean;
   error: ApolloError;
-  items: GetSearchQuery;
+  items: Media[];
 };
 
 const MediaList = ({ title, items, loading, error }: MediaListProps) => {
@@ -25,15 +24,8 @@ const MediaList = ({ title, items, loading, error }: MediaListProps) => {
         </div>
       ) : (
         <div className="grid gap-3 grid-cols-media-list justify-evenly">
-          {items.search.map((item, i) => {
-            return (
-              <MediaCard
-                key={i}
-                code={item.code}
-                title={item.title}
-                imageSrc={useImage(imageSizes.poster.w185, item.posterPath)}
-              />
-            );
+          {items.map((item, i) => {
+            return <MediaCard key={i} mediaItem={item} />;
           })}
         </div>
       )}
