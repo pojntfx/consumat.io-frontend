@@ -1,7 +1,7 @@
 import { useSearch } from "../hooks/DataHooks";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/client";
-import MediaList from "../components/MediaList";
+import MediaList from "../components/home/MediaList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
 
