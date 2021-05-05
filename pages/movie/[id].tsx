@@ -50,7 +50,7 @@ const Details = () => {
         <div className=" h-96 mt-96 md:mt-56 md:ml-16">
           <div className="flex flex-col sm:flex-row">
             <div className={styles.detailsRowContainer}>
-              <p className={styles.detailsStat}>{data.movie.releaseDate}</p>
+              <p className={styles.detailsStat}>{data.movie.releaseInitial}</p>
               <p className={styles.detailsStat}>{data.movie.runtime}</p>
               <p className={styles.detailsStat}>{data.movie.ratingAverage}</p>
               <p className={styles.detailsStat}>{data.movie.popularity}</p>

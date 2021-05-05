@@ -14,7 +14,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => ({
 
 const Search = () => {
   const [session] = useAuthorization();
-
   if (!session) return null;
 
   const router = useRouter();
@@ -67,7 +66,7 @@ const Search = () => {
       {loading ? (
         <Spinner />
       ) : (
-        data != null && <SearchResultList searchResults={data.search} />
+        data != null && <SearchResultList mediaList={data.search} />
       )}
     </div>
   );
