@@ -1,7 +1,7 @@
-import { useSearch } from "../hooks/DataHooks";
+import { usePopular } from "../hooks/DataHooks";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/client";
-import MediaList from "../components/MediaList";
+import MediaList from "../components/home/MediaList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
 
@@ -18,27 +18,27 @@ const Home = () => {
     data: popularMovieData,
     loading: popularMovieLoading,
     error: popularMovieError,
-  } = useSearch("Star Wars");
+  } = usePopular("movie");
 
   const {
     data: popularTvData,
     loading: popularTvLoading,
     error: popularTvError,
-  } = useSearch("Popular");
+  } = usePopular("tv");
 
   return (
     <div className="md:px-4">
       <MetaData title="consumat.io | Home" />
       <MediaList
         title="MOST POPULAR MOVIES"
-        items={popularMovieData}
+        items={popularMovieData?.popular}
         loading={popularMovieLoading}
         error={popularMovieError}
       />
 
       <MediaList
         title="MOST POPULAR TV SHOWS"
-        items={popularTvData}
+        items={popularTvData?.popular}
         loading={popularTvLoading}
         error={popularTvError}
       />

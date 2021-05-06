@@ -11,11 +11,15 @@ module.exports = {
         "line-base-3": "4.5rem",
         "line-sm-3": "3.75rem",
       },
+      boxShadow: {
+        DEFAULT: "0px 1px 8px rgba(0, 0, 0, 0.10)",
+        md: "0px 2px 8px rgba(0, 0, 0, 0.15)",
+        none: "none",
+      },
     },
   },
   variants: {
     extend: {
-      fontWeight: ["hover", "focus"],
       boxShadow: ["active"],
     },
   },
