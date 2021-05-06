@@ -47,6 +47,7 @@ input,
 select {
   @apply shadow;
   @apply bg-white;
+  @apply duration-75;
 }
 
 button:hover,
@@ -64,6 +65,7 @@ select:active {
 .card {
   @apply shadow;
   @apply bg-white;
+  @apply duration-75;
 }
 .card:hover {
   @apply shadow-md;

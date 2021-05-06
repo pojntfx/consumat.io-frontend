@@ -33,7 +33,7 @@ const Search = () => {
         autoComplete="off"
         className="flex flex-col lg:flex-row mb-2"
       >
-        <div className="flex mb-2 w-full lg:w-1/2 lg:mr-2">
+        <div className="flex mb-2 w-full lg:w-1/2 lg:mr-2 lg:flex-grow">
           <input
             type="search"
             name="q"
@@ -41,19 +41,16 @@ const Search = () => {
             aria-label="Search"
             required
             onChange={(event) => setQuery(event.target.value)}
-            className="p-2 rounded-l w-full duration-75 mr-0.5"
+            className="p-2 rounded-l w-full mr-0.5"
           />
-          <button
-            type="submit"
-            className="px-4 py-2 rounded-r border-gray-200 duration-75"
-          >
+          <button type="submit" className="px-4 py-2 rounded-r">
             Search
           </button>
         </div>
         <select
           name="genre"
           id="genre"
-          className="px-1 h-10 border-2 rounded border-transparent duration-75 cursor-pointer mb-2 lg:mx-2"
+          className="px-1 h-10 rounded cursor-pointer mb-2 lg:mx-2"
         >
           <option value="">Genre</option>
           <option value="Science Fiction">Science Fiction</option>
