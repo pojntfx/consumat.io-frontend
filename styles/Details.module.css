@@ -2,6 +2,13 @@
   @apply h-4/5 2xl:h-3/5 w-screen object-cover;
 }
 
+.testBanner {
+  background-color: red;
+  @apply w-screen !important;
+  height: 25vw;
+  @apply -mt-4;
+}
+
 .detailsPoster {
   @apply rounded;
   @apply shadow-lg;
