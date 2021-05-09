@@ -30,9 +30,10 @@ const Details = ({ setDefaultLayout }) => {
     <>
       <MetaData title="consumat.io | Home" />
       <div className={styles.testBanner}>
-        {/* <img
-            src={"https://image.tmdb.org/t/p/original" + data.tv.backdropPath}
-          /> */}
+        <img
+          className={styles.detailsBackdrop}
+          src={"https://image.tmdb.org/t/p/original" + data.tv.backdropPath}
+        />
       </div>
     </>
   );

@@ -3,10 +3,14 @@
 }
 
 .testBanner {
-  background-color: red;
+  background-color: black;
   @apply w-screen !important;
   height: 25vw;
   @apply -mt-4;
+}
+
+.testBanner img {
+  opacity: 0.8;
 }
 
 .detailsPoster {
