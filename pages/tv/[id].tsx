@@ -35,7 +35,7 @@ const Details = ({ setDefaultLayout }) => {
           src={"https://image.tmdb.org/t/p/original" + data.tv.backdropPath}
         />
       </div>
-      <div className={styles.testRow}>
+      <div className={styles.posterTitleDescriptionRow}>
         <img
           className={styles.detailsPoster}
           src={"https://image.tmdb.org/t/p/original" + data.tv.posterPath}
@@ -44,6 +44,28 @@ const Details = ({ setDefaultLayout }) => {
           <h1 className={styles.title}>{data.tv.title}</h1>
           <p className={styles.description}>{data.tv.overview}</p>
         </div>
+      </div>
+      <div className={styles.infoCard}>
+        <div className="flex flex-row justify-between">
+          <p className="text-sm truncate rounded font-bold">Release Date: </p>
+          <p className="text-sm truncate rounded">{data.tv.releaseInitial}</p>
+        </div>
+
+        <div className="flex flex-row justify-between">
+          <p className="text-sm truncate rounded font-bold">Rating Average: </p>
+          <p className="text-sm truncate rounded">{data.tv.ratingAverage}</p>
+        </div>
+
+        <div className="flex flex-row justify-between">
+          <p className="text-sm truncate rounded font-bold">Popularity: </p>
+          <p className="text-sm truncate rounded">{data.tv.popularity}</p>
+        </div>
+        <a
+          href={data.tv.tmdbUrl}
+          className="text-sm truncate rounded underline"
+        >
+          More Details
+        </a>
       </div>
     </>
   );
