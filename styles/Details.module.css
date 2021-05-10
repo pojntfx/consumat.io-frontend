@@ -95,3 +95,21 @@
   @apply -mt-8;
   @apply md:mt-4;
 }
+
+.infoCardTwo {
+  @apply rounded;
+  @apply shadow;
+  @apply w-full;
+  @apply md:w-8/12;
+  @apply antialiased;
+  @apply mr-4;
+  @apply p-4;
+  @apply xl:ml-2;
+  @apply md:mt-4;
+}
+
+.infoCardCon {
+  @apply flex;
+  @apply flex-col;
+  @apply md:flex-row;
+}

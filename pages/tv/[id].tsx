@@ -45,27 +45,65 @@ const Details = ({ setDefaultLayout }) => {
           <p className={styles.description}>{data.tv.overview}</p>
         </div>
       </div>
-      <div className={styles.infoCard}>
-        <div className="flex flex-row justify-between">
-          <p className="text-sm truncate rounded font-bold">Release Date: </p>
-          <p className="text-sm truncate rounded">{data.tv.releaseInitial}</p>
+
+      <div className={styles.infoCardCon}>
+        <div className={styles.infoCard}>
+          <div className="flex flex-row justify-between">
+            <p className="text-sm truncate rounded font-bold">Release Date: </p>
+            <p className="text-sm truncate rounded">{data.tv.releaseInitial}</p>
+          </div>
+
+          <div className="flex flex-row justify-between">
+            <p className="text-sm truncate rounded font-bold">
+              Rating Average:{" "}
+            </p>
+            <p className="text-sm truncate rounded">{data.tv.ratingAverage}</p>
+          </div>
+
+          <div className="flex flex-row justify-between">
+            <p className="text-sm truncate rounded font-bold">Popularity: </p>
+            <p className="text-sm truncate rounded">{data.tv.popularity}</p>
+          </div>
+          <a
+            href={data.tv.tmdbUrl}
+            className="text-sm truncate rounded underline"
+          >
+            More Details
+          </a>
         </div>
 
-        <div className="flex flex-row justify-between">
-          <p className="text-sm truncate rounded font-bold">Rating Average: </p>
-          <p className="text-sm truncate rounded">{data.tv.ratingAverage}</p>
+        <div className={styles.infoCardTwo}>
+          <p className="text-sm truncate rounded font-bold">Genres: </p>
+          <div className="flex flex-row justify-between">
+            {data.tv.genres.map(({ name }, key) => {
+              return (
+                <p key={key} className="text-sm truncate rounded">
+                  {name}
+                </p>
+              );
+            })}
+          </div>
+          <p className="text-sm truncate rounded font-bold">Cast: </p>
+          <div className="flex flex-row justify-between">
+            {data.tv.cast.map(({ name }, key) => {
+              return (
+                <p key={key} className="text-sm truncate rounded">
+                  {name}
+                </p>
+              );
+            })}
+          </div>
+          <p className="text-sm truncate rounded font-bold">Directors: </p>
+          <div className="flex flex-row justify-between">
+            {data.tv.directors.map(({ name }, key) => {
+              return (
+                <p key={key} className="text-sm truncate rounded">
+                  {name}
+                </p>
+              );
+            })}
+          </div>
         </div>
-
-        <div className="flex flex-row justify-between">
-          <p className="text-sm truncate rounded font-bold">Popularity: </p>
-          <p className="text-sm truncate rounded">{data.tv.popularity}</p>
-        </div>
-        <a
-          href={data.tv.tmdbUrl}
-          className="text-sm truncate rounded underline"
-        >
-          More Details
-        </a>
       </div>
     </>
   );
