@@ -77,9 +77,15 @@ const Details = ({ setDefaultLayout }) => {
           <div className="flex flex-row justify-between">
             {data.tv.genres.map(({ name }, key) => {
               return (
-                <p key={key} className="text-sm truncate rounded">
-                  {name}
-                </p>
+                <>
+                  {key < 3 ? (
+                    <p key={key} className="text-sm truncate rounded">
+                      {name}
+                    </p>
+                  ) : (
+                    <> </>
+                  )}
+                </>
               );
             })}
           </div>
@@ -87,9 +93,15 @@ const Details = ({ setDefaultLayout }) => {
           <div className="flex flex-row justify-between">
             {data.tv.cast.map(({ name }, key) => {
               return (
-                <p key={key} className="text-sm truncate rounded">
-                  {name}
-                </p>
+                <>
+                  {key < 3 ? (
+                    <p key={key} className="text-sm truncate rounded">
+                      {name}
+                    </p>
+                  ) : (
+                    <> </>
+                  )}
+                </>
               );
             })}
           </div>
@@ -97,9 +109,15 @@ const Details = ({ setDefaultLayout }) => {
           <div className="flex flex-row justify-between">
             {data.tv.directors.map(({ name }, key) => {
               return (
-                <p key={key} className="text-sm truncate rounded">
-                  {name}
-                </p>
+                <>
+                  {key < 3 ? (
+                    <p key={key} className="text-sm truncate rounded">
+                      {name}
+                    </p>
+                  ) : (
+                    <> </>
+                  )}
+                </>
               );
             })}
           </div>
