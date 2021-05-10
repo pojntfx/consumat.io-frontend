@@ -27,6 +27,7 @@ const Details = ({ setDefaultLayout }) => {
 
   return (
     <>
+      <MetaData title={"consumat.io | " + data.movie.title} />
       <div className={styles.detailsBackdropCon}>
         <img
           className={styles.detailsBackdrop}
