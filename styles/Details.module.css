@@ -2,15 +2,44 @@
   @apply h-4/5 2xl:h-3/5 w-screen object-cover;
 }
 
-.testBanner {
+.detailsBackdropCon {
   background-color: black;
   @apply w-screen !important;
   height: 25vw;
   @apply -mt-4;
 }
 
-.testBanner img {
+.detailsBackdropCon img {
   opacity: 0.8;
+}
+
+.titleDescriptionContainer {
+  @apply md:ml-10;
+  @apply text-center;
+  @apply md:text-left;
+  @apply mb-20;
+}
+
+.description {
+  @apply md:mt-8;
+}
+
+.title {
+  @apply md:text-white;
+  @apply text-6xl;
+  @apply mb-4;
+}
+
+.testRow {
+  @apply w-full;
+  @apply flex;
+  @apply items-center;
+  @apply flex-col;
+  @apply md:flex-row;
+  @apply -mt-12;
+  @apply md:-mt-44;
+  @apply xl:ml-44;
+  @apply absolute;
 }
 
 .detailsPoster {
@@ -19,10 +48,6 @@
   @apply w-48;
   @apply lg:w-64;
   @apply antialiased;
-  @apply top-48;
-  @apply ml-16;
-  @apply xl:ml-10;
-  @apply absolute;
 }
 
 .detailsBackdrop {
