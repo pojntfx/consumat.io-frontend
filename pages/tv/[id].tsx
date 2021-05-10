@@ -29,11 +29,21 @@ const Details = ({ setDefaultLayout }) => {
   return (
     <>
       <MetaData title="consumat.io | Home" />
-      <div className={styles.testBanner}>
+      <div className={styles.detailsBackdropCon}>
         <img
           className={styles.detailsBackdrop}
           src={"https://image.tmdb.org/t/p/original" + data.tv.backdropPath}
         />
+      </div>
+      <div className={styles.testRow}>
+        <img
+          className={styles.detailsPoster}
+          src={"https://image.tmdb.org/t/p/original" + data.tv.posterPath}
+        />
+        <div className={styles.titleDescriptionContainer}>
+          <h1 className={styles.title}>{data.tv.title}</h1>
+          <p className={styles.description}>{data.tv.overview}</p>
+        </div>
       </div>
     </>
   );
