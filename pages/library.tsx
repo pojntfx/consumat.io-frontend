@@ -5,6 +5,10 @@ import LibraryList from "../components/library/LibraryList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useSearch } from "../hooks/DataHooks";
+import { watchStatus } from "../types/status";
+import styles from "../styles/ToggleSwitch.module.css";
+import { ChangeEvent, useEffect, useState } from "react";
+import ToggleSwitch from "../components/helper/ToggleSwitch";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -16,14 +20,27 @@ const Library = () => {
 
   const { data, loading, error } = useSearch("Star Trek");
 
+  const [toggle, setToggle] = useState<string>("watching");
+
+  useEffect(() => {}, [toggle]);
+
   return (
     <div className="px-4">
       <MetaData title="consumat.io | Library" />
 
+      <ToggleSwitch
+        name="watchStatus"
+        value={toggle}
+        onChange={setToggle}
+        options={["watching", "planing", "dropped", "finished"]}
+      />
+
       {loading ? (
         <Spinner />
       ) : (
-        data != null && <LibraryList mediaList={data.search} />
+        data != null && (
+          <LibraryList mediaList={data.search} watchStatus={null} />
+        )
       )}
     </div>
   );
