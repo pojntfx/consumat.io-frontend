@@ -70,7 +70,7 @@ const Navbar = () => {
       >
         <div className="w-full max-w-screen-xl">
           <div className="flex justify-between items-center p-4">
-            <h1>
+            <h1 className="py-1 px-2 rounded hover:bg-gray-800 hover:text-gray-50 duration-75">
               <Link href="/">CONSUMAT.IO</Link>
             </h1>
 
