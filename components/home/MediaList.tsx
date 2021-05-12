@@ -1,6 +1,7 @@
 import { ApolloError } from "@apollo/client";
 import { Media } from "../../lib/api/consumat-io";
 import Spinner from "../helper/Spinner";
+import ErrorMessage from "../helper/ErrorMessage";
 import MediaCard from "./MediaCard";
 
 type MediaListProps = {
@@ -11,7 +12,7 @@ type MediaListProps = {
 };
 
 const MediaList = ({ title, items, loading, error }: MediaListProps) => {
-  if (error) return <h2>{error.message}</h2>;
+  if (error) return <ErrorMessage />;
 
   return (
     <div className="my-8 px-4 pb-4 bg-white rounded shadow-md">

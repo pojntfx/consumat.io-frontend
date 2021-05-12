@@ -3,6 +3,7 @@ import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Spinner from "../components/helper/Spinner";
+import ErrorMessage from "../components/helper/ErrorMessage";
 import MetaData from "../components/MetaData";
 import SearchResultList from "../components/search/SearchResultList";
 import { useAuthorization } from "../hooks/AuthnHooks";
@@ -59,6 +60,8 @@ const Search = () => {
           <option value="Comedy">Comedy</option>
         </select>
       </form>
+
+      {error && <ErrorMessage />}
 
       {loading ? (
         <Spinner />
