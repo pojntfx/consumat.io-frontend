@@ -1,0 +1,26 @@
+{
+  "short_name": "consumat.io",
+  "name": "consumat.io - Track, plan and enjoy content.",
+  "icons": [
+    {
+      "src": "/images/dummy-logo.svg",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#F9FAFB",
+  "theme_color": "#F9FAFB",
+  "display": "standalone",
+  "scope": "/",
+  "orientation": "portrait-primary",
+  "shortcuts": [
+    {
+      "name": "Search",
+      "short_name": "Search",
+      "description": "Search for movies or TV shows",
+      "url": "/search",
+      "icons": [{ "src": "/images/search-icon.svg", "sizes": "any" }]
+    }
+  ],
+  "description": "Movie and TV show tracking"
+}
