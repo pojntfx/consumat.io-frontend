@@ -11,7 +11,7 @@ const LibraryItem = ({ media }: LibraryItemProps) => {
 
   return (
     <li>
-      <div className="flex flex-row card rounded overflow-hidden mb-3 h-14">
+      <div className="flex flex-row card rounded overflow-hidden bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 mb-3 h-14">
         <MediaImage imageSrc={image} className="w-20" />
         <div className="w-full flex flex-col min-w-0 justify-center mx-2">
           <div className="text-base font-bold truncate">{media.title}</div>

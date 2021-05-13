@@ -43,9 +43,12 @@ const HomeHeader = ({ backgroundImageSource }: HomeHeaderProps) => {
               aria-label="Search"
               required
               onChange={(event) => setQuery(event.target.value)}
-              className="p-2 rounded-l w-full mr-0.5"
+              className="p-2 rounded-l w-full mr-0.5 dark:text-gray-800"
             />
-            <button type="submit" className="px-4 py-2 rounded-r">
+            <button
+              type="submit"
+              className="px-4 py-2 rounded-r dark:text-gray-800"
+            >
               Search
             </button>
           </div>
