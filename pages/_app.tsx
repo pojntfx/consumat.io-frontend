@@ -7,7 +7,6 @@ import { useState } from "react";
 import "../styles/globals.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const [defaultLayout, setDefaultLayout] = useState("default");
   const apolloClient = useApollo(
     pageProps.initialApolloState,
     process.env.PROXIED_API_URL
@@ -16,8 +15,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Provider session={pageProps.session}>
       <ApolloProvider client={apolloClient}>
-        <Layout defaultLayout={defaultLayout}>
-          <Component {...pageProps} setDefaultLayout={setDefaultLayout} />
+        <Layout>
+          <Component {...pageProps} />
         </Layout>
       </ApolloProvider>
     </Provider>

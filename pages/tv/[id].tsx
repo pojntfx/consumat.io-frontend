@@ -5,19 +5,14 @@ import Spinner from "../../components/helper/Spinner";
 import MetaData from "../../components/MetaData";
 import { useAuthorization } from "../../hooks/AuthnHooks";
 import { useTv } from "../../hooks/DataHooks";
-import { useEffect } from "react";
 import styles from "../../styles/Details.module.css";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
 });
 
-const Details = ({ setDefaultLayout }) => {
+const Details = () => {
   const [session] = useAuthorization();
-  useEffect(() => {
-    setDefaultLayout("notDefault");
-  }, []);
-
   if (!session) return null;
 
   const router = useRouter();
