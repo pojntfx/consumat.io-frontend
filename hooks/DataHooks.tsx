@@ -32,7 +32,7 @@ export function useSearch(keyword: string | string[]) {
   });
 }
 
-export function usePopular(type: "movie" | "tv", country: string = "US") {
+export function usePopular(type: "Movie" | "TV", country: string = "US") {
   return useGetPopularQuery({
     variables: {
       type: type,

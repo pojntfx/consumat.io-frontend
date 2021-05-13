@@ -7,6 +7,11 @@ body {
   @apply text-gray-800;
 }
 
+body.dark {
+  @apply bg-gray-800;
+  @apply text-gray-50;
+}
+
 /* Headings */
 
 h1 {
@@ -72,4 +77,12 @@ select:active {
 }
 .card:active {
   @apply shadow;
+}
+
+/* Putting this here for the time being, because
+using it in the module doesn't work for some reason :,)
+(see https://github.com/tailwindlabs/tailwindcss/discussions/2917) */
+.navigation-link.active {
+  @apply dark:text-gray-50;
+  @apply dark:border-gray-50;
 }

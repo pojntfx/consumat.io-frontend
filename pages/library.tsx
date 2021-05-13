@@ -32,7 +32,7 @@ const Library = () => {
         name="watchStatus"
         value={toggle}
         onChange={setToggle}
-        options={["watching", "planing", "dropped", "finished"]}
+        options={["Watching", "Planning", "Dropped", "Finished"]}
       />
 
       {loading ? (
