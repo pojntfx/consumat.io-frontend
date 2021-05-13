@@ -22,13 +22,13 @@ const Home = () => {
     data: popularMovieData,
     loading: popularMovieLoading,
     error: popularMovieError,
-  } = usePopular("movie");
+  } = usePopular("Movie");
 
   const {
     data: popularTvData,
     loading: popularTvLoading,
     error: popularTvError,
-  } = usePopular("tv");
+  } = usePopular("TV");
 
   useEffect(() => {
     if (popularMovieData && popularTvData) {
@@ -38,7 +38,7 @@ const Home = () => {
       ].filter((item) => item.backdropPath !== null);
       const randomItem =
         movieTvArray[Math.floor(Math.random() * movieTvArray.length)];
-      setHeaderImageSource(randomItem.backdropPath);
+      setHeaderImageSource(randomItem?.backdropPath);
     }
   }, [popularMovieData, popularTvData]);
 
