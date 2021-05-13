@@ -27,7 +27,7 @@ const MediaCard = ({ mediaItem }: MediaCardProps) => {
 
           <p
             className={
-              "bg-white bg-gradient-to-r z-10 text-sm py-2 px-1 text-center truncate w-full -mt-4 rounded" +
+              "bg-gradient-to-br text-white z-10 text-sm py-2 px-1 text-center truncate w-full -mt-4 rounded" +
               (mediaItem.__typename === "Movie"
                 ? " from-yellow-500 to-red-500"
                 : " from-green-500 to-blue-500")
