@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import Layout from "../components/Layout";
 import { useApollo } from "../lib/apolloClient";
 import { Provider } from "next-auth/client";
+import { useState } from "react";
 import "../styles/globals.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
