@@ -28,7 +28,9 @@
 }
 
 .navigationLink.active,
-.navigationLink:hover {
+.navigationLinkMobile.active,
+.navigationLink:hover,
+.navigationLinkMobile:hover {
   @apply border-gray-800;
   @apply text-gray-800;
 }

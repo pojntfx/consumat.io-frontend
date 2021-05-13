@@ -69,14 +69,14 @@ const NavList = ({
       />
       {currentTheme === theme.light ? (
         <button
-          className="bg-transparent shadow-none hover:shadow-none my-4 md:my-0 ml-1"
+          className="bg-transparent text-gray-400 hover:text-gray-800 dark:hover:text-white shadow-none hover:shadow-none my-4 md:my-0 ml-1"
           onClick={() => setCurrentTheme(theme.dark)}
         >
           <MoonIcon className="h-8 w-8" />
         </button>
       ) : (
         <button
-          className="bg-transparent shadow-none hover:shadow-none my-4 md:my-0 ml-1"
+          className="bg-transparent text-gray-400 hover:text-gray-800 dark:hover:text-white shadow-none hover:shadow-none my-4 md:my-0 ml-1"
           onClick={() => setCurrentTheme(theme.light)}
         >
           <SunIcon className="h-8 w-8" />
