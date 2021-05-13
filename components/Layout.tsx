@@ -4,22 +4,15 @@ import Navbar from "./navigation/Navbar";
 
 type LayoutProps = {
   children: ReactNode;
-  defaultLayout: String;
 };
 
-const Layout = ({ children, defaultLayout }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <MetaData />
       <Navbar />
       <div className="flex items justify-center">
-        <div
-          className={
-            defaultLayout == "default" ? "w-full max-w-screen-xl" : "w-full"
-          }
-        >
-          {children}
-        </div>
+        <div className={"w-full max-w-screen-xl"}>{children}</div>
       </div>
     </>
   );

@@ -4,18 +4,15 @@ import { useRouter } from "next/router";
 import MetaData from "../../components/MetaData";
 import { useAuthorization } from "../../hooks/AuthnHooks";
 import { useMovie } from "../../hooks/DataHooks";
-import { useEffect } from "react";
 import styles from "../../styles/Details.module.css";
+import Spinner from "../../components/helper/Spinner";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
 });
 
-const Details = ({ setDefaultLayout }) => {
+const Details = () => {
   const [session] = useAuthorization();
-  useEffect(() => {
-    setDefaultLayout("notDefault");
-  }, []);
 
   if (!session) return null;
 
@@ -23,7 +20,7 @@ const Details = ({ setDefaultLayout }) => {
   const { id } = router.query;
   const { data, loading } = useMovie(parseInt("" + id));
 
-  if (loading) return <p>loading...</p>;
+  if (loading) return <Spinner />;
 
   return (
     <>

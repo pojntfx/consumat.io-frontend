@@ -4,7 +4,6 @@
 
 .detailsBackdropCon {
   background-color: black;
-  @apply w-screen !important;
   height: 25vw;
   @apply -mt-4;
 }
@@ -21,7 +20,7 @@
 
 .description {
   @apply md:mt-20;
-  @apply max-w-4xl;
+  @apply max-w-2xl;
 }
 
 .title {
