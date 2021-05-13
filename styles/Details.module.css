@@ -2,43 +2,55 @@
   @apply h-4/5 2xl:h-3/5 w-screen object-cover;
 }
 
+.detailsBackdropCon {
+  background-color: black;
+  height: 25vw;
+  @apply -mt-4;
+}
+
+.titleDescriptionContainer {
+  @apply md:ml-10;
+  @apply flex;
+  @apply flex-col;
+  @apply justify-evenly;
+  @apply text-center;
+  @apply md:text-left;
+  @apply mb-10;
+}
+
+.description {
+  @apply md:mt-20;
+  @apply max-w-2xl;
+}
+
+.title {
+  @apply md:text-white;
+  @apply text-6xl;
+}
+
+.posterTitleDescriptionRow {
+  @apply w-full;
+  @apply flex;
+  @apply items-center;
+  @apply flex-col;
+  @apply md:flex-row;
+  @apply -mt-12;
+  @apply md:-mt-44;
+  @apply xl:ml-44;
+}
+
 .detailsPoster {
   @apply rounded;
-  @apply shadow-lg;
+  @apply shadow;
   @apply w-48;
   @apply lg:w-64;
   @apply antialiased;
-  @apply top-48;
-  @apply ml-16;
-  @apply xl:ml-10;
-  @apply absolute;
 }
 
 .detailsBackdrop {
   @apply h-full;
   @apply w-full;
   @apply object-cover;
-}
-
-.detailsTitle {
-  @apply text-center;
-  @apply sm:text-left;
-  @apply sm:ml-10;
-  @apply mb-10;
-  @apply text-black;
-  @apply sm:px-0;
-  @apply sm:text-white;
-  @apply text-8xl;
-  @apply 2xl:bottom-0;
-  @apply mt-24;
-  @apply md:mt-10;
-}
-
-.detailsOverview {
-  @apply sm:ml-10;
-  @apply text-black;
-  @apply text-xs;
-  @apply md:text-2xl;
 }
 
 .detailsStat {
@@ -64,34 +76,6 @@
   @apply rounded;
 }
 
-.detailsStatItemRowHeader {
-  @apply md:ml-40;
-  @apply bg-white;
-  @apply text-gray-800;
-  @apply font-semibold;
-  @apply py-2;
-  @apply mb-2;
-  @apply px-4;
-  @apply border;
-  @apply border-gray-400;
-  @apply rounded;
-  @apply shadow;
-}
-
-.detailsStatItemML {
-  @apply ml-2;
-  @apply bg-gray-300;
-  @apply text-gray-800;
-  @apply font-bold;
-  @apply py-2;
-  @apply px-4;
-  @apply rounded;
-}
-
-.detailsStatItem:hover {
-  @apply bg-gray-400;
-}
-
 .detailsRowContainer {
   @apply flex;
   @apply flex-col;
@@ -100,11 +84,34 @@
   @apply md:items-start;
 }
 
-.detailsTextContainer {
-  @apply z-40;
+.infoCard {
+  @apply rounded;
+  @apply shadow;
+  @apply w-full;
+  @apply md:w-48;
+  @apply lg:w-64;
+  @apply antialiased;
+  @apply mr-4;
+  @apply p-4;
+  @apply xl:ml-44;
+  @apply -mt-8;
+  @apply md:mt-4;
+}
+
+.infoCardTwo {
+  @apply rounded;
+  @apply shadow;
+  @apply w-full;
+  @apply md:w-4/12;
+  @apply antialiased;
+  @apply mr-4;
+  @apply p-4;
+  @apply xl:ml-2;
+  @apply md:mt-4;
+}
+
+.infoCardCon {
   @apply flex;
   @apply flex-col;
-  @apply absolute;
-  @apply md:left-72;
-  @apply md:top-96;
+  @apply md:flex-row;
 }
