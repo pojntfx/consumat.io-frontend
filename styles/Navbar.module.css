@@ -36,9 +36,3 @@
 .navigationLinkMobile {
   @apply my-4;
 }
-
-.navigationLinkMobile.active,
-.navigationLinkMobile:hover {
-  @apply border-gray-50;
-  @apply text-gray-50;
-}
