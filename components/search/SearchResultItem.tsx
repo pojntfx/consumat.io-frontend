@@ -25,8 +25,8 @@ const SearchResultItem = ({ media }: SearchResultItemProps) => {
               className={`absolute shadow bottom-2 md:bottom-3 rounded-r text-xs md:text-sm px-1 py-0.5 md:px-1.5
                 ${
                   isMovie(media)
-                    ? "text-white bg-gradient-to-r from-yellow-500 to-red-500"
-                    : "text-white bg-gradient-to-r from-green-500 to-blue-500"
+                    ? "text-white bg-gradient-to-br from-yellow-500 to-red-500"
+                    : "text-white bg-gradient-to-br from-green-500 to-blue-500"
                 }`}
             >
               {isMovie(media) ? "Movie" : "TV Series"}
