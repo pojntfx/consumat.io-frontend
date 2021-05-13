@@ -22,7 +22,7 @@ const NavListItem = ({
         <a
           className={`navigation-link ${styles.link} ${
             isMobile ? styles.navigationLinkMobile : styles.navigationLink
-          } dark:hover:border-gray-50 dark:hover:text-gray-50 ${
+          } dark:hover:border-white dark:hover:text-white ${
             isActive && styles.active + " active"
           }`}
           onClick={

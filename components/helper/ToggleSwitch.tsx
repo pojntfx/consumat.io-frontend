@@ -23,7 +23,12 @@ const ToggleSwitch = ({
   }, [value]);
 
   return (
-    <div className={styles.toggleSwitch}>
+    <div
+      className={
+        styles.toggleSwitch +
+        " bg-gradient-to-br from-white to-white dark:from-gray-600 dark:to-gray-700"
+      }
+    >
       {options.map((option) => (
         <label key={option} htmlFor={option}>
           <input
