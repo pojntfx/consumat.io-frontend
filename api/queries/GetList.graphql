@@ -1,0 +1,21 @@
+#import "../fragments/MovieFields.graphql"
+#import "../fragments/TvFields.graphql"
+#import "../fragments/SeasonFields.graphql"
+#import "../fragments/EpisodeFields.graphql"
+
+query GetList($type: String!, $watchStatus: String!) {
+  list(type: $type, watchStatus: $watchStatus) {
+    ... on Movie {
+      ...MovieFields
+    }
+    ... on TV {
+      ...TvFields
+    }
+    ... on Season {
+      ...SeasonFields
+    }
+    ... on Episode {
+      ...EpisodeFields
+    }
+  }
+}

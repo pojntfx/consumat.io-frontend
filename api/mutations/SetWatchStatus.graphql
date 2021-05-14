@@ -1,0 +1,5 @@
+mutation SetWatchStatus($code: Int!, $media: String!, $watchStatus: String!) {
+  watchStatus(code: $code, media: $media, watchStatus: $watchStatus) {
+    status
+  }
+}
