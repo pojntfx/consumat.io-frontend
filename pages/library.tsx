@@ -6,8 +6,7 @@ import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useSearch } from "../hooks/DataHooks";
 import { watchStatus } from "../types/status";
-import styles from "../styles/ToggleSwitch.module.css";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ToggleSwitch from "../components/helper/ToggleSwitch";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
@@ -32,7 +31,7 @@ const Library = () => {
         name="watchStatus"
         value={toggle}
         onChange={setToggle}
-        options={["watching", "planing", "dropped", "finished"]}
+        options={["Watching", "Planning", "Dropped", "Finished"]}
       />
 
       {loading ? (
