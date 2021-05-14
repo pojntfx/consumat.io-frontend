@@ -1,5 +1,5 @@
 export enum watchStatus {
-  planToWatch = "Plan to Watch",
+  planToWatch = "Planning",
   watching = "Watching",
   dropped = "Dropped",
   finished = "Finished",
