@@ -16,6 +16,7 @@
 
 .toggleSwitch label {
   @apply flex;
+  @apply justify-center;
   @apply flex-1;
   @apply py-1;
   @apply rounded;
@@ -29,14 +30,16 @@
 
 .toggleSwitch label div {
   @apply rounded;
-  @apply w-full;
-  @apply text-center;
   @apply transition-all;
   @apply duration-300;
 }
 
 .toggleSwitch input[type="radio"]:checked + div {
-  @apply text-white;
+  @apply text-transparent;
+  @apply bg-clip-text;
+  @apply bg-gradient-to-br;
+  @apply from-green-500;
+  @apply to-blue-500;
 }
 
 .indicator {

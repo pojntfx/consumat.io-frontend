@@ -22,7 +22,7 @@ const SearchResultItem = ({ media }: SearchResultItemProps) => {
         <a>
           <div className="relative card flex flex-row overflow-hidden bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 mb-3 cursor-pointer rounded">
             <div
-              className={`absolute shadow bottom-2 md:bottom-3 rounded-r text-xs md:text-sm px-1 py-0.5 md:px-1.5
+              className={`absolute shadow bottom-2 md:bottom-3 rounded-r font-medium text-xs md:text-sm px-1 py-0.5 md:px-1.5
                 ${
                   isMovie(media)
                     ? "text-white bg-gradient-to-br from-yellow-500 to-red-500"
