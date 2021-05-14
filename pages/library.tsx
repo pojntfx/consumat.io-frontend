@@ -19,7 +19,7 @@ const Library = () => {
 
   const { data, loading, error } = useSearch("Star Trek");
 
-  const [toggle, setToggle] = useState<string>("Watching");
+  const [toggle, setToggle] = useState<string>(watchStatus.watching);
 
   useEffect(() => {}, [toggle]);
 
@@ -31,7 +31,12 @@ const Library = () => {
         name="watchStatus"
         value={toggle}
         onChange={setToggle}
-        options={["Watching", "Planning", "Dropped", "Finished"]}
+        options={[
+          watchStatus.watching,
+          watchStatus.planning,
+          watchStatus.dropped,
+          watchStatus.finished,
+        ]}
       />
 
       {loading ? (
