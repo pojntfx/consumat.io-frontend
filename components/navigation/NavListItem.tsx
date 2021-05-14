@@ -20,9 +20,11 @@ const NavListItem = ({
     <li>
       <Link href={href}>
         <a
-          className={`${styles.link} ${
+          className={`navigation-link ${styles.link} ${
             isMobile ? styles.navigationLinkMobile : styles.navigationLink
-          } ${isActive && styles.active}`}
+          } dark:hover:border-white dark:hover:text-white ${
+            isActive && styles.active + " active"
+          }`}
           onClick={
             setMobileNavbarVisibility &&
             (() => setMobileNavbarVisibility(false))

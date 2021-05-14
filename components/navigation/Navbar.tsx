@@ -16,10 +16,8 @@ const Navbar = () => {
   const [windowWidth, setWindowWidth] = useState<number>(null);
   const [isMobile, setMobile] = useState(true);
   const [isMobileNavbarActive, setMobileNavbarActive] = useState(false);
-  const [
-    activeNavigationLink,
-    setActiveNavigationLink,
-  ] = useState<NavigationLink>(NavigationLink.Home);
+  const [activeNavigationLink, setActiveNavigationLink] =
+    useState<NavigationLink>(NavigationLink.Home);
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -63,36 +61,32 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav
-        className={`${
-          isMobileNavbarActive
-            ? "bg-gray-800 text-gray-50"
-            : "bg-gray-50 text-gray-800"
-        } md:bg-gray-50 md:text-gray-800 shadow mb-4`}
-      >
-        <div className="flex justify-between items-center p-4">
-          <h1>
-            <Link href="/">CONSUMAT.IO</Link>
-          </h1>
+      <nav className="md:bg-gray-50 md:text-gray-800 dark:bg-gray-800 dark:text-gray-50 shadow mb-4 md:flex md:justify-center">
+        <div className="w-full max-w-screen-xl">
+          <div className="flex justify-between items-center p-4">
+            <h1 className="py-1 px-2 rounded hover:bg-gray-800 hover:text-gray-50 dark:hover:bg-gray-50 dark:hover:text-gray-800 duration-75">
+              <Link href="/">CONSUMAT.IO</Link>
+            </h1>
 
-          {!isMobile && (
-            <NavList
-              activeNavigationLink={activeNavigationLink}
-              isMobile={isMobile}
-              isMobileNavVisible={isMobileNavbarActive}
-            />
-          )}
-
-          <button
-            className="md:hidden cursor-pointer focus:outline-none shadow-none hover:shadow-none"
-            onClick={() => setMobileNavbarActive(!isMobileNavbarActive)}
-          >
-            {isMobileNavbarActive ? (
-              <XIcon className="h-8 w-8 bg-gray-800 text-gray-50" />
-            ) : (
-              <MenuIcon className="h-8 w-8 bg-gray-50 text-gray-800" />
+            {!isMobile && (
+              <NavList
+                activeNavigationLink={activeNavigationLink}
+                isMobile={isMobile}
+                isMobileNavVisible={isMobileNavbarActive}
+              />
             )}
-          </button>
+
+            <button
+              className="md:hidden cursor-pointer focus:outline-none shadow-none hover:shadow-none"
+              onClick={() => setMobileNavbarActive(!isMobileNavbarActive)}
+            >
+              {isMobileNavbarActive ? (
+                <XIcon className="h-8 w-8 bg-gray-50 dark:bg-gray-800  shadow-none hover:shadow-none" />
+              ) : (
+                <MenuIcon className="h-8 w-8 bg-gray-50 dark:bg-gray-800 shadow-none hover:shadow-none" />
+              )}
+            </button>
+          </div>
         </div>
 
         {isMobile && (
