@@ -22,11 +22,11 @@ const SearchResultItem = ({ media }: SearchResultItemProps) => {
         <a>
           <div className="relative card flex flex-row overflow-hidden mb-3 cursor-pointer rounded">
             <div
-              className={`absolute shadow bottom-2 md:bottom-3 rounded-r text-xs md:text-sm px-1 py-0.5 md:px-1.5
+              className={`absolute shadow bottom-2 md:bottom-3 rounded-r font-medium text-xs md:text-sm px-1 py-0.5 md:px-1.5
                 ${
                   isMovie(media)
-                    ? "text-white bg-red-700"
-                    : "text-white bg-blue-700"
+                    ? "text-white bg-gradient-to-r from-yellow-500 to-red-500"
+                    : "text-white bg-gradient-to-r from-green-500 to-blue-500"
                 }`}
             >
               {isMovie(media) ? "Movie" : "TV Series"}
