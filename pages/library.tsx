@@ -19,7 +19,7 @@ const Library = () => {
 
   const { data, loading, error } = useSearch("Star Trek");
 
-  const [toggle, setToggle] = useState<string>("watching");
+  const [toggle, setToggle] = useState<string>("Watching");
 
   useEffect(() => {}, [toggle]);
 

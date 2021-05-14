@@ -37,7 +37,7 @@
 .toggleSwitch input[type="radio"]:checked + div {
   @apply text-transparent;
   @apply bg-clip-text;
-  @apply bg-gradient-to-r;
+  @apply bg-gradient-to-br;
   @apply from-green-500;
   @apply to-blue-500;
 }

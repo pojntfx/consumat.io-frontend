@@ -1,0 +1,5 @@
+mutation SetRating($code: Int!, $media: String!, $rating: Float!) {
+  rating(code: $code, media: $media, rating: $rating) {
+    status
+  }
+}
