@@ -17,7 +17,10 @@ const MetaData = ({
       <meta name="keywords" content={keywords} />
       <meta name="description" content={description} />
       <meta charSet="utf-8" />
-      {/* <link rel='icon' href='/favicon.ico' /> */}
+      <meta name="theme-color" content="#F9FAFB" />
+      <meta name="apple-mobile-web-app-status-bar" content="#F9FAFB" />
+      <link rel="icon" href="/favicon.ico" />
+      <link rel="manifest" href="/manifest.json"></link>
       <title>{title}</title>
     </Head>
   );

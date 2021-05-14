@@ -12,7 +12,7 @@ const Layout = ({ children }: LayoutProps) => {
       <MetaData />
       <Navbar />
       <div className="flex items justify-center">
-        <div className="w-full max-w-screen-xl">{children}</div>
+        <div className={"w-full max-w-screen-xl"}>{children}</div>
       </div>
     </>
   );
