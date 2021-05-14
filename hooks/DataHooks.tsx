@@ -3,9 +3,15 @@ import {
   useGetTvQuery,
   useGetSearchQuery,
   useGetPopularQuery,
+  useSetWatchStatusMutation,
+  useSetRatingMutation,
 } from "../lib/api/consumat-io";
+import { mediaType } from "../types/mediaType";
+import { watchStatus } from "../types/status";
 
-export function useMovie(code: number, country: string = "US") {
+// Queries
+
+export function useGetMovie(code: number, country: string = "US") {
   return useGetMovieQuery({
     variables: {
       code: code,
@@ -14,7 +20,7 @@ export function useMovie(code: number, country: string = "US") {
   });
 }
 
-export function useTv(code: number, country: string = "US") {
+export function useGetTv(code: number, country: string = "US") {
   return useGetTvQuery({
     variables: {
       code: code,
@@ -23,7 +29,7 @@ export function useTv(code: number, country: string = "US") {
   });
 }
 
-export function useSearch(keyword: string | string[]) {
+export function useGetSearch(keyword: string | string[]) {
   return useGetSearchQuery({
     skip: keyword == null,
     variables: {
@@ -32,11 +38,37 @@ export function useSearch(keyword: string | string[]) {
   });
 }
 
-export function usePopular(type: "Movie" | "TV", country: string = "US") {
+export function useGetPopular(type: mediaType, country: string = "US") {
   return useGetPopularQuery({
     variables: {
       type: type,
       country: country,
+    },
+  });
+}
+
+// Mutations
+
+export function useSetWatchStatus(
+  code: number,
+  media: mediaType,
+  watchStatus: watchStatus
+) {
+  return useSetWatchStatusMutation({
+    variables: {
+      code: code,
+      media: media,
+      watchStatus: watchStatus,
+    },
+  });
+}
+
+export function useSetRating(code: number, media: mediaType, rating: number) {
+  return useSetRatingMutation({
+    variables: {
+      code: code,
+      media: media,
+      rating: rating,
     },
   });
 }
