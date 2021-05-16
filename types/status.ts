@@ -1,24 +1,24 @@
-export enum watchStatus {
-  watching = "Watching",
-  planning = "Planning",
-  dropped = "Dropped",
-  finished = "Finished",
+export enum WatchStatus {
+  Watching = "Watching",
+  Planning = "Planning",
+  Dropped = "Dropped",
+  Finished = "Finished",
 }
 
-export enum statusMovie {
-  rumored = "Rumored",
-  planned = "Planned",
-  inProduction = "In Production",
-  postProduction = "Post Production",
-  released = "Released",
-  canceled = "Canceled",
+export enum StatusMovie {
+  Rumored = "Rumored",
+  Planned = "Planned",
+  InProduction = "In Production",
+  PostProduction = "Post Production",
+  Released = "Released",
+  Canceled = "Canceled",
 }
 
-export enum statusTv {
-  planned = "Planned",
-  inProduction = "In Production",
-  pilot = "Pilot",
-  returningSeries = "Returning Series",
-  canceled = "Canceled",
-  ended = "Ended",
+export enum StatusTv {
+  Planned = "Planned",
+  InProduction = "In Production",
+  Pilot = "Pilot",
+  ReturningSeries = "Returning Series",
+  Canceled = "Canceled",
+  Ended = "Ended",
 }

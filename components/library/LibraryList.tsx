@@ -1,10 +1,10 @@
 import { Media } from "../../lib/api/consumat-io";
-import { watchStatus } from "../../types/status";
+import { WatchStatus } from "../../types/status";
 import LibraryItem from "./LibraryItem";
 
 type LibraryListProps = {
   mediaList: Media[];
-  watchStatus: watchStatus;
+  watchStatus: WatchStatus;
 };
 
 const LibraryList = ({ mediaList, watchStatus }: LibraryListProps) => {
