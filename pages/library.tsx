@@ -4,8 +4,8 @@ import Spinner from "../components/helper/Spinner";
 import LibraryList from "../components/library/LibraryList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
-import { useSearch } from "../hooks/DataHooks";
-import { watchStatus } from "../types/status";
+import { useGetSearch } from "../hooks/DataHooks";
+import { WatchStatus } from "../types/status";
 import { useEffect, useState } from "react";
 import ToggleSwitch from "../components/helper/ToggleSwitch";
 
@@ -17,9 +17,9 @@ const Library = () => {
   const [session] = useAuthorization();
   if (!session) return null;
 
-  const { data, loading, error } = useSearch("Star Trek");
+  const { data, loading, error } = useGetSearch("Star Trek");
 
-  const [toggle, setToggle] = useState<string>(watchStatus.watching);
+  const [toggle, setToggle] = useState<string>(WatchStatus.Watching);
 
   useEffect(() => {}, [toggle]);
 
@@ -32,10 +32,10 @@ const Library = () => {
         value={toggle}
         onChange={setToggle}
         options={[
-          watchStatus.watching,
-          watchStatus.planning,
-          watchStatus.dropped,
-          watchStatus.finished,
+          WatchStatus.Watching,
+          WatchStatus.Planning,
+          WatchStatus.Dropped,
+          WatchStatus.Finished,
         ]}
       />
 

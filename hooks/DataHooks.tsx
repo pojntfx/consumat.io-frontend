@@ -6,8 +6,8 @@ import {
   useSetWatchStatusMutation,
   useSetRatingMutation,
 } from "../lib/api/consumat-io";
-import { mediaType } from "../types/mediaType";
-import { watchStatus } from "../types/status";
+import { MediaType } from "../types/media";
+import { WatchStatus } from "../types/status";
 
 // Queries
 
@@ -17,6 +17,7 @@ export function useGetMovie(code: number, country: string = "US") {
       code: code,
       country: country,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
@@ -26,6 +27,7 @@ export function useGetTv(code: number, country: string = "US") {
       code: code,
       country: country,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
@@ -38,7 +40,7 @@ export function useGetSearch(keyword: string | string[]) {
   });
 }
 
-export function useGetPopular(type: mediaType, country: string = "US") {
+export function useGetPopular(type: MediaType, country: string = "US") {
   return useGetPopularQuery({
     variables: {
       type: type,
@@ -51,8 +53,8 @@ export function useGetPopular(type: mediaType, country: string = "US") {
 
 export function useSetWatchStatus(
   code: number,
-  media: mediaType,
-  watchStatus: watchStatus
+  media: MediaType,
+  watchStatus: WatchStatus
 ) {
   return useSetWatchStatusMutation({
     variables: {
@@ -63,7 +65,7 @@ export function useSetWatchStatus(
   });
 }
 
-export function useSetRating(code: number, media: mediaType, rating: number) {
+export function useSetRating(code: number, media: MediaType, rating: number) {
   return useSetRatingMutation({
     variables: {
       code: code,

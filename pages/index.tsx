@@ -1,4 +1,4 @@
-import { usePopular } from "../hooks/DataHooks";
+import { useGetPopular } from "../hooks/DataHooks";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/client";
 import MetaData from "../components/MetaData";
@@ -7,6 +7,7 @@ import MediaList from "../components/home/MediaList";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useEffect, useState } from "react";
 import { Media } from "../lib/api/consumat-io";
+import { MediaType } from "../types/media";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -22,13 +23,13 @@ const Home = () => {
     data: popularMovieData,
     loading: popularMovieLoading,
     error: popularMovieError,
-  } = usePopular("Movie");
+  } = useGetPopular(MediaType.Movie);
 
   const {
     data: popularTvData,
     loading: popularTvLoading,
     error: popularTvError,
-  } = usePopular("TV");
+  } = useGetPopular(MediaType.Tv);
 
   useEffect(() => {
     if (popularMovieData && popularTvData) {
@@ -49,14 +50,14 @@ const Home = () => {
       <HomeHeader backgroundImageSource={headerImageSource} />
 
       <MediaList
-        title="MOST POPULAR MOVIES"
+        title="POPULAR MOVIES"
         items={popularMovieData?.popular}
         loading={popularMovieLoading}
         error={popularMovieError}
       />
 
       <MediaList
-        title="MOST POPULAR TV SHOWS"
+        title="POPULAR TV SHOWS"
         items={popularTvData?.popular}
         loading={popularTvLoading}
         error={popularTvError}
