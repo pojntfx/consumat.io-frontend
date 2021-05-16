@@ -310,37 +310,6 @@
       },
       {
         "kind": "UNION",
-        "name": "List",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "Movie",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "TV",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Season",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Episode",
-            "ofType": null
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
         "name": "Media",
         "description": null,
         "fields": null,
@@ -1052,7 +1021,7 @@
               "name": null,
               "ofType": {
                 "kind": "UNION",
-                "name": "List",
+                "name": "Media",
                 "ofType": null
               }
             },
