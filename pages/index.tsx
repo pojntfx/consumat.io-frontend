@@ -7,6 +7,7 @@ import MediaList from "../components/home/MediaList";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useEffect, useState } from "react";
 import { Media } from "../lib/api/consumat-io";
+import { MediaType } from "../types/media";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -22,13 +23,13 @@ const Home = () => {
     data: popularMovieData,
     loading: popularMovieLoading,
     error: popularMovieError,
-  } = usePopular("Movie");
+  } = usePopular(MediaType.Movie);
 
   const {
     data: popularTvData,
     loading: popularTvLoading,
     error: popularTvError,
-  } = usePopular("TV");
+  } = usePopular(MediaType.Tv);
 
   useEffect(() => {
     if (popularMovieData && popularTvData) {
