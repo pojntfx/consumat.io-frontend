@@ -6,6 +6,7 @@ type ToggleSwitchProps = {
   value: string;
   onChange: Dispatch<SetStateAction<string>>;
   options: string[];
+  className?: string;
 };
 
 const ToggleSwitch = ({
@@ -13,6 +14,7 @@ const ToggleSwitch = ({
   value,
   onChange,
   options,
+  className,
 }: ToggleSwitchProps) => {
   const [indicator, setIndicator] = useState<any>();
   useEffect(() => {
@@ -20,12 +22,14 @@ const ToggleSwitch = ({
       width: `${100 / options.length}%`,
       left: `${(100 / options.length) * options.indexOf(value)}%`,
     });
-  }, [value]);
+  }, [value, options]);
 
   return (
     <div
       className={
         styles.toggleSwitch +
+        " " +
+        className +
         " bg-gradient-to-br from-white to-white dark:from-gray-600 dark:to-gray-700"
       }
     >

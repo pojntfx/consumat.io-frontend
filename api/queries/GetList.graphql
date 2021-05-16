@@ -1,7 +1,5 @@
 #import "../fragments/MovieFields.graphql"
 #import "../fragments/TvFields.graphql"
-#import "../fragments/SeasonFields.graphql"
-#import "../fragments/EpisodeFields.graphql"
 
 query GetList($type: String!, $watchStatus: String!) {
   list(type: $type, watchStatus: $watchStatus) {
@@ -10,12 +8,6 @@ query GetList($type: String!, $watchStatus: String!) {
     }
     ... on TV {
       ...TvFields
-    }
-    ... on Season {
-      ...SeasonFields
-    }
-    ... on Episode {
-      ...EpisodeFields
     }
   }
 }
