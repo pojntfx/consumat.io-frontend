@@ -4,11 +4,12 @@ import Spinner from "../components/helper/Spinner";
 import LibraryList from "../components/library/LibraryList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
-import { useList } from "../hooks/DataHooks";
+import { useGetList } from "../hooks/DataHooks";
 import { WatchStatus } from "../types/status";
 import { useEffect, useState } from "react";
 import RadioSlider from "../components/helper/RadioSlider";
 import { MediaType } from "../types/media";
+import ErrorMessage from "../components/helper/ErrorMessage";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -80,7 +81,9 @@ const Library = () => {
     setFilter(filters[0]);
   }, [watchStatus]);
 
-  const { data, loading, error } = useList(medium, watchStatus);
+  const { data, loading, error } = useGetList(medium, watchStatus);
+
+  console.log(data);
 
   return (
     <div className="px-4">
@@ -127,6 +130,8 @@ const Library = () => {
       ) : (
         data != null && <LibraryList mediaList={data.list} />
       )}
+
+      {error && <ErrorMessage />}
     </div>
   );
 };

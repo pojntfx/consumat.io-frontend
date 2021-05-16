@@ -1,4 +1,4 @@
-import { usePopular } from "../hooks/DataHooks";
+import { useGetPopular } from "../hooks/DataHooks";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/client";
 import MetaData from "../components/MetaData";
@@ -23,13 +23,13 @@ const Home = () => {
     data: popularMovieData,
     loading: popularMovieLoading,
     error: popularMovieError,
-  } = usePopular(MediaType.Movie);
+  } = useGetPopular(MediaType.Movie);
 
   const {
     data: popularTvData,
     loading: popularTvLoading,
     error: popularTvError,
-  } = usePopular(MediaType.Tv);
+  } = useGetPopular(MediaType.Tv);
 
   useEffect(() => {
     if (popularMovieData && popularTvData) {
@@ -50,14 +50,14 @@ const Home = () => {
       <HomeHeader backgroundImageSource={headerImageSource} />
 
       <MediaList
-        title="MOST POPULAR MOVIES"
+        title="POPULAR MOVIES"
         items={popularMovieData?.popular}
         loading={popularMovieLoading}
         error={popularMovieError}
       />
 
       <MediaList
-        title="MOST POPULAR TV SHOWS"
+        title="POPULAR TV SHOWS"
         items={popularTvData?.popular}
         loading={popularTvLoading}
         error={popularTvError}
