@@ -4,18 +4,15 @@ import LibraryItem from "./LibraryItem";
 
 type LibraryListProps = {
   mediaList: Media[];
-  watchStatus: WatchStatus;
 };
 
-const LibraryList = ({ mediaList, watchStatus }: LibraryListProps) => {
+const LibraryList = ({ mediaList }: LibraryListProps) => {
   return (
     <div className="overscroll-none">
       <ul>
-        {mediaList
-          .filter((media) => media.watchStatus == watchStatus)
-          .map((media, i) => (
-            <LibraryItem key={i} media={media} />
-          ))}
+        {mediaList.map((media, i) => (
+          <LibraryItem key={i} media={media} />
+        ))}
       </ul>
     </div>
   );

@@ -9,7 +9,6 @@ import { WatchStatus } from "../types/status";
 import { useEffect, useState } from "react";
 import RadioSlider from "../components/helper/RadioSlider";
 import { MediaType } from "../types/media";
-import { selectHttpOptionsAndBody } from "@apollo/client";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -126,7 +125,7 @@ const Library = () => {
       {loading ? (
         <Spinner />
       ) : (
-        data != null && <LibraryList mediaList={data.list} watchStatus={null} />
+        data != null && <LibraryList mediaList={data.list} />
       )}
     </div>
   );
