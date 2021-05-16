@@ -9,6 +9,7 @@ import { WatchStatus } from "../types/status";
 import { useEffect, useState } from "react";
 import RadioSlider from "../components/helper/RadioSlider";
 import { MediaType } from "../types/media";
+import ErrorMessage from "../components/helper/ErrorMessage";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -82,6 +83,8 @@ const Library = () => {
 
   const { data, loading, error } = useGetList(medium, watchStatus);
 
+  console.log(data);
+
   return (
     <div className="px-4">
       <MetaData title="consumat.io | Library" />
@@ -127,6 +130,8 @@ const Library = () => {
       ) : (
         data != null && <LibraryList mediaList={data.list} />
       )}
+
+      {error && <ErrorMessage />}
     </div>
   );
 };
