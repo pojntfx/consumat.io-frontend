@@ -4,7 +4,7 @@ import Spinner from "../components/helper/Spinner";
 import LibraryList from "../components/library/LibraryList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
-import { useList } from "../hooks/DataHooks";
+import { useGetList } from "../hooks/DataHooks";
 import { WatchStatus } from "../types/status";
 import { useEffect, useState } from "react";
 import RadioSlider from "../components/helper/RadioSlider";
@@ -80,7 +80,7 @@ const Library = () => {
     setFilter(filters[0]);
   }, [watchStatus]);
 
-  const { data, loading, error } = useList(medium, watchStatus);
+  const { data, loading, error } = useGetList(medium, watchStatus);
 
   return (
     <div className="px-4">
