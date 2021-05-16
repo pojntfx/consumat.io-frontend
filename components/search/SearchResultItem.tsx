@@ -2,7 +2,7 @@ import Link from "next/link";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
 import { Media } from "../../lib/api/consumat-io";
 import styles from "../../styles/Search.module.css";
-import { isMovie } from "../../types/helper";
+import { isMovie } from "../../types/media";
 import MediaImage from "../helper/MediaImage";
 
 type SearchResultItemProps = {
