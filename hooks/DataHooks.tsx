@@ -64,7 +64,7 @@ export function useSetWatchStatus(
   });
 }
 
-export function useList(type: MediaType, watchStatus: WatchStatus) {
+export function useGetList(type: MediaType, watchStatus: WatchStatus) {
   return useGetListQuery({
     variables: {
       type: type,
