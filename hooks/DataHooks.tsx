@@ -3,30 +3,36 @@ import {
   useGetTvQuery,
   useGetSearchQuery,
   useGetPopularQuery,
+  useSetWatchStatusMutation,
+  useSetRatingMutation,
   useGetListQuery,
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
 
-export function useMovie(code: number, country: string = "US") {
+// Queries
+
+export function useGetMovie(code: number, country: string = "US") {
   return useGetMovieQuery({
     variables: {
       code: code,
       country: country,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
-export function useTv(code: number, country: string = "US") {
+export function useGetTv(code: number, country: string = "US") {
   return useGetTvQuery({
     variables: {
       code: code,
       country: country,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
-export function useSearch(keyword: string | string[]) {
+export function useGetSearch(keyword: string | string[]) {
   return useGetSearchQuery({
     skip: keyword == null,
     variables: {
@@ -35,7 +41,7 @@ export function useSearch(keyword: string | string[]) {
   });
 }
 
-export function usePopular(type: MediaType, country: string = "US") {
+export function useGetPopular(type: MediaType, country: string = "US") {
   return useGetPopularQuery({
     variables: {
       type: type,
@@ -44,11 +50,35 @@ export function usePopular(type: MediaType, country: string = "US") {
   });
 }
 
-export function useList(type: MediaType, watchStatus: WatchStatus) {
+export function useSetWatchStatus(
+  code: number,
+  media: MediaType,
+  watchStatus: WatchStatus
+) {
+  return useSetWatchStatusMutation({
+    variables: {
+      code: code,
+      media: media,
+      watchStatus: watchStatus,
+    },
+  });
+}
+
+export function useGetList(type: MediaType, watchStatus: WatchStatus) {
   return useGetListQuery({
     variables: {
       type: type,
       watchStatus: watchStatus,
+    },
+  });
+}
+
+export function useSetRating(code: number, media: MediaType, rating: number) {
+  return useSetRatingMutation({
+    variables: {
+      code: code,
+      media: media,
+      rating: rating,
     },
   });
 }

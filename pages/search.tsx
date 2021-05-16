@@ -7,7 +7,7 @@ import ErrorMessage from "../components/helper/ErrorMessage";
 import MetaData from "../components/MetaData";
 import SearchResultList from "../components/search/SearchResultList";
 import { useAuthorization } from "../hooks/AuthnHooks";
-import { useSearch } from "../hooks/DataHooks";
+import { useGetSearch } from "../hooks/DataHooks";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -20,7 +20,7 @@ const Search = () => {
   const router = useRouter();
   const { q } = router.query;
   const [query, setQuery] = useState<string>("");
-  const { data, loading, error } = useSearch(q);
+  const { data, loading, error } = useGetSearch(q);
 
   return (
     <div className="px-4">
