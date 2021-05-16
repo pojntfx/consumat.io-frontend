@@ -1,125 +1,37 @@
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import Spinner from "../../components/helper/Spinner";
 import MetaData from "../../components/MetaData";
 import { useAuthorization } from "../../hooks/AuthnHooks";
-import { useTv } from "../../hooks/DataHooks";
-import styles from "../../styles/Details.module.css";
+import { useGetTv } from "../../hooks/DataHooks";
+import DetailPage from "../../components/detail/DetailPage";
+import Spinner from "../../components/helper/Spinner";
+import ErrorMessage from "../../components/helper/ErrorMessage";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
 });
 
-const Details = () => {
+const Tv = () => {
   const [session] = useAuthorization();
+
   if (!session) return null;
 
   const router = useRouter();
   const { id } = router.query;
-  const { data, loading } = useTv(parseInt("" + id));
+  const { data, loading, error } = useGetTv(parseInt("" + id));
 
   if (loading) return <Spinner />;
 
   return (
-    <>
-      <MetaData title={"consumat.io | " + data.tv.title} />
-      <div className={styles.detailsBackdropCon}>
-        <img
-          className={styles.detailsBackdrop}
-          src={"https://image.tmdb.org/t/p/original" + data.tv.backdropPath}
-        />
-      </div>
-      <div className={styles.posterTitleDescriptionRow}>
-        <img
-          className={styles.detailsPoster}
-          src={"https://image.tmdb.org/t/p/original" + data.tv.posterPath}
-        />
-        <div className={styles.titleDescriptionContainer}>
-          <h1 className={styles.title}>{data.tv.title}</h1>
-          <p className={styles.description}>{data.tv.overview}</p>
-        </div>
-      </div>
+    <div>
+      <MetaData title={"consumat.io | " + data.tv} />
 
-      <div className={styles.infoCardCon}>
-        <div className={styles.infoCard}>
-          <div className="flex flex-row justify-between">
-            <p className="text-sm truncate rounded font-bold">Release Date: </p>
-            <p className="text-sm truncate rounded">{data.tv.releaseInitial}</p>
-          </div>
+      <DetailPage media={data.tv} />
 
-          <div className="flex flex-row justify-between">
-            <p className="text-sm truncate rounded font-bold">
-              Rating Average:{" "}
-            </p>
-            <p className="text-sm truncate rounded">{data.tv.ratingAverage}</p>
-          </div>
-
-          <div className="flex flex-row justify-between">
-            <p className="text-sm truncate rounded font-bold">Popularity: </p>
-            <p className="text-sm truncate rounded">{data.tv.popularity}</p>
-          </div>
-          <a
-            href={data.tv.tmdbUrl}
-            className="text-sm truncate rounded underline"
-          >
-            More Details
-          </a>
-        </div>
-
-        <div className={styles.infoCardTwo}>
-          <p className="text-sm truncate rounded font-bold">Genres: </p>
-          <div className="flex flex-row justify-between">
-            {data.tv.genres.map(({ name }, key) => {
-              return (
-                <>
-                  {key < 3 ? (
-                    <p key={key} className="text-sm truncate rounded">
-                      {name}
-                    </p>
-                  ) : (
-                    <> </>
-                  )}
-                </>
-              );
-            })}
-          </div>
-          <p className="text-sm truncate rounded font-bold">Cast: </p>
-          <div className="flex flex-row justify-between">
-            {data.tv.cast.map(({ name }, key) => {
-              return (
-                <>
-                  {key < 3 ? (
-                    <p key={key} className="text-sm truncate rounded">
-                      {name}
-                    </p>
-                  ) : (
-                    <> </>
-                  )}
-                </>
-              );
-            })}
-          </div>
-          <p className="text-sm truncate rounded font-bold">Directors: </p>
-          <div className="flex flex-row justify-between">
-            {data.tv.directors.map(({ name }, key) => {
-              return (
-                <>
-                  {key < 3 ? (
-                    <p key={key} className="text-sm truncate rounded">
-                      {name}
-                    </p>
-                  ) : (
-                    <> </>
-                  )}
-                </>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </>
+      {error && <ErrorMessage />}
+    </div>
   );
 };
 
-export default Details;
+export default Tv;
