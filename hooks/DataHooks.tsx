@@ -5,6 +5,7 @@ import {
   useGetPopularQuery,
   useSetWatchStatusMutation,
   useSetRatingMutation,
+  useGetListQuery,
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
@@ -49,8 +50,6 @@ export function useGetPopular(type: MediaType, country: string = "US") {
   });
 }
 
-// Mutations
-
 export function useSetWatchStatus(
   code: number,
   media: MediaType,
@@ -60,6 +59,15 @@ export function useSetWatchStatus(
     variables: {
       code: code,
       media: media,
+      watchStatus: watchStatus,
+    },
+  });
+}
+
+export function useList(type: MediaType, watchStatus: WatchStatus) {
+  return useGetListQuery({
+    variables: {
+      type: type,
       watchStatus: watchStatus,
     },
   });

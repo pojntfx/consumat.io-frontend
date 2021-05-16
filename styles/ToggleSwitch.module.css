@@ -4,11 +4,9 @@
   @apply flex;
   @apply flex-row;
   @apply w-full;
-  @apply mb-4;
   @apply rounded;
   @apply border-gray-800;
   @apply text-sm;
-  @apply font-medium;
   @apply leading-6;
   @apply overflow-hidden;
   box-shadow: inset 0 0 0 1px #1f2937;
