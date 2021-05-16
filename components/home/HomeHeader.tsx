@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
 
 type HomeHeaderProps = {
@@ -14,7 +14,7 @@ const HomeHeader = ({ backgroundImageSource }: HomeHeaderProps) => {
     <div
       className="flex flex-col items-center justify-center bg-gray-500 w-full h-64 sm:h-96 -mt-4 rounded-b shadow-md"
       style={{
-        background: `linear-gradient(0deg, rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.8)), url(${useImage(
+        backgroundImage: `linear-gradient(0deg, rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.8)), url(${useImage(
           imageSizes.backdrop.w1280,
           backgroundImageSource
         )})`,
