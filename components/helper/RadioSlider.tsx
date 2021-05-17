@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import styles from "../../styles/ToggleSwitch.module.css";
+import styles from "../../styles/RadioSlider.module.css";
 
-type ToggleSwitchProps = {
+type RadioSliderProps = {
   name: string;
   value: string;
   onChange: Dispatch<SetStateAction<string>>;
@@ -9,13 +9,13 @@ type ToggleSwitchProps = {
   className?: string;
 };
 
-const ToggleSwitch = ({
+const RadioSlider = ({
   name,
   value,
   onChange,
   options,
   className,
-}: ToggleSwitchProps) => {
+}: RadioSliderProps) => {
   const [indicator, setIndicator] = useState<any>();
   useEffect(() => {
     setIndicator({
@@ -53,4 +53,4 @@ const ToggleSwitch = ({
   );
 };
 
-export default ToggleSwitch;
+export default RadioSlider;
