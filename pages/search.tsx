@@ -8,6 +8,7 @@ import MetaData from "../components/MetaData";
 import SearchResultList from "../components/search/SearchResultList";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useGetSearch } from "../hooks/DataHooks";
+import SelectButton from "../components/helper/SelectButton";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -51,17 +52,17 @@ const Search = () => {
             Search
           </button>
         </div>
-        <select
+        <SelectButton
           name="genre"
-          id="genre"
-          className="px-1 h-10 rounded cursor-pointer mb-2 lg:mx-2 dark:text-gray-800"
-        >
-          <option value="">Genre</option>
-          <option value="Science Fiction">Science Fiction</option>
-          <option value="Fantasy">Fantasy</option>
-          <option value="Action">Action</option>
-          <option value="Comedy">Comedy</option>
-        </select>
+          options={[
+            "All Genre",
+            "Science Fiction",
+            "Fantasy",
+            "Action",
+            "Comedy",
+          ]}
+          className="w-min"
+        />
       </form>
 
       {error && <ErrorMessage />}
