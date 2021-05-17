@@ -5,7 +5,6 @@
   @apply flex-row;
   @apply w-full;
   @apply rounded;
-  @apply border-gray-800;
   @apply text-sm;
   @apply leading-6;
   @apply overflow-hidden;
