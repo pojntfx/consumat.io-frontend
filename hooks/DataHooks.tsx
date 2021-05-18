@@ -6,6 +6,9 @@ import {
   useSetWatchStatusMutation,
   useSetRatingMutation,
   useGetListQuery,
+  useGetTvSeasonsQuery,
+  useGetEpisodeQuery,
+  useGetTvEpisodesQuery,
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
@@ -50,6 +53,44 @@ export function useGetPopular(type: MediaType, country: string = "US") {
   });
 }
 
+export function useGetList(type: MediaType, watchStatus: WatchStatus) {
+  return useGetListQuery({
+    variables: {
+      type: type,
+      watchStatus: watchStatus,
+    },
+  });
+}
+
+export function useGetTvSeasons(code: number) {
+  return useGetTvSeasonsQuery({
+    variables: {
+      code: code,
+    },
+  });
+}
+
+export function useGetTvEpisodes(code: number, seasonNumber: number) {
+  return useGetTvEpisodesQuery({
+    variables: {
+      code: code,
+      seasonNumber: seasonNumber,
+    },
+  });
+}
+
+// Mutations
+
+export function useSetRating(code: number, media: MediaType, rating: number) {
+  return useSetRatingMutation({
+    variables: {
+      code: code,
+      media: media,
+      rating: rating,
+    },
+  });
+}
+
 export function useSetWatchStatus(
   code: number,
   media: MediaType,
@@ -60,25 +101,6 @@ export function useSetWatchStatus(
       code: code,
       media: media,
       watchStatus: watchStatus,
-    },
-  });
-}
-
-export function useGetList(type: MediaType, watchStatus: WatchStatus) {
-  return useGetListQuery({
-    variables: {
-      type: type,
-      watchStatus: watchStatus,
-    },
-  });
-}
-
-export function useSetRating(code: number, media: MediaType, rating: number) {
-  return useSetRatingMutation({
-    variables: {
-      code: code,
-      media: media,
-      rating: rating,
     },
   });
 }
