@@ -1,0 +1,7 @@
+#import "../fragments/EpisodeFields.graphql"
+
+query GetTvEpisodes($code: Int!, $seasonNumber: Int!) {
+  tvEpisodes(code: $code, seasonNumber: $seasonNumber) {
+    ...EpisodeFields
+  }
+}

@@ -6,6 +6,8 @@ type Query {
   search(keyword: String): [Media]
   popular(type: String, country: String): [Media]
   list(type: String, watchStatus: String): [Media]
+  tvSeasons(code: Int): [Season]
+  tvEpisodes(code: Int, seasonNumber: Int): [Episode]
 }
 
 type Mutation {
