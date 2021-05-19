@@ -4,12 +4,13 @@ import Spinner from "../components/helper/Spinner";
 import LibraryList from "../components/library/LibraryList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
-import { useGetList } from "../hooks/DataHooks";
+import { useGetList, useGetTv } from "../hooks/DataHooks";
 import { WatchStatus } from "../types/status";
 import { useEffect, useState } from "react";
 import RadioSlider from "../components/helper/RadioSlider";
 import { MediaType } from "../types/media";
 import ErrorMessage from "../components/helper/ErrorMessage";
+import SelectButton from "../components/helper/SelectButton";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -94,7 +95,7 @@ const Library = () => {
         value={medium}
         onChange={setMedium}
         options={[MediaType.Movie, MediaType.Tv]}
-        className="mb-2"
+        className="mb-4"
       />
       <RadioSlider
         name="watchStatus"
@@ -105,24 +106,12 @@ const Library = () => {
       />
 
       <div className="flex flex-row">
-        <div className="flex flex-row w-1/2">
-          <select
-            name="sort"
-            id="sort"
-            className="h-8 w-full text-sm font-semibold rounded cursor-pointer border border-gray-800; dark:text-gray-800"
-          >
-            <option value="">Name</option>
-          </select>
-        </div>
-        <div className="flex flex-row w-1/2">
-          <select
-            name="filter"
-            id="filter"
-            className="h-8 w-full text-sm font-semibold rounded cursor-pointer border border-gray-800; dark:text-gray-800"
-          >
-            <option value="">All</option>
-          </select>
-        </div>
+        <SelectButton
+          name="sort"
+          options={["Name: A-Z", "Name: Z-A", "Rating", "Release Date"]}
+          className="mr-1"
+        />
+        <SelectButton name="sort" options={["out Now", "coming"]} />
       </div>
 
       {loading ? (

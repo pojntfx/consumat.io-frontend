@@ -44,21 +44,15 @@ select:focus {
   outline: none;
 }
 
-select option:first-child {
-  @apply text-gray-500;
-}
-
 button,
-input,
-select {
+input {
   @apply shadow;
   @apply bg-white;
   @apply duration-75;
 }
 
 button:hover,
-input:hover,
-select:hover {
+input:hover {
   @apply shadow-md;
 }
 
