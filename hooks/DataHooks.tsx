@@ -3,13 +3,14 @@ import {
   useGetTvQuery,
   useGetSearchQuery,
   useGetPopularQuery,
-  useSetWatchStatusMutation,
-  useSetRatingMutation,
   useGetListQuery,
   useGetTvSeasonsQuery,
   useGetEpisodeQuery,
   useGetSeasonEpisodesQuery,
+  useSetWatchStatusMutation,
+  useSetRatingMutation,
   useSetNumberOfWatchedEpisodesMutation,
+  useSetFavoriteMutation,
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
@@ -99,4 +100,8 @@ export function useSetWatchStatus() {
 
 export function useSetNumberOfWatchedEpisodes() {
   return useSetNumberOfWatchedEpisodesMutation();
+}
+
+export function useSetFavorite() {
+  return useSetFavoriteMutation();
 }
