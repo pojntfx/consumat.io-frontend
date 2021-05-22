@@ -1,6 +1,7 @@
 import { Media } from "../../lib/api/consumat-io";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
 import MediaImage from "../helper/MediaImage";
+import FavoriteButton from "../helper/FavoriteButton";
 
 type DetailHeaderProps = {
   media: Media;
@@ -10,7 +11,7 @@ const DetailHeader = ({ media }: DetailHeaderProps) => {
   return (
     <div>
       <div
-        className="flex items-end pl-52 bg-gray-500 w-full h-64 sm:h-96 -mt-4 rounded-b shadow-md"
+        className="flex items-end relative pl-52 bg-gray-500 w-full h-64 sm:h-96 -mt-4 rounded-b shadow-md"
         style={{
           backgroundImage: `linear-gradient(0deg, rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.8)), url(${useImage(
             imageSizes.backdrop.w1280,
@@ -19,6 +20,7 @@ const DetailHeader = ({ media }: DetailHeaderProps) => {
           backgroundSize: "cover",
         }}
       >
+        <FavoriteButton className="absolute right-4 top-4" media={media} />
         <h2
           className="text-white text-2xl sm:text-4xl md:text-6xl px-0 sm:px-2 pb-4 max-w-sm md:max-w-2xl"
           style={{ textShadow: "2px 2px 2px rgba(31, 41, 55)" }}
