@@ -1,4 +1,4 @@
-mutation SetFovorite(
+mutation SetFavorite(
   $code: Int!
   $media: String!
   $favorite: Boolean!
