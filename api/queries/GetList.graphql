@@ -1,7 +1,7 @@
 #import "../fragments/MovieFields.graphql"
 #import "../fragments/TvFields.graphql"
 
-query GetList($type: String!, $watchStatus: String!) {
+query GetList($type: String, $watchStatus: String) {
   list(type: $type, watchStatus: $watchStatus) {
     ... on Movie {
       ...MovieFields

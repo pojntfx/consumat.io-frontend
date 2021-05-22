@@ -8,7 +8,8 @@ import {
   useGetListQuery,
   useGetTvSeasonsQuery,
   useGetEpisodeQuery,
-  useGetTvEpisodesQuery,
+  useGetSeasonEpisodesQuery,
+  useSetNumberOfWatchedEpisodesMutation,
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
@@ -35,20 +36,26 @@ export function useGetTv(code: number, country: string = "US") {
   });
 }
 
-export function useGetSearch(keyword: string | string[]) {
+export function useGetSearch(keyword: string | string[], page: number) {
   return useGetSearchQuery({
     skip: keyword == null,
     variables: {
       keyword: "" + keyword,
+      page: page,
     },
   });
 }
 
-export function useGetPopular(type: MediaType, country: string = "US") {
+export function useGetPopular(
+  type: MediaType,
+  page: number,
+  country: string = "US"
+) {
   return useGetPopularQuery({
     variables: {
       type: type,
       country: country,
+      page: page,
     },
   });
 }
@@ -59,6 +66,7 @@ export function useGetList(type: MediaType, watchStatus: WatchStatus) {
       type: type,
       watchStatus: watchStatus,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
@@ -70,8 +78,8 @@ export function useGetTvSeasons(code: number) {
   });
 }
 
-export function useGetTvEpisodes(code: number, seasonNumber: number) {
-  return useGetTvEpisodesQuery({
+export function useGetSeasonEpisodes(code: number, seasonNumber: number) {
+  return useGetSeasonEpisodesQuery({
     variables: {
       code: code,
       seasonNumber: seasonNumber,
@@ -81,26 +89,14 @@ export function useGetTvEpisodes(code: number, seasonNumber: number) {
 
 // Mutations
 
-export function useSetRating(code: number, media: MediaType, rating: number) {
-  return useSetRatingMutation({
-    variables: {
-      code: code,
-      media: media,
-      rating: rating,
-    },
-  });
+export function useSetRating() {
+  return useSetRatingMutation();
 }
 
-export function useSetWatchStatus(
-  code: number,
-  media: MediaType,
-  watchStatus: WatchStatus
-) {
-  return useSetWatchStatusMutation({
-    variables: {
-      code: code,
-      media: media,
-      watchStatus: watchStatus,
-    },
-  });
+export function useSetWatchStatus() {
+  return useSetWatchStatusMutation();
+}
+
+export function useSetNumberOfWatchedEpisodes() {
+  return useSetNumberOfWatchedEpisodesMutation();
 }

@@ -23,19 +23,19 @@ const Home = () => {
     data: popularMovieData,
     loading: popularMovieLoading,
     error: popularMovieError,
-  } = useGetPopular(MediaType.Movie);
+  } = useGetPopular(MediaType.Movie, 1);
 
   const {
     data: popularTvData,
     loading: popularTvLoading,
     error: popularTvError,
-  } = useGetPopular(MediaType.Tv);
+  } = useGetPopular(MediaType.Tv, 1);
 
   useEffect(() => {
     if (popularMovieData && popularTvData) {
       const movieTvArray: Media[] = [
-        ...popularMovieData.popular,
-        ...popularTvData.popular,
+        ...popularMovieData.popular.results,
+        ...popularTvData.popular.results,
       ].filter((item) => item.backdropPath !== null);
       const randomItem =
         movieTvArray[Math.floor(Math.random() * movieTvArray.length)];
@@ -51,14 +51,14 @@ const Home = () => {
 
       <MediaList
         title="POPULAR MOVIES"
-        items={popularMovieData?.popular}
+        items={popularMovieData?.popular.results}
         loading={popularMovieLoading}
         error={popularMovieError}
       />
 
       <MediaList
         title="POPULAR TV SHOWS"
-        items={popularTvData?.popular}
+        items={popularTvData?.popular.results}
         loading={popularTvLoading}
         error={popularTvError}
       />

@@ -3,31 +3,48 @@ type Query {
   tv(code: Int, country: String): TV!
   season(code: Int, seasonNumber: Int): Season!
   episode(code: Int, seasonNumber: Int, episodeNumber: Int): Episode!
-  search(keyword: String): [Media]
-  popular(type: String, country: String): [Media]
+  search(keyword: String, page: Int): MediaPage
+  popular(type: String, country: String, page: Int): MediaPage
   list(type: String, watchStatus: String): [Media]
   tvSeasons(code: Int): [Season]
-  tvEpisodes(code: Int, seasonNumber: Int): [Episode]
+  seasonEpisodes(code: Int, seasonNumber: Int): [Episode]
+  watchCount(type: String): Int
+  watchTime(type: String): Int
 }
 
 type Mutation {
-  rating(code: Int!, media: String!, rating: Float!): RatingPayload!
-  watchStatus(
+  rating(
     code: Int!
     media: String!
-    watchStatus: String!
-  ): WatchStatusPayload!
-}
-
-type RatingPayload {
-  status: Boolean!
-}
-
-type WatchStatusPayload {
-  status: Boolean!
+    rating: Float!
+    seasonNumber: Int
+    episodeNumber: Int
+  ): Payload!
+  favorite(
+    code: Int!
+    media: String!
+    favorite: Boolean!
+    seasonNumber: Int
+    episodeNumber: Int
+  ): Payload!
+  watchStatus(code: Int!, media: String!, watchStatus: String): Payload!
+  numberOfWatchedEpisodes(
+    code: Int!
+    seasonNumber: Int!
+    numberOfWatchedEpisodes: Int
+  ): Payload!
 }
 
 union Media = Movie | TV
+
+type Payload {
+  status: Boolean!
+}
+
+type MediaPage {
+  totalPages: Int
+  results: [Media]
+}
 
 type Movie {
   code: Int
@@ -91,6 +108,7 @@ type TV {
   watchStatus: String
   ratingUser: Float
   favorite: Boolean
+  runtime: Int
 }
 
 type Season {
@@ -105,6 +123,7 @@ type Season {
   favorite: Boolean
   numberOfEpisodes: Int
   airDate: String
+  numberOfWatchedEpisodes: Int
 }
 
 type Episode {
