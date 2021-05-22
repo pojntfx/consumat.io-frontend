@@ -15,7 +15,8 @@ const Discover = () => {
   return (
     <div className="px-8">
       <MetaData title="consumat.io | Discover" />
-      <h2>Hello, Discover!</h2>
+      <h2 className="mb-10">Hello, Discover!</h2>
+      <button className="button px-4 py-1">Button</button>
     </div>
   );
 };
