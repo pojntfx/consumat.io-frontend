@@ -32,4 +32,5 @@ fragment TvFields on TV {
   watchStatus
   ratingUser
   favorite
+  runtime
 }

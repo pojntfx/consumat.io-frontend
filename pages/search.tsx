@@ -21,7 +21,7 @@ const Search = () => {
   const router = useRouter();
   const { q } = router.query;
   const [query, setQuery] = useState<string>("");
-  const { data, loading, error } = useGetSearch(q);
+  const { data, loading, error } = useGetSearch(q, 1);
 
   return (
     <div className="px-4">
@@ -70,7 +70,7 @@ const Search = () => {
       {loading ? (
         <Spinner />
       ) : (
-        data != null && <SearchResultList mediaList={data.search} />
+        data != null && <SearchResultList mediaList={data.search.results} />
       )}
     </div>
   );

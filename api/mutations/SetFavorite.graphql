@@ -1,14 +1,16 @@
-mutation SetRating(
+mutation SetFovorite(
   $code: Int!
   $media: String!
-  $rating: Float!
+  $favorite: Boolean!
   $seasonNumber: Int
+  $episodeNumber: Int
 ) {
-  rating(
+  favorite(
     code: $code
     media: $media
-    rating: $rating
+    favorite: $favorite
     seasonNumber: $seasonNumber
+    episodeNumber: $episodeNumber
   ) {
     status
   }

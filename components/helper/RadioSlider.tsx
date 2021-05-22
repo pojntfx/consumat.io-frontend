@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import styles from "../../styles/RadioSlider.module.css";
+import CSS from "csstype";
 
 type RadioSliderProps = {
   name: string;
@@ -16,7 +16,7 @@ const RadioSlider = ({
   options,
   className,
 }: RadioSliderProps) => {
-  const [indicator, setIndicator] = useState<any>();
+  const [indicator, setIndicator] = useState<CSS.Properties>();
   useEffect(() => {
     setIndicator({
       width: `${100 / options.length}%`,
@@ -25,14 +25,7 @@ const RadioSlider = ({
   }, [value, options]);
 
   return (
-    <div
-      className={
-        styles.toggleSwitch +
-        " " +
-        className +
-        " bg-gradient-to-br from-white to-white dark:from-gray-600 dark:to-gray-700"
-      }
-    >
+    <div className={"toggleSwitch " + className}>
       {options.map((option) => (
         <label key={option} htmlFor={option}>
           <input
@@ -48,7 +41,7 @@ const RadioSlider = ({
           <div>{option}</div>
         </label>
       ))}
-      <div className={styles.indicator} style={indicator} />
+      <div className="indicator" style={indicator} />
     </div>
   );
 };
