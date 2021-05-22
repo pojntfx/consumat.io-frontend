@@ -152,11 +152,24 @@ const DetailPage = ({ media }: DetailPageProps) => {
           infos={media.genres.map((genre) => genre.name)}
         />
 
-        <CastList
-          title={media.directors.length > 1 ? "Directors" : "Director"}
-          cast={media.directors}
+        <div className="lg:flex">
+          <CastList
+            title={media.directors.length > 1 ? "Directors" : "Director"}
+            cast={media.directors}
+            className="lg:w-29/100"
+          />
+
+          <CastList
+            title="Cast"
+            cast={media.cast}
+            className="lg:w-7/10 lg:ml-1/100"
+          />
+        </div>
+
+        <DetailInfoList
+          title="Providers"
+          infos={media.providers.map((provider) => provider.name)}
         />
-        <CastList title="Cast" cast={media.cast} />
       </div>
     </div>
   );
