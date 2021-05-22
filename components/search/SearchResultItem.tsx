@@ -20,7 +20,7 @@ const SearchResultItem = ({ media }: SearchResultItemProps) => {
         href={"/" + media.__typename.toLocaleLowerCase() + "/" + media.code}
       >
         <a>
-          <div className="relative card flex flex-row overflow-hidden bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 mb-3 cursor-pointer rounded">
+          <div className="card clickable relative flex flex-row overflow-hidden mb-3 rounded">
             <div
               className={`absolute shadow bottom-2 md:bottom-3 rounded-r font-medium text-xs md:text-sm px-1 py-0.5 md:px-1.5
                 ${

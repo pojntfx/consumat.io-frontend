@@ -1,0 +1,13 @@
+mutation SetNumberOfWatchedEpisodes(
+  $code: Int!
+  $seasonNumber: Int!
+  $numberOfWatchedEpisodes: Int
+) {
+  numberOfWatchedEpisodes(
+    code: $code
+    seasonNumber: $seasonNumber
+    numberOfWatchedEpisodes: $numberOfWatchedEpisodes
+  ) {
+    status
+  }
+}
