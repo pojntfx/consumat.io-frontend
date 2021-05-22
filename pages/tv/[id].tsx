@@ -25,7 +25,7 @@ const Tv = () => {
 
   return (
     <div>
-      <MetaData title={"consumat.io | " + data.tv} />
+      <MetaData title={"consumat.io | " + data.tv.title} />
 
       <DetailPage media={data.tv} />
 
