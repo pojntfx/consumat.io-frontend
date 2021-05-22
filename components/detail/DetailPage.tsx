@@ -1,11 +1,12 @@
-import { Media } from "../../lib/api/consumat-io";
-import { imageSizes, useImage } from "../../hooks/ImageHook";
-import MediaImage from "../helper/MediaImage";
+import { CastFieldsFragmentDoc, Media } from "../../lib/api/consumat-io";
 import { WatchStatus } from "../../types/status";
 import { MediaType } from "../../types/media";
 import { useEffect, useState } from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
+import DetailInfoList from "./DetailInfoList";
+import CastList from "./CastList";
+import DetailHeader from "./DetailHeader";
 
 type DetailPageProps = {
   media: Media;
@@ -60,55 +61,102 @@ const DetailPage = ({ media }: DetailPageProps) => {
   }
 
   return (
-    <div>
-      <div
-        className="bg-gray-500 w-full h-64 sm:h-96 -mt-4 rounded-b shadow-md"
-        style={{
-          backgroundImage: `linear-gradient(0deg, rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.8)), url(${useImage(
-            imageSizes.backdrop.w1280,
-            media.backdropPath
-          )})`,
-          backgroundSize: "cover",
-        }}
-      ></div>
-      <div className="flex flex-col md:flex-row -mt-48 md:-mt-32 md:ml-14 px-4 md:px-8">
-        <div className="w-40 h-60 overflow-hidden rounded self-center shadow-md md:flex-shrink-0">
-          <MediaImage
-            className="w-40 h-60"
-            imageSrc={useImage(imageSizes.poster.w500, media.posterPath)}
-          />
+    <div className="flex flex-col">
+      <DetailHeader media={media} />
+
+      <div className="px-8">
+        <div className="flex flex-col">
+          <select
+            className="bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 text-gray-800 dark:text-white rounded mt-2 w-40 py-2 px-2 cursor-pointer"
+            name="watchStatus"
+            id="watchStatus"
+            value={
+              selectedWatchStatus !== null
+                ? selectedWatchStatus
+                : "Watch Status"
+            }
+            onChange={(e) => {
+              setSelectedWatchStatus(getWatchStatusFromString(e.target.value));
+            }}
+          >
+            <option value="" className="bg-white dark:bg-gray-800">
+              {"Watch Status"}
+            </option>
+            {Object.keys(WatchStatus).map((key, index) => {
+              return (
+                // As a temporary solution, only show "Planning"
+                WatchStatus[key] === "Planning" && (
+                  <option
+                    value={WatchStatus[key]}
+                    key={index}
+                    className="bg-white dark:bg-gray-800"
+                  >
+                    {WatchStatus[key]}
+                  </option>
+                )
+              );
+            })}
+          </select>
+
+          <select
+            className="bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 text-gray-800 dark:text-white rounded mt-2 w-40 py-2 px-2 cursor-pointer"
+            name="watchStatus"
+            id="watchStatus"
+            value={media.ratingUser !== null ? media.ratingUser : "Rating"}
+          >
+            <option value="" className="bg-white dark:bg-gray-800">
+              {"Rating"}
+            </option>
+            <option value="1" className="bg-white dark:bg-gray-800">
+              {"1"}
+            </option>
+            <option value="2" className="bg-white dark:bg-gray-800">
+              {"2"}
+            </option>
+            <option value="3" className="bg-white dark:bg-gray-800">
+              {"3"}
+            </option>
+            <option value="4" className="bg-white dark:bg-gray-800">
+              {"4"}
+            </option>
+            <option value="5" className="bg-white dark:bg-gray-800">
+              {"5"}
+            </option>
+            <option value="6" className="bg-white dark:bg-gray-800">
+              {"6"}
+            </option>
+            <option value="7" className="bg-white dark:bg-gray-800">
+              {"7"}
+            </option>
+            <option value="8" className="bg-white dark:bg-gray-800">
+              {"8"}
+            </option>
+            <option value="9" className="bg-white dark:bg-gray-800">
+              {"9"}
+            </option>
+            <option value="10" className="bg-white dark:bg-gray-800">
+              {"10"}
+            </option>
+          </select>
         </div>
-        <div className="md:flex md:flex-col md:justify-center md:ml-4 md:flex-shrink">
-          <h2 className="inline-block md:flex md:items-end text-4xl mt-4 md:m-0 md:h-1/2 px-3 py-2 md:p-0 rounded bg-gradient-to-br md:from-transparent md:to-transparent from-gray-700 to-gray-800 text-white">
-            {media.title}
-          </h2>
-          <p className="md:flex md:items-start md:pt-4 md:text-xl px text-justify md:h-1/2 mt-2 md:m-0 max-w-xl">
-            {media.overview}
-          </p>
+
+        <div className="bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 my-8 px-4 pb-4 rounded shadow-md">
+          <h3 className="inline-block -mt-3 mb-3 h-8 leading-8 px-2 rounded bg-gradient-to-br from-gray-700 to-gray-800 text-white shadow">
+            Overview
+          </h3>
+          <p className="md:text-xl text-justify">{media.overview}</p>
         </div>
-      </div>
-      <div className="md:ml-14 px-4 md:px-8">
-        <select
-          className="rounded mt-2 w-40 py-2 px-2 cursor-pointer"
-          name="watchStatus"
-          id="watchStatus"
-          value={selectedWatchStatus !== null ? selectedWatchStatus : ""}
-          onChange={(e) => {
-            setSelectedWatchStatus(getWatchStatusFromString(e.target.value));
-          }}
-        >
-          <option value="">{""}</option>
-          {Object.keys(WatchStatus).map((key, index) => {
-            return (
-              // As a temporary solution, only show "Planning"
-              WatchStatus[key] === "Planning" && (
-                <option value={WatchStatus[key]} key={index}>
-                  {WatchStatus[key]}
-                </option>
-              )
-            );
-          })}
-        </select>
+
+        <DetailInfoList
+          title="Genres"
+          infos={media.genres.map((genre) => genre.name)}
+        />
+
+        <CastList
+          title={media.directors.length > 1 ? "Directors" : "Director"}
+          cast={media.directors}
+        />
+        <CastList title="Cast" cast={media.cast} />
       </div>
     </div>
   );
