@@ -84,36 +84,33 @@ const Library = () => {
 
   const { data, loading, error } = useGetList(medium, watchStatus);
 
-  console.log(data);
-
   return (
     <div className="px-4">
       <MetaData title="consumat.io | Library" />
-
-      <RadioSlider
-        name="medium"
-        value={medium}
-        onChange={setMedium}
-        options={[MediaType.Movie, MediaType.Tv]}
-        className="mb-4"
-      />
-      <RadioSlider
-        name="watchStatus"
-        value={watchStatus}
-        onChange={setWatchStatus}
-        options={watchStati}
-        className="mb-1"
-      />
-
-      <div className="flex flex-row">
-        <SelectButton
-          name="sort"
-          options={["Name: A-Z", "Name: Z-A", "Rating", "Release Date"]}
-          className="mr-1"
+      <div className="mb-3">
+        <RadioSlider
+          name="medium"
+          value={medium}
+          onChange={setMedium}
+          options={[MediaType.Movie, MediaType.Tv]}
+          className="mb-4"
         />
-        <SelectButton name="sort" options={["out Now", "coming"]} />
+        <RadioSlider
+          name="watchStatus"
+          value={watchStatus}
+          onChange={setWatchStatus}
+          options={watchStati}
+          className="mb-1"
+        />
+        <div className="flex flex-row">
+          <SelectButton
+            name="sort"
+            options={["Name: A-Z", "Name: Z-A", "Rating", "Release Date"]}
+            className="mr-1"
+          />
+          <SelectButton name="sort" options={["out Now", "coming"]} />
+        </div>
       </div>
-
       {loading ? (
         <Spinner />
       ) : (

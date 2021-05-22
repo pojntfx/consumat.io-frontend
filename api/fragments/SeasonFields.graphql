@@ -10,4 +10,5 @@ fragment SeasonFields on Season {
   favorite
   numberOfEpisodes
   airDate
+  numberOfWatchedEpisodes
 }
