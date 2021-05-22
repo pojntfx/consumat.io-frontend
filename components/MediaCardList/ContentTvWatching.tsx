@@ -30,6 +30,7 @@ function ContentTvWatching({ tv }: ContentTvWatchingProps) {
     useSetNumberOfWatchedEpisodes();
 
   useEffect(() => {
+    /*
     updateNumberOfWatchedEpisodes({
       variables: {
         code: tv.code,
@@ -37,6 +38,7 @@ function ContentTvWatching({ tv }: ContentTvWatchingProps) {
         numberOfWatchedEpisodes: lastEpisode,
       },
     });
+    */
   }, [lastEpisode]);
 
   return (
