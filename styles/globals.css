@@ -52,6 +52,19 @@ select:focus {
   outline: none;
 }
 
+/* Scrollbar */
+::-webkit-scrollbar {
+  height: 8px;
+  @apply bg-gray-300;
+  @apply dark:bg-gray-800;
+  @apply rounded;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  @apply bg-gray-800;
+  @apply dark:bg-gray-300;
+  @apply rounded;
+}
+
 /* card */
 .card {
   @apply bg-white;
