@@ -14,15 +14,15 @@ export function isTv(media: Media): media is Tv {
 }
 
 export function isMovieList(mediaList: Media[]): mediaList is Movie[] {
-  mediaList.forEach((media) => {
+  for (const media of mediaList) {
     if (media.__typename !== MediaType.Movie) return false;
-  });
+  }
   return true;
 }
 
 export function isTvList(mediaList: Media[]): mediaList is Tv[] {
-  mediaList.forEach((media) => {
+  for (const media of mediaList) {
     if (media.__typename !== MediaType.Tv) return false;
-  });
+  }
   return true;
 }

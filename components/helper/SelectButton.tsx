@@ -8,23 +8,23 @@ type SelectButtonProps = {
 
 const SelectButton = ({ name, options, className }: SelectButtonProps) => {
   return (
-    <div
-      className={
-        className + " relative flex rounded border border-gray-800 bg-white"
-      }
-    >
+    <div className={className + " button relative flex"}>
       <select
         name={name}
         id={name}
-        className="text-sm leading-6 font-medium bg-transparent z-10 pl-2 pr-6"
+        className="text-sm font-medium bg-transparent z-10 pl-2 pr-6 py-1"
       >
         {options.map((option) => (
-          <option key={option} value={option} className="font-medium">
+          <option
+            key={option}
+            value={option}
+            className="font-medium dark:bg-gray-800"
+          >
             {option}
           </option>
         ))}
       </select>
-      <ChevronDownIcon className="absolute z-0 right-1 h-6 w-4" />
+      <ChevronDownIcon className="absolute z-0 right-1 h-5 w-4 my-1" />
     </div>
   );
 };
