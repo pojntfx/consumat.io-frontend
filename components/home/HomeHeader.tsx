@@ -22,10 +22,16 @@ const HomeHeader = ({ backgroundImageSource }: HomeHeaderProps) => {
       }}
     >
       <div className="w-4/5">
-        <h2 className="text-white text-xl leading-5 sm:text-3xl sm:leading-8">
+        <h2
+          className="text-white text-xl leading-5 sm:text-3xl sm:leading-8"
+          style={{ textShadow: "2px 2px 2px rgba(31, 41, 55)" }}
+        >
           Track. Plan. Enjoy Content.
         </h2>
-        <h2 className="text-white text-xl leading-5 sm:text-3xl sm:leading-8 mb-4">
+        <h2
+          className="text-white text-xl leading-5 sm:text-3xl sm:leading-8 mb-4"
+          style={{ textShadow: "2px 2px 2px rgba(31, 41, 55)" }}
+        >
           Find your new favorite media right now.
         </h2>
         <form
