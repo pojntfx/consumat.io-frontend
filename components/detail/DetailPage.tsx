@@ -1,12 +1,13 @@
 import { CastFieldsFragmentDoc, Media } from "../../lib/api/consumat-io";
 import { WatchStatus } from "../../types/status";
-import { MediaType } from "../../types/media";
+import { isTv, MediaType } from "../../types/media";
 import { useEffect, useState } from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 import DetailInfoList from "./DetailInfoList";
 import CastList from "./CastList";
 import DetailHeader from "./DetailHeader";
+import TvDetails from "./TvDetails";
 
 type DetailPageProps = {
   media: Media;
@@ -170,6 +171,8 @@ const DetailPage = ({ media }: DetailPageProps) => {
           title="Providers"
           infos={media.providers.map((provider) => provider.name)}
         />
+
+        {isTv(media) && <TvDetails tv={media} />}
       </div>
     </div>
   );
