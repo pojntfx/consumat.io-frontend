@@ -1,6 +1,6 @@
-import { CastFieldsFragmentDoc, Media } from "../../lib/api/consumat-io";
-import { WatchStatus } from "../../types/status";
-import { isTv, MediaType } from "../../types/media";
+import { Media } from "../../lib/api/consumat-io";
+import { getWatchStatusFromString, WatchStatus } from "../../types/status";
+import { getMediaTypeFromString, isTv } from "../../types/media";
 import { useEffect, useState } from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
@@ -32,7 +32,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
     updateWatchStatus({
       variables: {
         code: media.code,
-        media: media.__typename === "Movie" ? MediaType.Movie : MediaType.Tv,
+        media: getMediaTypeFromString(media.__typename),
         watchStatus: selectedWatchStatus,
       },
     });
@@ -45,21 +45,6 @@ const DetailPage = ({ media }: DetailPageProps) => {
       !loading && console.log("Updated successfully!");
     }
   }, [selectedWatchStatus]);
-
-  function getWatchStatusFromString(str: string): WatchStatus | null {
-    switch (str) {
-      case "Planning":
-        return WatchStatus.Planning;
-      case "Watching":
-        return WatchStatus.Watching;
-      case "Dropped":
-        return WatchStatus.Dropped;
-      case "Finished":
-        return WatchStatus.Finished;
-      default:
-        return null;
-    }
-  }
 
   return (
     <div className="flex flex-col">

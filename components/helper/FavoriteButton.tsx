@@ -2,7 +2,7 @@ import { HeartIcon } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
 import { Media } from "../../lib/api/consumat-io";
 import { useSetFavorite } from "../../hooks/DataHooks";
-import { MediaType } from "../../types/media";
+import { getMediaTypeFromString } from "../../types/media";
 
 type FavoriteButtonProps = {
   className?: string;
@@ -24,8 +24,7 @@ const FavoriteButton = ({ className, media }: FavoriteButtonProps) => {
     setFavorite({
       variables: {
         code: media.code,
-        media:
-          media.__typename === MediaType.Movie ? MediaType.Movie : MediaType.Tv,
+        media: getMediaTypeFromString(media.__typename),
         favorite: isActive,
         seasonNumber: null,
         episodeNumber: null,
