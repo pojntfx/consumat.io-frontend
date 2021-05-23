@@ -4,113 +4,121 @@ import Spinner from "../components/helper/Spinner";
 import LibraryList from "../components/library/LibraryList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
-import { useGetList, useGetTv } from "../hooks/DataHooks";
-import { WatchStatus } from "../types/status";
+import { useGetList } from "../hooks/DataHooks";
+import { getWatchStatusFromString, WatchStatus } from "../types/status";
 import { useEffect, useState } from "react";
 import RadioSlider from "../components/helper/RadioSlider";
-import { MediaType } from "../types/media";
+import { getMediaTypeFromString, MediaType } from "../types/media";
 import ErrorMessage from "../components/helper/ErrorMessage";
 import SelectButton from "../components/helper/SelectButton";
+import { useRouter } from "next/router";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
 });
 
 const Library = () => {
+  // authorization
   const [session] = useAuthorization();
   if (!session) return null;
 
-  const [medium, setMedium] = useState<MediaType>(MediaType.Movie);
-  const [watchStatus, setWatchStatus] = useState<WatchStatus>();
-  const [watchStati, setWatchStati] = useState<WatchStatus[]>([
-    WatchStatus.Planning,
-    WatchStatus.Finished,
-  ]);
-  const [filter, setFilter] = useState<any>();
-  const [filters, setFilters] = useState<any[]>([]);
+  // query setup
+  const router = useRouter();
+
+  function submit(media: MediaType, watchStatus: WatchStatus) {
+    router.push(
+      { query: { media: media, watchStatus: watchStatus } },
+      undefined,
+      { shallow: true }
+    );
+  }
+
+  // set default query if empty
+  useEffect(() => {
+    if (JSON.stringify(router.query) === "{}")
+      router.push(
+        { query: { media: "TV", watchStatus: "Watching" } },
+        undefined,
+        { shallow: true }
+      );
+  }, []);
+
+  // get query parameters and updates states
+  const { media, watchStatus } = router.query;
+
+  const [mediaActive, setMediaActive] = useState<MediaType>();
+  const [watchStatusActive, setWatchStatusActive] = useState<WatchStatus>();
 
   useEffect(() => {
-    switch (medium) {
-      case MediaType.Movie:
-        setWatchStati([WatchStatus.Planning, WatchStatus.Finished]);
-        break;
-      case MediaType.Tv:
-        setWatchStati([
-          WatchStatus.Watching,
-          WatchStatus.Planning,
-          WatchStatus.Dropped,
-          WatchStatus.Finished,
-        ]);
-        break;
+    setMediaActive(getMediaTypeFromString(media + ""));
+    if (media == MediaType.Movie) {
+      setWatchStatusOptions([WatchStatus.Planning, WatchStatus.Finished]);
+    } else {
+      setWatchStatusOptions([
+        WatchStatus.Watching,
+        WatchStatus.Planning,
+        WatchStatus.Dropped,
+        WatchStatus.Finished,
+      ]);
     }
-  }, [medium]);
-  useEffect(() => {
-    setWatchStatus(watchStati[0]);
-  }, [watchStati]);
+    setWatchStatusActive(getWatchStatusFromString(watchStatus + ""));
+  }, [media, watchStatus]);
 
+  // update state options
+  const [watchStatusOptions, setWatchStatusOptions] = useState<WatchStatus[]>(
+    []
+  );
   useEffect(() => {
-    switch (medium) {
-      case MediaType.Movie:
-        switch (watchStatus) {
-          case WatchStatus.Planning:
-            setFilters([]);
-            break;
-          case WatchStatus.Finished:
-            setFilters([]);
-            break;
-        }
-        break;
-      case MediaType.Tv:
-        switch (watchStatus) {
-          case WatchStatus.Watching:
-            setFilters([]);
-            break;
-          case WatchStatus.Planning:
-            setFilters([]);
-            break;
-          case WatchStatus.Dropped:
-            setFilters([]);
-            break;
-          case WatchStatus.Finished:
-            setFilters([]);
-            break;
-        }
-        break;
+    if (mediaActive == MediaType.Movie) {
+      setWatchStatusOptions([WatchStatus.Planning, WatchStatus.Finished]);
+    } else {
+      setWatchStatusOptions([
+        WatchStatus.Watching,
+        WatchStatus.Planning,
+        WatchStatus.Dropped,
+        WatchStatus.Finished,
+      ]);
     }
-  }, [watchStatus]);
-  useEffect(() => {
-    setFilter(filters[0]);
-  }, [watchStatus]);
+  }, [mediaActive]);
 
-  const { data, loading, error } = useGetList(medium, watchStatus);
+  // get list
+  const { data, loading, error } = useGetList(mediaActive, watchStatusActive);
 
   return (
     <div className="px-4">
       <MetaData title="consumat.io | Library" />
+
       <div className="mb-3">
         <RadioSlider
           name="medium"
-          value={medium}
-          onChange={setMedium}
-          options={[MediaType.Movie, MediaType.Tv]}
+          value={mediaActive}
+          options={[MediaType.Tv, MediaType.Movie]}
+          onChange={(event) => {
+            if (event.target.value == MediaType.Movie) {
+              submit(
+                getMediaTypeFromString(event.target.value),
+                WatchStatus.Planning
+              );
+            } else {
+              submit(
+                getMediaTypeFromString(event.target.value),
+                WatchStatus.Watching
+              );
+            }
+          }}
           className="mb-4"
         />
         <RadioSlider
           name="watchStatus"
-          value={watchStatus}
-          onChange={setWatchStatus}
-          options={watchStati}
+          value={watchStatusActive}
+          options={watchStatusOptions}
+          onChange={(event) => {
+            submit(mediaActive, getWatchStatusFromString(event.target.value));
+          }}
           className="mb-1"
         />
-        <div className="flex flex-row">
-          <SelectButton
-            name="sort"
-            options={["Name: A-Z", "Name: Z-A", "Rating", "Release Date"]}
-            className="mr-1"
-          />
-          <SelectButton name="sort" options={["out Now", "coming"]} />
-        </div>
       </div>
+
       {loading ? (
         <Spinner />
       ) : (
