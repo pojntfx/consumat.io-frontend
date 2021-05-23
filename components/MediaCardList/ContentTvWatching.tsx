@@ -1,11 +1,18 @@
 import { CheckIcon, ReplyIcon } from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
 import {
-  useGetSeasonEpisodes,
+  useGetEpisode,
   useGetTvSeasons,
   useSetNumberOfWatchedEpisodes,
 } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
+import {
+  EpisodeNumber,
+  getLastWatchedEpisode,
+  getNextEpisode,
+  getPrevEpisode,
+  getWatchedEpisodeCount,
+} from "../../types/episodeNumber";
 import Progressbar from "../helper/Progressbar";
 
 type ContentTvWatchingProps = {
@@ -18,28 +25,50 @@ function ContentTvWatching({ tv }: ContentTvWatchingProps) {
     loading: seasonsLoading,
     error: seasonsError,
   } = useGetTvSeasons(tv.code);
-  const [currentSeason, setCurrentSeason] = useState<number>(1);
-  const {
-    data: episodesData,
-    loading: episodesLoading,
-    error: episodesError,
-  } = useGetSeasonEpisodes(tv.code, currentSeason);
-  const [lastEpisode, setLastEpisode] = useState<number>(0);
 
-  const [updateNumberOfWatchedEpisodes, { loading, error }] =
-    useSetNumberOfWatchedEpisodes();
+  const [prevEpisode, setPrevEpisode] = useState<EpisodeNumber>();
+  const [lastWatchedEpisode, setLastWatchedEpisode] = useState<EpisodeNumber>();
+  const [nextEpisode, setNextEpisode] = useState<EpisodeNumber>();
+
+  const [watchedEpisodeCount, setWatchedEpisodeCount] = useState<number>(0);
 
   useEffect(() => {
-    /*
+    if (!seasonsLoading && !seasonsError) {
+      console.log(seasonsData.tvSeasons);
+      setLastWatchedEpisode(getLastWatchedEpisode(seasonsData.tvSeasons));
+      setWatchedEpisodeCount(getWatchedEpisodeCount(seasonsData.tvSeasons));
+    }
+  }, [seasonsData]);
+
+  useEffect(() => {
+    setPrevEpisode(getPrevEpisode(seasonsData?.tvSeasons, lastWatchedEpisode));
+    setNextEpisode(getNextEpisode(seasonsData?.tvSeasons, lastWatchedEpisode));
+  }, [lastWatchedEpisode]);
+
+  const {
+    data: episodeData,
+    loading: episodeLoading,
+    error: episodeError,
+  } = useGetEpisode(tv.code, nextEpisode?.season, nextEpisode?.episode);
+
+  const [updateNumberOfWatchedEpisodes, { data, loading, error }] =
+    useSetNumberOfWatchedEpisodes();
+
+  function update() {
     updateNumberOfWatchedEpisodes({
       variables: {
         code: tv.code,
-        seasonNumber: currentSeason,
-        numberOfWatchedEpisodes: lastEpisode,
+        seasonNumber: lastWatchedEpisode.season,
+        numberOfWatchedEpisodes: lastWatchedEpisode.episode,
       },
     });
-    */
-  }, [lastEpisode]);
+  }
+
+  useEffect(() => {
+    if (!loading && !error) {
+      console.log(data?.numberOfWatchedEpisodes);
+    }
+  }, [data]);
 
   return (
     <div className="flex flex-col mx-2 h-23">
@@ -47,36 +76,45 @@ function ContentTvWatching({ tv }: ContentTvWatchingProps) {
         <div className="flex flex-row">
           <div className="font-medium">
             S
-            {currentSeason.toLocaleString("en", {
+            {nextEpisode?.season.toLocaleString("en", {
               minimumIntegerDigits: 2,
             })}
           </div>
           <div className="">︱</div>
           <div className="font-medium">
             E
-            {(lastEpisode + 1).toLocaleString("en", {
+            {nextEpisode?.episode.toLocaleString("en", {
               minimumIntegerDigits: 2,
             })}
           </div>
           <div className="mx-1">•</div>
-          <div className="font-medium">
-            {episodesData?.seasonEpisodes[lastEpisode].title}
+          <div className="font-medium truncate">
+            {episodeData?.episode.title}
           </div>
         </div>
         <div className="flex flex-row">
           <Progressbar
-            progress={lastEpisode}
+            progress={watchedEpisodeCount}
             limit={tv.numberOfEpisodes}
             className="mt-1"
           />
           <div className="text-sm font-medium text-gray-500 ml-2">
-            {lastEpisode}/{tv.numberOfEpisodes}
+            {watchedEpisodeCount}/{tv.numberOfEpisodes}
           </div>
         </div>
         <div className="flex flex-row items-center py-2 mb-1">
           <button
             onClick={() => {
-              setLastEpisode(lastEpisode - 1);
+              if (prevEpisode != null) {
+                setLastWatchedEpisode(prevEpisode);
+                update();
+              } else {
+                setLastWatchedEpisode({ season: 1, episode: 0 });
+                update();
+              }
+              if (watchedEpisodeCount > 0) {
+                setWatchedEpisodeCount(watchedEpisodeCount - 1);
+              }
             }}
             className="button mr-3"
           >
@@ -84,7 +122,11 @@ function ContentTvWatching({ tv }: ContentTvWatchingProps) {
           </button>
           <button
             onClick={() => {
-              setLastEpisode(lastEpisode + 1);
+              if (nextEpisode != null) {
+                setLastWatchedEpisode(nextEpisode);
+                setWatchedEpisodeCount(watchedEpisodeCount + 1);
+                update();
+              }
             }}
             className="button text-sm font-semibold w-max py-1 px-2 flex flex-row"
           >

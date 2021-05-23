@@ -1,19 +1,19 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import CSS from "csstype";
 
 type RadioSliderProps = {
   name: string;
   value: string;
-  onChange: Dispatch<SetStateAction<string>>;
   options: string[];
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 };
 
 const RadioSlider = ({
   name,
   value,
-  onChange,
   options,
+  onChange,
   className,
 }: RadioSliderProps) => {
   const [indicator, setIndicator] = useState<CSS.Properties>();
@@ -35,7 +35,7 @@ const RadioSlider = ({
             id={option}
             checked={value === option}
             onChange={(event) => {
-              onChange(event.target.value);
+              onChange?.(event);
             }}
           />
           <div>{option}</div>
