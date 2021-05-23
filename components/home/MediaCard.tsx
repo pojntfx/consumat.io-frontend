@@ -3,6 +3,7 @@ import { Media } from "../../lib/api/consumat-io";
 import styles from "../../styles/MediaList.module.css";
 import MediaImage from "../helper/MediaImage";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
+import { getMediaTypeFromString, MediaType } from "../../types/media";
 
 type MediaCardProps = {
   mediaItem: Media;
@@ -28,7 +29,7 @@ const MediaCard = ({ mediaItem }: MediaCardProps) => {
           <p
             className={
               "bg-gradient-to-br text-white z-10 text-sm py-2 px-1 text-center truncate w-full -mt-4 rounded" +
-              (mediaItem.__typename === "Movie"
+              (getMediaTypeFromString(mediaItem.__typename) === MediaType.Movie
                 ? " from-yellow-500 to-red-500"
                 : " from-green-500 to-blue-500")
             }
