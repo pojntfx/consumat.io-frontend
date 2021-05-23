@@ -7,6 +7,7 @@ import {
   useGetTvSeasonsQuery,
   useGetEpisodeQuery,
   useGetSeasonEpisodesQuery,
+  useGetSeasonQuery,
   useSetWatchStatusMutation,
   useSetRatingMutation,
   useSetNumberOfWatchedEpisodesMutation,
@@ -37,9 +38,33 @@ export function useGetTv(code: number, country: string = "US") {
   });
 }
 
+export function useGetSeason(code: number, seasonNumber: number) {
+  return useGetSeasonQuery({
+    variables: {
+      code: code,
+      seasonNumber: seasonNumber,
+    },
+  });
+}
+
+export function useGetEpisode(
+  code: number,
+  seasonNumber: number,
+  episodeNumber: number
+) {
+  return useGetEpisodeQuery({
+    skip: code == null || seasonNumber == null || episodeNumber == null,
+    variables: {
+      code: code,
+      seasonNumber: seasonNumber,
+      episodeNumber: episodeNumber,
+    },
+  });
+}
+
 export function useGetSearch(keyword: string | string[], page: number) {
   return useGetSearchQuery({
-    skip: keyword == null,
+    skip: keyword == null || keyword === "",
     variables: {
       keyword: "" + keyword,
       page: page,
