@@ -33,6 +33,11 @@ h3 {
   @apply font-black;
 }
 
+h4 {
+  @apply text-lg;
+  @apply font-black;
+}
+
 /* Inputs, Select, Buttons */
 
 input,
@@ -55,11 +60,13 @@ select:focus {
 /* Scrollbar */
 ::-webkit-scrollbar {
   height: 8px;
+  width: 8px;
   @apply bg-gray-300;
   @apply dark:bg-gray-800;
   @apply rounded;
 }
-::-webkit-scrollbar-thumb:horizontal {
+::-webkit-scrollbar-thumb:horizontal,
+::-webkit-scrollbar-thumb:vertical {
   @apply bg-gray-800;
   @apply dark:bg-gray-300;
   @apply rounded;
@@ -92,6 +99,14 @@ select:focus {
   @apply bg-black bg-opacity-10 dark:bg-white dark:bg-opacity-10;
   @apply absolute right-0 top-0;
   @apply h-full w-full;
+}
+
+.cardWithShadow {
+  @apply my-8 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md;
+}
+
+.cardHeading {
+  @apply inline-block -mt-3 mb-3 h-8 leading-8 px-2 rounded bg-gradient-to-br from-gray-700 to-gray-800 text-white shadow;
 }
 
 /* button */
