@@ -76,6 +76,7 @@ export function useGetTvSeasons(code: number) {
     variables: {
       code: code,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
@@ -85,6 +86,7 @@ export function useGetSeasonEpisodes(code: number, seasonNumber: number) {
       code: code,
       seasonNumber: seasonNumber,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
