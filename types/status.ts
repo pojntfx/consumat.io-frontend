@@ -22,3 +22,18 @@ export enum StatusTv {
   Canceled = "Canceled",
   Ended = "Ended",
 }
+
+export function getWatchStatusFromString(str: string): WatchStatus | null {
+  switch (str) {
+    case "Planning":
+      return WatchStatus.Planning;
+    case "Watching":
+      return WatchStatus.Watching;
+    case "Dropped":
+      return WatchStatus.Dropped;
+    case "Finished":
+      return WatchStatus.Finished;
+    default:
+      return null;
+  }
+}
