@@ -26,3 +26,14 @@ export function isTvList(mediaList: Media[]): mediaList is Tv[] {
   }
   return true;
 }
+
+export function getMediaTypeFromString(str: string): MediaType | null {
+  switch (str) {
+    case "Movie":
+      return MediaType.Movie;
+    case "TV":
+      return MediaType.Tv;
+    default:
+      return null;
+  }
+}
