@@ -11,15 +11,8 @@ type CastListProps = {
 const CastList = ({ title, cast, className }: CastListProps) => {
   return (
     cast.length > 0 && (
-      <div
-        className={
-          "my-8 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md " +
-          className
-        }
-      >
-        <h3 className="inline-block -mt-3 mb-3 h-8 leading-8 px-2 rounded bg-gradient-to-br from-gray-700 to-gray-800 text-white shadow">
-          {title}
-        </h3>
+      <div className={"cardWithShadow " + className}>
+        <h3 className="cardHeading">{title}</h3>
         <div className="whitespace-nowrap overflow-x-auto">
           {cast.map((member, index) => {
             return (
