@@ -12,6 +12,7 @@ module.exports = {
         "-20": "-20",
       },
       gridTemplateColumns: {
+        "media-list-mobile": "repeat(auto-fill, 6rem)",
         "media-list": "repeat(auto-fill, 8rem)",
       },
       width: {

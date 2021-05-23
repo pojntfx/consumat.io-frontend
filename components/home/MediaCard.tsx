@@ -15,13 +15,13 @@ const MediaCard = ({ mediaItem }: MediaCardProps) => {
         <div
           className={
             styles.container +
-            " place-self-center w-32 flex flex-col items-center justify-center rounded cursor-pointer shadow hover:shadow-md duration-75"
+            " place-self-center w-24 sm:w-32 flex flex-col items-center justify-center rounded cursor-pointer shadow hover:shadow-md duration-75"
           }
         >
           <div className="overflow-hidden rounded">
             <MediaImage
               imageSrc={useImage(imageSizes.poster.w185, mediaItem.posterPath)}
-              className={styles.img + " w-32 h-48"}
+              className={styles.img + " w-24 h-36 sm:w-32 sm:h-48"}
             />
           </div>
 
