@@ -11,7 +11,7 @@ const SeasonOverview = ({ season }: SeasonOverviewProps) => {
   const [isEpisodeListVisible, setIsEpisodeListVisible] = useState(false);
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 w-full md:w-12/25 md:mx-1/100 lg:w-8/25 lg:mx-1">
       <div
         className="flex items-end h-32 rounded shadow hover:shadow-md duration-75"
         style={{
