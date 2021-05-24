@@ -11,14 +11,14 @@ import {
   MediaType,
 } from "../../types/media";
 import { useEffect, useState } from "react";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/client";
 import DetailInfoList from "./DetailInfoList";
 import CastList from "./CastList";
 import DetailHeader from "./DetailHeader";
 import TvDetails from "./TvDetails";
 import SelectButton from "../helper/SelectButton";
 import { useSetRating, useSetWatchStatus } from "../../hooks/DataHooks";
+import GeneralInfoList from "./GeneralInfoList";
+import { MediaInfo } from "./GeneralInfoList";
 
 type DetailPageProps = {
   media: Media;
@@ -70,54 +70,86 @@ const DetailPage = ({ media }: DetailPageProps) => {
     });
   }, [selectedRating]);
 
+  const getInfosForMediaType = (mediaType: MediaType): MediaInfo[] => {
+    const mediaInfo: MediaInfo[] = [];
+    mediaInfo.push({ description: "Status", value: media.status });
+    mediaInfo.push({ description: "Runtime", value: `${media.runtime}min` });
+    if (isTv(media)) {
+      mediaInfo.push({
+        description: "Airing Time",
+        value: `${media.releaseInitial.replaceAll(
+          "-",
+          "."
+        )} - ${media.releaseFinal.replaceAll("-", ".")}`,
+      });
+    } else if (isMovie(media)) {
+      mediaInfo.push({
+        description: "Release",
+        value: media.releaseInitial.replaceAll("-", "."),
+      });
+    }
+
+    return mediaInfo;
+  };
+
   return (
     <div className="flex flex-col">
       <DetailHeader media={media} />
 
       <div className="px-8">
-        <div className="flex flex-col">
-          <SelectButton
-            name="watchStatus"
-            options={[
-              "Watch Status",
-              ...getValidWatchStatusForMediaType(mediaType),
-            ]}
-            value={
-              selectedWatchStatus !== null
-                ? selectedWatchStatus
-                : "Watch Status"
-            }
-            onChange={(event) => {
-              setSelectedWatchStatus(
-                getWatchStatusFromString(event.target.value)
-              );
-            }}
-            className={`mt-2 mb-1 ${
-              loadingUpdateWatchStatus && "animate-pulse"
-            }`}
-          />
+        <div className="flex flex-col sm:flex-row my-4">
+          <div className="flex flex-col justify-evenly w-40 mr-2 flex-shrink-0">
+            <SelectButton
+              name="watchStatus"
+              options={[
+                "Watch Status",
+                ...getValidWatchStatusForMediaType(mediaType),
+              ]}
+              value={
+                selectedWatchStatus !== null
+                  ? selectedWatchStatus
+                  : "Watch Status"
+              }
+              onChange={(event) => {
+                setSelectedWatchStatus(
+                  getWatchStatusFromString(event.target.value)
+                );
+              }}
+              className={`mb-1 ${loadingUpdateWatchStatus && "animate-pulse"}`}
+            />
 
-          <SelectButton
-            name="rating"
-            options={[
-              // Commented out for the time being because rating is not nullable
-              // "Rating",
-              "1",
-              "2",
-              "3",
-              "4",
-              "5",
-              "6",
-              "7",
-              "8",
-              "9",
-              "10",
-            ]}
-            value={media.ratingUser !== null ? selectedRating.toString() : "1"}
-            onChange={(event) =>
-              setSelectedRating(parseFloat(event.target.value))
-            }
-            className={`my-1 ${loadingUpdateRating && "animate-pulse"}`}
+            <SelectButton
+              name="rating"
+              options={[
+                // Commented out for the time being because rating is not nullable
+                // "Rating",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+              ]}
+              value={
+                media.ratingUser !== null ? selectedRating.toString() : "1"
+              }
+              onChange={(event) =>
+                setSelectedRating(parseFloat(event.target.value))
+              }
+              className={`${loadingUpdateRating && "animate-pulse"}`}
+            />
+
+            <a href={media.tmdbUrl} target="_blank">
+              <button className="button mt-1 py-1 w-40">See on TMDb</button>
+            </a>
+          </div>
+          <GeneralInfoList
+            infos={getInfosForMediaType(mediaType)}
+            className="w-full mt-8 sm:my-0"
           />
         </div>
 
