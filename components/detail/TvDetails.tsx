@@ -19,7 +19,7 @@ const TvDetails = ({ tv }: TvDetailsProps) => {
     <div className="cardWithShadow">
       <h3 className="cardHeading">Seasons</h3>
       {tvSeasonLoading && <Spinner className="my-4" />}
-      <div>
+      <div className="flex flex-row flex-wrap">
         {tvSeasonData?.tvSeasons?.map((season, index) => {
           return <SeasonOverview season={season} key={index} />;
         })}
