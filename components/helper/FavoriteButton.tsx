@@ -17,10 +17,6 @@ const FavoriteButton = ({ className, media }: FavoriteButtonProps) => {
     useSetFavorite();
 
   useEffect(() => {
-    console.log(`Loading: ${loadingFavorite}, Error: ${errorFavorite}`);
-  }, [loadingFavorite, errorFavorite]);
-
-  useEffect(() => {
     setFavorite({
       variables: {
         code: media.code,
