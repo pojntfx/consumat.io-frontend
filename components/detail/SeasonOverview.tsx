@@ -38,6 +38,12 @@ const SeasonOverview = ({ season }: SeasonOverviewProps) => {
         <SeasonEpisodeList
           tvCode={season.tvCode}
           seasonNumber={season.seasonNumber}
+          numberOfEpisodesWatched={
+            season.numberOfWatchedEpisodes == null
+              ? 0
+              : season.numberOfWatchedEpisodes
+          }
+          numberOfEpisodes={season.numberOfEpisodes}
         />
       )}
     </div>
