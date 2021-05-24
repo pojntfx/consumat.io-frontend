@@ -19,17 +19,15 @@ const Search = () => {
 
   const router = useRouter();
 
+  // set default query if empty
   useEffect(() => {
-    router.push({ query: { q: null } }, undefined, { shallow: true });
+    if (JSON.stringify(router.query) === "{}")
+      router.push({ query: { q: null } }, undefined, { shallow: true });
   }, []);
 
   const { q } = router.query;
   const [query, setQuery] = useState<string>("");
   const { data, loading, error } = useGetSearch(q, 1);
-
-  useEffect(() => {
-    console.log(router.query.q);
-  }, [router.query]);
 
   const form = createRef<HTMLFormElement>();
 

@@ -51,7 +51,7 @@ const NavList = ({
       />
       <NavListItem
         title="Library"
-        href="/library"
+        href="/library?media=TV&watchStatus=Watching"
         isMobile={isMobile}
         isActive={activeNavigationLink === NavigationLink.Library}
         setMobileNavbarVisibility={
@@ -60,7 +60,7 @@ const NavList = ({
       />
       <NavListItem
         title="Search"
-        href="/search"
+        href="/search?q="
         isMobile={isMobile}
         isActive={activeNavigationLink === NavigationLink.Search}
         setMobileNavbarVisibility={
