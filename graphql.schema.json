@@ -214,18 +214,6 @@
             "deprecationReason": null
           },
           {
-            "name": "watchStatus",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "ratingUser",
             "description": null,
             "args": [],
@@ -1485,18 +1473,6 @@
           },
           {
             "name": "posterPath",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "watchStatus",
             "description": null,
             "args": [],
             "type": {
