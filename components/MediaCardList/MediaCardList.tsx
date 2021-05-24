@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { ReactNode } from "react";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
 import { Media } from "../../lib/api/consumat-io";
@@ -13,8 +14,12 @@ function MediaCardList({ media, children, className }: MediaCardListProps) {
   const image = useImage(imageSizes.poster.w154, media.posterPath);
 
   return (
+    //<Link href={"/" + media.__typename.toLocaleLowerCase() + "/" + media.code}>
+    //<a>
     <div
-      className={"card flex flex-row rounded overflow-hidden h-30 " + className}
+      className={
+        "card clickable flex flex-row rounded overflow-hidden h-30 " + className
+      }
     >
       <MediaImage imageSrc={image} className="w-20" />
       <div className="flex flex-col flex-shrink min-w-0 w-full">
@@ -24,6 +29,8 @@ function MediaCardList({ media, children, className }: MediaCardListProps) {
         {children}
       </div>
     </div>
+    //</a>
+    //</Link>
   );
 }
 
