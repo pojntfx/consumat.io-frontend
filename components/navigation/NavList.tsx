@@ -1,10 +1,11 @@
-import NavListItem from "./NavListItem";
-import { NavigationLink } from "./Navbar";
-import styles from "../../styles/Navbar.module.css";
-import { SunIcon, MoonIcon } from "@heroicons/react/outline";
+import { MoonIcon, SunIcon } from "@heroicons/react/outline";
+import { useSession } from "next-auth/client";
 import { useContext } from "react";
 import { ThemeContext } from "../../pages/_app";
+import styles from "../../styles/Navbar.module.css";
 import { theme } from "../../types/theme";
+import { NavigationLink } from "./Navbar";
+import NavListItem from "./NavListItem";
 
 type NavListProps = {
   activeNavigationLink: NavigationLink;
@@ -20,6 +21,8 @@ const NavList = ({
   setMobileNavbarVisibility = null,
 }: NavListProps) => {
   const { currentTheme, setCurrentTheme } = useContext(ThemeContext);
+
+  const [session] = useSession();
 
   return (
     <ul
@@ -67,6 +70,18 @@ const NavList = ({
           setMobileNavbarVisibility && setMobileNavbarVisibility
         }
       />
+      {session && (
+        <NavListItem
+          title="Account"
+          href="/account"
+          isMobile={isMobile}
+          isActive={activeNavigationLink === NavigationLink.Account}
+          setMobileNavbarVisibility={
+            setMobileNavbarVisibility && setMobileNavbarVisibility
+          }
+        />
+      )}
+
       {currentTheme === theme.light ? (
         <button
           className="bg-transparent text-gray-400 hover:text-gray-800 dark:hover:text-white shadow-none hover:shadow-none my-4 md:my-0 ml-1"
