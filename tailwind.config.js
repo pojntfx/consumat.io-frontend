@@ -12,7 +12,14 @@ module.exports = {
         "-20": "-20",
       },
       gridTemplateColumns: {
+        "media-list-mobile": "repeat(auto-fill, 6rem)",
         "media-list": "repeat(auto-fill, 8rem)",
+      },
+      width: {
+        "8/25": "32%",
+        "29/100": "29%",
+        "12/25": "48%",
+        "7/10": "70%",
       },
       height: {
         23: "5.75",
@@ -20,6 +27,9 @@ module.exports = {
         30: "7.5rem",
         "line-base-3": "4.5rem",
         "line-sm-3": "3.75rem",
+      },
+      margin: {
+        "1/100": "1%",
       },
       boxShadow: {
         DEFAULT: "0px 1px 8px rgba(0, 0, 0, 0.10)",
@@ -30,6 +40,7 @@ module.exports = {
   },
   variants: {
     extend: {
+      fill: ["hover"],
       boxShadow: ["active"],
     },
   },

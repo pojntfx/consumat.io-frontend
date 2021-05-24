@@ -1,3 +1,5 @@
+import { MediaType } from "./media";
+
 export enum WatchStatus {
   Watching = "Watching",
   Planning = "Planning",
@@ -21,6 +23,22 @@ export enum StatusTv {
   ReturningSeries = "Returning Series",
   Canceled = "Canceled",
   Ended = "Ended",
+}
+
+export function getValidWatchStatusForMediaType(
+  mediaType: MediaType
+): WatchStatus[] {
+  switch (mediaType) {
+    case MediaType.Movie:
+      return [WatchStatus.Planning, WatchStatus.Dropped, WatchStatus.Finished];
+    case MediaType.Tv:
+      return [
+        WatchStatus.Watching,
+        WatchStatus.Planning,
+        WatchStatus.Dropped,
+        WatchStatus.Finished,
+      ];
+  }
 }
 
 export function getWatchStatusFromString(str: string): WatchStatus | null {

@@ -3,12 +3,14 @@ mutation SetRating(
   $media: String!
   $rating: Float!
   $seasonNumber: Int
+  $episodeNumber: Int
 ) {
   rating(
     code: $code
     media: $media
     rating: $rating
     seasonNumber: $seasonNumber
+    episodeNumber: $episodeNumber
   ) {
     status
   }

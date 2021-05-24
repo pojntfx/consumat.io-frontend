@@ -25,9 +25,9 @@ const Movie = () => {
 
   return (
     <div>
-      <MetaData title={"consumat.io | " + data.movie.title} />
+      <MetaData title={"consumat.io | " + data?.movie.title} />
 
-      <DetailPage media={data.movie} />
+      <DetailPage media={data?.movie} />
 
       {error && <ErrorMessage />}
     </div>
