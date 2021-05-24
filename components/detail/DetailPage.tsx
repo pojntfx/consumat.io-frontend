@@ -1,6 +1,15 @@
 import { Media } from "../../lib/api/consumat-io";
-import { getWatchStatusFromString, WatchStatus } from "../../types/status";
-import { getMediaTypeFromString, isTv } from "../../types/media";
+import {
+  getValidWatchStatusForMediaType,
+  getWatchStatusFromString,
+  WatchStatus,
+} from "../../types/status";
+import {
+  getMediaTypeFromString,
+  isMovie,
+  isTv,
+  MediaType,
+} from "../../types/media";
 import { useEffect, useState } from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
@@ -8,27 +17,38 @@ import DetailInfoList from "./DetailInfoList";
 import CastList from "./CastList";
 import DetailHeader from "./DetailHeader";
 import TvDetails from "./TvDetails";
+import SelectButton from "../helper/SelectButton";
+import { useSetRating, useSetWatchStatus } from "../../hooks/DataHooks";
 
 type DetailPageProps = {
   media: Media;
 };
 
-const SET_WATCH_STATUS = gql`
-  mutation SetWatchStatus($code: Int!, $media: String!, $watchStatus: String!) {
-    watchStatus(code: $code, media: $media, watchStatus: $watchStatus) {
-      status
-    }
-  }
-`;
-
 const DetailPage = ({ media }: DetailPageProps) => {
+  const [mediaType, setMediaType] = useState(
+    isTv(media) ? MediaType.Tv : isMovie(media) ? MediaType.Movie : null
+  );
   const [selectedWatchStatus, setSelectedWatchStatus] =
     useState<WatchStatus | null>(getWatchStatusFromString(media.watchStatus));
-  const [updateWatchStatus, { loading, error }] = useMutation(SET_WATCH_STATUS);
+
+  // Commented out until backend makes rating nullable
+  // const [selectedRating, setSelectedRating] = useState<number | null>(
+  //   media.ratingUser
+  // );
+  const [selectedRating, setSelectedRating] = useState<number>(
+    media.ratingUser === null ? 1 : media.ratingUser
+  );
+
+  const [
+    updateWatchStatus,
+    { loading: loadingUpdateWatchStatus, error: errorUpdateWatchStatus },
+  ] = useSetWatchStatus();
+  const [
+    updateRating,
+    { loading: loadingUpdateRating, error: errorUpdateRating },
+  ] = useSetRating();
 
   useEffect(() => {
-    if (selectedWatchStatus === null) return;
-
     updateWatchStatus({
       variables: {
         code: media.code,
@@ -36,15 +56,19 @@ const DetailPage = ({ media }: DetailPageProps) => {
         watchStatus: selectedWatchStatus,
       },
     });
-
-    {
-      loading && console.log("Loading...");
-    }
-
-    {
-      !loading && console.log("Updated successfully!");
-    }
   }, [selectedWatchStatus]);
+
+  useEffect(() => {
+    updateRating({
+      variables: {
+        code: media.code,
+        media: media.__typename,
+        rating: selectedRating,
+        seasonNumber: null,
+        episodeNumber: null,
+      },
+    });
+  }, [selectedRating]);
 
   return (
     <div className="flex flex-col">
@@ -52,78 +76,49 @@ const DetailPage = ({ media }: DetailPageProps) => {
 
       <div className="px-8">
         <div className="flex flex-col">
-          <select
-            className="bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 text-gray-800 dark:text-white rounded mt-2 w-40 py-2 px-2 cursor-pointer"
+          <SelectButton
             name="watchStatus"
-            id="watchStatus"
+            options={[
+              "Watch Status",
+              ...getValidWatchStatusForMediaType(mediaType),
+            ]}
             value={
               selectedWatchStatus !== null
                 ? selectedWatchStatus
                 : "Watch Status"
             }
-            onChange={(e) => {
-              setSelectedWatchStatus(getWatchStatusFromString(e.target.value));
-            }}
-          >
-            <option value="" className="bg-white dark:bg-gray-800">
-              {"Watch Status"}
-            </option>
-            {Object.keys(WatchStatus).map((key, index) => {
-              return (
-                // As a temporary solution, only show "Planning"
-                WatchStatus[key] === "Planning" && (
-                  <option
-                    value={WatchStatus[key]}
-                    key={index}
-                    className="bg-white dark:bg-gray-800"
-                  >
-                    {WatchStatus[key]}
-                  </option>
-                )
+            onChange={(event) => {
+              setSelectedWatchStatus(
+                getWatchStatusFromString(event.target.value)
               );
-            })}
-          </select>
+            }}
+            className={`mt-2 mb-1 ${
+              loadingUpdateWatchStatus && "animate-pulse"
+            }`}
+          />
 
-          <select
-            className="bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 text-gray-800 dark:text-white rounded mt-2 w-40 py-2 px-2 cursor-pointer"
-            name="watchStatus"
-            id="watchStatus"
-            value={media.ratingUser !== null ? media.ratingUser : "Rating"}
-          >
-            <option value="" className="bg-white dark:bg-gray-800">
-              {"Rating"}
-            </option>
-            <option value="1" className="bg-white dark:bg-gray-800">
-              {"1"}
-            </option>
-            <option value="2" className="bg-white dark:bg-gray-800">
-              {"2"}
-            </option>
-            <option value="3" className="bg-white dark:bg-gray-800">
-              {"3"}
-            </option>
-            <option value="4" className="bg-white dark:bg-gray-800">
-              {"4"}
-            </option>
-            <option value="5" className="bg-white dark:bg-gray-800">
-              {"5"}
-            </option>
-            <option value="6" className="bg-white dark:bg-gray-800">
-              {"6"}
-            </option>
-            <option value="7" className="bg-white dark:bg-gray-800">
-              {"7"}
-            </option>
-            <option value="8" className="bg-white dark:bg-gray-800">
-              {"8"}
-            </option>
-            <option value="9" className="bg-white dark:bg-gray-800">
-              {"9"}
-            </option>
-            <option value="10" className="bg-white dark:bg-gray-800">
-              {"10"}
-            </option>
-          </select>
+          <SelectButton
+            name="rating"
+            options={[
+              // Commented out for the time being because rating is not nullable
+              // "Rating",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+            ]}
+            value={media.ratingUser !== null ? selectedRating.toString() : "1"}
+            onChange={(event) =>
+              setSelectedRating(parseFloat(event.target.value))
+            }
+            className={`my-1 ${loadingUpdateRating && "animate-pulse"}`}
+          />
         </div>
 
         <div className="bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 my-8 px-4 pb-4 rounded shadow-md">
