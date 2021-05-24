@@ -25,7 +25,7 @@ const SelectButton = ({
         onChange={(event) => {
           onChange?.(event);
         }}
-        className="text-sm font-medium bg-transparent z-10 pl-2 pr-6 py-1"
+        className="text-sm font-medium bg-transparent z-10 w-full pl-2 pr-6 py-1"
       >
         {options.map((option) => (
           <option
