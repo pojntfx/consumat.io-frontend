@@ -9,6 +9,7 @@ export enum NavigationLink {
   Discover,
   Library,
   Search,
+  Account,
 }
 
 const Navbar = () => {
@@ -54,6 +55,8 @@ const Navbar = () => {
       return NavigationLink.Library;
     } else if (url.includes("/search")) {
       return NavigationLink.Search;
+    } else if (url.includes("/account")) {
+      return NavigationLink.Account;
     } else {
       return null;
     }
