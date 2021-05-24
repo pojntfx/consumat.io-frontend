@@ -81,7 +81,7 @@ const Navbar = () => {
               onClick={() => setMobileNavbarActive(!isMobileNavbarActive)}
             >
               {isMobileNavbarActive ? (
-                <XIcon className="h-8 w-8 bg-gray-50 dark:bg-gray-800  shadow-none hover:shadow-none" />
+                <XIcon className="h-8 w-8 bg-gray-50 dark:bg-gray-800 shadow-none hover:shadow-none" />
               ) : (
                 <MenuIcon className="h-8 w-8 bg-gray-50 dark:bg-gray-800 shadow-none hover:shadow-none" />
               )}
