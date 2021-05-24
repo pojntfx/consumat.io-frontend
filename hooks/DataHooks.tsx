@@ -3,14 +3,15 @@ import {
   useGetTvQuery,
   useGetSearchQuery,
   useGetPopularQuery,
-  useSetWatchStatusMutation,
-  useSetRatingMutation,
   useGetListQuery,
   useGetTvSeasonsQuery,
   useGetEpisodeQuery,
   useGetSeasonEpisodesQuery,
-  useSetNumberOfWatchedEpisodesMutation,
   useGetSeasonQuery,
+  useSetWatchStatusMutation,
+  useSetRatingMutation,
+  useSetNumberOfWatchedEpisodesMutation,
+  useSetFavoriteMutation,
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
@@ -100,6 +101,7 @@ export function useGetTvSeasons(code: number) {
     variables: {
       code: code,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
@@ -109,6 +111,7 @@ export function useGetSeasonEpisodes(code: number, seasonNumber: number) {
       code: code,
       seasonNumber: seasonNumber,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
@@ -124,4 +127,8 @@ export function useSetWatchStatus() {
 
 export function useSetNumberOfWatchedEpisodes() {
   return useSetNumberOfWatchedEpisodesMutation();
+}
+
+export function useSetFavorite() {
+  return useSetFavoriteMutation();
 }
