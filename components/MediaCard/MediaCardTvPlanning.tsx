@@ -3,7 +3,7 @@ import { useSetWatchStatus } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
 import { MediaType } from "../../types/media";
 import { WatchStatus } from "../../types/status";
-import MediaCardWrapper from "../MediaCardList/MediaCardWrapper";
+import MediaCardWrapper from "./MediaCardWrapper";
 
 type MediaCardTvPlanningProps = {
   tv: Tv;
