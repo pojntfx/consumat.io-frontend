@@ -1,10 +1,10 @@
 import { Media } from "../../lib/api/consumat-io";
 import { isMovieList, isTvList } from "../../types/media";
 import { WatchStatus } from "../../types/status";
-import MediaCardTvDropped from "../MediaCard/MediaCardTvDropped";
-import MediaCardTvFinished from "../MediaCard/MediaCardTvFinished";
-import MediaCardTvPlanning from "../MediaCard/MediaCardTvPlanning";
-import MediaCardTvWatching from "../MediaCard/MediaCardTvWatching";
+import MediaCardTvDropped from "../mediaCard/MediaCardTvDropped";
+import MediaCardTvFinished from "../mediaCard/MediaCardTvFinished";
+import MediaCardTvPlanning from "../mediaCard/MediaCardTvPlanning";
+import MediaCardTvWatching from "../mediaCard/MediaCardTvWatching";
 
 type LibraryListProps = {
   mediaList: Media[];
