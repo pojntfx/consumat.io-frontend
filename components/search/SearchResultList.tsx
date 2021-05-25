@@ -1,5 +1,5 @@
 import { Media } from "../../lib/api/consumat-io";
-import MediaCardSearch from "../MediaCardList/MediaCardSearch";
+import MediaCardSearch from "../MediaCard/MediaCardSearch";
 
 type SearchResultListProps = {
   mediaList: Media[];
