@@ -72,8 +72,11 @@ select:focus {
   @apply rounded;
 }
 
+/* test */
+
 /* card */
 .card {
+  @apply rounded;
   @apply bg-white;
   @apply dark:bg-gray-800;
   @apply ring-1;
@@ -100,11 +103,63 @@ select:focus {
   @apply absolute right-0 top-0;
   @apply h-full w-full;
 }
+.clickableShallow {
+  @apply relative;
+}
+.clickableShallow > a:first-child {
+  @apply z-20;
+}
+.clickableShallow > a:nth-child(2) {
+  @apply absolute;
+  @apply inset-0;
+  @apply rounded;
+  @apply ring-inset;
+  @apply ring-gray-200;
+  @apply dark:ring-gray-700;
+}
+@media (hover: hover) and (pointer: fine) {
+  .clickableShallow > a:first-child:hover + a {
+    @apply ring-2;
+  }
+  .clickableShallow > a:nth-child(2):hover {
+    @apply ring-2;
+  }
+}
+.clickableShallow > a:first-child:active + a {
+  @apply ring-1;
+}
+.clickableShallow > a:nth-child(2):active {
+  @apply ring-1;
+}
+.clickableShallow > a:first-child:active::after {
+  content: "";
+  @apply rounded;
+  @apply bg-black bg-opacity-10 dark:bg-white dark:bg-opacity-10;
+  @apply absolute right-0 top-0;
+  @apply h-full w-full;
+  @apply z-0;
+}
+.clickableShallow > a:first-child:active + a::after {
+  content: "";
+  @apply rounded;
+  @apply bg-black bg-opacity-10 dark:bg-white dark:bg-opacity-10;
+  @apply absolute right-0 top-0;
+  @apply h-full w-full;
+  @apply z-10;
+}
+.clickableShallow > a:nth-child(2):active::after {
+  content: "";
+  @apply rounded;
+  @apply bg-black bg-opacity-10 dark:bg-white dark:bg-opacity-10;
+  @apply absolute right-0 top-0;
+  @apply h-full w-full;
+  @apply z-30;
+}
 
+/* not my card */
 .cardWithShadow {
   @apply my-8 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md;
 }
-
 .cardHeading {
   @apply inline-block -mt-3 mb-3 h-8 leading-8 px-2 rounded bg-gradient-to-br from-gray-700 to-gray-800 text-white shadow;
 }
@@ -139,8 +194,8 @@ select:focus {
   @apply h-full w-full;
 }
 
-/* toggleSwitch */
-.toggleSwitch {
+/* radioSlider */
+.radioSlider {
   @apply relative;
   @apply flex;
   @apply flex-row;
@@ -152,7 +207,7 @@ select:focus {
   @apply ring-gray-800;
   @apply dark:ring-gray-50;
 }
-.toggleSwitch label {
+.radioSlider label {
   @apply flex;
   @apply justify-center;
   @apply flex-1;
@@ -160,18 +215,18 @@ select:focus {
   @apply cursor-pointer;
   @apply flex-grow;
 }
-.toggleSwitch label > div {
+.radioSlider label > div {
   @apply truncate;
   @apply text-sm;
   @apply leading-6;
   @apply font-semibold;
 }
-.toggleSwitch label:active > div {
+.radioSlider label:active > div {
   @apply text-transparent;
   @apply bg-clip-text;
   @apply bg-gradient-to-br from-green-500 to-blue-500;
 }
-.toggleSwitch input[type="radio"]:checked + div {
+.radioSlider input[type="radio"]:checked + div {
   @apply text-transparent;
   @apply bg-clip-text;
   @apply bg-gradient-to-br;

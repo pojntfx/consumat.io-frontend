@@ -106,7 +106,9 @@ const Library = () => {
       {loading ? (
         <Spinner />
       ) : (
-        data != null && <LibraryList mediaList={data.list} />
+        data != null && (
+          <LibraryList mediaList={data.list} watchStatus={watchStatusActive} />
+        )
       )}
 
       {error && <ErrorMessage />}
