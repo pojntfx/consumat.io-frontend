@@ -14,7 +14,7 @@ const Account = () => {
 
   return (
     <div className="flex flex-col md:flex-row items-center md:items-start justify-between">
-      <MediaImage className="w-40 h-60" imageSrc={session.user.image} />
+      <MediaImage className="w-60 h-60" imageSrc={session.user.image} />
       <div className="flex flex-col items-center md:items-start md:mr-auto md:ml-10 ">
         <div
           className={
