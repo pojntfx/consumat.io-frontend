@@ -21,7 +21,7 @@ const Account = () => {
       <div className="flex flex-col items-center md:items-start md:mr-auto md:ml-10">
         <div
           className={
-            "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md"
+            "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
           }
         >
           <h3 className="cardHeading">Statistik</h3>
