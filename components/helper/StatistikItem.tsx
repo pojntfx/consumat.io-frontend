@@ -1,6 +1,6 @@
 type StatistikItemProps = {
   title: string;
-  times: number;
+  times: number | string;
 };
 
 const StatistikItem = ({ title, times }: StatistikItemProps) => {
