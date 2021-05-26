@@ -15,8 +15,32 @@ const Account = () => {
     <div className="flex flex-col md:flex-row items-center md:items-start justify-between">
       <MediaImage className="w-40 h-60" imageSrc={session.user.image} />
       <div className="flex flex-col items-center md:items-start md:mr-auto md:ml-10 ">
-        <p>{session.user.name}</p>
-        <p>{session.user.name}</p>
+        <div
+          className={
+            "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md "
+          }
+        >
+          <h3 className="cardHeading">Statistik</h3>
+          <div className="flex flex-col">
+            <p>{session.user.name}</p>
+
+            <div className="flex flex-row">
+              <p>Watched Episodes</p> <p className="ml-2">XX</p>
+            </div>
+            <div className="flex flex-row">
+              <p>Watched Seasons</p> <p className="ml-2">XX</p>
+            </div>
+            <div className="flex flex-row">
+              <p>Watched Movies</p> <p className="ml-2">XX</p>
+            </div>
+            <div className="flex flex-row">
+              <p>Total Watchtime</p> <p className="ml-2">Xh</p>
+            </div>
+            <div className="flex flex-row">
+              <p>Average Rating</p> <p className="ml-2">X,X</p>
+            </div>
+          </div>
+        </div>
       </div>
       {/* <div>{JSON.stringify(session)}</div> */}
       <button
