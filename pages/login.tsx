@@ -10,7 +10,10 @@ const Login = () => {
         <p className="text-2xl md:text-3xl mt-2 font-light">
           Track, plan and enjoy content.
         </p>
-        <button onClick={() => signIn(null, { callbackUrl: "/" })}>
+        <button
+          className="text-white font-bold py-3 px-14 rounded shadow mt-6"
+          onClick={() => signIn(null, { callbackUrl: "/" })}
+        >
           SIGN IN
         </button>
       </div>
