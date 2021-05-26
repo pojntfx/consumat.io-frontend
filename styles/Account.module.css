@@ -20,15 +20,3 @@
 .logoutButton:hover {
   @apply bg-red-700;
 }
-
-.cardBackground {
-  @apply px-4;
-  @apply pb-4;
-  @apply bg-gradient-to-br;
-  @apply from-white;
-  @apply to-white;
-  @apply dark:from-gray-700;
-  @apply dark:to-gray-800;
-  @apply rounded;
-  @apply shadow-md;
-}

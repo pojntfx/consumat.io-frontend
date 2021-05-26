@@ -13,11 +13,17 @@ const Account = () => {
   const [session] = useAuthorization();
   if (!session) return null;
 
+  console.log("lollolol");
+
   return (
     <div className={styles.headerRow}>
       <MediaImage className="w-60 h-60" imageSrc={session.user.image} />
       <div className="flex flex-col items-center md:items-start md:mr-auto md:ml-10">
-        <div className={styles.cardBackground}>
+        <div
+          className={
+            "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md"
+          }
+        >
           <h3 className="cardHeading">Statistik</h3>
           <div className="flex flex-col">
             <h3>{session.user.name}</h3>
