@@ -27,8 +27,8 @@ const Account = () => {
             <StatistikItem title={"Watched Episodes"} times={0} />
             <StatistikItem title={"Watched Seasons"} times={0} />
             <StatistikItem title={"Watched Movies"} times={0} />
-            <StatistikItem title={"Total Watchtime"} times={0} />
-            <StatistikItem title={"Average Rating"} times={0} />
+            <StatistikItem title={"Total Watchtime"} times={0 + " h"} />
+            <StatistikItem title={"Average Rating"} times={0 + "," + 0} />
           </div>
         </div>
       </div>
