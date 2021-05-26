@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import { getSession, signOut } from "next-auth/client";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import MediaImage from "../components/helper/MediaImage";
+import StatistikItem from "../components/helper/StatistikItem";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -23,21 +24,11 @@ const Account = () => {
           <h3 className="cardHeading">Statistik</h3>
           <div className="flex flex-col">
             <h3>{session.user.name}</h3>
-            <div className="flex flex-row">
-              <h3>Watched Episodes</h3> <p className="ml-2">XX</p>
-            </div>
-            <div className="flex flex-row">
-              <h3>Watched Seasons</h3> <p className="ml-2">XX</p>
-            </div>
-            <div className="flex flex-row">
-              <h3>Watched Movies</h3> <p className="ml-2">XX</p>
-            </div>
-            <div className="flex flex-row">
-              <h3>Total Watchtime</h3> <p className="ml-2">Xh</p>
-            </div>
-            <div className="flex flex-row">
-              <h3>Average Rating</h3> <p className="ml-2">X,X</p>
-            </div>
+            <StatistikItem title={"Watched Episodes"} times={0} />
+            <StatistikItem title={"Watched Seasons"} times={0} />
+            <StatistikItem title={"Watched Movies"} times={0} />
+            <StatistikItem title={"Total Watchtime"} times={0} />
+            <StatistikItem title={"Average Rating"} times={0} />
           </div>
         </div>
       </div>
