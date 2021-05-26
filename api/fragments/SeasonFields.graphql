@@ -5,7 +5,6 @@ fragment SeasonFields on Season {
   title
   overview
   posterPath
-  watchStatus
   ratingUser
   favorite
   numberOfEpisodes

@@ -7,7 +7,6 @@ fragment EpisodeFields on Episode {
   airDate
   ratingAverage
   stillPath
-  watchStatus
   ratingUser
   favorite
 }

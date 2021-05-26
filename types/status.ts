@@ -5,6 +5,7 @@ export enum WatchStatus {
   Planning = "Planning",
   Dropped = "Dropped",
   Finished = "Finished",
+  Any = "Any",
 }
 
 export enum StatusMovie {
@@ -38,6 +39,8 @@ export function getValidWatchStatusForMediaType(
         WatchStatus.Dropped,
         WatchStatus.Finished,
       ];
+    default:
+      return [];
   }
 }
 
