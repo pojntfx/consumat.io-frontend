@@ -25,7 +25,7 @@ const RadioSlider = ({
   }, [value, options]);
 
   return (
-    <div className={"toggleSwitch " + className}>
+    <div className={"radioSlider " + className}>
       {options.map((option) => (
         <label key={option} htmlFor={option}>
           <input
