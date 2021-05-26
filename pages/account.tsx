@@ -22,22 +22,21 @@ const Account = () => {
         >
           <h3 className="cardHeading">Statistik</h3>
           <div className="flex flex-col">
-            <p>{session.user.name}</p>
-
+            <h3>{session.user.name}</h3>
             <div className="flex flex-row">
-              <p>Watched Episodes</p> <p className="ml-2">XX</p>
+              <h3>Watched Episodes</h3> <p className="ml-2">XX</p>
             </div>
             <div className="flex flex-row">
-              <p>Watched Seasons</p> <p className="ml-2">XX</p>
+              <h3>Watched Seasons</h3> <p className="ml-2">XX</p>
             </div>
             <div className="flex flex-row">
-              <p>Watched Movies</p> <p className="ml-2">XX</p>
+              <h3>Watched Movies</h3> <p className="ml-2">XX</p>
             </div>
             <div className="flex flex-row">
-              <p>Total Watchtime</p> <p className="ml-2">Xh</p>
+              <h3>Total Watchtime</h3> <p className="ml-2">Xh</p>
             </div>
             <div className="flex flex-row">
-              <p>Average Rating</p> <p className="ml-2">X,X</p>
+              <h3>Average Rating</h3> <p className="ml-2">X,X</p>
             </div>
           </div>
         </div>
