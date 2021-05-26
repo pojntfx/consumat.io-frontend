@@ -250,3 +250,27 @@ using it in the module doesn't work for some reason :,)
   @apply dark:text-gray-50;
   @apply dark:border-gray-50;
 }
+
+.loginButton {
+  background-color: #1f2937;
+  @apply text-white;
+  @apply font-bold;
+  @apply py-3;
+  @apply px-14;
+  @apply rounded;
+  @apply shadow;
+  @apply mt-4;
+}
+
+.loginButton:hover {
+  background-color: white;
+  color: #1f2937;
+  border-color: #1f2937;
+  @apply border-2;
+  @apply font-bold;
+  @apply py-3;
+  @apply px-14;
+  @apply rounded;
+  @apply shadow;
+  @apply mt-4;
+}
