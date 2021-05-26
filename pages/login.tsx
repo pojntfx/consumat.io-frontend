@@ -11,7 +11,7 @@ const Login = () => {
           Track, plan and enjoy content.
         </p>
         <button
-          className="text-white font-bold py-3 px-14 rounded shadow mt-6"
+          className="loginButton"
           onClick={() => signIn(null, { callbackUrl: "/" })}
         >
           SIGN IN
