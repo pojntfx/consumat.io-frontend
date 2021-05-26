@@ -1,0 +1,34 @@
+.headerRow {
+  @apply flex;
+  @apply flex-col;
+  @apply md:flex-row;
+  @apply items-center;
+  @apply md:items-start;
+  @apply justify-between;
+}
+
+.logoutButton {
+  @apply bg-red-500;
+  @apply text-white;
+  @apply font-bold;
+  @apply py-2;
+  @apply px-4;
+  @apply rounded;
+  @apply shadow;
+}
+
+.logoutButton:hover {
+  @apply bg-red-700;
+}
+
+.cardBackground {
+  @apply px-4;
+  @apply pb-4;
+  @apply bg-gradient-to-br;
+  @apply from-white;
+  @apply to-white;
+  @apply dark:from-gray-700;
+  @apply dark:to-gray-800;
+  @apply rounded;
+  @apply shadow-md;
+}
