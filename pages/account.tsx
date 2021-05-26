@@ -12,9 +12,10 @@ const Account = () => {
   if (!session) return null;
 
   return (
-    <div className="flex flex-row items-start justify-between">
+    <div className="flex flex-col md:flex-row items-center md:items-start justify-between">
       <MediaImage className="w-40 h-60" imageSrc={session.user.image} />
-      <div className="mr-auto ml-10">
+      <div className="flex flex-col items-center md:items-start md:mr-auto md:ml-10 ">
+        <p>{session.user.name}</p>
         <p>{session.user.name}</p>
       </div>
       {/* <div>{JSON.stringify(session)}</div> */}
