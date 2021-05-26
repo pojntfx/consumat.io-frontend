@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import { getSession, signOut } from "next-auth/client";
 import { useAuthorization } from "../hooks/AuthnHooks";
+import MediaImage from "../components/helper/MediaImage";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -11,15 +12,18 @@ const Account = () => {
   if (!session) return null;
 
   return (
-    <div>
+    <div className="flex flex-row items-start justify-between">
+      <MediaImage className="w-40 h-60" imageSrc={session.user.image} />
+      <div className="mr-auto ml-10">
+        <p>{session.user.name}</p>
+      </div>
+      {/* <div>{JSON.stringify(session)}</div> */}
       <button
-        className="px-4 py-2 rounded-r border-solid border-l-2 border-gray-200 duration-75"
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow"
         onClick={() => signOut()}
       >
         Logout
       </button>
-
-      <div>{JSON.stringify(session)}</div>
     </div>
   );
 };
