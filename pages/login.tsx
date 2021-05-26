@@ -6,8 +6,8 @@ const Login = () => {
   if (!session)
     return (
       <div className="h-auto flex flex-col self-center items-center justify-center">
-        <h1>CONSUMAT.IO</h1>
-        <h2>Track, plan and enjoy content.</h2>
+        <h2 className="text-5xl md:text-7xl mt-48">CONSUMAT.IO</h2>
+        <p className="mt-4">Track, plan and enjoy content.</p>
         <button onClick={() => signIn(null, { callbackUrl: "/" })}>
           SIGN IN
         </button>
