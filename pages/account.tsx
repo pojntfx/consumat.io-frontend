@@ -13,8 +13,6 @@ const Account = () => {
   const [session] = useAuthorization();
   if (!session) return null;
 
-  console.log("lollolol");
-
   return (
     <div className={styles.headerRow}>
       <MediaImage className="w-60 h-60" imageSrc={session.user.image} />
