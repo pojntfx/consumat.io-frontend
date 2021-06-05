@@ -1,0 +1,24 @@
+.headerRow {
+  @apply flex;
+  @apply flex-col;
+  @apply md:flex-row;
+  @apply items-center;
+  @apply md:items-start;
+  @apply justify-between;
+}
+
+.logoutButton {
+  @apply bg-red-500;
+  @apply text-white;
+  @apply font-bold;
+  @apply py-2;
+  @apply px-4;
+  @apply rounded;
+  @apply shadow;
+  @apply mt-4;
+  @apply md:mt-0;
+}
+
+.logoutButton:hover {
+  @apply bg-red-700;
+}
