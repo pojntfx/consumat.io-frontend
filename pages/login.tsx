@@ -5,12 +5,18 @@ const Login = () => {
 
   if (!session)
     return (
-      <button
-        className="px-4 py-2 rounded-r border-solid border-l-2 border-gray-200 duration-75"
-        onClick={() => signIn(null, { callbackUrl: "/" })}
-      >
-        Login
-      </button>
+      <div className="h-auto flex flex-col self-center items-center justify-center">
+        <h2 className="text-4xl md:text-6xl mt-72">CONSUMAT.IO</h2>
+        <p className="text-2xl md:text-3xl mt-2 font-light">
+          Track, plan and enjoy content.
+        </p>
+        <button
+          className="loginButton"
+          onClick={() => signIn(null, { callbackUrl: "/" })}
+        >
+          SIGN IN
+        </button>
+      </div>
     );
 
   return null;
