@@ -12,6 +12,7 @@ fragment TvFields on TV {
   overview
   popularity
   ratingAverage
+  ratingCount
   releaseInitial
   releaseFinal
   status

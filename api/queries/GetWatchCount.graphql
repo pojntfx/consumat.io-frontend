@@ -1,0 +1,3 @@
+query GetWatchCount($type: String) {
+  watchCount(type: $type)
+}

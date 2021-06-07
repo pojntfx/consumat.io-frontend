@@ -88,7 +88,7 @@ export function useGetPopular(
 
 export function useGetList(
   type: MediaType,
-  watchStatus: WatchStatus = WatchStatus.Any,
+  watchStatus: WatchStatus = null,
   favorite: boolean = false
 ) {
   return useGetListQuery({

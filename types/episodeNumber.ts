@@ -14,15 +14,11 @@ export function getLastWatchedEpisode(seasons: Season[]): EpisodeNumber {
       break;
     }
   }
-  if (seasonCount == 0) {
-    return {
-      season: 1,
-      episode: 0,
-    };
-  } else if (
-    seasonCount == seasons.length ||
-    seasons[seasonCount].numberOfWatchedEpisodes == null ||
-    seasons[seasonCount].numberOfWatchedEpisodes == 0
+  if (
+    seasonCount != 0 &&
+    (seasonCount == seasons.length ||
+      seasons[seasonCount].numberOfWatchedEpisodes == null ||
+      seasons[seasonCount].numberOfWatchedEpisodes == 0)
   ) {
     return {
       season: seasonCount,
@@ -30,8 +26,8 @@ export function getLastWatchedEpisode(seasons: Season[]): EpisodeNumber {
     };
   } else {
     return {
-      season: seasonCount,
-      episode: seasons[seasonCount].numberOfWatchedEpisodes,
+      season: seasonCount + 1,
+      episode: seasons[seasonCount].numberOfWatchedEpisodes || 0,
     };
   }
 }
@@ -49,7 +45,7 @@ export function getPrevEpisode(
   } else if (episodeNumber.season > 1) {
     return {
       season: episodeNumber.season - 1,
-      episode: seasons[episodeNumber.season - 1].numberOfEpisodes,
+      episode: seasons[episodeNumber.season - 2].numberOfEpisodes,
     };
   } else {
     return null;
