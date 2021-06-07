@@ -56,7 +56,7 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
 
   useEffect(() => {
     if (!loading && !error) {
-      console.log(data?.numberOfWatchedEpisodes);
+      //console.log(data?.numberOfWatchedEpisodes);
     }
   }, [data]);
 
