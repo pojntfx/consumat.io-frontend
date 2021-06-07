@@ -86,11 +86,16 @@ export function useGetPopular(
   });
 }
 
-export function useGetList(type: MediaType, watchStatus: WatchStatus) {
+export function useGetList(
+  type: MediaType,
+  watchStatus: WatchStatus = null,
+  favorite: boolean = false
+) {
   return useGetListQuery({
     variables: {
       type: type,
       watchStatus: watchStatus,
+      favorite: favorite,
     },
     fetchPolicy: "cache-and-network",
   });

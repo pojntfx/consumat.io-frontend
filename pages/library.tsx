@@ -5,12 +5,15 @@ import LibraryList from "../components/library/LibraryList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useGetList } from "../hooks/DataHooks";
-import { getWatchStatusFromString, WatchStatus } from "../types/status";
+import {
+  getValidWatchStatusForMediaType,
+  getWatchStatusFromString,
+  WatchStatus,
+} from "../types/status";
 import { useEffect, useState } from "react";
 import RadioSlider from "../components/helper/RadioSlider";
 import { getMediaTypeFromString, MediaType } from "../types/media";
 import ErrorMessage from "../components/helper/ErrorMessage";
-import SelectButton from "../components/helper/SelectButton";
 import { useRouter } from "next/router";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
@@ -51,16 +54,6 @@ const Library = () => {
 
   useEffect(() => {
     setMediaActive(getMediaTypeFromString(media + ""));
-    if (media == MediaType.Movie) {
-      setWatchStatusOptions([WatchStatus.Planning, WatchStatus.Finished]);
-    } else {
-      setWatchStatusOptions([
-        WatchStatus.Watching,
-        WatchStatus.Planning,
-        WatchStatus.Dropped,
-        WatchStatus.Finished,
-      ]);
-    }
     setWatchStatusActive(getWatchStatusFromString(watchStatus + ""));
   }, [media, watchStatus]);
 
@@ -69,16 +62,7 @@ const Library = () => {
     []
   );
   useEffect(() => {
-    if (mediaActive == MediaType.Movie) {
-      setWatchStatusOptions([WatchStatus.Planning, WatchStatus.Finished]);
-    } else {
-      setWatchStatusOptions([
-        WatchStatus.Watching,
-        WatchStatus.Planning,
-        WatchStatus.Dropped,
-        WatchStatus.Finished,
-      ]);
-    }
+    setWatchStatusOptions(getValidWatchStatusForMediaType(mediaActive));
   }, [mediaActive]);
 
   // get list
@@ -122,7 +106,9 @@ const Library = () => {
       {loading ? (
         <Spinner />
       ) : (
-        data != null && <LibraryList mediaList={data.list} />
+        data != null && (
+          <LibraryList mediaList={data.list} watchStatus={watchStatusActive} />
+        )
       )}
 
       {error && <ErrorMessage />}

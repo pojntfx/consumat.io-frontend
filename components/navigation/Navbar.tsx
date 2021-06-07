@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import NavList from "./NavList";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { useSession } from "next-auth/client";
 
 export enum NavigationLink {
   Home,
@@ -14,11 +15,14 @@ export enum NavigationLink {
 
 const Navbar = () => {
   const router = useRouter();
+  const [session] = useSession();
   const [windowWidth, setWindowWidth] = useState<number>(null);
   const [isMobile, setMobile] = useState(true);
   const [isMobileNavbarActive, setMobileNavbarActive] = useState(false);
   const [activeNavigationLink, setActiveNavigationLink] =
     useState<NavigationLink>(NavigationLink.Home);
+
+  if (!session) return <></>;
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);

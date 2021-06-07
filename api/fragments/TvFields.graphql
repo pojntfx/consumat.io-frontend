@@ -12,6 +12,7 @@ fragment TvFields on TV {
   overview
   popularity
   ratingAverage
+  ratingCount
   releaseInitial
   releaseFinal
   status
@@ -30,7 +31,6 @@ fragment TvFields on TV {
   numberOfSeasons
   tmdbUrl
   watchStatus
-  ratingUser
   favorite
   runtime
 }

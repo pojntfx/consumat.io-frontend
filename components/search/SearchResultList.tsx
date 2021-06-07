@@ -1,5 +1,5 @@
 import { Media } from "../../lib/api/consumat-io";
-import SearchResultItem from "./SearchResultItem";
+import MediaCardSearch from "../mediaCard/MediaCardSearch";
 
 type SearchResultListProps = {
   mediaList: Media[];
@@ -10,7 +10,7 @@ const SearchResultList = ({ mediaList }: SearchResultListProps) => {
     <div className="overscroll-none">
       <ul>
         {mediaList.map((media, i) => (
-          <SearchResultItem key={i} media={media} />
+          <MediaCardSearch key={i} media={media} className="mb-3" />
         ))}
       </ul>
     </div>

@@ -1,0 +1,30 @@
+#import "../fragments/MovieFields.graphql"
+#import "../fragments/TvFields.graphql"
+
+query GetByRating(
+  $type: String
+  $country: String
+  $tmdbRating: Float
+  $minVotes: Int
+  $releasedFrom: String
+  $page: Int
+) {
+  byRating(
+    type: $type
+    country: $country
+    tmdbRating: $tmdbRating
+    minVotes: $minVotes
+    releasedFrom: $releasedFrom
+    page: $page
+  ) {
+    totalPages
+    results {
+      ... on TV {
+        ...TvFields
+      }
+      ... on Movie {
+        ...MovieFields
+      }
+    }
+  }
+}
