@@ -42,9 +42,9 @@ const Search = () => {
           router.push({ query: { q: query } }, undefined, { shallow: true });
         }}
         autoComplete="off"
-        className="flex flex-col lg:flex-row mb-2"
+        className="flex flex-col mb-2"
       >
-        <div className="flex mb-2 w-full lg:w-1/2 lg:mr-2 lg:flex-grow">
+        <div className="flex mb-2 w-full">
           <input
             type="search"
             name="q"

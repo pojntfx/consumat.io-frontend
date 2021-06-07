@@ -1,5 +1,5 @@
-mutation SetWatchStatus($code: Int!, $media: String!, $watchStatus: String) {
-  watchStatus(code: $code, media: $media, watchStatus: $watchStatus) {
+mutation SetWatchStatus($code: Int!, $type: String!, $watchStatus: String) {
+  watchStatus(code: $code, type: $type, watchStatus: $watchStatus) {
     status
   }
 }

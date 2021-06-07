@@ -38,6 +38,8 @@ export function getValidWatchStatusForMediaType(
         WatchStatus.Dropped,
         WatchStatus.Finished,
       ];
+    default:
+      return [];
   }
 }
 
