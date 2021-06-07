@@ -29,5 +29,6 @@ fragment MovieFields on Movie {
   }
   tmdbUrl
   watchStatus
+  ratingUser
   favorite
 }
