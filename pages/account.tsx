@@ -4,6 +4,7 @@ import { useAuthorization } from "../hooks/AuthnHooks";
 import MediaImage from "../components/helper/MediaImage";
 import StatistikItem from "../components/helper/StatistikItem";
 import styles from "../styles/Account.module.css";
+import { Session } from "next-auth";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -13,9 +14,15 @@ const Account = () => {
   const [session] = useAuthorization();
   if (!session) return null;
 
+  function isSession(session: boolean | Session): session is Session {
+    return true;
+  }
+
   return (
     <div className={styles.headerRow}>
-      <MediaImage className="w-60 h-60" imageSrc={session.user.image} />
+      {isSession(session) && (
+        <MediaImage className="w-60 h-60" imageSrc={session.user.image} />
+      )}
       <div className="flex flex-col items-center md:items-start md:mr-auto md:ml-10">
         <div
           className={
@@ -24,7 +31,7 @@ const Account = () => {
         >
           <h3 className="cardHeading">Statistik</h3>
           <div className="flex flex-col">
-            <h3>{session.user.name}</h3>
+            {isSession(session) && <h3>{session.user.name}</h3>}
             <StatistikItem title={"Watched Episodes"} times={0} />
             <StatistikItem title={"Watched Seasons"} times={0} />
             <StatistikItem title={"Watched Movies"} times={0} />

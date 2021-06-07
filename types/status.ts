@@ -5,7 +5,6 @@ export enum WatchStatus {
   Planning = "Planning",
   Dropped = "Dropped",
   Finished = "Finished",
-  Any = "Any",
 }
 
 export enum StatusMovie {

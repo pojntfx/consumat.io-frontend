@@ -20,7 +20,7 @@ const FavoriteButton = ({ className, media }: FavoriteButtonProps) => {
     setFavorite({
       variables: {
         code: media.code,
-        media: getMediaTypeFromString(media.__typename),
+        type: getMediaTypeFromString(media.__typename),
         favorite: isActive,
         seasonNumber: null,
         episodeNumber: null,

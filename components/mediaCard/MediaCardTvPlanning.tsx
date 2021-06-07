@@ -21,7 +21,7 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
               updateWatchStatus({
                 variables: {
                   code: tv.code,
-                  media: MediaType.Tv,
+                  type: MediaType.Tv,
                   watchStatus: WatchStatus.Watching,
                 },
               })

@@ -12,6 +12,7 @@ fragment MovieFields on Movie {
   overview
   popularity
   ratingAverage
+  ratingCount
   releaseInitial
   runtime
   status
@@ -28,6 +29,5 @@ fragment MovieFields on Movie {
   }
   tmdbUrl
   watchStatus
-  ratingUser
   favorite
 }
