@@ -31,12 +31,8 @@ const DetailPage = ({ media }: DetailPageProps) => {
   const [selectedWatchStatus, setSelectedWatchStatus] =
     useState<WatchStatus | null>(getWatchStatusFromString(media.watchStatus));
 
-  // Commented out until backend makes rating nullable
-  // const [selectedRating, setSelectedRating] = useState<number | null>(
-  //   media.ratingUser
-  // );
-  const [selectedRating, setSelectedRating] = useState<number>(
-    media.ratingUser === null ? 1 : media.ratingUser
+  const [selectedRating, setSelectedRating] = useState<number | null>(
+    media.ratingUser
   );
 
   const [
@@ -52,7 +48,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
     updateWatchStatus({
       variables: {
         code: media.code,
-        media: getMediaTypeFromString(media.__typename),
+        type: getMediaTypeFromString(media.__typename),
         watchStatus: selectedWatchStatus,
       },
     });
@@ -62,10 +58,8 @@ const DetailPage = ({ media }: DetailPageProps) => {
     updateRating({
       variables: {
         code: media.code,
-        media: media.__typename,
-        rating: selectedRating,
-        seasonNumber: null,
-        episodeNumber: null,
+        type: media.__typename,
+        rating: selectedRating ? selectedRating : null,
       },
     });
   }, [selectedRating]);
@@ -106,7 +100,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
                 ...getValidWatchStatusForMediaType(mediaType),
               ]}
               value={
-                selectedWatchStatus !== null
+                selectedWatchStatus != null
                   ? selectedWatchStatus
                   : "Watch Status"
               }
@@ -121,8 +115,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
             <SelectButton
               name="rating"
               options={[
-                // Commented out for the time being because rating is not nullable
-                // "Rating",
+                "Rating",
                 "1",
                 "2",
                 "3",
@@ -134,12 +127,12 @@ const DetailPage = ({ media }: DetailPageProps) => {
                 "9",
                 "10",
               ]}
-              value={
-                media.ratingUser !== null ? selectedRating.toString() : "1"
-              }
-              onChange={(event) =>
-                setSelectedRating(parseFloat(event.target.value))
-              }
+              value={selectedRating ? selectedRating.toString() : "Rating"}
+              onChange={(event) => {
+                event.target.value == "Rating"
+                  ? setSelectedRating(null)
+                  : setSelectedRating(parseInt(event.target.value));
+              }}
               className={`${loadingUpdateRating && "animate-pulse"}`}
             />
 

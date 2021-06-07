@@ -1,0 +1,3 @@
+query GetWatchTime($type: String) {
+  watchTime(type: $type)
+}

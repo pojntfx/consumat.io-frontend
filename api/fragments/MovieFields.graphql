@@ -12,6 +12,7 @@ fragment MovieFields on Movie {
   overview
   popularity
   ratingAverage
+  ratingCount
   releaseInitial
   runtime
   status
