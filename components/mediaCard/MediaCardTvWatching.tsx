@@ -35,7 +35,6 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
 
   useEffect(() => {
     if (!seasonsLoading && !seasonsError) {
-      console.log(seasonsData.tvSeasons);
       setLastWatchedEpisode(getLastWatchedEpisode(seasonsData.tvSeasons));
       setWatchedEpisodeCount(getWatchedEpisodeCount(seasonsData.tvSeasons));
     }
@@ -44,9 +43,6 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
   useEffect(() => {
     setPrevEpisode(getPrevEpisode(seasonsData?.tvSeasons, lastWatchedEpisode));
     setNextEpisode(getNextEpisode(seasonsData?.tvSeasons, lastWatchedEpisode));
-    if (lastWatchedEpisode != null) {
-      update();
-    }
   }, [lastWatchedEpisode]);
 
   const {
@@ -58,16 +54,6 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
   const [updateNumberOfWatchedEpisodes, { data, loading, error }] =
     useSetNumberOfWatchedEpisodes();
 
-  function update() {
-    updateNumberOfWatchedEpisodes({
-      variables: {
-        code: tv.code,
-        seasonNumber: lastWatchedEpisode.season,
-        numberOfWatchedEpisodes: lastWatchedEpisode.episode,
-      },
-    });
-  }
-
   useEffect(() => {
     if (!loading && !error) {
       console.log(data?.numberOfWatchedEpisodes);
@@ -78,25 +64,36 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
     <MediaCardWrapper media={tv}>
       <div className="flex flex-col">
         <div className="flex flex-col">
-          <div className="flex flex-row">
-            <div className="font-medium">
-              S
-              {nextEpisode?.season.toLocaleString("en", {
-                minimumIntegerDigits: 2,
-              })}
+          {nextEpisode != null ? (
+            <div className="flex flex-row">
+              <div className="font-medium">
+                S
+                {nextEpisode.season.toLocaleString("en", {
+                  minimumIntegerDigits: 2,
+                })}
+              </div>
+              <div className="">︱</div>
+              <div className="font-medium">
+                E
+                {nextEpisode.episode.toLocaleString("en", {
+                  minimumIntegerDigits: 2,
+                })}
+              </div>
+              <div className="mx-1">•</div>
+              {episodeData != null && (
+                <div className="font-medium truncate">
+                  {episodeData.episode.title}
+                </div>
+              )}
             </div>
-            <div className="">︱</div>
-            <div className="font-medium">
-              E
-              {nextEpisode?.episode.toLocaleString("en", {
-                minimumIntegerDigits: 2,
-              })}
+          ) : (
+            <div className="flex flex-row">
+              <div className="font-medium truncate italic text-gray-500">
+                Everything watched
+              </div>
             </div>
-            <div className="mx-1">•</div>
-            <div className="font-medium truncate">
-              {episodeData?.episode.title}
-            </div>
-          </div>
+          )}
+
           <div className="flex flex-row -mb-1">
             <Progressbar
               progress={watchedEpisodeCount}
@@ -111,8 +108,22 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
             <button
               onClick={() => {
                 if (prevEpisode != null) {
+                  updateNumberOfWatchedEpisodes({
+                    variables: {
+                      code: tv.code,
+                      seasonNumber: lastWatchedEpisode.season,
+                      numberOfWatchedEpisodes: lastWatchedEpisode.episode - 1,
+                    },
+                  });
                   setLastWatchedEpisode(prevEpisode);
                 } else {
+                  updateNumberOfWatchedEpisodes({
+                    variables: {
+                      code: tv.code,
+                      seasonNumber: 1,
+                      numberOfWatchedEpisodes: 0,
+                    },
+                  });
                   setLastWatchedEpisode({ season: 1, episode: 0 });
                 }
                 if (watchedEpisodeCount > 0) {
@@ -126,6 +137,13 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
             <button
               onClick={() => {
                 if (nextEpisode != null) {
+                  updateNumberOfWatchedEpisodes({
+                    variables: {
+                      code: tv.code,
+                      seasonNumber: nextEpisode.season,
+                      numberOfWatchedEpisodes: nextEpisode.episode,
+                    },
+                  });
                   setLastWatchedEpisode(nextEpisode);
                   setWatchedEpisodeCount(watchedEpisodeCount + 1);
                 }
