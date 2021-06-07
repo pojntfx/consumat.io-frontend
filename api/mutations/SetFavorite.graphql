@@ -1,13 +1,13 @@
 mutation SetFavorite(
   $code: Int!
-  $media: String!
+  $type: String!
   $favorite: Boolean!
   $seasonNumber: Int
   $episodeNumber: Int
 ) {
   favorite(
     code: $code
-    media: $media
+    type: $type
     favorite: $favorite
     seasonNumber: $seasonNumber
     episodeNumber: $episodeNumber
