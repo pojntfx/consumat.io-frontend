@@ -52,7 +52,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
     updateWatchStatus({
       variables: {
         code: media.code,
-        media: getMediaTypeFromString(media.__typename),
+        type: getMediaTypeFromString(media.__typename),
         watchStatus: selectedWatchStatus,
       },
     });
@@ -62,10 +62,8 @@ const DetailPage = ({ media }: DetailPageProps) => {
     updateRating({
       variables: {
         code: media.code,
-        media: media.__typename,
+        type: media.__typename,
         rating: selectedRating,
-        seasonNumber: null,
-        episodeNumber: null,
       },
     });
   }, [selectedRating]);
@@ -106,7 +104,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
                 ...getValidWatchStatusForMediaType(mediaType),
               ]}
               value={
-                selectedWatchStatus !== null
+                selectedWatchStatus != null
                   ? selectedWatchStatus
                   : "Watch Status"
               }
@@ -134,9 +132,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
                 "9",
                 "10",
               ]}
-              value={
-                media.ratingUser !== null ? selectedRating.toString() : "1"
-              }
+              value={media.ratingUser != null ? selectedRating.toString() : "1"}
               onChange={(event) =>
                 setSelectedRating(parseFloat(event.target.value))
               }

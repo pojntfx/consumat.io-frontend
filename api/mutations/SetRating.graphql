@@ -1,17 +1,5 @@
-mutation SetRating(
-  $code: Int!
-  $media: String!
-  $rating: Float!
-  $seasonNumber: Int
-  $episodeNumber: Int
-) {
-  rating(
-    code: $code
-    media: $media
-    rating: $rating
-    seasonNumber: $seasonNumber
-    episodeNumber: $episodeNumber
-  ) {
+mutation SetRating($code: Int!, $type: String!, $rating: Int) {
+  rating(code: $code, type: $type, rating: $rating) {
     status
   }
 }
