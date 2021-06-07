@@ -29,9 +29,10 @@ const CastList = ({ title, cast, className }: CastListProps) => {
                     )}
                   />
                 </div>
-                <p className="p-1 text-sm font-semibold truncate">
+                <p className="px-1 pt-1 text-sm font-semibold truncate">
                   {member.name}
                 </p>
+                <p className="px-1 pb-1 text-xs truncate">{member.role}</p>
               </div>
             );
           })}
