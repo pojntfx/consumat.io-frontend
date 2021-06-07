@@ -44,6 +44,9 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
   useEffect(() => {
     setPrevEpisode(getPrevEpisode(seasonsData?.tvSeasons, lastWatchedEpisode));
     setNextEpisode(getNextEpisode(seasonsData?.tvSeasons, lastWatchedEpisode));
+    if (lastWatchedEpisode != null) {
+      update();
+    }
   }, [lastWatchedEpisode]);
 
   const {
@@ -109,10 +112,8 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
               onClick={() => {
                 if (prevEpisode != null) {
                   setLastWatchedEpisode(prevEpisode);
-                  update();
                 } else {
                   setLastWatchedEpisode({ season: 1, episode: 0 });
-                  update();
                 }
                 if (watchedEpisodeCount > 0) {
                   setWatchedEpisodeCount(watchedEpisodeCount - 1);
@@ -127,7 +128,6 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
                 if (nextEpisode != null) {
                   setLastWatchedEpisode(nextEpisode);
                   setWatchedEpisodeCount(watchedEpisodeCount + 1);
-                  update();
                 }
               }}
               className="button text-sm w-max py-1.5 pl-1.5 pr-3 flex flex-row truncate"
