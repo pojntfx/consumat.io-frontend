@@ -1,4 +1,5 @@
 fragment CastFields on Cast {
+  code
   name
   role
   imagePath
