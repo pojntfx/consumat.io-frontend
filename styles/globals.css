@@ -179,19 +179,26 @@ select:focus {
   @apply relative;
 }
 @media (hover: hover) and (pointer: fine) {
-  .button:hover {
+  .button:hover:enabled {
     @apply ring-2;
   }
 }
-.button:active {
+.button:active:enabled {
   @apply ring-1;
 }
-.button:active::after {
+.button:active:enabled:after {
   content: "";
   @apply rounded;
   @apply bg-black bg-opacity-10 dark:bg-white dark:bg-opacity-10;
   @apply absolute right-0 top-0;
   @apply h-full w-full;
+}
+.button:disabled {
+  @apply cursor-default;
+  @apply ring-gray-500;
+  @apply text-gray-500;
+  @apply bg-gray-50;
+  @apply dark:bg-gray-700;
 }
 
 /* radioSlider */
