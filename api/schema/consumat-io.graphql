@@ -12,6 +12,7 @@ type Query {
     releasedFrom: String
     page: Int
   ): MediaPage
+  discover(type: String, person: Int, similarTo: Int, page: Int): MediaPage
   list(type: String, watchStatus: String, favorite: Boolean): [Media]
   tvSeasons(code: Int): [Season]
   seasonEpisodes(code: Int, seasonNumber: Int): [Episode]
