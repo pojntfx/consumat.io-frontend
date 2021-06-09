@@ -1,0 +1,5 @@
+mutation SetCountry($country: String!) {
+  country(country: $country) {
+    status
+  }
+}

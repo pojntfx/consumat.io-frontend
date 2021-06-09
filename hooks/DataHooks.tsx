@@ -12,27 +12,28 @@ import {
   useSetRatingMutation,
   useSetNumberOfWatchedEpisodesMutation,
   useSetFavoriteMutation,
+  useSetCountryMutation,
+  useSetLanguageMutation,
+  useGetUserQuery,
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
 
 // Queries
 
-export function useGetMovie(code: number, country: string = "US") {
+export function useGetMovie(code: number) {
   return useGetMovieQuery({
     variables: {
       code: code,
-      country: country,
     },
     fetchPolicy: "cache-and-network",
   });
 }
 
-export function useGetTv(code: number, country: string = "US") {
+export function useGetTv(code: number) {
   return useGetTvQuery({
     variables: {
       code: code,
-      country: country,
     },
     fetchPolicy: "cache-and-network",
   });
@@ -72,15 +73,10 @@ export function useGetSearch(keyword: string | string[], page: number) {
   });
 }
 
-export function useGetPopular(
-  type: MediaType,
-  page: number,
-  country: string = "US"
-) {
+export function useGetPopular(type: MediaType, page: number) {
   return useGetPopularQuery({
     variables: {
       type: type,
-      country: country,
       page: page,
     },
   });
@@ -120,6 +116,10 @@ export function useGetSeasonEpisodes(code: number, seasonNumber: number) {
   });
 }
 
+export function useGetUser() {
+  return useGetUserQuery({});
+}
+
 // Mutations
 
 export function useSetRating() {
@@ -136,4 +136,12 @@ export function useSetNumberOfWatchedEpisodes() {
 
 export function useSetFavorite() {
   return useSetFavoriteMutation();
+}
+
+export function useSetCountry() {
+  return useSetCountryMutation();
+}
+
+export function useSetLanguage() {
+  return useSetLanguageMutation();
 }

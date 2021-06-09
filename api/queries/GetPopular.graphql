@@ -1,8 +1,8 @@
 #import "../fragments/MovieFields.graphql"
 #import "../fragments/TvFields.graphql"
 
-query GetPopular($type: String, $country: String, $page: Int) {
-  popular(type: $type, country: $country, page: $page) {
+query GetPopular($type: String, $page: Int) {
+  popular(type: $type, page: $page) {
     totalPages
     results {
       ... on TV {
