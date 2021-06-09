@@ -1,0 +1,5 @@
+mutation SetLanguage($language: String!) {
+  language(language: $language) {
+    status
+  }
+}

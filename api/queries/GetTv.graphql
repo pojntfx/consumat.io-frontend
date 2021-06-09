@@ -1,7 +1,7 @@
 #import "../fragments/TvFields.graphql"
 
-query GetTv($code: Int, $country: String) {
-  tv(code: $code, country: $country) {
+query GetTv($code: Int) {
+  tv(code: $code) {
     ...TvFields
   }
 }
