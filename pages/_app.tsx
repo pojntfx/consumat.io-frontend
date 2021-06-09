@@ -6,6 +6,9 @@ import { Provider } from "next-auth/client";
 import "../styles/globals.css";
 import React, { useEffect, useState } from "react";
 import { theme } from "../types/theme";
+import { useUpdate } from "../hooks/UpdateHooks";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "../components/helper/Toast";
 
 export const ThemeContext = React.createContext({
   currentTheme: theme.light,
@@ -15,6 +18,9 @@ export const ThemeContext = React.createContext({
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [currentTheme, setCurrentTheme] = useState<theme>(theme.light);
   const themeContextValue = { currentTheme, setCurrentTheme };
+
+  // Handle PWA updates
+  useUpdate();
 
   useEffect(() => {
     if (currentTheme === theme.dark) {
@@ -36,6 +42,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <Layout>
             <Component {...pageProps} />
           </Layout>
+          <ToastContainer />
         </ThemeContext.Provider>
       </ApolloProvider>
     </Provider>
