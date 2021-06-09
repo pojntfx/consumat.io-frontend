@@ -14,15 +14,15 @@ export enum NavigationLink {
 }
 
 const Navbar = () => {
-  const router = useRouter();
   const [session] = useSession();
+  if (!session) return <></>;
+
+  const router = useRouter();
   const [windowWidth, setWindowWidth] = useState<number>(null);
   const [isMobile, setMobile] = useState(true);
   const [isMobileNavbarActive, setMobileNavbarActive] = useState(false);
   const [activeNavigationLink, setActiveNavigationLink] =
     useState<NavigationLink>(NavigationLink.Home);
-
-  if (!session) return <></>;
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
