@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { getSession, signOut } from "next-auth/client";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import MediaImage from "../components/helper/MediaImage";
-import StatistikItem from "../components/helper/StatistikItem";
+import StatistikItem from "../components/helper/StatisticItem";
 import styles from "../styles/Account.module.css";
 import { Session } from "next-auth";
 
@@ -29,7 +29,7 @@ const Account = () => {
             "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
           }
         >
-          <h3 className="cardHeading">Statistik</h3>
+          <h3 className="cardHeading">Statistics</h3>
           <div className="flex flex-col">
             {isSession(session) && <h3>{session.user.name}</h3>}
             <StatistikItem title={"Watched Episodes"} times={0} />
