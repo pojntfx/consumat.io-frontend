@@ -110,19 +110,25 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
                   JSON.stringify({ season: 1, episode: 0 })
               }
               onClick={() => {
-                updateNumberOfWatchedEpisodes({
-                  variables: {
-                    code: tv.code,
-                    seasonNumber: lastWatchedEpisode.season,
-                    numberOfWatchedEpisodes: lastWatchedEpisode.episode - 1,
-                  },
-                });
-                if (prevEpisode != null) {
-                  setLastWatchedEpisode(prevEpisode);
-                } else {
-                  setLastWatchedEpisode({ season: 1, episode: 0 });
+                if (
+                  lastWatchedEpisode != null &&
+                  JSON.stringify(lastWatchedEpisode) !==
+                    JSON.stringify({ season: 1, episode: 0 })
+                ) {
+                  updateNumberOfWatchedEpisodes({
+                    variables: {
+                      code: tv.code,
+                      seasonNumber: lastWatchedEpisode.season,
+                      numberOfWatchedEpisodes: lastWatchedEpisode.episode - 1,
+                    },
+                  });
+                  if (prevEpisode != null) {
+                    setLastWatchedEpisode(prevEpisode);
+                  } else {
+                    setLastWatchedEpisode({ season: 1, episode: 0 });
+                  }
+                  setWatchedEpisodeCount(watchedEpisodeCount - 1);
                 }
-                setWatchedEpisodeCount(watchedEpisodeCount - 1);
               }}
               className="button mr-3"
             >
@@ -131,15 +137,17 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
             <button
               disabled={nextEpisode == null}
               onClick={() => {
-                updateNumberOfWatchedEpisodes({
-                  variables: {
-                    code: tv.code,
-                    seasonNumber: nextEpisode.season,
-                    numberOfWatchedEpisodes: nextEpisode.episode,
-                  },
-                });
-                setLastWatchedEpisode(nextEpisode);
-                setWatchedEpisodeCount(watchedEpisodeCount + 1);
+                if (nextEpisode != null) {
+                  updateNumberOfWatchedEpisodes({
+                    variables: {
+                      code: tv.code,
+                      seasonNumber: nextEpisode.season,
+                      numberOfWatchedEpisodes: nextEpisode.episode,
+                    },
+                  });
+                  setLastWatchedEpisode(nextEpisode);
+                  setWatchedEpisodeCount(watchedEpisodeCount + 1);
+                }
               }}
               className="button text-sm w-max py-1.5 pl-1.5 pr-3 flex flex-row truncate"
             >
