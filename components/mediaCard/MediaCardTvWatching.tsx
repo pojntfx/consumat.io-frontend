@@ -80,16 +80,14 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
                 })}
               </div>
               <div className="mx-1">•</div>
-              {episodeData != null && (
-                <div className="font-medium truncate">
-                  {episodeData.episode.title}
-                </div>
-              )}
+              <div className="font-medium truncate">
+                {episodeData == null ? "..." : episodeData.episode.title}
+              </div>
             </div>
           ) : (
             <div className="flex flex-row">
               <div className="font-medium truncate italic text-gray-500">
-                Everything watched
+                {lastWatchedEpisode == null ? "..." : "Everything watched"}
               </div>
             </div>
           )}
@@ -106,8 +104,17 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
           </div>
           <div className="flex flex-row items-center py-2">
             <button
+              disabled={
+                lastWatchedEpisode == null ||
+                JSON.stringify(lastWatchedEpisode) ===
+                  JSON.stringify({ season: 1, episode: 0 })
+              }
               onClick={() => {
-                if (prevEpisode != null) {
+                if (
+                  lastWatchedEpisode != null &&
+                  JSON.stringify(lastWatchedEpisode) !==
+                    JSON.stringify({ season: 1, episode: 0 })
+                ) {
                   updateNumberOfWatchedEpisodes({
                     variables: {
                       code: tv.code,
@@ -115,18 +122,11 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
                       numberOfWatchedEpisodes: lastWatchedEpisode.episode - 1,
                     },
                   });
-                  setLastWatchedEpisode(prevEpisode);
-                } else {
-                  updateNumberOfWatchedEpisodes({
-                    variables: {
-                      code: tv.code,
-                      seasonNumber: 1,
-                      numberOfWatchedEpisodes: 0,
-                    },
-                  });
-                  setLastWatchedEpisode({ season: 1, episode: 0 });
-                }
-                if (watchedEpisodeCount > 0) {
+                  if (prevEpisode != null) {
+                    setLastWatchedEpisode(prevEpisode);
+                  } else {
+                    setLastWatchedEpisode({ season: 1, episode: 0 });
+                  }
                   setWatchedEpisodeCount(watchedEpisodeCount - 1);
                 }
               }}
@@ -135,6 +135,7 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
               <ReplyIcon className="h-5 w-5 m-1.5" />
             </button>
             <button
+              disabled={nextEpisode == null}
               onClick={() => {
                 if (nextEpisode != null) {
                   updateNumberOfWatchedEpisodes({
