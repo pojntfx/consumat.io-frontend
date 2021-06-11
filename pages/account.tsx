@@ -52,7 +52,6 @@ const Account = () => {
           <div className="flex flex-col">
             {isSession(session) && <h3>{session.user.name}</h3>}
             <StatistikItem title={"Watched Episodes"} times={0} />
-            <StatistikItem title={"Watched Seasons"} times={0} />
             <StatistikItem title={"Watched Movies"} times={0} />
             <StatistikItem
               title={"Total Watchtime"}
@@ -81,7 +80,7 @@ const Account = () => {
           name="language"
           value={data?.user.language}
           options={[data?.user.language]}
-          onChange={(text) => console.log(text)}
+          onChange={({ target }) => console.log(target.value)}
         />
       </div>
     </div>
