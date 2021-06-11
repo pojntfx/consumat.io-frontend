@@ -13,13 +13,17 @@ import styles from "../styles/Account.module.css";
 import { Session } from "next-auth";
 import { MediaType } from "../types/media";
 import SelectButton from "../components/helper/SelectButton";
+import { Language } from "../types/language";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
 });
 
 const Account = () => {
-  const watchtime = useGetWatchTime(MediaType.Movie);
+  const { data: watchTimeData, loading: watchTimeLoading } = useGetWatchTime(
+    MediaType.Movie
+  );
+
   const [session] = useAuthorization();
 
   if (!session) return null;
@@ -27,7 +31,6 @@ const Account = () => {
   function isSession(session: boolean | Session): session is Session {
     return true;
   }
-
   const [updateCountry, { data: d, loading: l, error: e }] = useSetCountry();
   const [updateLanguage, { data: de, loading: le, error: ee }] =
     useSetLanguage();
@@ -53,7 +56,7 @@ const Account = () => {
             <StatistikItem title={"Watched Movies"} times={0} />
             <StatistikItem
               title={"Total Watchtime"}
-              times={watchtime.data.watchTime + " h"}
+              times={watchTimeLoading ? "0 h" : watchTimeData.watchTime + " h"}
             />
             <StatistikItem title={"Average Rating"} times={0 + "," + 0} />
           </div>
@@ -78,6 +81,7 @@ const Account = () => {
           name="language"
           value={data?.user.language}
           options={[data?.user.language]}
+          onChange={(text) => console.log(text)}
         />
       </div>
     </div>
