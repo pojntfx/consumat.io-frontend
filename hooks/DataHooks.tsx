@@ -16,6 +16,7 @@ import {
   useSetLanguageMutation,
   useGetUserQuery,
   useGetWatchTimeQuery,
+  useGetWatchCountQuery,
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
@@ -123,6 +124,15 @@ export function useGetUser() {
 
 export function useGetWatchTime(type: MediaType) {
   return useGetWatchTimeQuery({
+    variables: {
+      type: type,
+    },
+    fetchPolicy: "cache-and-network",
+  });
+}
+
+export function useGetWatchCount(type: MediaType) {
+  return useGetWatchCountQuery({
     variables: {
       type: type,
     },

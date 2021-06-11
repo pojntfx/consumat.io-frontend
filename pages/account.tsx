@@ -53,7 +53,7 @@ const Account = () => {
             <StatistikItem title={"Watched Movies"} times={0} />
             <StatistikItem
               title={"Total Watchtime"}
-              times={watchtime.data + " h"}
+              times={watchtime.data.watchTime + " h"}
             />
             <StatistikItem title={"Average Rating"} times={0 + "," + 0} />
           </div>
