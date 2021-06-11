@@ -1,12 +1,18 @@
 import { GetServerSideProps } from "next";
 import { getSession, signOut } from "next-auth/client";
 import { useAuthorization } from "../hooks/AuthnHooks";
-import { useGetWatchTime } from "../hooks/DataHooks";
+import {
+  useGetUser,
+  useGetWatchTime,
+  useSetCountry,
+  useSetLanguage,
+} from "../hooks/DataHooks";
 import MediaImage from "../components/helper/MediaImage";
 import StatistikItem from "../components/helper/StatisticItem";
 import styles from "../styles/Account.module.css";
 import { Session } from "next-auth";
 import { MediaType } from "../types/media";
+import SelectButton from "../components/helper/SelectButton";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -21,6 +27,12 @@ const Account = () => {
   function isSession(session: boolean | Session): session is Session {
     return true;
   }
+
+  const [updateCountry, { data: d, loading: l, error: e }] = useSetCountry();
+  const [updateLanguage, { data: de, loading: le, error: ee }] =
+    useSetLanguage();
+
+  const { data, loading, error } = useGetUser();
 
   return (
     <div className={styles.headerRow}>
@@ -46,10 +58,28 @@ const Account = () => {
             <StatistikItem title={"Average Rating"} times={0 + "," + 0} />
           </div>
         </div>
+        <button className={styles.logoutButton} onClick={() => signOut()}>
+          Logout
+        </button>
       </div>
-      <button className={styles.logoutButton} onClick={() => signOut()}>
-        Logout
-      </button>
+      <div className="flex flex-row mt-4">
+        <label htmlFor="country" className="mr-1">
+          Country:{" "}
+        </label>
+        <SelectButton
+          name="country"
+          value={data?.user.country}
+          options={[data?.user.country]}
+        />
+        <label htmlFor="language" className="mr-1 ml-2">
+          Language:{" "}
+        </label>
+        <SelectButton
+          name="language"
+          value={data?.user.language}
+          options={[data?.user.language]}
+        />
+      </div>
     </div>
   );
 };
