@@ -15,6 +15,7 @@ import {
   useSetCountryMutation,
   useSetLanguageMutation,
   useGetUserQuery,
+  useGetWatchTimeQuery,
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
@@ -118,6 +119,15 @@ export function useGetSeasonEpisodes(code: number, seasonNumber: number) {
 
 export function useGetUser() {
   return useGetUserQuery({});
+}
+
+export function useGetWatchTime(type: MediaType) {
+  return useGetWatchTimeQuery({
+    variables: {
+      type: type,
+    },
+    fetchPolicy: "cache-and-network",
+  });
 }
 
 // Mutations

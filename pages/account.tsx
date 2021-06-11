@@ -1,17 +1,21 @@
 import { GetServerSideProps } from "next";
 import { getSession, signOut } from "next-auth/client";
 import { useAuthorization } from "../hooks/AuthnHooks";
+import { useGetWatchTime } from "../hooks/DataHooks";
 import MediaImage from "../components/helper/MediaImage";
 import StatistikItem from "../components/helper/StatisticItem";
 import styles from "../styles/Account.module.css";
 import { Session } from "next-auth";
+import { MediaType } from "../types/media";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
 });
 
 const Account = () => {
+  const watchtime = useGetWatchTime(MediaType.Movie);
   const [session] = useAuthorization();
+
   if (!session) return null;
 
   function isSession(session: boolean | Session): session is Session {
@@ -35,7 +39,10 @@ const Account = () => {
             <StatistikItem title={"Watched Episodes"} times={0} />
             <StatistikItem title={"Watched Seasons"} times={0} />
             <StatistikItem title={"Watched Movies"} times={0} />
-            <StatistikItem title={"Total Watchtime"} times={0 + " h"} />
+            <StatistikItem
+              title={"Total Watchtime"}
+              times={watchtime.data + " h"}
+            />
             <StatistikItem title={"Average Rating"} times={0 + "," + 0} />
           </div>
         </div>
