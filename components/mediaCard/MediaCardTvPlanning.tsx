@@ -1,3 +1,8 @@
+import {
+  ClipboardCopyIcon,
+  EyeIcon,
+  EyeOffIcon,
+} from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
 import { useGetTvSeasons, useSetWatchStatus } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
@@ -8,7 +13,8 @@ import {
   getWatchedEpisodeCount,
 } from "../../types/episodeNumber";
 import { MediaType } from "../../types/media";
-import { WatchStatus } from "../../types/status";
+import { StatusTv, WatchStatus } from "../../types/status";
+import LoadingDots from "../helper/LoadingDots";
 import ProviderList from "../helper/ProviderList";
 import MediaCardWrapper from "./MediaCardWrapper";
 
@@ -41,31 +47,41 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
     <MediaCardWrapper media={tv}>
       <div className="flex flex-col">
         <div className="h-10">
-          {watchedEpisodeCount < tv.numberOfEpisodes ? (
+          {watchedEpisodeCount <= tv.numberOfEpisodes ? (
             lastWatchedEpisode != null ? (
               <div className="flex flex-row">
-                <div className="font-medium">
-                  S
-                  {getNextEpisode(
-                    seasonsData.tvSeasons,
-                    lastWatchedEpisode
-                  ).season.toLocaleString("en", {
-                    minimumIntegerDigits: 2,
-                  })}
-                </div>
-                <div className="-mx-0.5 font-medium">︱</div>
-                <div className="font-medium">
-                  E
-                  {getNextEpisode(
-                    seasonsData.tvSeasons,
-                    lastWatchedEpisode
-                  ).episode.toLocaleString("en", {
-                    minimumIntegerDigits: 2,
-                  })}
-                </div>
+                {tv.status == StatusTv.ReturningSeries ? (
+                  <>
+                    <EyeIcon className="h-6 w-5 mr-1 text-gray-500" />
+                    <div className="font-medium truncate italic text-gray-500">
+                      returning
+                    </div>
+                  </>
+                ) : tv.status == StatusTv.Canceled ? (
+                  <>
+                    <EyeOffIcon className="h-6 w-5 mr-1 text-gray-500" />
+                    <div className="font-medium truncate italic text-gray-500">
+                      canceled
+                    </div>
+                  </>
+                ) : tv.status == StatusTv.Ended ? (
+                  <>
+                    <EyeOffIcon className="h-6 w-5 mr-1 text-gray-500" />
+                    <div className="font-medium truncate italic text-gray-500">
+                      ended
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <EyeIcon className="h-6 w-5 mr-1 text-gray-500" />
+                    <div className="font-medium truncate italic text-gray-500">
+                      upcoming
+                    </div>
+                  </>
+                )}
               </div>
             ) : (
-              <div>...</div>
+              <LoadingDots />
             )
           ) : (
             <div></div>
@@ -83,9 +99,10 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
                 },
               })
             }
-            className="button text-sm py-1.5 px-3"
+            className="button text-sm w-max py-1.5 pl-1.5 pr-3 flex flex-row truncat"
           >
-            Add to Watch
+            <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5" />
+            <div>Move to Watching</div>
           </button>
         </div>
       </div>
