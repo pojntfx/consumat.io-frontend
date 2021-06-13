@@ -1,6 +1,11 @@
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { ChangeEvent } from "react";
 
+export type SelectOption = {
+  key: string;
+  value: string;
+};
+
 type SelectButtonProps = {
   name: string;
   value: string;

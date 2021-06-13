@@ -67,6 +67,12 @@ const Library = () => {
 
   // get list
   const { data, loading, error } = useGetList(mediaActive, watchStatusActive);
+  useEffect(() => {
+    if (data != null) {
+      console.log(mediaActive + " " + watchStatusActive);
+      console.log(data.list);
+    }
+  }, [data]);
 
   return (
     <div className="px-4">
