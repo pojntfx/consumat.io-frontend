@@ -71,10 +71,10 @@ const DetailPage = ({ media }: DetailPageProps) => {
     if (isTv(media)) {
       mediaInfo.push({
         description: "Airing Time",
-        value: `${media.releaseInitial.replaceAll(
+        value: `${media.releaseInitial?.replaceAll(
           "-",
           "."
-        )} - ${media.releaseFinal.replaceAll("-", ".")}`,
+        )} - ${media.releaseFinal?.replaceAll("-", ".")}`,
       });
     } else if (isMovie(media)) {
       mediaInfo.push({
@@ -86,6 +86,26 @@ const DetailPage = ({ media }: DetailPageProps) => {
     return mediaInfo;
   };
 
+  const statusOptions: string[] = [
+    "Watch Status",
+    ...getValidWatchStatusForMediaType(mediaType),
+  ];
+  //.map((option) => ({ key: option, value: option }));
+  const ratingOptions: string[] = [
+    "Rating",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+  ];
+  //.map((option) => ({ key: option, value: option }));
+
   return (
     <div className="flex flex-col">
       <DetailHeader media={media} />
@@ -95,10 +115,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
           <div className="flex flex-col justify-evenly w-40 mr-2 flex-shrink-0">
             <SelectButton
               name="watchStatus"
-              options={[
-                "Watch Status",
-                ...getValidWatchStatusForMediaType(mediaType),
-              ]}
+              options={statusOptions}
               value={
                 selectedWatchStatus != null
                   ? selectedWatchStatus
@@ -114,19 +131,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
 
             <SelectButton
               name="rating"
-              options={[
-                "Rating",
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10",
-              ]}
+              options={ratingOptions}
               value={selectedRating ? selectedRating.toString() : "Rating"}
               onChange={(event) => {
                 event.target.value == "Rating"
