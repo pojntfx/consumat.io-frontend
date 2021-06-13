@@ -49,5 +49,6 @@ export function useImage(
   imageSize: backdrop | logo | poster | profile | still,
   imagePath: string
 ): string {
+  if (imagePath == null || imagePath === "") return null;
   return baseUrl + imageSize + imagePath;
 }
