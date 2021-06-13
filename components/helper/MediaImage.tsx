@@ -1,5 +1,5 @@
 import { PhotographIcon } from "@heroicons/react/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type ImageProps = {
   imageSrc: string;
@@ -8,14 +8,21 @@ type ImageProps = {
 
 const MediaImage = ({ imageSrc, className }: ImageProps) => {
   const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+
+  useEffect(() => {
+    if (imageSrc == null) {
+      setIsEmpty(true);
+    }
+  }, [imageSrc]);
 
   return (
     <div className={className + " flex-shrink-0"}>
-      {!isError ? (
+      {!isError && !isEmpty ? (
         <img
           className="h-full w-full object-cover"
           src={imageSrc}
-          onError={() => {
+          onError={(event) => {
             setIsError(true);
           }}
         />
