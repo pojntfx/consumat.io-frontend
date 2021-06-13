@@ -1,6 +1,9 @@
 import { Media } from "../../lib/api/consumat-io";
 import { isMovieList, isTvList } from "../../types/media";
 import { WatchStatus } from "../../types/status";
+import MediaCardMovieDropped from "../mediaCard/MediaCardMovieDropped";
+import MediaCardMovieFinished from "../mediaCard/MediaCardMovieFinished";
+import MediaCardMoviePlanning from "../mediaCard/MediaCardMoviePlanning";
 import MediaCardTvDropped from "../mediaCard/MediaCardTvDropped";
 import MediaCardTvFinished from "../mediaCard/MediaCardTvFinished";
 import MediaCardTvPlanning from "../mediaCard/MediaCardTvPlanning";
@@ -24,7 +27,19 @@ const LibraryList = ({ mediaList, watchStatus }: LibraryListProps) => {
             ? mediaList.map((tv, i) => <MediaCardTvDropped key={i} tv={tv} />)
             : watchStatus == WatchStatus.Finished &&
               mediaList.map((tv, i) => <MediaCardTvFinished key={i} tv={tv} />)
-          : isMovieList(mediaList) && mediaList.map((movie, i) => <div></div>)}
+          : isMovieList(mediaList) &&
+            (watchStatus == WatchStatus.Planning
+              ? mediaList.map((movie, i) => (
+                  <MediaCardMoviePlanning key={i} movie={movie} />
+                ))
+              : watchStatus == WatchStatus.Dropped
+              ? mediaList.map((movie, i) => (
+                  <MediaCardMovieDropped key={i} movie={movie} />
+                ))
+              : watchStatus == WatchStatus.Finished &&
+                mediaList.map((movie, i) => (
+                  <MediaCardMovieFinished key={i} movie={movie} />
+                )))}
       </ul>
     </div>
   );
