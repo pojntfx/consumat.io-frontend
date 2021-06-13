@@ -1,12 +1,17 @@
 import React from "react";
 import { Tv } from "../../lib/api/consumat-io";
+import MediaCardWrapper from "./MediaCardWrapper";
 
 type MediaCardTvFinishedProps = {
   tv: Tv;
 };
 
 function MediaCardTvFinished({ tv }: MediaCardTvFinishedProps) {
-  return <div></div>;
+  return (
+    <MediaCardWrapper media={tv}>
+      <div></div>
+    </MediaCardWrapper>
+  );
 }
 
 export default MediaCardTvFinished;
