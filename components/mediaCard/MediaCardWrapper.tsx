@@ -35,7 +35,7 @@ function MediaCardWrapper({
           href={"/" + media.__typename.toLocaleLowerCase() + "/" + media.code}
         >
           <a>
-            <MediaImage imageSrc={image} className="w-20" />
+            <MediaImage imageSrc={image} className="h-full w-20" />
             {withMediaTypeTag && (
               <div
                 className={`absolute bottom-2 rounded-r font-medium text-xs px-1 py-0.5

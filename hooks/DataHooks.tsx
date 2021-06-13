@@ -45,6 +45,7 @@ export function useGetSeason(code: number, seasonNumber: number) {
       code: code,
       seasonNumber: seasonNumber,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
@@ -60,6 +61,7 @@ export function useGetEpisode(
       seasonNumber: seasonNumber,
       episodeNumber: episodeNumber,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
@@ -70,6 +72,7 @@ export function useGetSearch(keyword: string | string[], page: number) {
       keyword: "" + keyword,
       page: page,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
@@ -79,13 +82,14 @@ export function useGetPopular(type: MediaType, page: number) {
       type: type,
       page: page,
     },
+    fetchPolicy: "cache-and-network",
   });
 }
 
 export function useGetList(
   type: MediaType,
   watchStatus: WatchStatus = null,
-  favorite: boolean = false
+  favorite: boolean = null
 ) {
   return useGetListQuery({
     variables: {
@@ -117,7 +121,7 @@ export function useGetSeasonEpisodes(code: number, seasonNumber: number) {
 }
 
 export function useGetUser() {
-  return useGetUserQuery({});
+  return useGetUserQuery({ fetchPolicy: "cache-and-network" });
 }
 
 // Mutations
