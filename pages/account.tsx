@@ -14,28 +14,31 @@ import { Session } from "next-auth";
 import { MediaType } from "../types/media";
 import SelectButton from "../components/helper/SelectButton";
 import { Language } from "../types/language";
+import { Country } from "../types/country";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
 });
 
 const Account = () => {
-  const { data: watchTimeData, loading: watchTimeLoading } = useGetWatchTime(
-    MediaType.Movie
-  );
-
   const [session] = useAuthorization();
-
   if (!session) return null;
-
   function isSession(session: boolean | Session): session is Session {
     return true;
   }
   const [updateCountry, { data: d, loading: l, error: e }] = useSetCountry();
   const [updateLanguage, { data: de, loading: le, error: ee }] =
     useSetLanguage();
-
+  const { data: watchTimeData, loading: watchTimeLoading } = useGetWatchTime(
+    MediaType.Movie
+  );
   const { data, loading, error } = useGetUser();
+  const allCountries = Country.map((item) => {
+    return item.englishName;
+  });
+  const allLanguages = Language.map((item) => {
+    return item.englishName;
+  });
 
   return (
     <div className={styles.headerRow}>
@@ -71,7 +74,10 @@ const Account = () => {
         <SelectButton
           name="country"
           value={data?.user.country}
-          options={[data?.user.country]}
+          options={[data?.user.country, ...allCountries]}
+          onChange={({ target }) =>
+            updateCountry({ variables: { country: target.value } })
+          }
         />
         <label htmlFor="language" className="mr-1 ml-2">
           Language:{" "}
@@ -79,8 +85,10 @@ const Account = () => {
         <SelectButton
           name="language"
           value={data?.user.language}
-          options={[data?.user.language]}
-          onChange={({ target }) => console.log(target.value)}
+          options={[data?.user.language, ...allLanguages]}
+          onChange={({ target }) =>
+            updateLanguage({ variables: { language: target.value } })
+          }
         />
       </div>
     </div>
