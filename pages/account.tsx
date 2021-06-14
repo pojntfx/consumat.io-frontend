@@ -15,6 +15,7 @@ import { MediaType } from "../types/media";
 import SelectButton from "../components/helper/SelectButton";
 import { Language } from "../types/language";
 import { Country } from "../types/country";
+import { useState } from "react";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -37,8 +38,10 @@ const Account = () => {
     return item.englishName;
   });
   const allLanguages = Language.map((item) => {
-    return item.englishName;
+    return item.iso;
   });
+  const [language, setLanguage] = useState(data?.user.country);
+  const [country, setCountry] = useState(data?.user.language);
 
   return (
     <div className={styles.headerRow}>
@@ -77,11 +80,12 @@ const Account = () => {
             </label>
             <SelectButton
               name="country"
-              value={data?.user.country}
+              value={country}
               options={[data?.user.country, ...allCountries]}
-              onChange={({ target }) =>
-                updateCountry({ variables: { country: target.value } })
-              }
+              onChange={({ target }) => {
+                setCountry(target.value);
+                updateCountry({ variables: { country: target.value } });
+              }}
             />
             <label htmlFor="language" className="mr-1 ml-2">
               Language:{" "}
@@ -89,11 +93,12 @@ const Account = () => {
             <SelectButton
               className="mb-2"
               name="language"
-              value={data?.user.language}
+              value={language}
               options={[data?.user.language, ...allLanguages]}
-              onChange={({ target }) =>
-                updateLanguage({ variables: { language: target.value } })
-              }
+              onChange={({ target }) => {
+                setLanguage(target.value);
+                updateLanguage({ variables: { language: target.value } });
+              }}
             />
             <button className={styles.logoutButton} onClick={() => signOut()}>
               Logout
