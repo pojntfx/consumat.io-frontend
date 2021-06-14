@@ -16,7 +16,7 @@ const GeneralInfoList = ({ infos, className }: GeneralInfoListProps) => {
         className
       }
     >
-      <h3 className="cardHeading">Infos</h3>
+      <h3 className="cardHeading">INFOS</h3>
       <div className="flex flex-row">
         {infos.map((info, index) => {
           return (

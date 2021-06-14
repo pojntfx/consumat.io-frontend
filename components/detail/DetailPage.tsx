@@ -19,6 +19,7 @@ import SelectButton from "../helper/SelectButton";
 import { useSetRating, useSetWatchStatus } from "../../hooks/DataHooks";
 import GeneralInfoList from "./GeneralInfoList";
 import { MediaInfo } from "./GeneralInfoList";
+import ProviderList from "../helper/ProviderList";
 
 type DetailPageProps = {
   media: Media;
@@ -67,20 +68,35 @@ const DetailPage = ({ media }: DetailPageProps) => {
   const getInfosForMediaType = (mediaType: MediaType): MediaInfo[] => {
     const mediaInfo: MediaInfo[] = [];
     mediaInfo.push({ description: "Status", value: media.status });
-    mediaInfo.push({ description: "Runtime", value: `${media.runtime}min` });
+
+    // Only add runtime info when available
+    if (media.runtime > 0) {
+      mediaInfo.push({
+        description: "Runtime",
+        value: `${media.runtime}min`,
+      });
+    }
+
     if (isTv(media)) {
-      mediaInfo.push({
-        description: "Airing Time",
-        value: `${media.releaseInitial?.replaceAll(
-          "-",
-          "."
-        )} - ${media.releaseFinal?.replaceAll("-", ".")}`,
-      });
+      // Add TV-specific infos
+      // Only add release info when available
+      if (media.releaseInitial) {
+        mediaInfo.push({
+          description: "Airing Time",
+          value: `${media.releaseInitial?.replaceAll("-", ".")} - ${
+            media.releaseFinal ? media.releaseFinal.replaceAll("-", ".") : "?"
+          }`,
+        });
+      }
     } else if (isMovie(media)) {
-      mediaInfo.push({
-        description: "Release",
-        value: media.releaseInitial.replaceAll("-", "."),
-      });
+      // Add movie-specific infos
+      // Only add release info when available
+      if (media.releaseInitial) {
+        mediaInfo.push({
+          description: "Release",
+          value: media.releaseInitial.replaceAll("-", "."),
+        });
+      }
     }
 
     return mediaInfo;
@@ -151,36 +167,34 @@ const DetailPage = ({ media }: DetailPageProps) => {
           />
         </div>
 
-        <div className="bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 my-8 px-4 pb-4 rounded shadow-md">
-          <h3 className="inline-block -mt-3 mb-3 h-8 leading-8 px-2 rounded bg-gradient-to-br from-gray-700 to-gray-800 text-white shadow">
-            Overview
-          </h3>
+        <div className="cardWithShadow">
+          <h3 className="cardHeading">OVERVIEW</h3>
           <p className="md:text-xl text-justify">{media.overview}</p>
         </div>
 
         <DetailInfoList
-          title="Genres"
+          title="GENRES"
           infos={media.genres.map((genre) => genre.name)}
         />
 
         <div className="lg:flex">
           <CastList
-            title={media.directors.length > 1 ? "Directors" : "Director"}
+            title={media.directors.length > 1 ? "DIRECTORS" : "DIRECTOR"}
             cast={media.directors}
             className="lg:w-29/100"
           />
 
           <CastList
-            title="Cast"
+            title="CAST"
             cast={media.cast}
             className="lg:w-7/10 lg:ml-1/100"
           />
         </div>
 
-        <DetailInfoList
-          title="Providers"
-          infos={media.providers.map((provider) => provider.name)}
-        />
+        <div className="cardWithShadow">
+          <h3 className="cardHeading">PROVIDERS</h3>
+          <ProviderList providers={media.providers} />
+        </div>
 
         {isTv(media) && <TvDetails tv={media} />}
       </div>
