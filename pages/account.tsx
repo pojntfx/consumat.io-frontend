@@ -91,7 +91,6 @@ const Account = () => {
                     ).toFixed(0) + "h"
               }
             />
-            <StatistikItem title={"Average Rating"} times={0 + "," + 0} />
           </div>
         </div>
       </div>
