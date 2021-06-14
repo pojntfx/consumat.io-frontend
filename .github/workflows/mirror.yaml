@@ -12,6 +12,6 @@ jobs:
           fetch-depth: "0"
       - uses: spyoungtech/mirror-action@master
         with:
-          REMOTE: "https://gitlab.com/pojntfx/consumat.io-frontend.git"
+          REMOTE: "https://gitlab.mi.hdm-stuttgart.de/fp036/consumat.io-frontend.git"
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
           GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
