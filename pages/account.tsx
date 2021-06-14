@@ -16,7 +16,8 @@ import { MediaType } from "../types/media";
 import CustomSelectButton from "../components/helper/CustomSelectButton";
 import { Language } from "../types/language";
 import { Country } from "../types/country";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Spinner from "../components/helper/Spinner";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -56,86 +57,98 @@ const Account = () => {
   const [language, setLanguage] = useState(data?.user.country);
   const [country, setCountry] = useState(data?.user.language);
 
+  useEffect(() => {
+    console.log("is Loading");
+  }, [loading]);
+
   return (
-    <div className={styles.headerRow}>
-      {isSession(session) && (
-        <MediaImage className="w-60 h-60" imageSrc={session.user.image} />
-      )}
-      <div className="flex flex-col items-center md:items-start md:mr-auto md:ml-10">
-        <div
-          className={
-            "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
-          }
-        >
-          <h3 className="cardHeading">Statistics</h3>
-          <div className="flex flex-col justfiy-center">
-            {isSession(session) && <h3>{session.user.name}</h3>}
-            <StatistikItem
-              title={"Watched Series"}
-              times={watchCountTVLoading ? "0" : watchCountTVData.watchCount}
-            />
-            <StatistikItem
-              title={"Watched Movies"}
-              times={
-                watchCountMovieLoading ? "0" : watchCountMovieData.watchCount
+    <>
+      {loading ||
+      watchCountTVLoading ||
+      watchCountMovieLoading ||
+      watchTimeTVLoading ? (
+        <Spinner />
+      ) : (
+        <div className={styles.headerRow}>
+          {isSession(session) && (
+            <MediaImage className="w-60 h-60" imageSrc={session.user.image} />
+          )}
+          <div className="flex flex-col items-center md:items-start md:mr-auto md:ml-10">
+            <div
+              className={
+                "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
               }
-            />
-            <StatistikItem
-              title={"Total Watchtime"}
-              times={
-                watchTimeTVLoading
-                  ? "0 h"
-                  : (
+            >
+              <h3 className="cardHeading">Statistics</h3>
+              <div className="flex flex-col justfiy-center">
+                {isSession(session) && <h3>{session.user.name}</h3>}
+                <StatistikItem
+                  title={"Watched Series"}
+                  times={watchCountTVData.watchCount}
+                />
+                <StatistikItem
+                  title={"Watched Movies"}
+                  times={watchCountMovieData.watchCount}
+                />
+                <StatistikItem
+                  title={"Total Watchtime"}
+                  times={
+                    (
                       watchTimeTVData.watchTime / 60 +
                       watchTimeMovieData.watchTime / 60
                     ).toFixed(0) + "h"
+                  }
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col" style={{ maxWidth: "10rem" }}>
+            <div
+              className={
+                "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
               }
-            />
+            >
+              <h3 className="cardHeading">Settings</h3>
+              <div className="flex flex-col">
+                <label htmlFor="country" className="mr-1">
+                  Country:{" "}
+                </label>
+                <CustomSelectButton
+                  name="country"
+                  value={country}
+                  labels={allCountriesLabels}
+                  options={[data?.user.country, ...allCountriesIsos]}
+                  onChange={({ target }) => {
+                    setCountry(target.value);
+                    updateCountry({ variables: { country: target.value } });
+                  }}
+                />
+                <label htmlFor="language" className="mr-1 ml-2">
+                  Language:{" "}
+                </label>
+                <CustomSelectButton
+                  className="mb-2"
+                  name="language"
+                  value={language}
+                  labels={allLanguagesLabels}
+                  options={[data?.user.language, ...allLanguagesIsos]}
+                  onChange={({ target }) => {
+                    setLanguage(target.value);
+                    updateLanguage({ variables: { language: target.value } });
+                  }}
+                />
+                <button
+                  className={styles.logoutButton}
+                  onClick={() => signOut()}
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex flex-col" style={{ maxWidth: "10rem" }}>
-        <div
-          className={
-            "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
-          }
-        >
-          <h3 className="cardHeading">Settings</h3>
-          <div className="flex flex-col">
-            <label htmlFor="country" className="mr-1">
-              Country:{" "}
-            </label>
-            <CustomSelectButton
-              name="country"
-              value={country}
-              labels={allCountriesLabels}
-              options={[data?.user.country, ...allCountriesIsos]}
-              onChange={({ target }) => {
-                setCountry(target.value);
-                updateCountry({ variables: { country: target.value } });
-              }}
-            />
-            <label htmlFor="language" className="mr-1 ml-2">
-              Language:{" "}
-            </label>
-            <CustomSelectButton
-              className="mb-2"
-              name="language"
-              value={language}
-              labels={allLanguagesLabels}
-              options={[data?.user.language, ...allLanguagesIsos]}
-              onChange={({ target }) => {
-                setLanguage(target.value);
-                updateLanguage({ variables: { language: target.value } });
-              }}
-            />
-            <button className={styles.logoutButton} onClick={() => signOut()}>
-              Logout
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
