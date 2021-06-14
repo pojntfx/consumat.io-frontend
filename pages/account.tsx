@@ -3,6 +3,7 @@ import { getSession, signOut } from "next-auth/client";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import {
   useGetUser,
+  useGetWatchCount,
   useGetWatchTime,
   useSetCountry,
   useSetLanguage,
@@ -34,6 +35,10 @@ const Account = () => {
     useGetWatchTime(MediaType.Movie);
   const { data: watchTimeTVData, loading: watchTimeTVLoading } =
     useGetWatchTime(MediaType.Tv);
+  const { data: watchCountMovieData, loading: watchCountMovieLoading } =
+    useGetWatchCount(MediaType.Movie);
+  const { data: watchCountTVData, loading: watchCountTVLoading } =
+    useGetWatchCount(MediaType.Tv);
   const { data, loading, error } = useGetUser();
 
   const allCountriesLabels = Country.map((item) => {
@@ -65,8 +70,16 @@ const Account = () => {
           <h3 className="cardHeading">Statistics</h3>
           <div className="flex flex-col justfiy-center">
             {isSession(session) && <h3>{session.user.name}</h3>}
-            <StatistikItem title={"Watched Episodes"} times={0} />
-            <StatistikItem title={"Watched Movies"} times={0} />
+            <StatistikItem
+              title={"Watched Episodes"}
+              times={watchCountTVLoading ? "0" : watchCountTVData.watchCount}
+            />
+            <StatistikItem
+              title={"Watched Movies"}
+              times={
+                watchCountMovieLoading ? "0" : watchCountMovieData.watchCount
+              }
+            />
             <StatistikItem
               title={"Total Watchtime"}
               times={
