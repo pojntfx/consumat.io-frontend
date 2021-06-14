@@ -2,10 +2,11 @@ import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { Language } from "../types/language";
-import { useSetLanguage } from "./DataHooks";
+import { useGetUser, useSetLanguage } from "./DataHooks";
 
 export function useAuthorization() {
   const [session, loading] = useSession();
+  const { data, loadingUser, error } = useGetUser();
   const router = useRouter();
   const [updateLanguage, { data: de, loading: le, error: ee }] =
     useSetLanguage();
@@ -15,8 +16,13 @@ export function useAuthorization() {
       router.push("/login");
     }
     if (session) {
+      console.log(data?.user.language);
       updateLanguage({
-        variables: { language: "" + navigator.language },
+        variables: {
+          language: data?.user.language
+            ? data?.user.language
+            : "" + navigator.language,
+        },
       });
     }
   }, [session, loading]);
