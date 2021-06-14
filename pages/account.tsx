@@ -12,7 +12,7 @@ import StatistikItem from "../components/helper/StatisticItem";
 import styles from "../styles/Account.module.css";
 import { Session } from "next-auth";
 import { MediaType } from "../types/media";
-import SelectButton from "../components/helper/SelectButton";
+import CustomSelectButton from "../components/helper/CustomSelectButton";
 import { Language } from "../types/language";
 import { Country } from "../types/country";
 import { useState } from "react";
@@ -34,10 +34,17 @@ const Account = () => {
     MediaType.Movie
   );
   const { data, loading, error } = useGetUser();
-  const allCountries = Country.map((item) => {
+
+  const allCountriesLabels = Country.map((item) => {
     return item.englishName;
   });
-  const allLanguages = Language.map((item) => {
+  const allCountriesIsos = Country.map((item) => {
+    return item.iso;
+  });
+  const allLanguagesLabels = Language.map((item) => {
+    return item.englishName;
+  });
+  const allLanguagesIsos = Language.map((item) => {
     return item.iso;
   });
   const [language, setLanguage] = useState(data?.user.country);
@@ -78,10 +85,11 @@ const Account = () => {
             <label htmlFor="country" className="mr-1">
               Country:{" "}
             </label>
-            <SelectButton
+            <CustomSelectButton
               name="country"
               value={country}
-              options={[data?.user.country, ...allCountries]}
+              labels={allCountriesLabels}
+              options={[data?.user.country, ...allCountriesIsos]}
               onChange={({ target }) => {
                 setCountry(target.value);
                 updateCountry({ variables: { country: target.value } });
@@ -90,11 +98,12 @@ const Account = () => {
             <label htmlFor="language" className="mr-1 ml-2">
               Language:{" "}
             </label>
-            <SelectButton
+            <CustomSelectButton
               className="mb-2"
               name="language"
               value={language}
-              options={[data?.user.language, ...allLanguages]}
+              labels={allLanguagesLabels}
+              options={[data?.user.language, ...allLanguagesIsos]}
               onChange={({ target }) => {
                 setLanguage(target.value);
                 updateLanguage({ variables: { language: target.value } });

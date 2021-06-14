@@ -10,15 +10,17 @@ type SelectButtonProps = {
   name: string;
   value: string;
   options: string[];
+  labels: string[];
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
   className?: string;
 };
 
-const SelectButton = ({
+const CustomSelectButton = ({
   name,
   value,
   onChange,
   options,
+  labels,
   className,
 }: SelectButtonProps) => {
   return (
@@ -32,13 +34,13 @@ const SelectButton = ({
         }}
         className="text-sm font-medium bg-transparent z-10 w-full pl-2 pr-6 py-1"
       >
-        {options.map((option) => (
+        {options.map((option, key) => (
           <option
             key={option}
             value={option}
             className="font-medium dark:bg-gray-800"
           >
-            {option}
+            {labels[key]}
           </option>
         ))}
       </select>
@@ -47,4 +49,4 @@ const SelectButton = ({
   );
 };
 
-export default SelectButton;
+export default CustomSelectButton;
