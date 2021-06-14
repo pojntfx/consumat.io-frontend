@@ -166,7 +166,7 @@ const Account = () => {
           <div className="flex flex-col md:flex-row max-width-md mt-4">
             <div
               className={
-                "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
+                "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
               }
             >
               <h3 className="cardHeading">Finished Movies</h3>
@@ -179,7 +179,7 @@ const Account = () => {
             </div>
             <div
               className={
-                "min-width- px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-4"
+                "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
               }
             >
               <h3 className="cardHeading">Finished Series</h3>
