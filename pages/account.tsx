@@ -49,10 +49,15 @@ const Account = () => {
     error: userError,
   } = useGetUser();
   const {
-    data: listData,
-    loading: listLoading,
-    error: ListError,
+    data: movieListData,
+    loading: movieListLoading,
+    error: movieListError,
   } = useGetList(MediaType.Movie, WatchStatus.Finished);
+  const {
+    data: tvListData,
+    loading: tvListLoading,
+    error: tvListError,
+  } = useGetList(MediaType.Tv, WatchStatus.Finished);
 
   const allCountriesLabels = Country.map((item) => {
     return item.englishName;
@@ -75,7 +80,8 @@ const Account = () => {
       watchCountTVLoading ||
       watchCountMovieLoading ||
       watchTimeTVLoading ||
-      listLoading ? (
+      movieListLoading ||
+      tvListLoading ? (
         <Spinner />
       ) : (
         <>
@@ -166,20 +172,20 @@ const Account = () => {
               <h3 className="cardHeading">Finished Movies</h3>
               <div className="flex flex-col justfiy-center">
                 <LibraryList
-                  mediaList={listData.list}
+                  mediaList={movieListData.list}
                   watchStatus={WatchStatus.Finished}
                 />
               </div>
             </div>
             <div
               className={
-                "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-4"
+                "min-width- px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-4"
               }
             >
               <h3 className="cardHeading">Finished Series</h3>
               <div className="flex flex-col justfiy-center">
                 <LibraryList
-                  mediaList={listData.list}
+                  mediaList={tvListData.list}
                   watchStatus={WatchStatus.Finished}
                 />
               </div>
