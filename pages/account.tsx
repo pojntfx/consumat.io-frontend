@@ -30,9 +30,10 @@ const Account = () => {
   const [updateCountry, { data: d, loading: l, error: e }] = useSetCountry();
   const [updateLanguage, { data: de, loading: le, error: ee }] =
     useSetLanguage();
-  const { data: watchTimeData, loading: watchTimeLoading } = useGetWatchTime(
-    MediaType.Movie
-  );
+  const { data: watchTimeMovieData, loading: watchTimeMovieLoading } =
+    useGetWatchTime(MediaType.Movie);
+  const { data: watchTimeTVData, loading: watchTimeTVLoading } =
+    useGetWatchTime(MediaType.Tv);
   const { data, loading, error } = useGetUser();
 
   const allCountriesLabels = Country.map((item) => {
@@ -62,19 +63,26 @@ const Account = () => {
           }
         >
           <h3 className="cardHeading">Statistics</h3>
-          <div className="flex flex-col">
+          <div className="flex flex-col justfiy-center">
             {isSession(session) && <h3>{session.user.name}</h3>}
             <StatistikItem title={"Watched Episodes"} times={0} />
             <StatistikItem title={"Watched Movies"} times={0} />
             <StatistikItem
               title={"Total Watchtime"}
-              times={watchTimeLoading ? "0 h" : watchTimeData.watchTime + " h"}
+              times={
+                watchTimeTVLoading
+                  ? "0 h"
+                  : (
+                      watchTimeTVData.watchTime / 60 +
+                      watchTimeMovieData.watchTime / 60
+                    ).toFixed(0) + "h"
+              }
             />
             <StatistikItem title={"Average Rating"} times={0 + "," + 0} />
           </div>
         </div>
       </div>
-      <div className="flex flex-col" style={{ maxWidth: "8rem" }}>
+      <div className="flex flex-col" style={{ maxWidth: "10rem" }}>
         <div
           className={
             "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
