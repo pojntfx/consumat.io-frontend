@@ -71,7 +71,7 @@ const Account = () => {
           <div className="flex flex-col justfiy-center">
             {isSession(session) && <h3>{session.user.name}</h3>}
             <StatistikItem
-              title={"Watched Episodes"}
+              title={"Watched Series"}
               times={watchCountTVLoading ? "0" : watchCountTVData.watchCount}
             />
             <StatistikItem
