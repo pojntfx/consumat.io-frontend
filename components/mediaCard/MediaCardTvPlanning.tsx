@@ -15,6 +15,7 @@ import {
 import { MediaType } from "../../types/media";
 import { StatusTv, WatchStatus } from "../../types/status";
 import LoadingDots from "../helper/LoadingDots";
+import MediaStatus from "../helper/MediaStatus";
 import ProviderList from "../helper/ProviderList";
 import MediaCardWrapper from "./MediaCardWrapper";
 
@@ -49,37 +50,7 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
         <div className="h-10">
           {watchedEpisodeCount <= tv.numberOfEpisodes ? (
             lastWatchedEpisode != null ? (
-              <div className="flex flex-row">
-                {tv.status == StatusTv.ReturningSeries ? (
-                  <>
-                    <EyeIcon className="h-6 w-5 mr-1 text-gray-500" />
-                    <div className="font-medium truncate italic text-gray-500">
-                      returning
-                    </div>
-                  </>
-                ) : tv.status == StatusTv.Canceled ? (
-                  <>
-                    <EyeOffIcon className="h-6 w-5 mr-1 text-gray-500" />
-                    <div className="font-medium truncate italic text-gray-500">
-                      canceled
-                    </div>
-                  </>
-                ) : tv.status == StatusTv.Ended ? (
-                  <>
-                    <EyeOffIcon className="h-6 w-5 mr-1 text-gray-500" />
-                    <div className="font-medium truncate italic text-gray-500">
-                      ended
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <EyeIcon className="h-6 w-5 mr-1 text-gray-500" />
-                    <div className="font-medium truncate italic text-gray-500">
-                      upcoming
-                    </div>
-                  </>
-                )}
-              </div>
+              <MediaStatus media={tv} />
             ) : (
               <LoadingDots />
             )
