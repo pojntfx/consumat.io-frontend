@@ -4,27 +4,21 @@ import {
   useSetNumberOfWatchedEpisodes,
 } from "../../hooks/DataHooks";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
+import { Season } from "../../lib/api/consumat-io";
 import MediaImage from "../helper/MediaImage";
 import Spinner from "../helper/Spinner";
 
 type SeasonEpisodeListProps = {
-  tvCode: number;
-  seasonNumber: number;
-  numberOfEpisodesWatched: number;
-  numberOfEpisodes: number;
+  season: Season;
+  allSeasons: Season[];
 };
 
-const SeasonEpisodeList = ({
-  tvCode,
-  seasonNumber,
-  numberOfEpisodesWatched,
-  numberOfEpisodes,
-}: SeasonEpisodeListProps) => {
+const SeasonEpisodeList = ({ season, allSeasons }: SeasonEpisodeListProps) => {
   const {
     data: episodesData,
     loading: episodesLoading,
     error: episodesError,
-  } = useGetSeasonEpisodes(tvCode, seasonNumber);
+  } = useGetSeasonEpisodes(season.tvCode, season.seasonNumber);
 
   const [
     setNumberOfWatchedEpisodes,
@@ -35,24 +29,20 @@ const SeasonEpisodeList = ({
   ] = useSetNumberOfWatchedEpisodes();
 
   const [currentNumberEpisodesWatched, setCurrentNumberEpisodesWatched] =
-    useState(numberOfEpisodesWatched);
+    useState(
+      season.numberOfWatchedEpisodes == null
+        ? 0
+        : season.numberOfWatchedEpisodes
+    );
 
   // const showEpisodesToBeSelected = (button: HTMLButtonElement) => {
   //   button.classList.add("bg-green-500", "text-white");
   // };
 
-  useEffect(() => {
-    console.log(
-      `Setting number of watched episodes, loading: ${setNumberOfWatchedEpisodesLoading}, error: ${setNumberOfWatchedEpisodesError}`
-    );
-  }, [setNumberOfWatchedEpisodesLoading, setNumberOfWatchedEpisodesError]);
-
   return (
     <ul className="episodeList">
       {episodesLoading && !episodesData && <Spinner className="my-8" />}
       {episodesData?.seasonEpisodes?.map((episode, index) => {
-        console.log(tvCode);
-
         return (
           <li key={index}>
             <button
@@ -65,11 +55,38 @@ const SeasonEpisodeList = ({
               }`}
               onClick={() => {
                 console.log(
-                  `Setting number of watched episodes of ${tvCode}, season ${episode.seasonNumber} to ${episode.episodeNumber}.`
+                  `Clicked index: ${index} and episode number: ${
+                    episode.episodeNumber
+                  }, number of watched episodes: ${
+                    season.numberOfWatchedEpisodes == null
+                      ? 0
+                      : season.numberOfWatchedEpisodes
+                  }`
                 );
+
+                // TODO: Make episode 1 unwatched,
+                // set all previous episodes to watched across seasons and
+                // display it without reloading the page
+                allSeasons
+                  .filter((s) => s.seasonNumber < season.seasonNumber)
+                  .forEach((s) => {
+                    console.log("Hello there!");
+
+                    console.log(
+                      `S${s.seasonNumber}, setting ${s.numberOfEpisodes} episodes to watched!`
+                    );
+                    setNumberOfWatchedEpisodes({
+                      variables: {
+                        code: s.tvCode,
+                        seasonNumber: s.seasonNumber,
+                        numberOfWatchedEpisodes: s.numberOfEpisodes,
+                      },
+                    });
+                  });
+
                 setNumberOfWatchedEpisodes({
                   variables: {
-                    code: tvCode,
+                    code: season.tvCode,
                     seasonNumber: episode.seasonNumber,
                     numberOfWatchedEpisodes: episode.episodeNumber,
                   },
