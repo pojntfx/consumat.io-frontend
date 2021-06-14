@@ -63,33 +63,43 @@ const Account = () => {
             <StatistikItem title={"Average Rating"} times={0 + "," + 0} />
           </div>
         </div>
-        <button className={styles.logoutButton} onClick={() => signOut()}>
-          Logout
-        </button>
       </div>
-      <div className="flex flex-row mt-4">
-        <label htmlFor="country" className="mr-1">
-          Country:{" "}
-        </label>
-        <SelectButton
-          name="country"
-          value={data?.user.country}
-          options={[data?.user.country, ...allCountries]}
-          onChange={({ target }) =>
-            updateCountry({ variables: { country: target.value } })
+      <div className="flex flex-col" style={{ maxWidth: "8rem" }}>
+        <div
+          className={
+            "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
           }
-        />
-        <label htmlFor="language" className="mr-1 ml-2">
-          Language:{" "}
-        </label>
-        <SelectButton
-          name="language"
-          value={data?.user.language}
-          options={[data?.user.language, ...allLanguages]}
-          onChange={({ target }) =>
-            updateLanguage({ variables: { language: target.value } })
-          }
-        />
+        >
+          <h3 className="cardHeading">Settings</h3>
+          <div className="flex flex-col">
+            <label htmlFor="country" className="mr-1">
+              Country:{" "}
+            </label>
+            <SelectButton
+              name="country"
+              value={data?.user.country}
+              options={[data?.user.country, ...allCountries]}
+              onChange={({ target }) =>
+                updateCountry({ variables: { country: target.value } })
+              }
+            />
+            <label htmlFor="language" className="mr-1 ml-2">
+              Language:{" "}
+            </label>
+            <SelectButton
+              className="mb-2"
+              name="language"
+              value={data?.user.language}
+              options={[data?.user.language, ...allLanguages]}
+              onChange={({ target }) =>
+                updateLanguage({ variables: { language: target.value } })
+              }
+            />
+            <button className={styles.logoutButton} onClick={() => signOut()}>
+              Logout
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
