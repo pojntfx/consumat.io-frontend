@@ -1,10 +1,4 @@
-import {
-  EyeIcon,
-  CalendarIcon,
-  CheckIcon,
-  ReplyIcon,
-  EyeOffIcon,
-} from "@heroicons/react/outline";
+import { CalendarIcon, CheckIcon, ReplyIcon } from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
 import {
   useGetEpisode,
@@ -24,8 +18,8 @@ import {
   getPrevEpisode,
   getWatchedEpisodeCount,
 } from "../../types/episodeNumber";
-import { StatusTv } from "../../types/status";
 import LoadingDots from "../helper/LoadingDots";
+import MediaStatus from "../helper/MediaStatus";
 import Progressbar from "../helper/Progressbar";
 import MediaCardWrapper from "./MediaCardWrapper";
 
@@ -122,14 +116,7 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
               <>
                 {nextEpisodeData.episode.airDate == null ||
                 nextEpisodeData.episode.airDate == "" ? (
-                  <>
-                    <EyeIcon className="h-6 w-5 ml-2 mr-1 text-gray-500" />
-                    <div className="font-medium truncate italic text-gray-500">
-                      {tv.status == StatusTv.ReturningSeries
-                        ? "returning"
-                        : "upcoming"}
-                    </div>
-                  </>
+                  <MediaStatus media={tv} className="ml-2" />
                 ) : isDateInPresent(
                     new Date(nextEpisodeData.episode.airDate)
                   ) ? (
@@ -153,37 +140,7 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
             )}
           </div>
         ) : (
-          <div className="flex flex-row">
-            {tv.status == StatusTv.ReturningSeries ? (
-              <>
-                <EyeIcon className="h-6 w-5 mr-1 text-gray-500" />
-                <div className="font-medium truncate italic text-gray-500">
-                  returning
-                </div>
-              </>
-            ) : tv.status == StatusTv.Canceled ? (
-              <>
-                <EyeOffIcon className="h-6 w-5 mr-1 text-gray-500" />
-                <div className="font-medium truncate italic text-gray-500">
-                  canceled
-                </div>
-              </>
-            ) : tv.status == StatusTv.Ended ? (
-              <>
-                <EyeOffIcon className="h-6 w-5 mr-1 text-gray-500" />
-                <div className="font-medium truncate italic text-gray-500">
-                  ended
-                </div>
-              </>
-            ) : (
-              <>
-                <EyeIcon className="h-6 w-5 mr-1 text-gray-500" />
-                <div className="font-medium truncate italic text-gray-500">
-                  upcoming
-                </div>
-              </>
-            )}
-          </div>
+          <MediaStatus media={tv} />
         )}
 
         <div className="flex flex-row -mb-1">
