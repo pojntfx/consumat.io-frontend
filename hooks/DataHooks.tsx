@@ -15,12 +15,9 @@ import {
   useSetCountryMutation,
   useSetLanguageMutation,
   useGetUserQuery,
-<<<<<<< HEAD
   useGetByRatingQuery,
-=======
   useGetWatchTimeQuery,
   useGetWatchCountQuery,
->>>>>>> upstream/main
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
