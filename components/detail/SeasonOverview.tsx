@@ -5,9 +5,10 @@ import SeasonEpisodeList from "./SeasonEpisodeList";
 
 type SeasonOverviewProps = {
   season: Season;
+  allSeasons: Season[];
 };
 
-const SeasonOverview = ({ season }: SeasonOverviewProps) => {
+const SeasonOverview = ({ season, allSeasons }: SeasonOverviewProps) => {
   const [isEpisodeListVisible, setIsEpisodeListVisible] = useState(false);
 
   return (
@@ -35,16 +36,7 @@ const SeasonOverview = ({ season }: SeasonOverviewProps) => {
         </button>
       </div>
       {isEpisodeListVisible && (
-        <SeasonEpisodeList
-          tvCode={season.tvCode}
-          seasonNumber={season.seasonNumber}
-          numberOfEpisodesWatched={
-            season.numberOfWatchedEpisodes == null
-              ? 0
-              : season.numberOfWatchedEpisodes
-          }
-          numberOfEpisodes={season.numberOfEpisodes}
-        />
+        <SeasonEpisodeList season={season} allSeasons={allSeasons} />
       )}
     </div>
   );
