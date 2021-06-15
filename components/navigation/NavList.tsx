@@ -44,15 +44,6 @@ const NavList = ({
         }
       />
       <NavListItem
-        title="Discover"
-        href="/discover"
-        isMobile={isMobile}
-        isActive={activeNavigationLink === NavigationLink.Discover}
-        setMobileNavbarVisibility={
-          setMobileNavbarVisibility && setMobileNavbarVisibility
-        }
-      />
-      <NavListItem
         title="Library"
         href="/library?media=TV&watchStatus=Watching"
         isMobile={isMobile}
