@@ -5,9 +5,9 @@ import { createRef, useEffect, useState } from "react";
 import Spinner from "../components/helper/Spinner";
 import ErrorMessage from "../components/helper/ErrorMessage";
 import MetaData from "../components/MetaData";
-import SearchResultList from "../components/search/SearchResultList";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useGetSearch } from "../hooks/DataHooks";
+import MediaCardList from "../components/mediaCard/MediaCardList";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -67,7 +67,7 @@ const Search = () => {
       {loading ? (
         <Spinner />
       ) : (
-        data != null && <SearchResultList mediaList={data.search.results} />
+        data != null && <MediaCardList mediaList={data.search.results} />
       )}
     </div>
   );

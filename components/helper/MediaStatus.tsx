@@ -12,8 +12,8 @@ type MediaStatusProps = {
 function MediaStatus({ media, className }: MediaStatusProps) {
   return (
     <div className={"flex flex-row " + className}>
-      {isMovie(media) &&
-        (media.status == StatusMovie.Released ? (
+      {isMovie(media) ? (
+        media.status == StatusMovie.Released ? (
           <>
             <EyeIcon className="h-6 w-5 mr-1 text-gray-500" />
             <div className="font-medium truncate italic text-gray-500">
@@ -34,8 +34,9 @@ function MediaStatus({ media, className }: MediaStatusProps) {
               upcoming
             </div>
           </>
-        ))}
-      {isTv(media) &&
+        )
+      ) : (
+        isTv(media) &&
         (media.status == StatusTv.ReturningSeries ? (
           <>
             <EyeIcon className="h-6 w-5 mr-1 text-gray-500" />
@@ -64,7 +65,8 @@ function MediaStatus({ media, className }: MediaStatusProps) {
               upcoming
             </div>
           </>
-        ))}
+        ))
+      )}
     </div>
   );
 }
