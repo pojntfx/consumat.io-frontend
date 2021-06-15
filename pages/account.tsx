@@ -198,6 +198,60 @@ const Account = () => {
           </div>
 
           <div className="px-4 md:px-0 flex flex-col md:flex-row max-width-md mt-4">
+            {currentlyMovieListLoading ? (
+              <div className="w-full md:w-12/25">
+                <Spinner />
+              </div>
+            ) : currentlyMovieListData.list.length == 0 ? (
+              <></>
+            ) : (
+              <div
+                className={
+                  "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
+                }
+              >
+                <>
+                  <h3 className="cardHeading">Current Movies</h3>
+                  <div className="flex flex-col justfiy-center">
+                    <MediaCardList
+                      mediaList={currentlyMovieListData.list}
+                      watchStatus={WatchStatus.Finished}
+                    />
+                  </div>
+                </>
+              </div>
+            )}
+
+            {currentlyTVListLoading ? (
+              <div className="w-full md:w-12/25">
+                <Spinner />
+              </div>
+            ) : currentlyTVListData.list.length == 0 ? (
+              <></>
+            ) : currentlyMovieListLoading ? (
+              <Spinner />
+            ) : (
+              <>
+                <div
+                  className={
+                    currentlyMovieListData.list.length == 0
+                      ? "w-full px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
+                      : "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
+                  }
+                >
+                  <h3 className="cardHeading">Current Series</h3>
+                  <div className="flex flex-col justfiy-center">
+                    <MediaCardList
+                      mediaList={currentlyTVListData.list}
+                      watchStatus={WatchStatus.Finished}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="px-4 md:px-0 flex flex-col md:flex-row max-width-md mt-4">
             {finishedMovieListLoading ? (
               <div className="w-full md:w-12/25">
                 <Spinner />
@@ -228,11 +282,15 @@ const Account = () => {
               </div>
             ) : finishedTVListData.list.length == 0 ? (
               <></>
+            ) : finishedMovieListLoading ? (
+              <Spinner />
             ) : (
               <>
                 <div
                   className={
-                    "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
+                    finishedMovieListData.list.length == 0
+                      ? "w-full px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
+                      : "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
                   }
                 >
                   <h3 className="cardHeading">Finished Series</h3>
