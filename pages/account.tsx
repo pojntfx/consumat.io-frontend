@@ -49,15 +49,25 @@ const Account = () => {
     error: userError,
   } = useGetUser();
   const {
-    data: movieListData,
-    loading: movieListLoading,
-    error: movieListError,
+    data: finishedMovieListData,
+    loading: finishedMovieListLoading,
+    error: finishedMovieListError,
   } = useGetList(MediaType.Movie, WatchStatus.Finished);
   const {
-    data: tvListData,
-    loading: tvListLoading,
-    error: tvListError,
+    data: finishedTVListData,
+    loading: finishedTVListLoading,
+    error: finishedTVListError,
   } = useGetList(MediaType.Tv, WatchStatus.Finished);
+  const {
+    data: currentlyMovieListData,
+    loading: currentlyMovieListLoading,
+    error: currentlyMovieListError,
+  } = useGetList(MediaType.Movie, WatchStatus.Watching);
+  const {
+    data: currentlyTVListData,
+    loading: currentlyTVListLoading,
+    error: currentlyTVListError,
+  } = useGetList(MediaType.Tv, WatchStatus.Watching);
 
   const allCountriesLabels = Country.map((item) => {
     return item.englishName;
@@ -188,39 +198,52 @@ const Account = () => {
           </div>
 
           <div className="px-4 md:px-0 flex flex-col md:flex-row max-width-md mt-4">
-            {movieListLoading ? (
-              <Spinner />
+            {finishedMovieListLoading ? (
+              <div className="w-full md:w-12/25">
+                <Spinner />
+              </div>
+            ) : finishedMovieListData.list.length == 0 ? (
+              <></>
             ) : (
               <div
                 className={
                   "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
                 }
               >
-                <h3 className="cardHeading">Finished Movies</h3>
-                <div className="flex flex-col justfiy-center">
-                  <MediaCardList
-                    mediaList={movieListData.list}
-                    watchStatus={WatchStatus.Finished}
-                  />
-                </div>
+                <>
+                  <h3 className="cardHeading">Finished Movies</h3>
+                  <div className="flex flex-col justfiy-center">
+                    <MediaCardList
+                      mediaList={finishedMovieListData.list}
+                      watchStatus={WatchStatus.Finished}
+                    />
+                  </div>
+                </>
               </div>
             )}
-            {tvListLoading ? (
-              <Spinner />
-            ) : (
-              <div
-                className={
-                  "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
-                }
-              >
-                <h3 className="cardHeading">Finished Series</h3>
-                <div className="flex flex-col justfiy-center">
-                  <MediaCardList
-                    mediaList={tvListData.list}
-                    watchStatus={WatchStatus.Finished}
-                  />
-                </div>
+
+            {finishedTVListLoading ? (
+              <div className="w-full md:w-12/25">
+                <Spinner />
               </div>
+            ) : finishedTVListData.list.length == 0 ? (
+              <></>
+            ) : (
+              <>
+                <div
+                  className={
+                    "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
+                  }
+                >
+                  <h3 className="cardHeading">Finished Series</h3>
+                  <div className="flex flex-col justfiy-center">
+                    <MediaCardList
+                      mediaList={finishedTVListData.list}
+                      watchStatus={WatchStatus.Finished}
+                    />
+                  </div>
+                </div>
+              </>
             )}
           </div>
         </>
