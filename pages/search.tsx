@@ -37,14 +37,17 @@ const Search = () => {
       {error && <ErrorMessage />}
       {loading ? (
         <Spinner />
-      ) : data != null && data.search.results.length == 0 ? (
-        <div className="card flex flex-row py-2 px-4 truncate">
-          <EmojiSadIcon className="h-6 w-6 mr-2 flex-shrink-0" />
-          <div className="mr-2 font-medium">No results for:</div>
-          <div className="italic">{`${q}`}</div>
-        </div>
       ) : (
-        <MediaCardList mediaList={data.search.results} />
+        data != null &&
+        (data.search.results.length == 0 ? (
+          <div className="card flex flex-row py-2 px-4 truncate">
+            <EmojiSadIcon className="h-6 w-6 mr-2 flex-shrink-0" />
+            <div className="mr-2 font-medium">No results for:</div>
+            <div className="italic">{`${q}`}</div>
+          </div>
+        ) : (
+          <MediaCardList mediaList={data.search.results} />
+        ))
       )}
     </div>
   );
