@@ -1,6 +1,5 @@
 import React from "react";
 import { Media } from "../../lib/api/consumat-io";
-import { isMovie } from "../../types/media";
 import MediaCardWrapper from "./MediaCardWrapper";
 
 type MediaCardSearchProps = {
