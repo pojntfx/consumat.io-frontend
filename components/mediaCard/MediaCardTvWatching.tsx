@@ -17,7 +17,7 @@ import {
 import AirDateCountLabel from "../dataDisplay/AirDateCountLabel";
 import LoadingDots from "../feedback/LoadingDots";
 import MediaStatusLabel from "../dataDisplay/MediaStatusLabel";
-import Progressbar from "../dataDisplay/Progressbar";
+import ProgressBar from "../dataDisplay/ProgressBar";
 import MediaCardWrapper from "./MediaCardWrapper";
 
 type MediaCardTvWatchingProps = {
@@ -121,7 +121,7 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
         )}
 
         <div className="flex flex-row -mb-1">
-          <Progressbar
+          <ProgressBar
             progress={watchedEpisodeCount}
             limit={tv.numberOfEpisodes}
             className="my-1"
