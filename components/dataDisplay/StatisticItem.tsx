@@ -6,7 +6,7 @@ type StatistikItemProps = {
 const StatistikItem = ({ title, times }: StatistikItemProps) => {
   return (
     <div className="flex flex-row items-center">
-      <h3>{title}</h3> <p className="ml-2">{times}</p>
+      <h3 className="mr-2">{title}</h3> <p className="ml-auto">{times}</p>
     </div>
   );
 };

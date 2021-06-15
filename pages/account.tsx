@@ -86,35 +86,44 @@ const Account = () => {
       ) : (
         <>
           <div className={styles.headerRow}>
-            {isSession(session) && (
-              <MediaImage className="w-60 h-60" imageSrc={session.user.image} />
-            )}
-            <div className="flex flex-col items-center md:items-start md:mr-auto md:ml-10">
+            <div className="flex flex-col items-center md:items-start md:mr-auto">
               <div
                 className={
                   "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
                 }
               >
-                <h3 className="cardHeading">Statistics</h3>
-                <div className="flex flex-col justfiy-center">
-                  {isSession(session) && <h3>{session.user.name}</h3>}
-                  <StatistikItem
-                    title={"Watched Series"}
-                    times={watchCountTVData.watchCount}
+                <h3 className="cardHeading">UserInfo</h3>
+                <div className="flex flex-col md:flex-row">
+                  {isSession(session) && (
+                    <MediaImage
+                      className="w-60 h-60"
+                      imageSrc={session.user.image}
+                    />
+                  )}
+                  <div
+                    className="ml-0 md:ml-4 bg-gradient-to-br from-gray-700 to-gray-800 rounded"
+                    style={{ width: 2 }}
                   />
-                  <StatistikItem
-                    title={"Watched Movies"}
-                    times={watchCountMovieData.watchCount}
-                  />
-                  <StatistikItem
-                    title={"Total Watchtime"}
-                    times={
-                      (
-                        watchTimeTVData.watchTime / 60 +
-                        watchTimeMovieData.watchTime / 60
-                      ).toFixed(0) + "h"
-                    }
-                  />
+                  <div className="h-60 flex flex-col justfiy-center ml-0 md:ml-4">
+                    {isSession(session) && <h3>{session.user.name}</h3>}
+                    <StatistikItem
+                      title={"Watched Series"}
+                      times={watchCountTVData.watchCount}
+                    />
+                    <StatistikItem
+                      title={"Watched Movies"}
+                      times={watchCountMovieData.watchCount}
+                    />
+                    <StatistikItem
+                      title={"Total Watchtime"}
+                      times={
+                        (
+                          watchTimeTVData.watchTime / 60 +
+                          watchTimeMovieData.watchTime / 60
+                        ).toFixed(0) + "h"
+                      }
+                    />
+                  </div>
                 </div>
               </div>
             </div>
