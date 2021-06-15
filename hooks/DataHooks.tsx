@@ -3,6 +3,7 @@ import {
   useGetTvQuery,
   useGetSearchQuery,
   useGetPopularQuery,
+  useGetDiscoverQuery,
   useGetListQuery,
   useGetTvSeasonsQuery,
   useGetEpisodeQuery,
@@ -83,6 +84,23 @@ export function useGetPopular(type: MediaType, page: number) {
   return useGetPopularQuery({
     variables: {
       type: type,
+      page: page,
+    },
+    fetchPolicy: "network-only",
+  });
+}
+
+export function useGetDiscover(
+  type: MediaType,
+  person: number,
+  similarTo: number,
+  page: number
+) {
+  return useGetDiscoverQuery({
+    variables: {
+      type: type,
+      person: person,
+      similarTo: similarTo,
       page: page,
     },
     fetchPolicy: "network-only",
