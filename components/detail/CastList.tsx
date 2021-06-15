@@ -1,5 +1,5 @@
 import { Cast, Director } from "../../lib/api/consumat-io";
-import MediaImage from "../helper/MediaImage";
+import MediaImage from "../dataDisplay/MediaImage";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
 
 type CastListProps = {
