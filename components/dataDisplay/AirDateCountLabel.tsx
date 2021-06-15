@@ -20,7 +20,7 @@ function AirDateCountLabel({ episode, className }: AirDateCountLabelProps) {
         <>
           <CalendarIcon className="h-6 w-5 ml-2 mr-1 text-gray-500" />
           <div className="font-medium truncate italic text-gray-500">
-            unknown
+            coming
           </div>
         </>
       ) : isDateInPast(new Date(episode.airDate)) ? (
