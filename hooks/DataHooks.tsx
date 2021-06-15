@@ -26,7 +26,7 @@ export function useGetMovie(code: number) {
     variables: {
       code: code,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
@@ -35,7 +35,7 @@ export function useGetTv(code: number) {
     variables: {
       code: code,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
@@ -45,7 +45,7 @@ export function useGetSeason(code: number, seasonNumber: number) {
       code: code,
       seasonNumber: seasonNumber,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
@@ -61,7 +61,7 @@ export function useGetEpisode(
       seasonNumber: seasonNumber,
       episodeNumber: episodeNumber,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
@@ -72,7 +72,7 @@ export function useGetSearch(keyword: string | string[], page: number) {
       keyword: "" + keyword,
       page: page,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
@@ -82,7 +82,7 @@ export function useGetPopular(type: MediaType, page: number) {
       type: type,
       page: page,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
@@ -97,7 +97,7 @@ export function useGetList(
       watchStatus: watchStatus,
       favorite: favorite,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
@@ -106,7 +106,7 @@ export function useGetTvSeasons(code: number) {
     variables: {
       code: code,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
@@ -116,12 +116,12 @@ export function useGetSeasonEpisodes(code: number, seasonNumber: number) {
       code: code,
       seasonNumber: seasonNumber,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
 export function useGetUser() {
-  return useGetUserQuery({ fetchPolicy: "cache-and-network" });
+  return useGetUserQuery({ fetchPolicy: "network-only" });
 }
 
 // Mutations

@@ -1,22 +1,15 @@
-import {
-  ClipboardCopyIcon,
-  EyeIcon,
-  EyeOffIcon,
-} from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
-import { useGetTvSeasons, useSetWatchStatus } from "../../hooks/DataHooks";
+import { useGetTvSeasons } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
 import {
   EpisodeNumber,
   getLastWatchedEpisode,
-  getNextEpisode,
   getWatchedEpisodeCount,
 } from "../../types/episodeNumber";
-import { MediaType } from "../../types/media";
-import { StatusTv, WatchStatus } from "../../types/status";
+import { WatchStatus } from "../../types/status";
 import LoadingDots from "../helper/LoadingDots";
 import MediaStatus from "../helper/MediaStatus";
-import ProviderList from "../helper/ProviderList";
+import WatchStatusButton from "../helper/WatchStatusButton";
 import MediaCardWrapper from "./MediaCardWrapper";
 
 type MediaCardTvPlanningProps = {
@@ -42,8 +35,6 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
     }
   }, [seasonsData]);
 
-  const [updateWatchStatus, { loading, data, error }] = useSetWatchStatus();
-
   return (
     <MediaCardWrapper media={tv}>
       <div className="flex flex-col">
@@ -60,21 +51,7 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
           {/*<ProviderList providers={tv.providers} />*/}
         </div>
         <div className="flex flex-row py-2">
-          <button
-            onClick={() =>
-              updateWatchStatus({
-                variables: {
-                  code: tv.code,
-                  type: MediaType.Tv,
-                  watchStatus: WatchStatus.Watching,
-                },
-              })
-            }
-            className="button text-sm w-max py-1.5 pl-1.5 pr-3 flex flex-row truncat"
-          >
-            <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5" />
-            <div>Move to Watching</div>
-          </button>
+          <WatchStatusButton media={tv} watchStatus={WatchStatus.Watching} />
         </div>
       </div>
     </MediaCardWrapper>
