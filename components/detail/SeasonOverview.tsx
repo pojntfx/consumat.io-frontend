@@ -16,10 +16,10 @@ const SeasonOverview = ({ season, allSeasons }: SeasonOverviewProps) => {
       <div
         className="flex items-end h-32 rounded shadow hover:shadow-md duration-75"
         style={{
-          backgroundImage: `linear-gradient(0deg, rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.8)), url(${useImage(
-            imageSizes.poster.w780,
-            season.posterPath
-          )})`,
+          backgroundImage: `linear-gradient(0deg, rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.8))${
+            season.posterPath &&
+            `, url(${useImage(imageSizes.backdrop.w1280, season.posterPath)}`
+          })`,
           backgroundSize: "cover",
         }}
       >
