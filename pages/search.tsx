@@ -7,7 +7,7 @@ import ErrorMessage from "../components/helper/ErrorMessage";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useGetSearch } from "../hooks/DataHooks";
-import MediaCardList from "../components/mediaCard/mediaCardList";
+import MediaCardList from "../components/mediaCard/MediaCardList";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },

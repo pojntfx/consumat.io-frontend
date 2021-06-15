@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/client";
 import Spinner from "../components/helper/Spinner";
-import MediaCardList from "../components/mediaCard/mediaCardList";
+import MediaCardList from "../components/mediaCard/MediaCardList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useGetList } from "../hooks/DataHooks";
