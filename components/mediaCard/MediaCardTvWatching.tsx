@@ -1,4 +1,4 @@
-import { CalendarIcon, CheckIcon, ReplyIcon } from "@heroicons/react/outline";
+import { CheckIcon, ReplyIcon } from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
 import {
   useGetEpisode,
@@ -6,11 +6,7 @@ import {
   useSetNumberOfWatchedEpisodes,
 } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
-import {
-  daysUntilDate,
-  isDateInFuture,
-  isDateInPresent,
-} from "../../types/date";
+import { isDateInFuture } from "../../types/date";
 import {
   EpisodeNumber,
   getLastWatchedEpisode,
@@ -18,6 +14,7 @@ import {
   getPrevEpisode,
   getWatchedEpisodeCount,
 } from "../../types/episodeNumber";
+import AirDateCount from "../helper/AirDateCount";
 import LoadingDots from "../helper/LoadingDots";
 import MediaStatus from "../helper/MediaStatus";
 import Progressbar from "../helper/Progressbar";
@@ -101,7 +98,7 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
                 minimumIntegerDigits: 2,
               })}
             </div>
-            {nextEpisodeData == null ? (
+            {nextEpisodeData == null || nextEpisodeLoading ? (
               <LoadingDots className="ml-2" />
             ) : nextEpisodeData.episode.airDate != null &&
               nextEpisodeData.episode.airDate !== "" &&
@@ -112,31 +109,11 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
                   {nextEpisodeData.episode.title}
                 </div>
               </>
+            ) : nextEpisodeData.episode.airDate == null ||
+              nextEpisodeData.episode.airDate == "" ? (
+              <MediaStatus media={tv} className="ml-2" />
             ) : (
-              <>
-                {nextEpisodeData.episode.airDate == null ||
-                nextEpisodeData.episode.airDate == "" ? (
-                  <MediaStatus media={tv} className="ml-2" />
-                ) : isDateInPresent(
-                    new Date(nextEpisodeData.episode.airDate)
-                  ) ? (
-                  <>
-                    <CalendarIcon className="h-6 w-5 ml-2 mr-1 text-gray-500" />
-                    <div className="font-medium truncate italic text-gray-500">
-                      today
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <CalendarIcon className="h-6 w-5 ml-2 mr-1 text-gray-500" />
-                    <div className="font-medium truncate italic text-gray-500">
-                      {daysUntilDate(
-                        new Date(nextEpisodeData.episode.airDate)
-                      ) + " days"}
-                    </div>
-                  </>
-                )}
-              </>
+              <AirDateCount episode={nextEpisodeData.episode} />
             )}
           </div>
         ) : (
@@ -203,7 +180,7 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
             className="button text-sm w-max py-1.5 pl-1.5 pr-3 flex flex-row truncate"
           >
             <CheckIcon className="h-6 w-6 mr-1 -my-0.5" />
-            <div>Episode Watched</div>
+            <div>Episode watched</div>
           </button>
         </div>
       </div>
