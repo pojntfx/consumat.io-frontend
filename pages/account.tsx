@@ -9,16 +9,16 @@ import {
   useSetCountry,
   useSetLanguage,
 } from "../hooks/DataHooks";
-import MediaImage from "../components/helper/MediaImage";
-import StatistikItem from "../components/helper/StatisticItem";
+import MediaImage from "../components/dataDisplay/MediaImage";
+import StatistikItem from "../components/dataDisplay/StatisticItem";
 import styles from "../styles/Account.module.css";
 import { Session } from "next-auth";
 import { MediaType } from "../types/media";
-import CustomSelectButton from "../components/helper/CustomSelectButton";
+import CustomSelectButton from "../components/dataEntry/CustomSelectButton";
 import { Language } from "../types/language";
 import { Country } from "../types/country";
 import { useState } from "react";
-import Spinner from "../components/helper/Spinner";
+import Spinner from "../components/feedback/Spinner";
 import { WatchStatus } from "../types/status";
 import MediaCardList from "../components/mediaCard/MediaCardList";
 

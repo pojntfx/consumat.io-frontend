@@ -1,7 +1,6 @@
 import { useGetTvSeasons } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
-import Spinner from "../helper/Spinner";
-import SeasonEpisodeList from "./SeasonEpisodeList";
+import Spinner from "../feedback/Spinner";
 import SeasonOverview from "./SeasonOverview";
 
 type TvDetailsProps = {

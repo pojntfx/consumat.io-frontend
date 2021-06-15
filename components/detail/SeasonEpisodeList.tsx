@@ -5,8 +5,8 @@ import {
 } from "../../hooks/DataHooks";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
 import { Season } from "../../lib/api/consumat-io";
-import MediaImage from "../helper/MediaImage";
-import Spinner from "../helper/Spinner";
+import MediaImage from "../dataDisplay/MediaImage";
+import Spinner from "../feedback/Spinner";
 
 type SeasonEpisodeListProps = {
   season: Season;

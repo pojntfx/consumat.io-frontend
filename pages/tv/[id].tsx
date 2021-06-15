@@ -5,8 +5,8 @@ import MetaData from "../../components/MetaData";
 import { useAuthorization } from "../../hooks/AuthnHooks";
 import { useGetTv } from "../../hooks/DataHooks";
 import DetailPage from "../../components/detail/DetailPage";
-import Spinner from "../../components/helper/Spinner";
-import ErrorMessage from "../../components/helper/ErrorMessage";
+import Spinner from "../../components/feedback/Spinner";
+import ErrorMessage from "../../components/feedback/ErrorMessage";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
