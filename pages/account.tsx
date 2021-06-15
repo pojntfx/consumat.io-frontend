@@ -96,7 +96,7 @@ const Account = () => {
                 <div className="flex flex-col md:flex-row">
                   {isSession(session) && (
                     <MediaImage
-                      className="w-60 h-60"
+                      className="w-60 md:h-60"
                       imageSrc={session.user.image}
                     />
                   )}
@@ -104,7 +104,7 @@ const Account = () => {
                     className="ml-0 md:ml-4 bg-gradient-to-br from-gray-700 to-gray-800 rounded"
                     style={{ width: 2 }}
                   />
-                  <div className="h-60 flex flex-col justfiy-center ml-0 md:ml-4">
+                  <div className="md:h-60 flex flex-col justfiy-center ml-0 md:ml-4">
                     {isSession(session) && <h3>{session.user.name}</h3>}
                     <StatistikItem
                       title={"Watched Series"}
@@ -127,14 +127,14 @@ const Account = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col" style={{ maxWidth: "10rem" }}>
+            <div className="flex flex-col">
               <div
                 className={
                   "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
                 }
               >
                 <h3 className="cardHeading">Settings</h3>
-                <div className="flex flex-col">
+                <div className="flex flex-col md:h-60 justify-start">
                   <label htmlFor="country" className="mr-1">
                     Country:{" "}
                   </label>

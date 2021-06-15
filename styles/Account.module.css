@@ -3,7 +3,7 @@
   @apply flex-col;
   @apply md:flex-row;
   @apply items-center;
-  @apply md:items-start;
+
   @apply justify-between;
 }
 
@@ -16,7 +16,7 @@
   @apply rounded;
   @apply shadow;
   @apply mt-4;
-  @apply md:mt-0;
+  @apply md:mt-auto;
 }
 
 .logoutButton:hover {
