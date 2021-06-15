@@ -122,21 +122,21 @@ const Account = () => {
                       )}
                     </div>
 
-                    {/* <StatistikItem
-                      title={"Watched Movies"}
-                      times={watchCountMovieData.watchCount}
-                      loading={watchCountMovieLoading}
-                    />
-                    <StatistikItem
-                      title={"Total Watchtime"}
-                      times={
-                        (
-                          watchTimeTVData.watchTime / 60 +
-                          watchTimeMovieData.watchTime / 60
-                        ).toFixed(0) + "h"
-                      }
-                      loading={watchTimeTVLoading}
-                    /> */}
+                    <div className="flex flex-row items-center">
+                      <h3 className="mr-2">Total Watchtime</h3>{" "}
+                      {watchTimeMovieLoading ? (
+                        <LoadingDots />
+                      ) : watchTimeTVLoading ? (
+                        <LoadingDots />
+                      ) : (
+                        <p className="ml-auto">
+                          {(
+                            watchTimeTVData.watchTime / 60 +
+                            watchTimeMovieData.watchTime / 60
+                          ).toFixed(0) + "h"}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -186,41 +186,42 @@ const Account = () => {
               </div>
             </div>
           </div>
+
           <div className="px-4 md:px-0 flex flex-col md:flex-row max-width-md mt-4">
-            <div
-              className={
-                "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
-              }
-            >
-              <h3 className="cardHeading">Finished Movies</h3>
-              <div className="flex flex-col justfiy-center">
-                {movieListLoading ? (
-                  <Spinner />
-                ) : (
+            {movieListLoading ? (
+              <Spinner />
+            ) : (
+              <div
+                className={
+                  "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
+                }
+              >
+                <h3 className="cardHeading">Finished Movies</h3>
+                <div className="flex flex-col justfiy-center">
                   <MediaCardList
                     mediaList={movieListData.list}
                     watchStatus={WatchStatus.Finished}
                   />
-                )}
+                </div>
               </div>
-            </div>
-            <div
-              className={
-                "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
-              }
-            >
-              <h3 className="cardHeading">Finished Series</h3>
-              <div className="flex flex-col justfiy-center">
-                {tvListLoading ? (
-                  <Spinner />
-                ) : (
+            )}
+            {tvListLoading ? (
+              <Spinner />
+            ) : (
+              <div
+                className={
+                  "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
+                }
+              >
+                <h3 className="cardHeading">Finished Series</h3>
+                <div className="flex flex-col justfiy-center">
                   <MediaCardList
                     mediaList={tvListData.list}
                     watchStatus={WatchStatus.Finished}
                   />
-                )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </>
       )}
