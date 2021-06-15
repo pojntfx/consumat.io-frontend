@@ -15,6 +15,7 @@ import {
   useSetCountryMutation,
   useSetLanguageMutation,
   useGetUserQuery,
+  useGetByRatingQuery,
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
@@ -80,6 +81,25 @@ export function useGetPopular(type: MediaType, page: number) {
   return useGetPopularQuery({
     variables: {
       type: type,
+      page: page,
+    },
+    fetchPolicy: "cache-and-network",
+  });
+}
+
+export function useGetByRating(
+  type: MediaType,
+  tmdbRating: number,
+  minVotes: number,
+  releasedFrom: string,
+  page: number
+) {
+  return useGetByRatingQuery({
+    variables: {
+      type: type,
+      tmdbRating: tmdbRating,
+      minVotes: minVotes,
+      releasedFrom: releasedFrom,
       page: page,
     },
     fetchPolicy: "cache-and-network",
