@@ -15,20 +15,23 @@ const MediaList = ({ title, items, loading, error }: MediaListProps) => {
   if (error) return <ErrorMessage />;
 
   return (
-    <div className="cardWithShadow">
-      <h2 className="cardHeading">{title}</h2>
-      {loading ? (
+    <>
+      {items == null ? (
         <div>
           <Spinner />
         </div>
       ) : (
-        <div className="grid gap-3 grid-cols-media-list-mobile sm:grid-cols-media-list justify-evenly">
+        <div
+          className={`grid gap-3 grid-cols-media-list-mobile sm:grid-cols-media-list justify-evenly ${
+            loading && "animate-pulse"
+          }`}
+        >
           {items.map((item, i) => {
             return <MediaCard key={i} mediaItem={item} />;
           })}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
