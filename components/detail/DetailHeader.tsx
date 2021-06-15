@@ -1,7 +1,7 @@
 import { Media } from "../../lib/api/consumat-io";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
-import MediaImage from "../helper/MediaImage";
-import FavoriteButton from "../helper/FavoriteButton";
+import MediaImage from "../dataDisplay/MediaImage";
+import FavoriteButton from "../dataEntry/FavoriteButton";
 
 type DetailHeaderProps = {
   media: Media;

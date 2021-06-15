@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/client";
-import Spinner from "../components/helper/Spinner";
-import LibraryList from "../components/library/LibraryList";
+import Spinner from "../components/feedback/Spinner";
+import MediaCardList from "../components/mediaCard/MediaCardList";
 import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useGetList } from "../hooks/DataHooks";
@@ -11,9 +11,9 @@ import {
   WatchStatus,
 } from "../types/status";
 import { useEffect, useState } from "react";
-import RadioSlider from "../components/helper/RadioSlider";
+import RadioSlider from "../components/dataEntry/RadioSlider";
 import { getMediaTypeFromString, MediaType } from "../types/media";
-import ErrorMessage from "../components/helper/ErrorMessage";
+import ErrorMessage from "../components/feedback/ErrorMessage";
 import { useRouter } from "next/router";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
@@ -113,7 +113,10 @@ const Library = () => {
         <Spinner />
       ) : (
         data != null && (
-          <LibraryList mediaList={data.list} watchStatus={watchStatusActive} />
+          <MediaCardList
+            mediaList={data.list}
+            watchStatus={watchStatusActive}
+          />
         )
       )}
 

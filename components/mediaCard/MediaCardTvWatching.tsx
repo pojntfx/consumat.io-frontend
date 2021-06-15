@@ -1,4 +1,4 @@
-import { CalendarIcon, CheckIcon, ReplyIcon } from "@heroicons/react/outline";
+import { CheckIcon, ReplyIcon } from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
 import {
   useGetEpisode,
@@ -6,11 +6,7 @@ import {
   useSetNumberOfWatchedEpisodes,
 } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
-import {
-  daysUntilDate,
-  isDateInFuture,
-  isDateInPresent,
-} from "../../types/date";
+import { isDateInFuture } from "../../types/date";
 import {
   EpisodeNumber,
   getLastWatchedEpisode,
@@ -18,9 +14,10 @@ import {
   getPrevEpisode,
   getWatchedEpisodeCount,
 } from "../../types/episodeNumber";
-import LoadingDots from "../helper/LoadingDots";
-import MediaStatus from "../helper/MediaStatus";
-import Progressbar from "../helper/Progressbar";
+import AirDateCountLabel from "../dataDisplay/AirDateCountLabel";
+import LoadingDots from "../feedback/LoadingDots";
+import MediaStatusLabel from "../dataDisplay/MediaStatusLabel";
+import ProgressBar from "../dataDisplay/ProgressBar";
 import MediaCardWrapper from "./MediaCardWrapper";
 
 type MediaCardTvWatchingProps = {
@@ -101,7 +98,7 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
                 minimumIntegerDigits: 2,
               })}
             </div>
-            {nextEpisodeData == null ? (
+            {nextEpisodeData == null || nextEpisodeLoading ? (
               <LoadingDots className="ml-2" />
             ) : nextEpisodeData.episode.airDate != null &&
               nextEpisodeData.episode.airDate !== "" &&
@@ -112,39 +109,19 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
                   {nextEpisodeData.episode.title}
                 </div>
               </>
+            ) : nextEpisodeData.episode.airDate == null ||
+              nextEpisodeData.episode.airDate == "" ? (
+              <MediaStatusLabel media={tv} className="ml-2" />
             ) : (
-              <>
-                {nextEpisodeData.episode.airDate == null ||
-                nextEpisodeData.episode.airDate == "" ? (
-                  <MediaStatus media={tv} className="ml-2" />
-                ) : isDateInPresent(
-                    new Date(nextEpisodeData.episode.airDate)
-                  ) ? (
-                  <>
-                    <CalendarIcon className="h-6 w-5 ml-2 mr-1 text-gray-500" />
-                    <div className="font-medium truncate italic text-gray-500">
-                      today
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <CalendarIcon className="h-6 w-5 ml-2 mr-1 text-gray-500" />
-                    <div className="font-medium truncate italic text-gray-500">
-                      {daysUntilDate(
-                        new Date(nextEpisodeData.episode.airDate)
-                      ) + " days"}
-                    </div>
-                  </>
-                )}
-              </>
+              <AirDateCountLabel episode={nextEpisodeData.episode} />
             )}
           </div>
         ) : (
-          <MediaStatus media={tv} />
+          <MediaStatusLabel media={tv} />
         )}
 
         <div className="flex flex-row -mb-1">
-          <Progressbar
+          <ProgressBar
             progress={watchedEpisodeCount}
             limit={tv.numberOfEpisodes}
             className="my-1"
@@ -203,7 +180,7 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
             className="button text-sm w-max py-1.5 pl-1.5 pr-3 flex flex-row truncate"
           >
             <CheckIcon className="h-6 w-6 mr-1 -my-0.5" />
-            <div>Episode Watched</div>
+            <div>Episode watched</div>
           </button>
         </div>
       </div>

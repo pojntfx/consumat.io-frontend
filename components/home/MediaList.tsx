@@ -1,7 +1,7 @@
 import { ApolloError } from "@apollo/client";
 import { Media } from "../../lib/api/consumat-io";
-import Spinner from "../helper/Spinner";
-import ErrorMessage from "../helper/ErrorMessage";
+import Spinner from "../feedback/Spinner";
+import ErrorMessage from "../feedback/ErrorMessage";
 import MediaCard from "./MediaCard";
 
 type MediaListProps = {
