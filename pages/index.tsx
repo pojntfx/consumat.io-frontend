@@ -8,6 +8,11 @@ import { useAuthorization } from "../hooks/AuthnHooks";
 import { useEffect, useState } from "react";
 import { Media, useGetByRatingQuery } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
+import {
+  ArrowCircleLeftIcon,
+  ArrowCircleRightIcon,
+} from "@heroicons/react/solid";
+import PaginationBar from "../components/dataEntry/PaginationBar";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -17,14 +22,17 @@ const Home = () => {
   const [session] = useAuthorization();
   const [headerImageSource, setHeaderImageSource] = useState("");
   const [popularMoviesPage, setPopularMoviesPage] = useState(1);
+  const [popularTvPage, setPopularTvPage] = useState(1);
+  const [topRatedMoviesPage, setTopRatedMoviesPage] = useState(1);
+  const [topRatedTvPage, setTopRatedTvPage] = useState(1);
 
   if (!session) return null;
 
   const {
-    previousData: previousPopularMovieData,
-    data: popularMovieData,
-    loading: popularMovieLoading,
-    error: popularMovieError,
+    previousData: previousPopularMoviesData,
+    data: popularMoviesData,
+    loading: popularMoviesLoading,
+    error: popularMoviesError,
   } = useGetPopular(MediaType.Movie, popularMoviesPage);
 
   const {
@@ -32,93 +40,91 @@ const Home = () => {
     data: popularTvData,
     loading: popularTvLoading,
     error: popularTvError,
-  } = useGetPopular(MediaType.Tv, 1);
+  } = useGetPopular(MediaType.Tv, popularTvPage);
 
-  // const {
-  //   data: topRatedMovieData,
-  //   loading: topRatedMovieLoading,
-  //   error: topRatedMovieError,
-  // } = useGetByRating(
-  //   MediaType.Movie,
-  //   7.0,
-  //   100,
-  //   "2021-01-01",
-  //   Math.floor(Math.random() * 5 + 1)
-  // );
+  const {
+    previousData: previousTopRatedMoviesData,
+    data: topRatedMoviesData,
+    loading: topRatedMoviesLoading,
+    error: topRatedMoviesError,
+  } = useGetByRating(
+    MediaType.Movie,
+    7.0,
+    25,
+    new Date(new Date().getFullYear(), 0, 1).toISOString(),
+    topRatedMoviesPage
+  );
+
+  const {
+    previousData: previousTopRatedTvData,
+    data: topRatedTvData,
+    loading: topRatedTvLoading,
+    error: topRatedTvError,
+  } = useGetByRating(
+    MediaType.Tv,
+    7.0,
+    25,
+    new Date(new Date().getFullYear(), 0, 1).toISOString(),
+    topRatedTvPage
+  );
 
   useEffect(() => {
-    if (popularMovieData && popularTvData && !headerImageSource) {
+    if (popularMoviesData && popularTvData && !headerImageSource) {
       const movieTvArray: Media[] = [
-        ...popularMovieData.popular.results,
+        ...popularMoviesData.popular.results,
         ...popularTvData.popular.results,
       ].filter((item) => item.backdropPath !== null);
       const randomItem =
         movieTvArray[Math.floor(Math.random() * movieTvArray.length)];
       setHeaderImageSource(randomItem?.backdropPath);
     }
-  }, [popularMovieData, popularTvData]);
-
-  useEffect(() => {
-    console.log("popularTvData changed...");
-  }, [popularTvData]);
+  }, [popularMoviesData, popularTvData]);
 
   return (
     <div className="md:px-4">
       <MetaData title="consumat.io | Home" />
 
-      {/* When tvLoading AND movieLoading is NOT loading send headerImageSource, else: null */}
       <HomeHeader backgroundImageSource={headerImageSource} />
 
-      <div className="cardWithShadow">
-        <h2 className="cardHeading">POPULAR MOVIES</h2>
-        <MediaList
-          title="POPULAR MOVIES"
-          items={
-            popularMovieData
-              ? popularMovieData.popular.results
-              : previousPopularMovieData
-              ? previousPopularMovieData.popular.results
-              : null
-          }
-          loading={popularMovieLoading}
-          error={popularMovieError}
-        />
-        <div className="flex mt-4 justify-center">
-          <button
-            className="button w-12 mx-1"
-            onClick={() =>
-              popularMoviesPage > 1 &&
-              setPopularMoviesPage(popularMoviesPage - 1)
-            }
-          >
-            -
-          </button>
-          <p className="font-bold mx-1">{popularMoviesPage}</p>
-          <button
-            className="button w-12 mx-1"
-            onClick={() => setPopularMoviesPage(popularMoviesPage + 1)}
-          >
-            +
-          </button>
-        </div>
-      </div>
+      <MediaList
+        title="POPULAR MOVIES"
+        mediaPage={popularMoviesData?.popular}
+        previouslyLoadedMediaPage={previousPopularMoviesData?.popular}
+        pageNumber={popularMoviesPage}
+        setPage={setPopularMoviesPage}
+        loading={popularMoviesLoading}
+        error={popularMoviesError}
+      />
 
-      <div className="cardWithShadow">
-        <h2 className="cardHeading">POPULAR TV SHOWS</h2>
-        <MediaList
-          title="POPULAR TV SHOWS"
-          items={popularTvData?.popular.results}
-          loading={popularTvLoading}
-          error={popularTvError}
-        />
-      </div>
+      <MediaList
+        title="POPULAR TV SHOWS"
+        mediaPage={popularTvData?.popular}
+        previouslyLoadedMediaPage={previousPopularTvData?.popular}
+        pageNumber={popularTvPage}
+        setPage={setPopularTvPage}
+        loading={popularTvLoading}
+        error={popularTvError}
+      />
 
-      {/* <MediaList
-        title="TOP-RATED MOVIES"
-        items={topRatedMovieData?.byRating.results}
-        loading={topRatedMovieLoading}
-        error={topRatedMovieError}
-      /> */}
+      <MediaList
+        title={`TOP RATED MOVIES ${new Date().getFullYear().toString()}`}
+        mediaPage={topRatedMoviesData?.byRating}
+        previouslyLoadedMediaPage={previousTopRatedMoviesData?.byRating}
+        pageNumber={topRatedMoviesPage}
+        setPage={setTopRatedMoviesPage}
+        loading={topRatedMoviesLoading}
+        error={topRatedMoviesError}
+      />
+
+      <MediaList
+        title={`TOP RATED SHOWS ${new Date().getFullYear().toString()}`}
+        mediaPage={topRatedTvData?.byRating}
+        previouslyLoadedMediaPage={previousTopRatedTvData?.byRating}
+        pageNumber={topRatedTvPage}
+        setPage={setTopRatedTvPage}
+        loading={topRatedTvLoading}
+        error={topRatedTvError}
+      />
     </div>
   );
 };
