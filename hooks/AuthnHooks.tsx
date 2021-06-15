@@ -6,7 +6,7 @@ import { useGetUser, useSetLanguage } from "./DataHooks";
 
 export function useAuthorization() {
   const [session, loading] = useSession();
-  const { data, loadingUser, error } = useGetUser();
+  const { data, loading: loadingUser, error } = useGetUser();
   const router = useRouter();
   const [updateLanguage, { data: de, loading: le, error: ee }] =
     useSetLanguage();
