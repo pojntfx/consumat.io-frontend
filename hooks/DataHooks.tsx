@@ -122,7 +122,7 @@ export function useGetByRating(
       releasedFrom: releasedFrom,
       page: page,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
