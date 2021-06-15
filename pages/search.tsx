@@ -8,6 +8,7 @@ import MetaData from "../components/MetaData";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useGetSearch } from "../hooks/DataHooks";
 import MediaCardList from "../components/mediaCard/MediaCardList";
+import SearchBar from "../components/dataEntry/SearchBar";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -26,44 +27,13 @@ const Search = () => {
   }, []);
 
   const { q } = router.query;
-  const [query, setQuery] = useState<string>("");
   const { data, loading, error } = useGetSearch(q, 1);
-
-  const form = createRef<HTMLFormElement>();
 
   return (
     <div className="px-4">
       <MetaData title="consumat.io | Search" />
-
-      <form
-        ref={form}
-        onSubmit={(event) => {
-          event.preventDefault();
-          router.push({ query: { q: query } }, undefined, { shallow: true });
-        }}
-        autoComplete="off"
-        className="flex flex-col mb-2"
-      >
-        <div className="flex mb-2 w-full">
-          <input
-            type="search"
-            name="q"
-            placeholder="Search..."
-            required
-            onChange={(event) => setQuery(event.target.value)}
-            className="p-2 rounded-l w-full mr-0.5 dark:text-gray-800"
-          />
-          <button
-            type="submit"
-            className="px-4 py-2 rounded-r dark:text-gray-800"
-          >
-            Search
-          </button>
-        </div>
-      </form>
-
+      <SearchBar className="mb-3" />
       {error && <ErrorMessage />}
-
       {loading ? (
         <Spinner />
       ) : (
