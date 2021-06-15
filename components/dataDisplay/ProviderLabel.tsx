@@ -7,7 +7,7 @@ type ProviderLabelProps = {
 
 function ProviderLabel({ provider }: ProviderLabelProps) {
   return (
-    <div className="rounded bg-gray-200 p-0.5 mr-1">
+    <div className="flex items-center justify-center mr-1 py-0.5 px-2 bg-gradient-to-br from-gray-700 to-gray-800 text-white text-sm font-bold rounded shadow">
       {provider.name === "Netflix" ? (
         <img src="/images/netflix.png" className="h-6" />
       ) : provider.name === "Amazon Prime Video" ? (
@@ -15,9 +15,7 @@ function ProviderLabel({ provider }: ProviderLabelProps) {
       ) : provider.name === "Disney Plus" ? (
         <img src="/images/disney-plus.png" className="h-6" />
       ) : (
-        <div className="my-0.5 mx-1 text-sm font-semibold text-gray-500">
-          {provider.name}
-        </div>
+        <div>{provider.name}</div>
       )}
     </div>
   );
