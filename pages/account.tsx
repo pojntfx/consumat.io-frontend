@@ -10,7 +10,6 @@ import {
   useSetLanguage,
 } from "../hooks/DataHooks";
 import MediaImage from "../components/dataDisplay/MediaImage";
-import StatistikItem from "../components/dataDisplay/StatisticItem";
 import styles from "../styles/Account.module.css";
 import { Session } from "next-auth";
 import { MediaType } from "../types/media";
@@ -102,12 +101,28 @@ const Account = () => {
                   />
                   <div className="md:h-60 flex flex-col justfiy-center ml-0 md:ml-4">
                     {isSession(session) && <h3>{session.user.name}</h3>}
-                    <StatistikItem
-                      title={"Watched Series"}
-                      times={watchCountTVData.watchCount}
-                      loading={watchCountTVLoading}
-                    />
-                    <StatistikItem
+
+                    <div className="flex flex-row items-center">
+                      <h3 className="mr-2">Watched Series</h3>{" "}
+                      {watchCountTVLoading ? (
+                        <LoadingDots />
+                      ) : (
+                        <p className="ml-auto">{watchCountTVData.watchCount}</p>
+                      )}
+                    </div>
+
+                    <div className="flex flex-row items-center">
+                      <h3 className="mr-2">Watched Movies</h3>{" "}
+                      {watchCountMovieLoading ? (
+                        <LoadingDots />
+                      ) : (
+                        <p className="ml-auto">
+                          {watchCountMovieData.watchCount}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* <StatistikItem
                       title={"Watched Movies"}
                       times={watchCountMovieData.watchCount}
                       loading={watchCountMovieLoading}
@@ -121,7 +136,7 @@ const Account = () => {
                         ).toFixed(0) + "h"
                       }
                       loading={watchTimeTVLoading}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
