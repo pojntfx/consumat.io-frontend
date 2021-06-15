@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "../../lib/api/consumat-io";
-import ProviderTag from "./ProviderTag";
+import ProviderLabel from "./ProviderLabel";
 
 type ProviderListProps = {
   providers: Provider[];
@@ -11,7 +11,7 @@ function ProviderList({ providers, className }: ProviderListProps) {
   return (
     <div className={"flex flex-row " + className}>
       {providers.map((provider) => (
-        <ProviderTag provider={provider} />
+        <ProviderLabel provider={provider} />
       ))}
     </div>
   );

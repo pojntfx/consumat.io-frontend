@@ -1,11 +1,11 @@
 import React from "react";
 import { Provider } from "../../lib/api/consumat-io";
 
-type ProviderTagProps = {
+type ProviderLabelProps = {
   provider: Provider;
 };
 
-function ProviderTag({ provider }: ProviderTagProps) {
+function ProviderLabel({ provider }: ProviderLabelProps) {
   return (
     <div className="rounded bg-gray-200 p-0.5 mr-1">
       {provider.name === "Netflix" ? (
@@ -23,4 +23,4 @@ function ProviderTag({ provider }: ProviderTagProps) {
   );
 }
 
-export default ProviderTag;
+export default ProviderLabel;

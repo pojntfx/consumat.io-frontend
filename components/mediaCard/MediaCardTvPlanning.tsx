@@ -7,9 +7,9 @@ import {
   getWatchedEpisodeCount,
 } from "../../types/episodeNumber";
 import { WatchStatus } from "../../types/status";
-import LoadingDots from "../helper/LoadingDots";
-import MediaStatus from "../helper/MediaStatus";
-import WatchStatusButton from "../helper/WatchStatusButton";
+import LoadingDots from "../feedback/LoadingDots";
+import MediaStatusLabel from "../dataDisplay/MediaStatusLabel";
+import WatchStatusButton from "../dataEntry/WatchStatusButton";
 import MediaCardWrapper from "./MediaCardWrapper";
 
 type MediaCardTvPlanningProps = {
@@ -41,7 +41,7 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
         <div className="h-10">
           {watchedEpisodeCount <= tv.numberOfEpisodes ? (
             lastWatchedEpisode != null ? (
-              <MediaStatus media={tv} />
+              <MediaStatusLabel media={tv} />
             ) : (
               <LoadingDots />
             )

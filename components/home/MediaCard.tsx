@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Media } from "../../lib/api/consumat-io";
 import styles from "../../styles/MediaList.module.css";
-import MediaImage from "../helper/MediaImage";
+import MediaImage from "../dataDisplay/MediaImage";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
 import { getMediaTypeFromString, MediaType } from "../../types/media";
 

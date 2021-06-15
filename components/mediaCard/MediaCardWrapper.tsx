@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
 import { Media } from "../../lib/api/consumat-io";
 import { isMovie } from "../../types/media";
-import MediaImage from "../helper/MediaImage";
+import MediaImage from "../dataDisplay/MediaImage";
 
 type MediaCardWrapperProps = {
   media: Media;

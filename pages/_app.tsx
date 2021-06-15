@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import { theme } from "../types/theme";
 import { useUpdate } from "../hooks/UpdateHooks";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "../components/helper/Toast";
+import { ToastContainer } from "../components/feedback/Toast";
 
 export const ThemeContext = React.createContext({
   currentTheme: theme.light,

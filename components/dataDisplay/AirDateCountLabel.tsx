@@ -8,12 +8,12 @@ import {
   isDateInPresent,
 } from "../../types/date";
 
-type AirDateCountProps = {
+type AirDateCountLabelProps = {
   episode: Episode;
   className?: string;
 };
 
-function AirDateCount({ episode, className }: AirDateCountProps) {
+function AirDateCountLabel({ episode, className }: AirDateCountLabelProps) {
   return (
     <div className={"flex flex-row " + className}>
       {episode.airDate == null || episode.airDate == "" ? (
@@ -49,4 +49,4 @@ function AirDateCount({ episode, className }: AirDateCountProps) {
   );
 }
 
-export default AirDateCount;
+export default AirDateCountLabel;

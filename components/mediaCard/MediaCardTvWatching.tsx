@@ -14,10 +14,10 @@ import {
   getPrevEpisode,
   getWatchedEpisodeCount,
 } from "../../types/episodeNumber";
-import AirDateCount from "../helper/AirDateCount";
-import LoadingDots from "../helper/LoadingDots";
-import MediaStatus from "../helper/MediaStatus";
-import Progressbar from "../helper/Progressbar";
+import AirDateCountLabel from "../dataDisplay/AirDateCountLabel";
+import LoadingDots from "../feedback/LoadingDots";
+import MediaStatusLabel from "../dataDisplay/MediaStatusLabel";
+import Progressbar from "../dataDisplay/Progressbar";
 import MediaCardWrapper from "./MediaCardWrapper";
 
 type MediaCardTvWatchingProps = {
@@ -111,13 +111,13 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
               </>
             ) : nextEpisodeData.episode.airDate == null ||
               nextEpisodeData.episode.airDate == "" ? (
-              <MediaStatus media={tv} className="ml-2" />
+              <MediaStatusLabel media={tv} className="ml-2" />
             ) : (
-              <AirDateCount episode={nextEpisodeData.episode} />
+              <AirDateCountLabel episode={nextEpisodeData.episode} />
             )}
           </div>
         ) : (
-          <MediaStatus media={tv} />
+          <MediaStatusLabel media={tv} />
         )}
 
         <div className="flex flex-row -mb-1">
