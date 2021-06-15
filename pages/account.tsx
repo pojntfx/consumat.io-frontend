@@ -9,18 +9,18 @@ import {
   useSetCountry,
   useSetLanguage,
 } from "../hooks/DataHooks";
-import MediaImage from "../components/helper/MediaImage";
-import StatistikItem from "../components/helper/StatisticItem";
+import MediaImage from "../components/dataDisplay/MediaImage";
+import StatistikItem from "../components/dataDisplay/StatisticItem";
 import styles from "../styles/Account.module.css";
 import { Session } from "next-auth";
 import { MediaType } from "../types/media";
-import CustomSelectButton from "../components/helper/CustomSelectButton";
+import CustomSelectButton from "../components/dataEntry/CustomSelectButton";
 import { Language } from "../types/language";
 import { Country } from "../types/country";
-import { useState, useEffect } from "react";
-import Spinner from "../components/helper/Spinner";
-import LibraryList from "../components/library/LibraryList";
+import { useState } from "react";
+import Spinner from "../components/feedback/Spinner";
 import { WatchStatus } from "../types/status";
+import MediaCardList from "../components/mediaCard/MediaCardList";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -131,9 +131,9 @@ const Account = () => {
                   </label>
                   <CustomSelectButton
                     name="country"
-                    value={country}
+                    value={userData?.user.country}
                     labels={allCountriesLabels}
-                    options={[userData?.user.country, ...allCountriesIsos]}
+                    options={allCountriesIsos}
                     onChange={({ target }) => {
                       setCountry(target.value);
                       updateCountry({ variables: { country: target.value } });
@@ -145,9 +145,9 @@ const Account = () => {
                   <CustomSelectButton
                     className="mb-2"
                     name="language"
-                    value={language}
+                    value={userData?.user.language}
                     labels={allLanguagesLabels}
-                    options={[userData?.user.language, ...allLanguagesIsos]}
+                    options={allLanguagesIsos}
                     onChange={({ target }) => {
                       setLanguage(target.value);
                       updateLanguage({ variables: { language: target.value } });
@@ -171,7 +171,7 @@ const Account = () => {
             >
               <h3 className="cardHeading">Finished Movies</h3>
               <div className="flex flex-col justfiy-center">
-                <LibraryList
+                <MediaCardList
                   mediaList={movieListData.list}
                   watchStatus={WatchStatus.Finished}
                 />
@@ -184,7 +184,7 @@ const Account = () => {
             >
               <h3 className="cardHeading">Finished Series</h3>
               <div className="flex flex-col justfiy-center">
-                <LibraryList
+                <MediaCardList
                   mediaList={tvListData.list}
                   watchStatus={WatchStatus.Finished}
                 />

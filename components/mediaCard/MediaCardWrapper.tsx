@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { ReactNode } from "react";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
 import { Media } from "../../lib/api/consumat-io";
 import { isMovie } from "../../types/media";
-import MediaImage from "../helper/MediaImage";
+import MediaImage from "../dataDisplay/MediaImage";
 
 type MediaCardWrapperProps = {
   media: Media;
@@ -20,8 +19,6 @@ function MediaCardWrapper({
   className,
 }: MediaCardWrapperProps) {
   const image = useImage(imageSizes.poster.w154, media.posterPath);
-
-  const router = useRouter();
 
   return (
     <li>
