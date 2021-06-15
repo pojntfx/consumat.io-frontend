@@ -86,7 +86,7 @@ const Account = () => {
       ) : (
         <>
           <div className={styles.headerRow}>
-            <div className="flex flex-col md:flex-row justfiy-start items-center md:items-start md:mr-4">
+            <div className="w-full md:w-max flex flex-col md:flex-row justfiy-start items-center md:items-start md:mr-4">
               <div
                 className={
                   "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
@@ -96,7 +96,7 @@ const Account = () => {
                 <div className="flex flex-col md:flex-row">
                   {isSession(session) && (
                     <MediaImage
-                      className="w-60 md:h-60"
+                      className="w-86 md:w-60 md:h-60 mb-4 md:mb-0"
                       imageSrc={session.user.image}
                     />
                   )}
