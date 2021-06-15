@@ -85,7 +85,7 @@ export function useGetPopular(type: MediaType, page: number) {
       type: type,
       page: page,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
 }
 
