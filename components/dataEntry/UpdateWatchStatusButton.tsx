@@ -1,25 +1,30 @@
 import { ApolloError } from "@apollo/client";
-import { ClipboardCopyIcon } from "@heroicons/react/outline";
-import React, { useEffect } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { useSetWatchStatus } from "../../hooks/DataHooks";
 import { Media } from "../../lib/api/consumat-io";
 import { WatchStatus } from "../../types/status";
 
-type WatchStatusButtonProps = {
+type UpdateWatchStatusButtonProps = {
   media: Media;
   watchStatus: WatchStatus;
+  disabled?: boolean;
+  onClick?: () => void;
   onCompleted?: () => void;
   onError?: (error: ApolloError) => void;
   className?: string;
+  children?: ReactNode;
 };
 
-function WatchStatusButton({
+function UpdateWatchStatusButton({
   media,
+  disabled,
   watchStatus,
+  onClick,
   onCompleted,
   onError,
   className,
-}: WatchStatusButtonProps) {
+  children,
+}: UpdateWatchStatusButtonProps) {
   const [updateWatchStatus, { loading, data, error }] = useSetWatchStatus();
 
   useEffect(() => {
@@ -32,24 +37,22 @@ function WatchStatusButton({
 
   return (
     <button
-      onClick={() =>
+      disabled={disabled}
+      onClick={() => {
+        onClick?.();
         updateWatchStatus({
           variables: {
             code: media.code,
             type: media.__typename,
             watchStatus: watchStatus,
           },
-        })
-      }
-      className={
-        "button text-sm w-max py-1.5 pl-1.5 pr-3 flex flex-row truncat " +
-        className
-      }
+        });
+      }}
+      className={className}
     >
-      <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5" />
-      <div>{"Move to " + watchStatus}</div>
+      {children}
     </button>
   );
 }
 
-export default WatchStatusButton;
+export default UpdateWatchStatusButton;
