@@ -3,7 +3,20 @@ name: Mirror
 on: [push]
 
 jobs:
-  mirror:
+  mirror-gitlab-uni:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: "0"
+      - uses: spyoungtech/mirror-action@master
+        with:
+          REMOTE: "https://gitlab.mi.hdm-stuttgart.de/fp036/consumat.io-frontend.git"
+          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+          GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+
+  mirror-gitlab-com:
     runs-on: ubuntu-latest
 
     steps:
@@ -13,5 +26,5 @@ jobs:
       - uses: spyoungtech/mirror-action@master
         with:
           REMOTE: "https://gitlab.com/pojntfx/consumat.io-frontend.git"
-          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
-          GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+          GIT_USERNAME: ${{ secrets.GITLAB_COM_GIT_USERNAME }}
+          GIT_PASSWORD: ${{ secrets.GITLAB_COM_GIT_PASSWORD }}

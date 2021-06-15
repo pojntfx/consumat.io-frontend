@@ -15,7 +15,12 @@ import {
   useSetCountryMutation,
   useSetLanguageMutation,
   useGetUserQuery,
+<<<<<<< HEAD
   useGetByRatingQuery,
+=======
+  useGetWatchTimeQuery,
+  useGetWatchCountQuery,
+>>>>>>> upstream/main
 } from "../lib/api/consumat-io";
 import { MediaType } from "../types/media";
 import { WatchStatus } from "../types/status";
@@ -142,6 +147,24 @@ export function useGetSeasonEpisodes(code: number, seasonNumber: number) {
 
 export function useGetUser() {
   return useGetUserQuery({ fetchPolicy: "cache-and-network" });
+}
+
+export function useGetWatchTime(type: MediaType) {
+  return useGetWatchTimeQuery({
+    variables: {
+      type: type,
+    },
+    fetchPolicy: "cache-and-network",
+  });
+}
+
+export function useGetWatchCount(type: MediaType) {
+  return useGetWatchCountQuery({
+    variables: {
+      type: type,
+    },
+    fetchPolicy: "cache-and-network",
+  });
 }
 
 // Mutations
