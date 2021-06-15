@@ -17,10 +17,10 @@ import { MediaType } from "../types/media";
 import CustomSelectButton from "../components/helper/CustomSelectButton";
 import { Language } from "../types/language";
 import { Country } from "../types/country";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Spinner from "../components/helper/Spinner";
-import LibraryList from "../components/library/LibraryList";
 import { WatchStatus } from "../types/status";
+import MediaCardList from "../components/mediaCard/MediaCardList";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -171,7 +171,7 @@ const Account = () => {
             >
               <h3 className="cardHeading">Finished Movies</h3>
               <div className="flex flex-col justfiy-center">
-                <LibraryList
+                <MediaCardList
                   mediaList={movieListData.list}
                   watchStatus={WatchStatus.Finished}
                 />
@@ -184,7 +184,7 @@ const Account = () => {
             >
               <h3 className="cardHeading">Finished Series</h3>
               <div className="flex flex-col justfiy-center">
-                <LibraryList
+                <MediaCardList
                   mediaList={tvListData.list}
                   watchStatus={WatchStatus.Finished}
                 />
