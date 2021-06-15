@@ -17,6 +17,8 @@ const FavoriteButton = ({ className, media }: FavoriteButtonProps) => {
     useSetFavorite();
 
   useEffect(() => {
+    console.log(`Button will now be active: ${isActive}`);
+
     setFavorite({
       variables: {
         code: media.code,

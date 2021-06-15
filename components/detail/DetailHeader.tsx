@@ -32,7 +32,9 @@ const DetailHeader = ({ media }: DetailHeaderProps) => {
         <div className="relative w-40">
           <span
             className={`flex items-center justify-center text-white font-semibold absolute w-10 h-10 -top-3 -right-3 rounded-full shadow ${
-              media.ratingAverage < 5
+              media.ratingAverage === 0
+                ? "bg-gray-500"
+                : media.ratingAverage < 5
                 ? "bg-red-500"
                 : media.ratingAverage < 6.5
                 ? "bg-yellow-500"
@@ -41,7 +43,7 @@ const DetailHeader = ({ media }: DetailHeaderProps) => {
                 : "bg-green-700"
             }`}
           >
-            {media.ratingAverage}
+            {media.ratingAverage > 0 ? media.ratingAverage : "-"}
           </span>
           <div className="w-40 h-60 -mt-48 overflow-hidden rounded self-center shadow-md md:flex-shrink-0">
             <MediaImage
