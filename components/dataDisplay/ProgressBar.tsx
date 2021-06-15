@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CSS from "csstype";
 
-type ProgressbarProps = {
+type ProgressBarProps = {
   progress: number;
   limit: number;
   className?: string;
 };
 
-function Progressbar({ progress, limit, className }: ProgressbarProps) {
+function ProgressBar({ progress, limit, className }: ProgressBarProps) {
   const [progressBar, setProgressBar] = useState<CSS.Properties>();
   useEffect(() => {
     setProgressBar({ width: `${(100 / limit) * progress}%` });
@@ -26,4 +26,4 @@ function Progressbar({ progress, limit, className }: ProgressbarProps) {
   );
 }
 
-export default Progressbar;
+export default ProgressBar;

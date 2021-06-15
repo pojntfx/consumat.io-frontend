@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
+import SearchBar from "../dataEntry/SearchBar";
 
 type HomeHeaderProps = {
   backgroundImageSource: string;
@@ -34,31 +35,7 @@ const HomeHeader = ({ backgroundImageSource }: HomeHeaderProps) => {
         >
           Find your new favorite media right now.
         </h2>
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            router.push({ pathname: "/search", query: { q: query } });
-          }}
-          autoComplete="off"
-        >
-          <div className="flex">
-            <input
-              type="search"
-              name="q"
-              placeholder="Search..."
-              aria-label="Search"
-              required
-              onChange={(event) => setQuery(event.target.value)}
-              className="p-2 rounded-l w-full mr-0.5 dark:text-gray-800"
-            />
-            <button
-              type="submit"
-              className="px-4 py-2 rounded-r dark:text-gray-800"
-            >
-              Search
-            </button>
-          </div>
-        </form>
+        <SearchBar />
       </div>
     </div>
   );
