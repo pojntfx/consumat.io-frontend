@@ -4,12 +4,12 @@ import { Media } from "../../lib/api/consumat-io";
 import { isMovie, isTv } from "../../types/media";
 import { StatusMovie, StatusTv } from "../../types/status";
 
-type MediaStatusProps = {
+type MediaStatusLabelProps = {
   media: Media;
   className?: string;
 };
 
-function MediaStatus({ media, className }: MediaStatusProps) {
+function MediaStatusLabel({ media, className }: MediaStatusLabelProps) {
   return (
     <div className={"flex flex-row " + className}>
       {isMovie(media) ? (
@@ -71,4 +71,4 @@ function MediaStatus({ media, className }: MediaStatusProps) {
   );
 }
 
-export default MediaStatus;
+export default MediaStatusLabel;

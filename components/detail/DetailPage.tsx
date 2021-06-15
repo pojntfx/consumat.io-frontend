@@ -15,11 +15,11 @@ import DetailInfoList from "./DetailInfoList";
 import CastList from "./CastList";
 import DetailHeader from "./DetailHeader";
 import TvDetails from "./TvDetails";
-import SelectButton from "../helper/SelectButton";
+import SelectButton from "../dataEntry/SelectButton";
 import { useSetRating, useSetWatchStatus } from "../../hooks/DataHooks";
 import GeneralInfoList from "./GeneralInfoList";
 import { MediaInfo } from "./GeneralInfoList";
-import ProviderList from "../helper/ProviderList";
+import ProviderList from "../dataDisplay/ProviderList";
 
 type DetailPageProps = {
   media: Media;
