@@ -131,9 +131,9 @@ const Account = () => {
                   </label>
                   <CustomSelectButton
                     name="country"
-                    value={country}
+                    value={userData?.user.country}
                     labels={allCountriesLabels}
-                    options={[userData?.user.country, ...allCountriesIsos]}
+                    options={allCountriesIsos}
                     onChange={({ target }) => {
                       setCountry(target.value);
                       updateCountry({ variables: { country: target.value } });
@@ -145,9 +145,9 @@ const Account = () => {
                   <CustomSelectButton
                     className="mb-2"
                     name="language"
-                    value={language}
+                    value={userData?.user.language}
                     labels={allLanguagesLabels}
-                    options={[userData?.user.language, ...allLanguagesIsos]}
+                    options={allLanguagesIsos}
                     onChange={({ target }) => {
                       setLanguage(target.value);
                       updateLanguage({ variables: { language: target.value } });
