@@ -3,8 +3,6 @@
   @apply flex-col;
   @apply md:flex-row;
   @apply items-center;
-
-  @apply justify-between;
 }
 
 .logoutButton {

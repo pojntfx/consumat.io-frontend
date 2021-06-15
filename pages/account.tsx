@@ -86,7 +86,7 @@ const Account = () => {
       ) : (
         <>
           <div className={styles.headerRow}>
-            <div className="flex flex-col items-center md:items-start md:mr-auto">
+            <div className="flex flex-col md:flex-row justfiy-start items-center md:items-start md:mr-4">
               <div
                 className={
                   "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
