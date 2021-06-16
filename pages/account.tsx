@@ -142,9 +142,7 @@ const Account = () => {
 
                     <div className="flex flex-row items-center">
                       <h3 className="mr-2">Total Watchtime</h3>{" "}
-                      {watchTimeMovieLoading ? (
-                        <LoadingDots />
-                      ) : watchTimeTVLoading ? (
+                      {watchTimeTVData == null || watchTimeMovieData == null ? (
                         <LoadingDots />
                       ) : (
                         <p className="ml-auto">
