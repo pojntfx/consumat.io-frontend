@@ -7,15 +7,18 @@ import {
   getNextEpisode,
   getWatchedEpisodeCount,
 } from "../../types/episodeNumber";
-import { WatchStatus } from "../../types/status";
+import { StatusTv, WatchStatus } from "../../types/status";
 import LoadingDots from "../feedback/LoadingDots";
 import MediaStatusLabel from "../dataDisplay/MediaStatusLabel";
 import UpdateWatchStatusButton from "../dataEntry/UpdateWatchStatusButton";
 import MediaCardWrapper from "./MediaCardWrapper";
-import { ClipboardCopyIcon } from "@heroicons/react/outline";
+import {
+  ClipboardCheckIcon,
+  ClipboardCopyIcon,
+} from "@heroicons/react/outline";
 import EpisodeNumberLabel from "../dataDisplay/EpisodeNumberLabel";
-import { isDateInFuture } from "../../types/date";
 import AirDateCountLabel from "../dataDisplay/AirDateCountLabel";
+import ReleaseDateLabel from "../dataDisplay/ReleaseDateLabel";
 
 type MediaCardTvPlanningProps = {
   tv: Tv;
@@ -52,35 +55,75 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
     error: nextEpisodeError,
   } = useGetEpisode(tv.code, nextEpisode?.season, nextEpisode?.episode);
 
+  // check if series finished
+  const [isFinished, setIsFinished] = useState<boolean>(false);
+  useEffect(() => {
+    if (
+      watchedEpisodeCount == tv.numberOfEpisodes &&
+      (tv.status == StatusTv.Canceled || tv.status == StatusTv.Ended)
+    ) {
+      setIsFinished(true);
+    } else {
+      setIsFinished(false);
+    }
+  }, [watchedEpisodeCount]);
+
   return (
     <MediaCardWrapper media={tv}>
       <div className="flex flex-col">
         <div className="h-12">
-          {watchedEpisodeCount == tv.numberOfEpisodes ? (
-            lastWatchedEpisode != null ? (
-              <div className="font-medium truncate">{`Season ${
-                lastWatchedEpisode.season + 1
-              }`}</div>
-            ) : (
-              <LoadingDots />
-            )
-          ) : nextEpisodeData != null ? (
-            <div className="flex flex-row">
-              <EpisodeNumberLabel episodeNumber={nextEpisode} />
-              <AirDateCountLabel episode={nextEpisodeData?.episode} />
+          {isFinished ? (
+            <div>
+              <MediaStatusLabel media={tv} />
+              <div className="font-medium text-sm truncate">
+                {`after ${tv.numberOfSeasons} ${
+                  tv.numberOfSeasons == 1 ? "Season" : "Seasons"
+                }`}
+              </div>
             </div>
-          ) : (
+          ) : lastWatchedEpisode == null ? (
             <LoadingDots />
+          ) : nextEpisode != null ? (
+            nextEpisodeData == null ? (
+              <LoadingDots />
+            ) : (
+              <div className="flex flex-row items-center mb-1">
+                <EpisodeNumberLabel episodeNumber={nextEpisode} />
+                <div className="ml-2">
+                  <AirDateCountLabel
+                    episode={nextEpisodeData.episode}
+                    className="-mb-1"
+                  />
+                  <ReleaseDateLabel episode={nextEpisodeData.episode} />
+                </div>
+              </div>
+            )
+          ) : (
+            <div>
+              <MediaStatusLabel media={tv} />
+              <div className="font-medium text-sm truncate">
+                {`with Season ${tv.numberOfSeasons + 1}`}
+              </div>
+            </div>
           )}
         </div>
 
         <UpdateWatchStatusButton
           media={tv}
-          watchStatus={WatchStatus.Watching}
+          watchStatus={isFinished ? WatchStatus.Finished : WatchStatus.Watching}
           className="button buttonStandard"
         >
-          <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
-          <div>{"Move to " + WatchStatus.Watching}</div>
+          {isFinished ? (
+            <>
+              <ClipboardCheckIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
+              <div>{`Move to ${WatchStatus.Finished}`}</div>
+            </>
+          ) : (
+            <>
+              <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
+              <div>{`Move to ${WatchStatus.Watching}`}</div>
+            </>
+          )}
         </UpdateWatchStatusButton>
       </div>
     </MediaCardWrapper>
