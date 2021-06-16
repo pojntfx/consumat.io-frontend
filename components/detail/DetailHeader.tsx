@@ -17,6 +17,7 @@ const DetailHeader = ({ media }: DetailHeaderProps) => {
             media.backdropPath &&
             `, url(${useImage(imageSizes.backdrop.w1280, media.backdropPath)}`
           })`,
+          backgroundColor: `${!media.backdropPath && "rgba(31, 41, 55, 0.8)"}`,
           backgroundSize: "cover",
         }}
       >
