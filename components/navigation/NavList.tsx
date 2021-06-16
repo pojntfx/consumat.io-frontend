@@ -64,16 +64,6 @@ const NavList = ({
         }
       />
       {session && (
-        // <NavListItem
-        //   title="Account"
-        //   href="/account"
-        //   isMobile={isMobile}
-        //   isActive={activeNavigationLink === NavigationLink.Account}
-        //   setMobileNavbarVisibility={
-        //     setMobileNavbarVisibility && setMobileNavbarVisibility
-        //   }
-        // />
-
         <li>
           <Link href="/account">
             <a
