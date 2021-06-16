@@ -3,7 +3,7 @@ import React, { ReactNode, useEffect } from "react";
 import { useSetNumberOfWatchedEpisodes } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
 
-type WatchStatusButtonProps = {
+type NumberOfWatchedEpisodesButtonProps = {
   tv: Tv;
   season: number;
   numberOfWatchedEpisodes: number;
@@ -25,7 +25,7 @@ function NumberOfWatchedEpisodesButton({
   onError,
   className,
   children,
-}: WatchStatusButtonProps) {
+}: NumberOfWatchedEpisodesButtonProps) {
   const [updateNumberOfWatchedEpisodes, { data, loading, error }] =
     useSetNumberOfWatchedEpisodes();
 
