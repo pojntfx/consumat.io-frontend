@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { imageSizes, useImage } from "../../hooks/ImageHook";
 import { Season } from "../../lib/api/consumat-io";
 import SeasonEpisodeList from "./SeasonEpisodeList";
@@ -6,9 +6,14 @@ import SeasonEpisodeList from "./SeasonEpisodeList";
 type SeasonOverviewProps = {
   season: Season;
   allSeasons: Season[];
+  setAllSeasons: Dispatch<SetStateAction<Season[]>>;
 };
 
-const SeasonOverview = ({ season, allSeasons }: SeasonOverviewProps) => {
+const SeasonOverview = ({
+  season,
+  allSeasons,
+  setAllSeasons,
+}: SeasonOverviewProps) => {
   const [isEpisodeListVisible, setIsEpisodeListVisible] = useState(false);
 
   return (
@@ -20,6 +25,7 @@ const SeasonOverview = ({ season, allSeasons }: SeasonOverviewProps) => {
             season.posterPath &&
             `, url(${useImage(imageSizes.backdrop.w1280, season.posterPath)}`
           })`,
+          backgroundColor: `${!season.posterPath && "rgba(31, 41, 55, 0.8)"}`,
           backgroundSize: "cover",
         }}
       >
@@ -36,7 +42,11 @@ const SeasonOverview = ({ season, allSeasons }: SeasonOverviewProps) => {
         </button>
       </div>
       {isEpisodeListVisible && (
-        <SeasonEpisodeList season={season} allSeasons={allSeasons} />
+        <SeasonEpisodeList
+          season={season}
+          allSeasons={allSeasons}
+          setAllSeasons={setAllSeasons}
+        />
       )}
     </div>
   );

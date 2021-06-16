@@ -179,7 +179,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
           infos={media.genres.map((genre) => genre.name)}
         />
 
-        <div className="lg:flex">
+        <div className="lg:flex lg:-my-8">
           <CastList
             title={media.directors.length > 1 ? "DIRECTORS" : "DIRECTOR"}
             cast={media.directors}
