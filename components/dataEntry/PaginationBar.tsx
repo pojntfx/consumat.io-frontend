@@ -16,7 +16,7 @@ const PaginationBar = ({ page, maxPages, setPage }: PaginationBarProps) => {
       <button onClick={() => page > 1 && setPage(page - 1)}>
         <ArrowCircleLeftIcon className="h-8 w-8" />
       </button>
-      <p className="font-bold mx-1">
+      <p className="font-bold mx-1 w-16 text-center">
         {page}
         {maxPages && `/${maxPages}`}
       </p>

@@ -2,6 +2,7 @@ import { useGetTvSeasons } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
 import Spinner from "../feedback/Spinner";
 import SeasonOverview from "./SeasonOverview";
+import SeasonsList from "./SeasonsList";
 
 type TvDetailsProps = {
   tv: Tv;
@@ -15,20 +16,12 @@ const TvDetails = ({ tv }: TvDetailsProps) => {
   } = useGetTvSeasons(tv.code);
 
   return (
-    <div className="cardWithShadow">
-      <h3 className="cardHeading">SEASONS</h3>
-      {tvSeasonLoading && <Spinner className="my-4" />}
-      <div className="flex flex-row flex-wrap">
-        {tvSeasonData?.tvSeasons?.map((season, index) => {
-          return (
-            <SeasonOverview
-              season={season}
-              allSeasons={tvSeasonData?.tvSeasons}
-              key={index}
-            />
-          );
-        })}
-      </div>
+    <div>
+      <SeasonsList
+        seasons={tvSeasonData?.tvSeasons}
+        loading={tvSeasonLoading}
+        error={tvSeasonError}
+      />
     </div>
   );
 };

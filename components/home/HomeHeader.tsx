@@ -12,8 +12,6 @@ const HomeHeader = ({ backgroundImageSource }: HomeHeaderProps) => {
   const [query, setQuery] = useState<string>("");
 
   return (
-    // TODO: Check if image source is not null and only request image if it isn't;
-    // Check if useImage returns null or not null and handle it (if useImage returns not null, use url, if it does use returned URL)
     <div
       className="flex flex-col items-center justify-center bg-gray-500 w-full h-64 sm:h-96 -mt-4 rounded-b shadow-md"
       style={{
@@ -21,6 +19,7 @@ const HomeHeader = ({ backgroundImageSource }: HomeHeaderProps) => {
           backgroundImageSource &&
           `, url(${useImage(imageSizes.backdrop.w1280, backgroundImageSource)}`
         })`,
+        backgroundColor: `${!backgroundImageSource && "rgba(31, 41, 55, 0.8)"}`,
         backgroundSize: "cover",
       }}
     >
