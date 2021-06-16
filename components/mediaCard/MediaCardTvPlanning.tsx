@@ -76,7 +76,7 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
             <div>
               <MediaStatusLabel media={tv} />
               <div className="font-medium text-sm truncate">
-                {`after season ${tv.numberOfSeasons}`}
+                {`after Season ${tv.numberOfSeasons}`}
               </div>
             </div>
           ) : lastWatchedEpisode == null ? (
