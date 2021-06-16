@@ -10,8 +10,8 @@ type ProviderListProps = {
 function ProviderList({ providers, className }: ProviderListProps) {
   return (
     <div className={"flex flex-row " + className}>
-      {providers.map((provider) => (
-        <ProviderLabel provider={provider} />
+      {providers.map((provider, index) => (
+        <ProviderLabel key={index} provider={provider} />
       ))}
     </div>
   );
