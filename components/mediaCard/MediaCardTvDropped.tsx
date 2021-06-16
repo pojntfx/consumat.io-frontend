@@ -54,8 +54,8 @@ function MediaCardTvDropped({ tv }: MediaCardTvDroppedProps) {
               <div className="font-medium text-sm truncate">
                 {`${tv.numberOfEpisodes - watchedEpisodeCount} ${
                   tv.numberOfEpisodes - watchedEpisodeCount == 1
-                    ? "episode"
-                    : "episodes"
+                    ? "Episode"
+                    : "Episodes"
                 } remaining`}
               </div>
             </div>
