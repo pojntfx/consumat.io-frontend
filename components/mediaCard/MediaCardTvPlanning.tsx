@@ -87,7 +87,7 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
             nextEpisodeData == null ? (
               <LoadingDots />
             ) : (
-              <div className="flex flex-row mb-1">
+              <div className="flex flex-row items-center mb-1">
                 <EpisodeNumberLabel episodeNumber={nextEpisode} />
                 <div className="ml-2">
                   <AirDateCountLabel
