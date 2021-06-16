@@ -1,10 +1,10 @@
-import { CheckIcon, ReplyIcon } from "@heroicons/react/outline";
-import React, { useEffect, useState } from "react";
 import {
-  useGetEpisode,
-  useGetTvSeasons,
-  useSetNumberOfWatchedEpisodes,
-} from "../../hooks/DataHooks";
+  CheckIcon,
+  ClipboardCopyIcon,
+  ReplyIcon,
+} from "@heroicons/react/outline";
+import React, { useEffect, useState } from "react";
+import { useGetEpisode, useGetTvSeasons } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
 import { isDateInFuture } from "../../types/date";
 import {
@@ -19,16 +19,16 @@ import LoadingDots from "../feedback/LoadingDots";
 import MediaStatusLabel from "../dataDisplay/MediaStatusLabel";
 import ProgressBar from "../dataDisplay/ProgressBar";
 import MediaCardWrapper from "./MediaCardWrapper";
+import UpdateNumberOfWatchedEpisodesButton from "../dataEntry/UpdateNumberOfWatchedEpisodesButton";
+import EpisodeNumberLabel from "../dataDisplay/EpisodeNumberLabel";
+import UpdateWatchStatusButton from "../dataEntry/UpdateWatchStatusButton";
+import { WatchStatus } from "../../types/status";
 
 type MediaCardTvWatchingProps = {
   tv: Tv;
 };
 
 function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
-  // mutation for updating progress of watched episodes
-  const [updateNumberOfWatchedEpisodes, { data, loading, error }] =
-    useSetNumberOfWatchedEpisodes();
-
   // get all seasons
   const {
     data: seasonsData,
@@ -64,6 +64,8 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
   // check validity of next episode
   const [isNextEpisodeValid, setIsNextEpisodeValid] = useState<boolean>(false);
   useEffect(() => {
+    console.log(tv.title);
+    console.log(nextEpisodeData);
     if (
       nextEpisodeData != null &&
       !nextEpisodeLoading &&
@@ -78,6 +80,21 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
     }
   }, [nextEpisodeData, nextEpisodeLoading, nextEpisodeError]);
 
+  // check validity of last watched episode
+  const [isLastWatchedEpisodeValid, setIsLastWatchedEpisodeValid] =
+    useState<boolean>(false);
+  useEffect(() => {
+    if (
+      lastWatchedEpisode != null &&
+      JSON.stringify(lastWatchedEpisode) !==
+        JSON.stringify({ season: 1, episode: 0 })
+    ) {
+      setIsLastWatchedEpisodeValid(true);
+    } else {
+      setIsLastWatchedEpisodeValid(false);
+    }
+  }, [lastWatchedEpisode]);
+
   return (
     <MediaCardWrapper media={tv}>
       <div className="flex flex-col">
@@ -85,33 +102,16 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
           <LoadingDots />
         ) : nextEpisode != null ? (
           <div className="flex flex-row">
-            <div className="font-medium">
-              S
-              {nextEpisode.season.toLocaleString("en", {
-                minimumIntegerDigits: 2,
-              })}
-            </div>
-            <div className="-mx-0.5 font-medium">︱</div>
-            <div className="font-medium">
-              E
-              {nextEpisode.episode.toLocaleString("en", {
-                minimumIntegerDigits: 2,
-              })}
-            </div>
+            <EpisodeNumberLabel episodeNumber={nextEpisode} />
             {nextEpisodeData == null || nextEpisodeLoading ? (
               <LoadingDots className="ml-2" />
-            ) : nextEpisodeData.episode.airDate != null &&
-              nextEpisodeData.episode.airDate !== "" &&
-              !isDateInFuture(new Date(nextEpisodeData.episode.airDate)) ? (
+            ) : isNextEpisodeValid ? (
               <>
                 <div className="mx-1">•</div>
                 <div className="font-medium truncate">
                   {nextEpisodeData.episode.title}
                 </div>
               </>
-            ) : nextEpisodeData.episode.airDate == null ||
-              nextEpisodeData.episode.airDate == "" ? (
-              <MediaStatusLabel media={tv} className="ml-2" />
             ) : (
               <AirDateCountLabel episode={nextEpisodeData.episode} />
             )}
@@ -130,58 +130,41 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
             {watchedEpisodeCount}/{tv.numberOfEpisodes}
           </div>
         </div>
-        <div className="flex flex-row items-center py-2">
-          <button
-            disabled={
-              lastWatchedEpisode == null ||
-              JSON.stringify(lastWatchedEpisode) ===
-                JSON.stringify({ season: 1, episode: 0 })
-            }
+        <div className="flex flex-row py-2">
+          <UpdateNumberOfWatchedEpisodesButton
+            disabled={!isLastWatchedEpisodeValid}
+            tv={tv}
+            season={lastWatchedEpisode?.season}
+            numberOfWatchedEpisodes={lastWatchedEpisode?.episode - 1}
             onClick={() => {
-              if (
-                lastWatchedEpisode != null &&
-                JSON.stringify(lastWatchedEpisode) !==
-                  JSON.stringify({ season: 1, episode: 0 })
-              ) {
-                updateNumberOfWatchedEpisodes({
-                  variables: {
-                    code: tv.code,
-                    seasonNumber: lastWatchedEpisode.season,
-                    numberOfWatchedEpisodes: lastWatchedEpisode.episode - 1,
-                  },
+              if (prevEpisode != null) {
+                setLastWatchedEpisode(prevEpisode);
+              } else {
+                setLastWatchedEpisode({
+                  season: 1,
+                  episode: 0,
                 });
-                if (prevEpisode != null) {
-                  setLastWatchedEpisode(prevEpisode);
-                } else {
-                  setLastWatchedEpisode({ season: 1, episode: 0 });
-                }
-                setWatchedEpisodeCount(watchedEpisodeCount - 1);
               }
+              setWatchedEpisodeCount(watchedEpisodeCount - 1);
             }}
             className="button mr-3"
           >
-            <ReplyIcon className="h-5 w-5 m-1.5" />
-          </button>
-          <button
+            <ReplyIcon className="h-5 w-5 m-1.5 flex-shrink-0" />
+          </UpdateNumberOfWatchedEpisodesButton>
+          <UpdateNumberOfWatchedEpisodesButton
             disabled={!isNextEpisodeValid}
+            tv={tv}
+            season={nextEpisode?.season}
+            numberOfWatchedEpisodes={nextEpisode?.episode}
             onClick={() => {
-              if (isNextEpisodeValid) {
-                updateNumberOfWatchedEpisodes({
-                  variables: {
-                    code: tv.code,
-                    seasonNumber: nextEpisode.season,
-                    numberOfWatchedEpisodes: nextEpisode.episode,
-                  },
-                });
-                setLastWatchedEpisode(nextEpisode);
-                setWatchedEpisodeCount(watchedEpisodeCount + 1);
-              }
+              setLastWatchedEpisode(nextEpisode);
+              setWatchedEpisodeCount(watchedEpisodeCount + 1);
             }}
-            className="button text-sm w-max py-1.5 pl-1.5 pr-3 flex flex-row truncate"
+            className="button buttonStandard"
           >
-            <CheckIcon className="h-6 w-6 mr-1 -my-0.5" />
+            <CheckIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
             <div>Episode watched</div>
-          </button>
+          </UpdateNumberOfWatchedEpisodesButton>
         </div>
       </div>
     </MediaCardWrapper>
