@@ -1,11 +1,13 @@
 import { MoonIcon, SunIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/client";
+import Link from "next/link";
 import { useContext } from "react";
 import { ThemeContext } from "../../pages/_app";
 import styles from "../../styles/Navbar.module.css";
 import { theme } from "../../types/theme";
 import { NavigationLink } from "./Navbar";
 import NavListItem from "./NavListItem";
+import MediaImage from "../dataDisplay/MediaImage";
 
 type NavListProps = {
   activeNavigationLink: NavigationLink;
@@ -62,15 +64,39 @@ const NavList = ({
         }
       />
       {session && (
-        <NavListItem
-          title="Account"
-          href="/account"
-          isMobile={isMobile}
-          isActive={activeNavigationLink === NavigationLink.Account}
-          setMobileNavbarVisibility={
-            setMobileNavbarVisibility && setMobileNavbarVisibility
-          }
-        />
+        // <NavListItem
+        //   title="Account"
+        //   href="/account"
+        //   isMobile={isMobile}
+        //   isActive={activeNavigationLink === NavigationLink.Account}
+        //   setMobileNavbarVisibility={
+        //     setMobileNavbarVisibility && setMobileNavbarVisibility
+        //   }
+        // />
+
+        <li>
+          <Link href="/account">
+            <a
+              className={`navigation-link ${styles.link} ${
+                isMobile ? styles.navigationLinkMobile : styles.navigationLink
+              } dark:hover:border-white dark:hover:text-white ${
+                activeNavigationLink === NavigationLink.Account &&
+                styles.active + " active"
+              }`}
+              onClick={
+                setMobileNavbarVisibility &&
+                (() => setMobileNavbarVisibility(false))
+              }
+            >
+              <div className="rounded-full overflow-hidden opacity-50 hover:opacity-100 duration-75">
+                <MediaImage
+                  imageSrc={session?.user?.image}
+                  className="h-8 w-8"
+                />
+              </div>
+            </a>
+          </Link>
+        </li>
       )}
 
       {currentTheme === theme.light ? (
