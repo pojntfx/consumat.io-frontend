@@ -12,7 +12,10 @@ import LoadingDots from "../feedback/LoadingDots";
 import MediaStatusLabel from "../dataDisplay/MediaStatusLabel";
 import UpdateWatchStatusButton from "../dataEntry/UpdateWatchStatusButton";
 import MediaCardWrapper from "./MediaCardWrapper";
-import { ClipboardCopyIcon } from "@heroicons/react/outline";
+import {
+  ClipboardCheckIcon,
+  ClipboardCopyIcon,
+} from "@heroicons/react/outline";
 import EpisodeNumberLabel from "../dataDisplay/EpisodeNumberLabel";
 import AirDateCountLabel from "../dataDisplay/AirDateCountLabel";
 import ReleaseDateLabel from "../dataDisplay/ReleaseDateLabel";
@@ -72,7 +75,11 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
           {isFinished ? (
             <div>
               <MediaStatusLabel media={tv} />
-              <div className="font-medium text-sm truncate">{`after ${tv.numberOfSeasons} Seasons`}</div>
+              <div className="font-medium text-sm truncate">
+                {`after ${tv.numberOfSeasons} ${
+                  tv.numberOfSeasons == 1 ? "Season" : "Seasons"
+                }`}
+              </div>
             </div>
           ) : lastWatchedEpisode == null ? (
             <LoadingDots />
@@ -80,7 +87,7 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
             nextEpisodeData == null ? (
               <LoadingDots />
             ) : (
-              <div className="flex flex-row mb-1">
+              <div className="flex flex-row items-center mb-1">
                 <EpisodeNumberLabel episodeNumber={nextEpisode} />
                 <div className="ml-2">
                   <AirDateCountLabel
@@ -94,9 +101,9 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
           ) : (
             <div>
               <MediaStatusLabel media={tv} />
-              <div className="font-medium text-sm truncate">{`with Season ${
-                tv.numberOfSeasons + 1
-              }`}</div>
+              <div className="font-medium text-sm truncate">
+                {`with Season ${tv.numberOfSeasons + 1}`}
+              </div>
             </div>
           )}
         </div>
@@ -106,12 +113,17 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
           watchStatus={isFinished ? WatchStatus.Finished : WatchStatus.Watching}
           className="button buttonStandard"
         >
-          <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
-          <div>
-            {`Move to ${
-              isFinished ? WatchStatus.Finished : WatchStatus.Watching
-            }`}
-          </div>
+          {isFinished ? (
+            <>
+              <ClipboardCheckIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
+              <div>{`Move to ${WatchStatus.Finished}`}</div>
+            </>
+          ) : (
+            <>
+              <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
+              <div>{`Move to ${WatchStatus.Watching}`}</div>
+            </>
+          )}
         </UpdateWatchStatusButton>
       </div>
     </MediaCardWrapper>
