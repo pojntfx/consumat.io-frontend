@@ -105,7 +105,7 @@ const Account = () => {
                   "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
                 }
               >
-                <h3 className="cardHeading">UserInfo</h3>
+                <h3 className="cardHeading">USERINFO</h3>
                 <div className="flex flex-col md:flex-row">
                   {isSession(session) && (
                     <MediaImage
@@ -165,7 +165,7 @@ const Account = () => {
                   "px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
                 }
               >
-                <h3 className="cardHeading">Settings</h3>
+                <h3 className="cardHeading">SETTINGS</h3>
                 <div className="flex flex-col md:h-60 justify-start">
                   <label htmlFor="country" className="mr-1">
                     Country:{" "}
@@ -229,7 +229,7 @@ const Account = () => {
                 }
               >
                 <>
-                  <h3 className="cardHeading">Favorites</h3>
+                  <h3 className="cardHeading">FAVORITES</h3>
                   <div className="flex flex-col justfiy-center">
                     <MediaCardList
                       mediaList={[...favoriteMoviesData.list]}
@@ -261,7 +261,7 @@ const Account = () => {
                       : "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
                   }
                 >
-                  <h3 className="cardHeading">Current Series</h3>
+                  <h3 className="cardHeading">CURRENT SERIES</h3>
                   <div className="flex flex-col justfiy-center">
                     <MediaCardList
                       mediaList={currentlyTVListData.list}
@@ -291,7 +291,7 @@ const Account = () => {
                 }
               >
                 <>
-                  <h3 className="cardHeading">Finished Movies</h3>
+                  <h3 className="cardHeading">FINISHED MOVIES</h3>
                   <div className="flex flex-col justfiy-center">
                     <MediaCardList
                       mediaList={finishedMovieListData.list}
@@ -319,7 +319,7 @@ const Account = () => {
                       : "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
                   }
                 >
-                  <h3 className="cardHeading">Finished Series</h3>
+                  <h3 className="cardHeading">FINISHED SERIES</h3>
                   <div className="flex flex-col justfiy-center">
                     <MediaCardList
                       mediaList={finishedTVListData.list}
