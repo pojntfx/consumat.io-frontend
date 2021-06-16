@@ -95,7 +95,7 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
             <div>
               <MediaStatusLabel media={tv} />
               <div className="font-medium text-sm mx-1 truncate">{`with Season ${
-                tv.numberOfSeasons == 1 ? 1 : tv.numberOfSeasons + 1
+                tv.numberOfSeasons + 1
               }`}</div>
             </div>
           )}
