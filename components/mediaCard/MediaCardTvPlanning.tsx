@@ -12,7 +12,10 @@ import LoadingDots from "../feedback/LoadingDots";
 import MediaStatusLabel from "../dataDisplay/MediaStatusLabel";
 import UpdateWatchStatusButton from "../dataEntry/UpdateWatchStatusButton";
 import MediaCardWrapper from "./MediaCardWrapper";
-import { ClipboardCopyIcon } from "@heroicons/react/outline";
+import {
+  ClipboardCheckIcon,
+  ClipboardCopyIcon,
+} from "@heroicons/react/outline";
 import EpisodeNumberLabel from "../dataDisplay/EpisodeNumberLabel";
 import AirDateCountLabel from "../dataDisplay/AirDateCountLabel";
 import ReleaseDateLabel from "../dataDisplay/ReleaseDateLabel";
@@ -106,12 +109,17 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
           watchStatus={isFinished ? WatchStatus.Finished : WatchStatus.Watching}
           className="button buttonStandard"
         >
-          <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
-          <div>
-            {`Move to ${
-              isFinished ? WatchStatus.Finished : WatchStatus.Watching
-            }`}
-          </div>
+          {isFinished ? (
+            <>
+              <ClipboardCheckIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
+              <div>{`Move to ${WatchStatus.Finished}`}</div>
+            </>
+          ) : (
+            <>
+              <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
+              <div>{`Move to ${WatchStatus.Watching}`}</div>
+            </>
+          )}
         </UpdateWatchStatusButton>
       </div>
     </MediaCardWrapper>
