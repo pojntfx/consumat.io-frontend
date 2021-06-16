@@ -258,10 +258,14 @@ const Account = () => {
               </div>
             ) : finishedMovieListData.list.length == 0 ? (
               <></>
+            ) : finishedTVListLoading ? (
+              <Spinner />
             ) : (
               <div
                 className={
-                  "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
+                  finishedTVListData.list.length == 0
+                    ? "w-full px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
+                    : "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
                 }
               >
                 <>
