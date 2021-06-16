@@ -58,11 +58,19 @@ const Account = () => {
     loading: finishedTVListLoading,
     error: finishedTVListError,
   } = useGetList(MediaType.Tv, WatchStatus.Finished);
+
   const {
-    data: currentlyMovieListData,
-    loading: currentlyMovieListLoading,
-    error: currentlyMovieListError,
-  } = useGetList(MediaType.Movie, WatchStatus.Watching);
+    data: favoriteMoviesData,
+    loading: favoriteMoviesDataLoading,
+    error: favoriteMoviesDataError,
+  } = useGetList(MediaType.Movie, null, true);
+
+  const {
+    data: favoriteTVData,
+    loading: favoriteTVDataLoading,
+    error: favoriteTVDataError,
+  } = useGetList(MediaType.Tv, null, true);
+
   const {
     data: currentlyTVListData,
     loading: currentlyTVListLoading,
@@ -198,23 +206,37 @@ const Account = () => {
           </div>
 
           <div className="px-4 md:px-0 flex flex-col md:flex-row max-width-md mt-4">
-            {currentlyMovieListLoading ? (
+            {favoriteMoviesDataLoading ? (
               <div className="w-full md:w-12/25">
                 <Spinner />
               </div>
-            ) : currentlyMovieListData.list.length == 0 ? (
+            ) : favoriteMoviesData.list.length == 0 ? (
               <></>
+            ) : currentlyTVListLoading ? (
+              <div className="w-full md:w-12/25">
+                <Spinner />
+              </div>
+            ) : favoriteTVDataLoading ? (
+              <div className="w-full md:w-12/25">
+                <Spinner />
+              </div>
             ) : (
               <div
                 className={
-                  "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
+                  currentlyTVListData.list.length == 0
+                    ? "w-full px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
+                    : "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
                 }
               >
                 <>
-                  <h3 className="cardHeading">Current Movies</h3>
+                  <h3 className="cardHeading">Favorites</h3>
                   <div className="flex flex-col justfiy-center">
                     <MediaCardList
-                      mediaList={currentlyMovieListData.list}
+                      mediaList={[...favoriteMoviesData.list]}
+                      watchStatus={WatchStatus.Finished}
+                    />
+                    <MediaCardList
+                      mediaList={[...favoriteTVData.list]}
                       watchStatus={WatchStatus.Finished}
                     />
                   </div>
@@ -228,13 +250,13 @@ const Account = () => {
               </div>
             ) : currentlyTVListData.list.length == 0 ? (
               <></>
-            ) : currentlyMovieListLoading ? (
+            ) : favoriteMoviesDataLoading ? (
               <Spinner />
             ) : (
               <>
                 <div
                   className={
-                    currentlyMovieListData.list.length == 0
+                    favoriteMoviesData.list.length == 0
                       ? "w-full px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
                       : "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0 ml:0 md:ml-auto"
                   }
