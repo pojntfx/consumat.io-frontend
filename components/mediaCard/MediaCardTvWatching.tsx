@@ -1,8 +1,4 @@
-import {
-  CheckIcon,
-  ClipboardCopyIcon,
-  ReplyIcon,
-} from "@heroicons/react/outline";
+import { CheckIcon, ReplyIcon } from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
 import { useGetEpisode, useGetTvSeasons } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
@@ -21,8 +17,6 @@ import ProgressBar from "../dataDisplay/ProgressBar";
 import MediaCardWrapper from "./MediaCardWrapper";
 import UpdateNumberOfWatchedEpisodesButton from "../dataEntry/UpdateNumberOfWatchedEpisodesButton";
 import EpisodeNumberLabel from "../dataDisplay/EpisodeNumberLabel";
-import UpdateWatchStatusButton from "../dataEntry/UpdateWatchStatusButton";
-import { WatchStatus } from "../../types/status";
 
 type MediaCardTvWatchingProps = {
   tv: Tv;
@@ -64,8 +58,6 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
   // check validity of next episode
   const [isNextEpisodeValid, setIsNextEpisodeValid] = useState<boolean>(false);
   useEffect(() => {
-    console.log(tv.title);
-    console.log(nextEpisodeData);
     if (
       nextEpisodeData != null &&
       !nextEpisodeLoading &&
@@ -113,7 +105,10 @@ function MediaCardTvWatching({ tv }: MediaCardTvWatchingProps) {
                 </div>
               </>
             ) : (
-              <AirDateCountLabel episode={nextEpisodeData.episode} />
+              <AirDateCountLabel
+                episode={nextEpisodeData.episode}
+                className="ml-2"
+              />
             )}
           </div>
         ) : (
