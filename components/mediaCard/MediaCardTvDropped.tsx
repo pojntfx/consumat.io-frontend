@@ -52,9 +52,11 @@ function MediaCardTvDropped({ tv }: MediaCardTvDroppedProps) {
                 <EpisodeNumberLabel episodeNumber={lastWatchedEpisode} />
               </div>
               <div className="font-medium text-sm truncate">
-                {`${
-                  tv.numberOfEpisodes - watchedEpisodeCount
-                } episodes remaining`}
+                {`${tv.numberOfEpisodes - watchedEpisodeCount} ${
+                  tv.numberOfEpisodes - watchedEpisodeCount == 1
+                    ? "episode"
+                    : "episodes"
+                } remaining`}
               </div>
             </div>
           )}
