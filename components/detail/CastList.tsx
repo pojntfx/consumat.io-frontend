@@ -17,7 +17,7 @@ const CastList = ({ title, cast, className }: CastListProps) => {
           {cast.map((member, index) => {
             return (
               <div
-                className="w-32 inline-block mr-1 cursor-pointer bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow hover:shadow-md duration-75"
+                className="w-32 inline-block mr-1 mb-2 cursor-pointer bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow hover:shadow-md duration-75"
                 key={index}
               >
                 <div className="w-32 h-48 rounded-t overflow-hidden">
@@ -29,10 +29,12 @@ const CastList = ({ title, cast, className }: CastListProps) => {
                     )}
                   />
                 </div>
-                <p className="px-1 pt-1 text-sm font-semibold truncate">
-                  {member.name}
-                </p>
-                <p className="px-1 pb-1 text-xs truncate">{member.role}</p>
+                <div className="h-11 py-1">
+                  <p className="px-1 text-sm font-semibold truncate">
+                    {member.name}
+                  </p>
+                  <p className="px-1 text-xs truncate">{member.role}</p>
+                </div>
               </div>
             );
           })}
