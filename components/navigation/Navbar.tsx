@@ -7,7 +7,6 @@ import { useSession } from "next-auth/client";
 
 export enum NavigationLink {
   Home,
-  Discover,
   Library,
   Search,
   Account,
@@ -53,8 +52,6 @@ const Navbar = () => {
   const getNavigationLinkForUrl = (url: string): NavigationLink | null => {
     if (url === "/") {
       return NavigationLink.Home;
-    } else if (url.includes("/discover")) {
-      return NavigationLink.Discover;
     } else if (url.includes("/library")) {
       return NavigationLink.Library;
     } else if (url.includes("/search")) {

@@ -126,9 +126,9 @@ const DetailPage = ({ media }: DetailPageProps) => {
     <div className="flex flex-col">
       <DetailHeader media={media} />
 
-      <div className="px-8">
+      <div className="sm:px-8">
         <div className="flex flex-col sm:flex-row my-4">
-          <div className="flex flex-col justify-evenly w-40 mr-2 flex-shrink-0">
+          <div className="flex flex-col justify-evenly w-40 mr-2 ml-8 sm:ml-0 flex-shrink-0">
             <SelectButton
               name="watchStatus"
               options={statusOptions}
@@ -158,7 +158,9 @@ const DetailPage = ({ media }: DetailPageProps) => {
             />
 
             <a href={media.tmdbUrl} target="_blank">
-              <button className="button mt-1 py-1 w-40">See on TMDb</button>
+              <button className="button mt-1 py-1 w-40 text-sm font-medium">
+                See on TMDb
+              </button>
             </a>
           </div>
           <GeneralInfoList
@@ -191,10 +193,12 @@ const DetailPage = ({ media }: DetailPageProps) => {
           />
         </div>
 
-        <div className="cardWithShadow">
-          <h3 className="cardHeading">PROVIDERS</h3>
-          <ProviderList providers={media.providers} />
-        </div>
+        {media.providers.length > 0 && (
+          <div className="cardWithShadow">
+            <h3 className="cardHeading">PROVIDERS</h3>
+            <ProviderList providers={media.providers} />
+          </div>
+        )}
 
         {isTv(media) && <TvDetails tv={media} />}
       </div>

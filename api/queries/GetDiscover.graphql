@@ -1,0 +1,16 @@
+#import "../fragments/MovieFields.graphql"
+#import "../fragments/TvFields.graphql"
+
+query GetDiscover($type: String, $person: Int, $similarTo: Int, $page: Int) {
+  discover(type: $type, person: $person, similarTo: $similarTo, page: $page) {
+    totalPages
+    results {
+      ... on TV {
+        ...TvFields
+      }
+      ... on Movie {
+        ...MovieFields
+      }
+    }
+  }
+}
