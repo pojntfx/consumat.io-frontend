@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {
   useGetSeasonEpisodes,
   useSetNumberOfWatchedEpisodes,
@@ -11,29 +11,19 @@ import Spinner from "../feedback/Spinner";
 type SeasonEpisodeListProps = {
   season: Season;
   allSeasons: Season[];
+  setAllSeasons: Dispatch<SetStateAction<Season[]>>;
 };
 
-const SeasonEpisodeList = ({ season, allSeasons }: SeasonEpisodeListProps) => {
+const SeasonEpisodeList = ({
+  season,
+  allSeasons,
+  setAllSeasons,
+}: SeasonEpisodeListProps) => {
   const {
     data: episodesData,
     loading: episodesLoading,
     error: episodesError,
   } = useGetSeasonEpisodes(season.tvCode, season.seasonNumber);
-
-  const [
-    setNumberOfWatchedEpisodes,
-    {
-      loading: setNumberOfWatchedEpisodesLoading,
-      error: setNumberOfWatchedEpisodesError,
-    },
-  ] = useSetNumberOfWatchedEpisodes();
-
-  const [currentNumberEpisodesWatched, setCurrentNumberEpisodesWatched] =
-    useState(
-      season.numberOfWatchedEpisodes == null
-        ? 0
-        : season.numberOfWatchedEpisodes
-    );
 
   // const showEpisodesToBeSelected = (button: HTMLButtonElement) => {
   //   button.classList.add("bg-green-500", "text-white");
@@ -47,10 +37,8 @@ const SeasonEpisodeList = ({ season, allSeasons }: SeasonEpisodeListProps) => {
           <li key={index}>
             <button
               className={`flex items-center w-full h-20 rounded overflow-hidden my-1 ${
-                currentNumberEpisodesWatched >= episode.episodeNumber
-                  ? `bg-green-500 text-white ${
-                      setNumberOfWatchedEpisodesLoading && "animate-pulse"
-                    }`
+                season.numberOfWatchedEpisodes >= episode.episodeNumber
+                  ? `bg-green-500 text-white`
                   : "ring-1 ring-inset ring-gray-200"
               }`}
               onClick={() => {
@@ -64,34 +52,81 @@ const SeasonEpisodeList = ({ season, allSeasons }: SeasonEpisodeListProps) => {
                   }`
                 );
 
-                // TODO: Make episode 1 unwatched,
-                // set all previous episodes to watched across seasons and
-                // display it without reloading the page
-                allSeasons
-                  .filter((s) => s.seasonNumber < season.seasonNumber)
-                  .forEach((s) => {
-                    console.log("Hello there!");
+                // Handle selected watched episode
+                if (episode.episodeNumber > season.numberOfWatchedEpisodes) {
+                  console.log(`Selected unwatched episode, updating season...`);
 
+                  // Set all episodes of seasons previous to the selected episode's season to watched
+                  const updatedSeasons: Season[] = [
+                    ...allSeasons
+                      .filter((s) => s.seasonNumber < season.seasonNumber)
+                      .map((s) => {
+                        const updatedSeason: Season = {
+                          ...s,
+                          numberOfWatchedEpisodes: s.numberOfEpisodes,
+                        };
+                        return updatedSeason;
+                      }),
+                    ...allSeasons
+                      .filter((s) => s.seasonNumber == season.seasonNumber)
+                      .map((s) => {
+                        const updatedSeason: Season = {
+                          ...s,
+                          numberOfWatchedEpisodes: episode.episodeNumber,
+                        };
+                        return updatedSeason;
+                      }),
+                    ...allSeasons.filter(
+                      (s) => s.seasonNumber > season.seasonNumber
+                    ),
+                  ];
+
+                  console.log(`Updated seasons:`);
+                  updatedSeasons.map((updatedSeason) =>
                     console.log(
-                      `S${s.seasonNumber}, setting ${s.numberOfEpisodes} episodes to watched!`
-                    );
-                    setNumberOfWatchedEpisodes({
-                      variables: {
-                        code: s.tvCode,
-                        seasonNumber: s.seasonNumber,
-                        numberOfWatchedEpisodes: s.numberOfEpisodes,
-                      },
-                    });
-                  });
+                      `Season ${updatedSeason.seasonNumber}, watched episodes: ${updatedSeason.numberOfWatchedEpisodes}`
+                    )
+                  );
 
-                setNumberOfWatchedEpisodes({
-                  variables: {
-                    code: season.tvCode,
-                    seasonNumber: episode.seasonNumber,
-                    numberOfWatchedEpisodes: episode.episodeNumber,
-                  },
-                });
-                setCurrentNumberEpisodesWatched(episode.episodeNumber);
+                  setAllSeasons(updatedSeasons);
+                } else if (
+                  episode.episodeNumber <= season.numberOfWatchedEpisodes
+                ) {
+                  console.log(`Deselected watched episode, updating season...`);
+
+                  const updatedSeasons: Season[] = [
+                    ...allSeasons.filter(
+                      (s) => s.seasonNumber < season.seasonNumber
+                    ),
+                    ...allSeasons
+                      .filter((s) => s.seasonNumber == season.seasonNumber)
+                      .map((s) => {
+                        const updatedSeason: Season = {
+                          ...s,
+                          numberOfWatchedEpisodes: episode.episodeNumber - 1,
+                        };
+                        return updatedSeason;
+                      }),
+                    ...allSeasons
+                      .filter((s) => s.seasonNumber > season.seasonNumber)
+                      .map((s) => {
+                        const updatedSeason: Season = {
+                          ...s,
+                          numberOfWatchedEpisodes: 0,
+                        };
+                        return updatedSeason;
+                      }),
+                  ];
+
+                  console.log(`Updated seasons:`);
+                  updatedSeasons.map((updatedSeason) =>
+                    console.log(
+                      `Season ${updatedSeason.seasonNumber}, watched episodes: ${updatedSeason.numberOfWatchedEpisodes}`
+                    )
+                  );
+
+                  setAllSeasons(updatedSeasons);
+                }
               }}
               // onMouseOver={(event) =>
               //   showEpisodesToBeSelected(event.currentTarget)
