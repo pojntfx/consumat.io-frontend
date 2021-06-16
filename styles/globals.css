@@ -79,9 +79,7 @@ select:focus {
   @apply rounded;
 }
 
-/* test */
-
-/* card */
+/* Card */
 .card {
   @apply rounded;
   @apply bg-white;
@@ -163,7 +161,7 @@ select:focus {
   @apply z-30;
 }
 
-/* not my card */
+/* The one and only card */
 .cardWithShadow {
   @apply my-8 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md;
 }
@@ -171,7 +169,13 @@ select:focus {
   @apply inline-block -mt-3 mb-3 h-8 leading-8 px-2 rounded bg-gradient-to-br from-gray-700 to-gray-800 text-white shadow;
 }
 
-/* button */
+/* Button */
+.buttonStandard {
+  @apply flex flex-row w-max;
+  @apply py-1.5 pl-1.5 pr-3;
+  @apply truncate text-sm;
+}
+
 .button {
   @apply rounded;
   @apply ring-1;
