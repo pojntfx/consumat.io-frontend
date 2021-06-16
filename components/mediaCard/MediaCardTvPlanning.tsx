@@ -75,7 +75,11 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
           {isFinished ? (
             <div>
               <MediaStatusLabel media={tv} />
-              <div className="font-medium text-sm truncate">{`after ${tv.numberOfSeasons} Seasons`}</div>
+              <div className="font-medium text-sm truncate">
+                {`after ${tv.numberOfSeasons} ${
+                  tv.numberOfSeasons == 1 ? "Season" : "Seasons"
+                }`}
+              </div>
             </div>
           ) : lastWatchedEpisode == null ? (
             <LoadingDots />
@@ -97,9 +101,9 @@ function MediaCardTvPlanning({ tv }: MediaCardTvPlanningProps) {
           ) : (
             <div>
               <MediaStatusLabel media={tv} />
-              <div className="font-medium text-sm truncate">{`with Season ${
-                tv.numberOfSeasons + 1
-              }`}</div>
+              <div className="font-medium text-sm truncate">
+                {`with Season ${tv.numberOfSeasons + 1}`}
+              </div>
             </div>
           )}
         </div>
