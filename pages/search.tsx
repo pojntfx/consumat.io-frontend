@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Spinner from "../components/feedback/Spinner";
 import ErrorMessage from "../components/feedback/ErrorMessage";
 import MetaData from "../components/MetaData";
@@ -10,6 +10,8 @@ import { useGetSearch } from "../hooks/DataHooks";
 import MediaCardList from "../components/mediaCard/MediaCardList";
 import SearchBar from "../components/dataEntry/SearchBar";
 import { EmojiSadIcon } from "@heroicons/react/outline";
+import { Media } from "../lib/api/consumat-io";
+import { useQuery } from "@apollo/client";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -21,34 +23,78 @@ const Search = () => {
 
   const router = useRouter();
 
+  // search results
+  const [searchResults, setSearchResults] = useState<Media[]>([]);
+  const [lastKeyword, setLastKeyword] = useState<string>();
+  const [lastPage, setLastPage] = useState<number>();
+
   // set default query if empty
   useEffect(() => {
     if (JSON.stringify(router.query) === "{}")
       router.push({ query: { q: null } }, undefined, { shallow: true });
   }, []);
 
+  // get url query
   const { q } = router.query;
-  const { data, loading, error } = useGetSearch(q, 1);
+
+  // pagination
+  const [searchPage, setSearchPage] = useState<number>(1);
+  // - set page to 1 if the keyword changes
+  useEffect(() => {
+    if (q + "" != lastKeyword) {
+      setSearchPage(1);
+    }
+  }, [q]);
+
+  // get search results
+  const {
+    data: searchData,
+    loading: searchLoading,
+    error: searchError,
+  } = useGetSearch(q, searchPage);
+
+  // update search results
+  useEffect(() => {
+    if (searchData && !searchLoading && !searchError) {
+      console.log(searchData);
+      if (q + "" == lastKeyword) {
+        if (searchPage != lastPage) {
+          setSearchResults([...searchResults, ...searchData.search.results]);
+          setLastPage(searchPage);
+        }
+      } else {
+        setSearchResults(searchData.search.results);
+        setLastKeyword(q + "");
+      }
+    }
+  }, [searchData]);
 
   return (
     <div className="px-4">
       <MetaData title="consumat.io | Search" />
       <SearchBar className="mb-3" />
-      {error && <ErrorMessage />}
-      {loading ? (
-        <Spinner />
-      ) : (
-        data != null &&
-        (data.search.results.length == 0 ? (
+      {searchError && <ErrorMessage />}
+      <MediaCardList mediaList={searchResults} />
+      <div className="flex justify-center mb-3">
+        {searchLoading ? (
+          <Spinner className="h-10 items-center" />
+        ) : searchPage < searchData.search.totalPages ? (
+          <button
+            onClick={() => setSearchPage(searchPage + 1)}
+            className="button px-2 py-1 my-1 truncate"
+          >
+            Load more results ...
+          </button>
+        ) : searchResults.length == 0 ? (
           <div className="card flex flex-row py-2 px-4 truncate">
             <EmojiSadIcon className="h-6 w-6 mr-2 flex-shrink-0" />
             <div className="mr-2 font-medium">No results for:</div>
             <div className="italic">{`${q}`}</div>
           </div>
         ) : (
-          <MediaCardList mediaList={data.search.results} />
-        ))
-      )}
+          <div className="card px-2 py-1 my-1 truncate">No more results</div>
+        )}
+      </div>
     </div>
   );
 };
