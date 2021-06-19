@@ -9,9 +9,12 @@ import { useAuthorization } from "../hooks/AuthnHooks";
 import { useGetSearch } from "../hooks/DataHooks";
 import MediaCardList from "../components/mediaCard/MediaCardList";
 import SearchBar from "../components/dataEntry/SearchBar";
-import { EmojiSadIcon } from "@heroicons/react/outline";
+import {
+  EmojiSadIcon,
+  BanIcon,
+  ArrowCircleDownIcon,
+} from "@heroicons/react/outline";
 import { Media } from "../lib/api/consumat-io";
-import { useQuery } from "@apollo/client";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -74,27 +77,35 @@ const Search = () => {
       <MetaData title="consumat.io | Search" />
       <SearchBar className="mb-3" />
       {searchError && <ErrorMessage />}
-      <MediaCardList mediaList={searchResults} />
-      <div className="flex justify-center mb-3">
-        {searchLoading ? (
-          <Spinner className="h-10 items-center" />
-        ) : searchPage < searchData.search.totalPages ? (
-          <button
-            onClick={() => setSearchPage(searchPage + 1)}
-            className="button px-2 py-1 my-1 truncate"
-          >
-            Load more results ...
-          </button>
-        ) : searchResults.length == 0 ? (
-          <div className="card flex flex-row py-2 px-4 truncate">
-            <EmojiSadIcon className="h-6 w-6 mr-2 flex-shrink-0" />
-            <div className="mr-2 font-medium">No results for:</div>
-            <div className="italic">{`${q}`}</div>
+      {(searchData || searchLoading) && (
+        <>
+          <MediaCardList mediaList={searchResults} />
+          <div className="flex justify-center mb-3">
+            {searchLoading ? (
+              <Spinner className="h-10 items-center" />
+            ) : searchResults.length == 0 ? (
+              <div className="card flex flex-row py-2 px-4 truncate">
+                <EmojiSadIcon className="h-6 w-6 mr-2 flex-shrink-0" />
+                <div className="mr-2 font-medium">No results for:</div>
+                <div className="italic">{`${q}`}</div>
+              </div>
+            ) : searchPage < searchData.search.totalPages ? (
+              <button
+                onClick={() => setSearchPage(searchPage + 1)}
+                className="button buttonStandard my-1"
+              >
+                <ArrowCircleDownIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
+                <div>Load more results ...</div>
+              </button>
+            ) : (
+              <div className="card buttonStandard my-1 text-gray-500">
+                <BanIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
+                <div>No more results</div>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="card px-2 py-1 my-1 truncate">No more results</div>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 };
