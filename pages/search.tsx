@@ -28,8 +28,6 @@ const Search = () => {
 
   // search results
   const [searchResults, setSearchResults] = useState<Media[]>([]);
-  const [lastKeyword, setLastKeyword] = useState<string>();
-  const [lastPage, setLastPage] = useState<number>();
 
   // set default query if empty
   useEffect(() => {
@@ -38,37 +36,32 @@ const Search = () => {
   }, []);
 
   // get url query
-  const { q } = router.query;
+  const { q: keyword } = router.query;
 
   // pagination
   const [searchPage, setSearchPage] = useState<number>(1);
-  // - set page to 1 if the keyword changes
+  // - set page to 1 and empty search results if the keyword changes
+  const [lastKeyword, setLastKeyword] = useState<string>();
   useEffect(() => {
-    if (q + "" != lastKeyword) {
+    if (keyword + "" != lastKeyword) {
+      setLastKeyword(keyword + "");
       setSearchPage(1);
+      setSearchResults([]);
     }
-  }, [q]);
+  }, [keyword]);
 
-  // get search results
+  // get search results for one page
   const {
     data: searchData,
     loading: searchLoading,
     error: searchError,
-  } = useGetSearch(q, searchPage);
+  } = useGetSearch(keyword, searchPage);
 
   // update search results
   useEffect(() => {
     if (searchData && !searchLoading && !searchError) {
       console.log(searchData);
-      if (q + "" == lastKeyword) {
-        if (searchPage != lastPage) {
-          setSearchResults([...searchResults, ...searchData.search.results]);
-          setLastPage(searchPage);
-        }
-      } else {
-        setSearchResults(searchData.search.results);
-        setLastKeyword(q + "");
-      }
+      setSearchResults([...searchResults, ...searchData.search.results]);
     }
   }, [searchData]);
 
@@ -87,7 +80,7 @@ const Search = () => {
               <div className="card flex flex-row py-2 px-4 truncate">
                 <EmojiSadIcon className="h-6 w-6 mr-2 flex-shrink-0" />
                 <div className="mr-2 font-medium">No results for:</div>
-                <div className="italic">{`${q}`}</div>
+                <div className="italic">{`${keyword}`}</div>
               </div>
             ) : searchPage < searchData.search.totalPages ? (
               <button
