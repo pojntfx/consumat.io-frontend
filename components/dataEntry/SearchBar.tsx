@@ -22,16 +22,17 @@ function SearchBar({ className }: SearchBarProps) {
         }}
         autoComplete="off"
       >
-        <div className="relative flex flex-row">
+        <div className="flex flex-row rounded ring-1 ring-inset ring-gray-500 bg-white dark:bg-gray-700">
           <input
             type="search"
             name="q"
             placeholder="Search"
             required
             onChange={(event) => setQuery(event.target.value)}
-            className="rounded w-full py-2 pl-4 pr-10 ring-1 ring-inset ring-gray-500 bg-white dark:bg-gray-700"
+            className="rounded w-full py-2 px-4 m-px"
           />
-          <button type="submit" className="absolute right-0 top-0 my-2 mr-3">
+          <span className="w-px bg-gray-500 my-2" />
+          <button type="submit" className="rounded p-2">
             <SearchIcon className="h-6 w-6 text-gray-500" />
           </button>
         </div>
