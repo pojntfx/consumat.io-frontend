@@ -16,10 +16,15 @@ import CastList from "./CastList";
 import DetailHeader from "./DetailHeader";
 import TvDetails from "./TvDetails";
 import SelectButton from "../dataEntry/SelectButton";
-import { useSetRating, useSetWatchStatus } from "../../hooks/DataHooks";
+import {
+  useGetDiscover,
+  useSetRating,
+  useSetWatchStatus,
+} from "../../hooks/DataHooks";
 import GeneralInfoList from "./GeneralInfoList";
 import { MediaInfo } from "./GeneralInfoList";
 import ProviderList from "../dataDisplay/ProviderList";
+import MediaListHorizontal from "../dataDisplay/MediaListHorizontal";
 
 type DetailPageProps = {
   media: Media;
@@ -34,6 +39,17 @@ const DetailPage = ({ media }: DetailPageProps) => {
 
   const [selectedRating, setSelectedRating] = useState<number | null>(
     media.ratingUser
+  );
+
+  const {
+    data: recommendedMediaData,
+    loading: recommendedMediaLoading,
+    error: recommendedMediaError,
+  } = useGetDiscover(
+    getMediaTypeFromString(media.__typename),
+    null,
+    media.code,
+    1
   );
 
   const [
@@ -199,6 +215,13 @@ const DetailPage = ({ media }: DetailPageProps) => {
             <ProviderList providers={media.providers} />
           </div>
         )}
+
+        <MediaListHorizontal
+          title="SIMILAR TITLES"
+          mediaPage={recommendedMediaData?.discover}
+          loading={recommendedMediaLoading}
+          error={recommendedMediaError}
+        />
 
         {isTv(media) && <TvDetails tv={media} />}
       </div>

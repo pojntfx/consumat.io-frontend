@@ -1,18 +1,20 @@
-import { useGetByRating, useGetPopular } from "../hooks/DataHooks";
+import {
+  useGetByRating,
+  useGetDiscover,
+  useGetList,
+  useGetPopular,
+} from "../hooks/DataHooks";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/client";
 import MetaData from "../components/MetaData";
 import HomeHeader from "../components/home/HomeHeader";
 import MediaList from "../components/home/MediaList";
+import MediaListHorizontal from "../components/dataDisplay/MediaListHorizontal";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useEffect, useState } from "react";
-import { Media, useGetByRatingQuery } from "../lib/api/consumat-io";
-import { MediaType } from "../types/media";
-import {
-  ArrowCircleLeftIcon,
-  ArrowCircleRightIcon,
-} from "@heroicons/react/solid";
-import PaginationBar from "../components/dataEntry/PaginationBar";
+import { Media } from "../lib/api/consumat-io";
+import { getMediaTypeFromString, MediaType } from "../types/media";
+import { WatchStatus } from "../types/status";
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: { session: await getSession(context) },
@@ -21,6 +23,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => ({
 const Home = () => {
   const [session] = useAuthorization();
   const [headerImageSource, setHeaderImageSource] = useState("");
+  const [randomFavorite, setRandomFavorite] = useState<Media | null>(null);
+  const [randomWatched, setRandomWatched] = useState<Media | null>(null);
   const [popularMoviesPage, setPopularMoviesPage] = useState(1);
   const [popularTvPage, setPopularTvPage] = useState(1);
   const [topRatedMoviesPage, setTopRatedMoviesPage] = useState(1);
@@ -68,6 +72,52 @@ const Home = () => {
     topRatedTvPage
   );
 
+  const {
+    data: favoriteMoviesData,
+    loading: favoriteMoviesLoading,
+    error: favoriteMoviesError,
+  } = useGetList(MediaType.Movie, null, true);
+
+  const {
+    data: favoriteTvData,
+    loading: favoriteTvLoading,
+    error: favoriteTvError,
+  } = useGetList(MediaType.Tv, null, true);
+
+  const {
+    data: watchedMoviesData,
+    loading: watchedMoviesLoading,
+    error: watchedMoviesError,
+  } = useGetList(MediaType.Movie, WatchStatus.Finished, null);
+
+  const {
+    data: watchedTvData,
+    loading: watchedTvLoading,
+    error: watchedTvError,
+  } = useGetList(MediaType.Tv, WatchStatus.Finished, null);
+
+  const {
+    data: recommendedBasedOnFavoriteData,
+    loading: recommendedBasedOnFavoriteLoading,
+    error: recommendedBasedOnFavoriteError,
+  } = useGetDiscover(
+    getMediaTypeFromString(randomFavorite?.__typename),
+    null,
+    randomFavorite?.code,
+    1
+  );
+
+  const {
+    data: recommendedBasedOnWatchedData,
+    loading: recommendedBasedOnWatchedLoading,
+    error: recommendedBasedOnWatchedError,
+  } = useGetDiscover(
+    getMediaTypeFromString(randomWatched?.__typename),
+    null,
+    randomWatched?.code,
+    1
+  );
+
   useEffect(() => {
     if (popularMoviesData && popularTvData && !headerImageSource) {
       const movieTvArray: Media[] = [
@@ -80,11 +130,57 @@ const Home = () => {
     }
   }, [popularMoviesData, popularTvData]);
 
+  useEffect(() => {
+    if (favoriteMoviesData && favoriteTvData) {
+      const favorites: Media[] = [
+        ...favoriteMoviesData.list,
+        ...favoriteTvData.list,
+      ];
+      const randomFavoriteMedia =
+        favorites[Math.floor(Math.random() * favorites.length)];
+      setRandomFavorite(randomFavoriteMedia);
+    }
+  }, [favoriteMoviesData, favoriteTvData]);
+
+  useEffect(() => {
+    if (watchedMoviesData && watchedTvData) {
+      const favorites: Media[] = [
+        ...watchedMoviesData.list,
+        ...watchedTvData.list,
+      ];
+      const randomWatchedMedia =
+        favorites[Math.floor(Math.random() * favorites.length)];
+      setRandomWatched(randomWatchedMedia);
+    }
+  }, [watchedMoviesData, watchedTvData]);
+
   return (
     <div className="md:px-4">
       <MetaData title="consumat.io | Home" />
 
       <HomeHeader backgroundImageSource={headerImageSource} />
+
+      <MediaListHorizontal
+        title={
+          randomFavorite
+            ? `BECAUSE YOU LIKED ${randomFavorite?.title.toUpperCase()}`
+            : null
+        }
+        mediaPage={recommendedBasedOnFavoriteData?.discover}
+        loading={recommendedBasedOnFavoriteLoading}
+        error={recommendedBasedOnFavoriteError}
+      />
+
+      <MediaListHorizontal
+        title={
+          randomWatched
+            ? `BECAUSE YOU WATCHED ${randomWatched?.title.toUpperCase()}`
+            : null
+        }
+        mediaPage={recommendedBasedOnWatchedData?.discover}
+        loading={recommendedBasedOnWatchedLoading}
+        error={recommendedBasedOnWatchedError}
+      />
 
       <MediaList
         title="POPULAR MOVIES"
