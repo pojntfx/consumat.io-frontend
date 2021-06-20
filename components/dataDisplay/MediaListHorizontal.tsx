@@ -23,7 +23,9 @@ const MediaListHorizontal = ({
 
   return (
     <div className={"cardWithShadow " + className}>
-      <h3 className="cardHeading">{title ? title : <LoadingDots />}</h3>
+      <h3 className="cardHeading max-w-full truncate">
+        {title ? title : <LoadingDots />}
+      </h3>
       {loading ? (
         <Spinner />
       ) : (
