@@ -9,7 +9,7 @@ import { getSession } from "next-auth/client";
 import MetaData from "../components/MetaData";
 import HomeHeader from "../components/home/HomeHeader";
 import MediaList from "../components/home/MediaList";
-import MediaListHorizontal from "../components/home/MediaListHorizontal";
+import MediaListHorizontal from "../components/dataDisplay/MediaListHorizontal";
 import { useAuthorization } from "../hooks/AuthnHooks";
 import { useEffect, useState } from "react";
 import { Media } from "../lib/api/consumat-io";
