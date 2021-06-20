@@ -10,8 +10,8 @@ type MediaListProps = {
   title: string;
   mediaPage?: MediaPage;
   previouslyLoadedMediaPage?: MediaPage;
-  pageNumber: number;
-  setPage: Dispatch<SetStateAction<number>>;
+  pageNumber?: number;
+  setPage?: Dispatch<SetStateAction<number>>;
   loading: boolean;
   error: ApolloError;
 };
@@ -50,17 +50,19 @@ const MediaList = ({
         </div>
       )}
 
-      <PaginationBar
-        page={pageNumber}
-        maxPages={
-          mediaPage
-            ? mediaPage.totalPages
-            : previouslyLoadedMediaPage
-            ? previouslyLoadedMediaPage.totalPages
-            : null
-        }
-        setPage={setPage}
-      />
+      {pageNumber && setPage && (
+        <PaginationBar
+          page={pageNumber}
+          maxPages={
+            mediaPage
+              ? mediaPage.totalPages
+              : previouslyLoadedMediaPage
+              ? previouslyLoadedMediaPage.totalPages
+              : null
+          }
+          setPage={setPage}
+        />
+      )}
     </div>
   );
 };
