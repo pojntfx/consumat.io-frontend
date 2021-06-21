@@ -37,40 +37,52 @@ function MediaCardTvDropped({ tv }: MediaCardTvDroppedProps) {
     }
   }, [seasonsData]);
 
+  //
+  const [isInList, setIsInList] = useState(true);
+
   return (
     <MediaCardWrapper media={tv}>
-      <div className="flex flex-col">
-        <div className="h-12">
-          {lastWatchedEpisode == null ? (
-            <LoadingDots />
-          ) : (
-            <div>
-              <div className="flex flex-row">
-                <div className="font-medium text-gray-500 italic truncate mr-2">
-                  Dropped after:
+      {isInList ? (
+        <div className="flex flex-col">
+          <div className="h-12">
+            {lastWatchedEpisode == null ? (
+              <LoadingDots />
+            ) : (
+              <div>
+                <div className="flex flex-row">
+                  <div className="font-medium text-gray-500 italic truncate mr-2">
+                    Dropped after:
+                  </div>
+                  <EpisodeNumberLabel episodeNumber={lastWatchedEpisode} />
                 </div>
-                <EpisodeNumberLabel episodeNumber={lastWatchedEpisode} />
+                <div className="font-medium text-sm truncate">
+                  {`${tv.numberOfEpisodes - watchedEpisodeCount} ${
+                    tv.numberOfEpisodes - watchedEpisodeCount == 1
+                      ? "Episode"
+                      : "Episodes"
+                  } remaining`}
+                </div>
               </div>
-              <div className="font-medium text-sm truncate">
-                {`${tv.numberOfEpisodes - watchedEpisodeCount} ${
-                  tv.numberOfEpisodes - watchedEpisodeCount == 1
-                    ? "Episode"
-                    : "Episodes"
-                } remaining`}
-              </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
 
-        <UpdateWatchStatusButton
-          media={tv}
-          watchStatus={WatchStatus.Watching}
-          className="button buttonStandard"
-        >
-          <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
-          <div>{`Move to ${WatchStatus.Watching}`}</div>
-        </UpdateWatchStatusButton>
-      </div>
+          <UpdateWatchStatusButton
+            media={tv}
+            watchStatus={WatchStatus.Watching}
+            onCompleted={() => setIsInList(false)}
+            className="button buttonStandard"
+          >
+            <ClipboardCopyIcon className="h-6 w-6 mr-1 -my-0.5 flex-shrink-0" />
+            <div>{`Move to ${WatchStatus.Watching}`}</div>
+          </UpdateWatchStatusButton>
+        </div>
+      ) : (
+        <div className="h-20 flex items-center">
+          <div className="text-lg font-medium italic text-gray-500">
+            Moved to {WatchStatus.Watching}
+          </div>
+        </div>
+      )}
     </MediaCardWrapper>
   );
 }
