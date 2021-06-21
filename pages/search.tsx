@@ -60,8 +60,19 @@ const Search = () => {
   // update search results
   useEffect(() => {
     if (searchData && !searchLoading && !searchError) {
-      console.log(searchData);
-      setSearchResults([...searchResults, ...searchData.search.results]);
+      setSearchResults(
+        [...searchResults, ...searchData.search.results].filter(
+          (result, index, self) => {
+            return (
+              self.findIndex((x) => {
+                return (
+                  x.__typename === result.__typename && x.code === result.code
+                );
+              }) === index
+            );
+          }
+        )
+      );
     }
   }, [searchData]);
 
