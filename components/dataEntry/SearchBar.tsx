@@ -29,9 +29,9 @@ function SearchBar({ className }: SearchBarProps) {
             placeholder="Search"
             required
             onChange={(event) => setQuery(event.target.value)}
-            className="rounded w-full py-2 px-4 m-px"
+            className="rounded bg-white dark:bg-gray-700 w-full py-2 pl-4 m-px"
           />
-          <span className="w-px bg-gray-500 my-2" />
+
           <button type="submit" className="rounded p-2">
             <SearchIcon className="h-6 w-6 text-gray-500" />
           </button>
