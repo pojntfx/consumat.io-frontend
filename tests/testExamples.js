@@ -42,4 +42,6 @@ export default {
     title: "Episódio 3",
     __typename: "Episode",
   },
+  exampleImgSrc:
+    "https://image.tmdb.org/t/p/w154/ibiGOAzumOIzCk8fHwv03jzYbj9.jpg",
 };
