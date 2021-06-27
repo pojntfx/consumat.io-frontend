@@ -4,6 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "compilerOptions.baseUrl": "moduleDirectories: ['node_modules', 'src']",
     "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
