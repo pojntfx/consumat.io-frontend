@@ -14,8 +14,6 @@ type AirDateCountLabelProps = {
 };
 
 function AirDateCountLabel({ episode, className }: AirDateCountLabelProps) {
-  console.log(episode);
-  console.log(className);
   return (
     <div className={"flex flex-row " + className}>
       <ClockIcon className="h-6 w-5 mr-1 text-gray-500" />
