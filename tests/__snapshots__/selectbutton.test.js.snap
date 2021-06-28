@@ -1,0 +1,450 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="undefined button relative flex"
+>
+  <select
+    className="text-sm font-medium bg-transparent z-10 w-full pl-2 pr-6 py-1"
+    id="language"
+    name="language"
+    onChange={[Function]}
+    value="pt-BR"
+  >
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="sq-AL"
+    >
+      sq-AL
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ar-SA"
+    >
+      ar-SA
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ar-AE"
+    >
+      ar-AE
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="eu-ES"
+    >
+      eu-ES
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="be-BY"
+    >
+      be-BY
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="bn-BD"
+    >
+      bn-BD
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="bg-BG"
+    >
+      bg-BG
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="cn-CN"
+    >
+      cn-CN
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ca-ES"
+    >
+      ca-ES
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ch-GU"
+    >
+      ch-GU
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="zh-CN"
+    >
+      zh-CN
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="zh-HK"
+    >
+      zh-HK
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="zh-TW"
+    >
+      zh-TW
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="cs-CZ"
+    >
+      cs-CZ
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="da-DK"
+    >
+      da-DK
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="nl-NL"
+    >
+      nl-NL
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-AU"
+    >
+      en-AU
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-CA"
+    >
+      en-CA
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-IE"
+    >
+      en-IE
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-NZ"
+    >
+      en-NZ
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-GB"
+    >
+      en-GB
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-US"
+    >
+      en-US
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="eo-EO"
+    >
+      eo-EO
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="et-EE"
+    >
+      et-EE
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="fa-IR"
+    >
+      fa-IR
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="fi-FI"
+    >
+      fi-FI
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="fr-CA"
+    >
+      fr-CA
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="fr-FR"
+    >
+      fr-FR
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="gl-ES"
+    >
+      gl-ES
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ka-GE"
+    >
+      ka-GE
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="de-AT"
+    >
+      de-AT
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="de-DE"
+    >
+      de-DE
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="de-CH"
+    >
+      de-CH
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="el-GR"
+    >
+      el-GR
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="he-IL"
+    >
+      he-IL
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="hi-IN"
+    >
+      hi-IN
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="hu-HU"
+    >
+      hu-HU
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="id-ID"
+    >
+      id-ID
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="it-IT"
+    >
+      it-IT
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ja-JP"
+    >
+      ja-JP
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="kn-IN"
+    >
+      kn-IN
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="kk-KZ"
+    >
+      kk-KZ
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ko-KR"
+    >
+      ko-KR
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="lv-LV"
+    >
+      lv-LV
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="lt-LT"
+    >
+      lt-LT
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ms-MY"
+    >
+      ms-MY
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ms-SG"
+    >
+      ms-SG
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ml-IN"
+    >
+      ml-IN
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="nb-NO"
+    >
+      nb-NO
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="no-NO"
+    >
+      no-NO
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="pl-PL"
+    >
+      pl-PL
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="pt-BR"
+    >
+      pt-BR
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="pt-PT"
+    >
+      pt-PT
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ro-RO"
+    >
+      ro-RO
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ru-RU"
+    >
+      ru-RU
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="sr-RS"
+    >
+      sr-RS
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="si-LK"
+    >
+      si-LK
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="sk-SK"
+    >
+      sk-SK
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="sl-SI"
+    >
+      sl-SI
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="es-MX"
+    >
+      es-MX
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="es-ES"
+    >
+      es-ES
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="sv-SE"
+    >
+      sv-SE
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="tl-PH"
+    >
+      tl-PH
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ta-IN"
+    >
+      ta-IN
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="te-IN"
+    >
+      te-IN
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="th-TH"
+    >
+      th-TH
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="tr-TR"
+    >
+      tr-TR
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="uk-UA"
+    >
+      uk-UA
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="vi-VN"
+    >
+      vi-VN
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="zu-ZA"
+    >
+      zu-ZA
+    </option>
+  </select>
+  <svg
+    className="absolute z-0 right-1 h-5 w-4 my-1"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M19 9l-7 7-7-7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+  </svg>
+</div>
+`;

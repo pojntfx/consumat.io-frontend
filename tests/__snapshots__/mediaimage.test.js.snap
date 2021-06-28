@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="ml-2 flex-shrink-0"
+>
+  <img
+    className="h-full w-full object-cover"
+    onError={[Function]}
+    src="https://image.tmdb.org/t/p/w154/ibiGOAzumOIzCk8fHwv03jzYbj9.jpg"
+  />
+</div>
+`;
