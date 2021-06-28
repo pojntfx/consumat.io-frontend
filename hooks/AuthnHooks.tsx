@@ -16,7 +16,6 @@ export function useAuthorization() {
       router.push("/login");
     }
     if (session) {
-      console.log(data?.user.language);
       updateLanguage({
         variables: {
           language: data?.user.language
