@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <form
+    autoComplete="off"
+    onSubmit={[Function]}
+  >
+    <div
+      className="flex flex-row rounded ring-1 ring-inset ring-gray-500 bg-white dark:bg-gray-700"
+    >
+      <input
+        className="rounded bg-white dark:bg-gray-700 w-full py-2 pl-4 m-px"
+        name="q"
+        onChange={[Function]}
+        placeholder="Search"
+        required={true}
+        type="search"
+      />
+      <button
+        className="rounded p-2"
+        type="submit"
+      >
+        <svg
+          className="h-6 w-6 text-gray-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </button>
+    </div>
+  </form>
+</div>
+`;
