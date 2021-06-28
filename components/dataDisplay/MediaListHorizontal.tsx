@@ -19,7 +19,6 @@ const MediaListHorizontal = ({
   error,
   className,
 }: MediaListHorizontalProps) => {
-  console.log(mediaPage);
   if (mediaPage && mediaPage.results.length === 0) return null;
 
   return (
