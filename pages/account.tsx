@@ -16,7 +16,7 @@ import { MediaType } from "../types/media";
 import CustomSelectButton from "../components/dataEntry/CustomSelectButton";
 import { Language } from "../types/language";
 import { Country } from "../types/country";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Spinner from "../components/feedback/Spinner";
 import { WatchStatus } from "../types/status";
 import MediaCardList from "../components/mediaCard/MediaCardList";
@@ -89,17 +89,15 @@ const Account = () => {
   const allLanguagesIsos = Language.map((item) => {
     return item.iso;
   });
-  const [language, setLanguage] = useState(userData?.user.country);
-  const [country, setCountry] = useState(userData?.user.language);
+  const [language, setLanguage] = useState("");
+  const [country, setCountry] = useState("");
 
-  const updateTheLanguage = (input) => {
-    console.log(input);
-    // updateLanguage({
-    //   variables: {
-    //     language: input,
-    //   },
-    // });
-  };
+  useEffect(() => {
+    setLanguage(userData?.user.language);
+  }, [userData?.user.language]);
+  useEffect(() => {
+    setCountry(userData?.user.country);
+  }, [userData?.user.country]);
 
   return (
     <>
@@ -179,7 +177,7 @@ const Account = () => {
                   </label>
                   <CustomSelectButton
                     name="country"
-                    value={userData?.user.country}
+                    value={country}
                     labels={allCountriesLabels}
                     options={allCountriesIsos}
                     onChange={({ target }) => {
@@ -193,7 +191,7 @@ const Account = () => {
                   <CustomSelectButton
                     className="mb-2"
                     name="language"
-                    value={userData?.user.language}
+                    value={language}
                     labels={allLanguagesLabels}
                     options={allLanguagesIsos}
                     onChange={({ target }) => {
@@ -243,7 +241,7 @@ const Account = () => {
                       watchStatus={WatchStatus.Finished}
                     />
                     <MediaCardList
-                      mediaList={[...favoriteTVData.list]}
+                      mediaList={favoriteTVData ? [...favoriteTVData.list] : []}
                       watchStatus={WatchStatus.Finished}
                     />
                   </div>
@@ -287,12 +285,16 @@ const Account = () => {
               </div>
             ) : finishedMovieListData.list.length == 0 ? (
               <></>
+            ) : finishedMovieListLoading ? (
+              <Spinner />
             ) : finishedTVListLoading ? (
               <Spinner />
             ) : (
               <div
                 className={
-                  finishedTVListData.list.length == 0
+                  typeof finishedTVListData === "undefined"
+                    ? "w-full px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
+                    : finishedTVListData.list.length == 0
                     ? "w-full px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
                     : "w-full md:w-12/25 px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md mt-4 md:mt-0"
                 }
