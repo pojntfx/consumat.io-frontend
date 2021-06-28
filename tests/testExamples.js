@@ -202,4 +202,5 @@ export default {
   examplePage: 1,
   exampleMaxPages: 5,
   exampleCast: [],
+  exampleInfos: [],
 };
