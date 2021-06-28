@@ -201,4 +201,5 @@ export default {
   exampleMocks: [],
   examplePage: 1,
   exampleMaxPages: 5,
+  exampleCast: [],
 };
