@@ -9,6 +9,7 @@ type CastListProps = {
 };
 
 const CastList = ({ title, cast, className }: CastListProps) => {
+  console.log(title, cast);
   return (
     cast.length > 0 && (
       <div className={"cardWithShadow " + className}>
