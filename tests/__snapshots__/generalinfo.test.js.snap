@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="px-4 pb-4 bg-gradient-to-br from-white to-white dark:from-gray-700 dark:to-gray-800 rounded shadow-md undefined"
+>
+  <h3
+    className="cardHeading"
+  >
+    INFOS
+  </h3>
+  <div
+    className="flex flex-row"
+  />
+</div>
+`;
