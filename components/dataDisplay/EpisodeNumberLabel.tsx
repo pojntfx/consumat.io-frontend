@@ -1,4 +1,3 @@
-import React from "react";
 import { EpisodeNumber } from "../../types/episodeNumber";
 
 type EpisodeNumberLabelProps = {

@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import { useApollo } from "../lib/apolloClient";
 import { Provider } from "next-auth/client";
 import "../styles/globals.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { theme } from "../types/theme";
 import { useUpdate } from "../hooks/UpdateHooks";
 import "react-toastify/dist/ReactToastify.css";

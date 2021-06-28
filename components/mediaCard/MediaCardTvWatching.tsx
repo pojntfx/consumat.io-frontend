@@ -1,5 +1,5 @@
 import { CheckIcon, ReplyIcon } from "@heroicons/react/outline";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetEpisode, useGetTvSeasons } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
 import { isDateInFuture } from "../../types/date";
