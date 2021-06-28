@@ -1,4 +1,3 @@
-import React from "react";
 import { CalendarIcon } from "@heroicons/react/outline";
 import { Episode } from "../../lib/api/consumat-io";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { Movie } from "../../lib/api/consumat-io";
 import MediaCardWrapper from "./MediaCardWrapper";
 

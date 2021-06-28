@@ -1,5 +1,4 @@
 import { ClockIcon } from "@heroicons/react/outline";
-import React from "react";
 import { Episode } from "../../lib/api/consumat-io";
 import {
   daysUntilDate,
