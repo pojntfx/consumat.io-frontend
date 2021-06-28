@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="flex flex-row ml-2"
+>
+  <div
+    className="font-medium"
+  >
+    S
+    02
+  </div>
+  <div
+    className="-mx-0.5 font-medium"
+  >
+    ︱
+  </div>
+  <div
+    className="font-medium"
+  >
+    E
+    05
+  </div>
+</div>
+`;

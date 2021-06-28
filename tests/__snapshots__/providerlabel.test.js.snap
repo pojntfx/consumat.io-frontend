@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="flex items-center justify-center mr-1 py-1 px-2 bg-gray-200 dark:bg-gray-800 text-white text-sm font-bold rounded shadow"
+>
+  <div />
+</div>
+`;

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<a
+  href="/tv/117378"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+>
+  <div
+    className="inline-block w-24 sm:w-32 mr-1"
+  >
+    <div
+      className="containerw-24 sm:w-32 flex flex-col items-center justify-center rounded cursor-pointer shadow hover:shadow-md duration-75"
+    >
+      <div
+        className="overflow-hidden rounded"
+      >
+        <div
+          className="img w-24 h-36 sm:w-32 sm:h-48 flex-shrink-0"
+        >
+          <img
+            className="h-full w-full object-cover"
+            onError={[Function]}
+            src="https://image.tmdb.org/t/p/w185/l38PZlYba97ziaAsK3N3NPnQDtr.jpg"
+          />
+        </div>
+      </div>
+      <p
+        className="bg-gradient-to-br text-white z-10 text-sm py-2 px-1 text-center truncate w-full -mt-4 rounded from-green-500 to-blue-500"
+        title="Mouse"
+      >
+        Mouse
+      </p>
+    </div>
+  </div>
+</a>
+`;
