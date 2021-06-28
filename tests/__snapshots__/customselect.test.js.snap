@@ -1,0 +1,450 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="undefined button relative flex"
+>
+  <select
+    className="text-sm font-medium bg-transparent z-10 w-full pl-2 pr-6 py-1"
+    id="language"
+    name="language"
+    onChange={[Function]}
+    value="pt-BR"
+  >
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="sq-AL"
+    >
+      Albanian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ar-SA"
+    >
+      Arabic (Saudi Arabia)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ar-AE"
+    >
+      Arabic (United Arab Emirates)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="eu-ES"
+    >
+      Basque
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="be-BY"
+    >
+      Belarusian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="bn-BD"
+    >
+      Bengali
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="bg-BG"
+    >
+      Bulgarian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="cn-CN"
+    >
+      Cantonese
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ca-ES"
+    >
+      Catalan
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ch-GU"
+    >
+      Chamorro
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="zh-CN"
+    >
+      Chinese (China)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="zh-HK"
+    >
+      Chinese (Hong Kong)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="zh-TW"
+    >
+      Chinese (Taiwan)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="cs-CZ"
+    >
+      Czech
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="da-DK"
+    >
+      Danish
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="nl-NL"
+    >
+      Dutch
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-AU"
+    >
+      English (Australia)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-CA"
+    >
+      English (Canada)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-IE"
+    >
+      English (Ireland)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-NZ"
+    >
+      English (New Zealand)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-GB"
+    >
+      English (United Kingdom)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="en-US"
+    >
+      English (United States)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="eo-EO"
+    >
+      Esperanto
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="et-EE"
+    >
+      Estonian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="fa-IR"
+    >
+      Farsi
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="fi-FI"
+    >
+      Finnish
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="fr-CA"
+    >
+      French (Canada)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="fr-FR"
+    >
+      French (France)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="gl-ES"
+    >
+      Galician
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ka-GE"
+    >
+      Georgian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="de-AT"
+    >
+      German (Austria)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="de-DE"
+    >
+      German (Germany)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="de-CH"
+    >
+      German (Switzerland)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="el-GR"
+    >
+      Greek
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="he-IL"
+    >
+      Hebrew
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="hi-IN"
+    >
+      Hindi
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="hu-HU"
+    >
+      Hungarian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="id-ID"
+    >
+      Indonesian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="it-IT"
+    >
+      Italian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ja-JP"
+    >
+      Japanese
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="kn-IN"
+    >
+      Kannada
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="kk-KZ"
+    >
+      Kazakh
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ko-KR"
+    >
+      Korean
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="lv-LV"
+    >
+      Latvian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="lt-LT"
+    >
+      Lithuanian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ms-MY"
+    >
+      Malay (Malaysia)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ms-SG"
+    >
+      Malay (Singapore)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ml-IN"
+    >
+      Malayalam
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="nb-NO"
+    >
+      Norwegian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="no-NO"
+    >
+      Norwegian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="pl-PL"
+    >
+      Polish
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="pt-BR"
+    >
+      Portuguese (Brazil)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="pt-PT"
+    >
+      Portuguese (Portugal)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ro-RO"
+    >
+      Romanian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ru-RU"
+    >
+      Russian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="sr-RS"
+    >
+      Serbian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="si-LK"
+    >
+      Sinhala
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="sk-SK"
+    >
+      Slovak
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="sl-SI"
+    >
+      Slovenian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="es-MX"
+    >
+      Spanish (Mexico)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="es-ES"
+    >
+      Spanish (Spain)
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="sv-SE"
+    >
+      Swedish
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="tl-PH"
+    >
+      Tagalog
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="ta-IN"
+    >
+      Tamil
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="te-IN"
+    >
+      Telugu
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="th-TH"
+    >
+      Thai
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="tr-TR"
+    >
+      Turkish
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="uk-UA"
+    >
+      Ukrainian
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="vi-VN"
+    >
+      Vietnamese
+    </option>
+    <option
+      className="font-medium dark:bg-gray-800"
+      value="zu-ZA"
+    >
+      Zulu
+    </option>
+  </select>
+  <svg
+    className="absolute z-0 right-1 h-5 w-4 my-1"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M19 9l-7 7-7-7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+  </svg>
+</div>
+`;
