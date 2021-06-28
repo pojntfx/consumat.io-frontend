@@ -1,5 +1,7 @@
+import { MediaType } from "../types/media";
+
 export default {
-  mediaItemExample: {
+  exampleMediaItem: {
     backdropPath: "/2quGobxbtKu1WywX9y90fTbxsIW.jpg",
     cast: null,
     code: 117378,
@@ -46,4 +48,5 @@ export default {
     "https://image.tmdb.org/t/p/w154/ibiGOAzumOIzCk8fHwv03jzYbj9.jpg",
   exampleTitle: "SIMILAR TITLES",
   exampleMediaPage: { results: [], totalPages: 0, __typename: "MediaPage" },
+  exampleMedia: MediaType.Tv,
 };
