@@ -199,4 +199,6 @@ export default {
   exampleName: "language",
   exampleValue: "pt-BR",
   exampleMocks: [],
+  examplePage: 1,
+  exampleMaxPages: 5,
 };
