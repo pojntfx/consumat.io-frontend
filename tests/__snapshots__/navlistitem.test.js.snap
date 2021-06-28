@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<li>
+  <a
+    className="navigation-link link navigationLink dark:hover:border-white dark:hover:text-white undefined"
+    href="/"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+  />
+</li>
+`;
