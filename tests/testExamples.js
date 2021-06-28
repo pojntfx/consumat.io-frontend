@@ -44,4 +44,6 @@ export default {
   },
   exampleImgSrc:
     "https://image.tmdb.org/t/p/w154/ibiGOAzumOIzCk8fHwv03jzYbj9.jpg",
+  exampleTitle: "SIMILAR TITLES",
+  exampleMediaPage: { results: [], totalPages: 0, __typename: "MediaPage" },
 };
