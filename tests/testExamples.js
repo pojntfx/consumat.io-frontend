@@ -51,4 +51,5 @@ export default {
   exampleMedia: MediaType.Tv,
   exampleProgress: 2,
   exampleLimit: 104,
+  exampleProvider: "Netflix",
 };
