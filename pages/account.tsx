@@ -92,6 +92,15 @@ const Account = () => {
   const [language, setLanguage] = useState(userData?.user.country);
   const [country, setCountry] = useState(userData?.user.language);
 
+  const updateTheLanguage = (input) => {
+    console.log(input);
+    // updateLanguage({
+    //   variables: {
+    //     language: input,
+    //   },
+    // });
+  };
+
   return (
     <>
       {userLoading ? (
