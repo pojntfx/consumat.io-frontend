@@ -10,7 +10,6 @@ type MediaCardProps = {
 };
 
 const MediaCard = ({ mediaItem }: MediaCardProps) => {
-  console.log(mediaItem);
   return (
     <Link href={`/${mediaItem.__typename.toLowerCase()}/${mediaItem.code}`}>
       <a>
