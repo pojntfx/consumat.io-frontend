@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ul
+  className="navigationList"
+>
+  <li>
+    <a
+      className="navigation-link link navigationLink dark:hover:border-white dark:hover:text-white false"
+      href="/"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      Home
+    </a>
+  </li>
+  <li>
+    <a
+      className="navigation-link link navigationLink dark:hover:border-white dark:hover:text-white false"
+      href="/library?media=TV&watchStatus=Watching"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      Library
+    </a>
+  </li>
+  <li>
+    <a
+      className="navigation-link link navigationLink dark:hover:border-white dark:hover:text-white false"
+      href="/search?q="
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      Search
+    </a>
+  </li>
+  <button
+    className="bg-transparent text-gray-400 hover:text-gray-800 dark:hover:text-white shadow-none hover:shadow-none my-4 md:my-0 ml-1"
+    onClick={[Function]}
+  >
+    <svg
+      className="h-8 w-8"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+      />
+    </svg>
+  </button>
+</ul>
+`;
