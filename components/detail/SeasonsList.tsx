@@ -29,8 +29,6 @@ const SeasonsList = ({ seasons, loading, error }) => {
 
   useEffect(() => {
     if (mountCounter >= 2 && allSeasons) {
-      console.log("Setting number of watched episodes");
-
       allSeasons?.map((s) => {
         setNumberOfWatchedEpisodes({
           variables: {

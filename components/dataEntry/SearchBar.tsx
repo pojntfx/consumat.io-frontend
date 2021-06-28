@@ -1,6 +1,6 @@
 import { SearchIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 
 type SearchBarProps = {
   className?: string;

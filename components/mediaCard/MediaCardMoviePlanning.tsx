@@ -1,5 +1,5 @@
 import { ClipboardCopyIcon } from "@heroicons/react/outline";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Movie } from "../../lib/api/consumat-io";
 import { WatchStatus } from "../../types/status";
 import MediaStatusLabel from "../dataDisplay/MediaStatusLabel";

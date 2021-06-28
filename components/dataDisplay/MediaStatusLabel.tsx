@@ -1,5 +1,4 @@
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
-import React from "react";
 import { Media } from "../../lib/api/consumat-io";
 import { isMovie, isTv } from "../../types/media";
 import { StatusMovie, StatusTv } from "../../types/status";

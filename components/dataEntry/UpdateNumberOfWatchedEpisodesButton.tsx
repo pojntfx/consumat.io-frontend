@@ -1,5 +1,5 @@
 import { ApolloError } from "@apollo/client";
-import React, { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useSetNumberOfWatchedEpisodes } from "../../hooks/DataHooks";
 import { Tv } from "../../lib/api/consumat-io";
 

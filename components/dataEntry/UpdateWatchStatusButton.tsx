@@ -1,5 +1,5 @@
 import { ApolloError } from "@apollo/client";
-import React, { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useSetWatchStatus } from "../../hooks/DataHooks";
 import { Media } from "../../lib/api/consumat-io";
 import { WatchStatus } from "../../types/status";
