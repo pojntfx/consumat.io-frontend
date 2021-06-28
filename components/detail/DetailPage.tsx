@@ -122,7 +122,7 @@ const DetailPage = ({ media }: DetailPageProps) => {
     "Watch Status",
     ...getValidWatchStatusForMediaType(mediaType),
   ];
-  //.map((option) => ({ key: option, value: option }));
+
   const ratingOptions: string[] = [
     "Rating",
     "1",
@@ -136,12 +136,10 @@ const DetailPage = ({ media }: DetailPageProps) => {
     "9",
     "10",
   ];
-  //.map((option) => ({ key: option, value: option }));
 
   return (
     <div className="flex flex-col">
       <DetailHeader media={media} />
-
       <div className="sm:px-8">
         <div className="flex flex-col sm:flex-row my-4">
           <div className="flex flex-col justify-evenly w-40 mr-2 ml-8 sm:ml-0 flex-shrink-0">
