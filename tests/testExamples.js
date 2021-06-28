@@ -49,4 +49,6 @@ export default {
   exampleTitle: "SIMILAR TITLES",
   exampleMediaPage: { results: [], totalPages: 0, __typename: "MediaPage" },
   exampleMedia: MediaType.Tv,
+  exampleProgress: 2,
+  exampleLimit: 104,
 };

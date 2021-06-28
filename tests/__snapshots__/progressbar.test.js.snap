@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="w-full h-3 rounded-full overflow-hidden bg-gray-200 undefined"
+>
+  <div
+    className="h-full bg-gradient-to-br from-green-500 to-blue-500"
+  />
+</div>
+`;
