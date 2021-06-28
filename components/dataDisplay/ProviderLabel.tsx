@@ -1,4 +1,3 @@
-import React from "react";
 import { Provider } from "../../lib/api/consumat-io";
 
 type ProviderLabelProps = {

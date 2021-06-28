@@ -1,7 +1,6 @@
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { Language } from "../types/language";
 import { useGetUser, useSetLanguage } from "./DataHooks";
 
 export function useAuthorization() {
