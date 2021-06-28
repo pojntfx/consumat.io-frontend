@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MediaCard from "../components/home/MediaCard";
+import MediaStatusLabel from "../components/dataDisplay/MediaStatusLabel";
 import testExamples from "./testExamples";
 
 it("renders correctly", () => {
   const tree = renderer
-    .create(<MediaCard mediaItem={testExamples.exampleMediaItem} />)
+    .create(<MediaStatusLabel media={testExamples.exampleMedia} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
