@@ -198,4 +198,5 @@ export default {
   ],
   exampleName: "language",
   exampleValue: "pt-BR",
+  exampleMocks: [],
 };
