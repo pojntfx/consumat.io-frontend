@@ -14,15 +14,6 @@ export function useAuthorization() {
     if (!(session || loading)) {
       router.push("/login");
     }
-    if (session) {
-      updateLanguage({
-        variables: {
-          language: data?.user.language
-            ? data?.user.language
-            : "" + navigator.language,
-        },
-      });
-    }
   }, [session, loading]);
 
   return [session, loading];
